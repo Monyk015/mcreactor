@@ -7,13 +7,14 @@ import User from '../models/User';
 import {ServerResponse} from "http";
 import { UserAttribute } from '../models/User';
 import * as _ from 'lodash'
-import { JwtMiddleware } from '../middlewares/JwtMiddleware';
+import { AuthMiddleware } from '../middlewares/AuthMiddleware';
+import { AdminMiddleware } from '../middlewares/AdminMiddleware'
 
 @JsonController()
 export class UserController
 {
 
-    @UseBefore(JwtMiddleware)
+    @UseBefore(AuthMiddleware)
     @Get("/users")
     async getAll()
     {
@@ -32,6 +33,7 @@ export class UserController
         return await User.create(user, {raw: true})
     }
 
+    @UseBefore(AuthMiddleware, AdminMiddleware)
     @Put("/users/:id")
     async put(@Param("id") id:number, @Body() user: UserAttribute) : Promise<any>
     {

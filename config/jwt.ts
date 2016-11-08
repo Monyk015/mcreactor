@@ -8,7 +8,7 @@ export function generateToken(user : UserAttribute) : string
     return jwt.sign(user, secret)
 }
 
-export function verifyToken(token : string | undefined) : UserAttribute | boolean
+export function verifyToken(token : string | undefined) : UserAttribute | false
 {
     if(token)
     {
