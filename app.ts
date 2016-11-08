@@ -1,6 +1,17 @@
 import 'es6-shim'
-import "reflect-metadata"; // this shim is required
+import "reflect-metadata";
 import {createKoaServer} from "routing-controllers";
-import "./controllers/TestController.ts"  // we need to "load" our controller before call createServer. this is required
-let app = createKoaServer() // creates express app, registers all controller routes and returns you express app instance
-app.listen(3000) // run express application
+import "./controllers/UserController.ts"
+import "./controllers/AuthController.ts"
+
+const convert = require('koa-convert')
+const app = createKoaServer()
+
+app.use(require('koa-bodyparser')())
+
+let cors = require('koa-cors')
+app.use(convert(cors()))
+
+
+
+app.listen(3000)

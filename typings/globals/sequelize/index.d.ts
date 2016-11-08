@@ -2694,6 +2694,8 @@ declare module "sequelize" {
              */
             sequelize : Sequelize;
 
+            dataValues : TAttributes
+
             /**
              * Get an object representing the query for this instance, use with `options.where`
              */

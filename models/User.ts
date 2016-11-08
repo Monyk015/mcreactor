@@ -7,7 +7,14 @@ import * as Sequelize from "sequelize";
 export interface UserAttribute
 {
     id?:string
-    name?:string
+    nickname?:string
+    email?:string
+    password?:string
+    rating?:number
+    isBanned?:boolean
+    isAdmin?:boolean
+    createdAt?:number
+    updatedAt?:number
 }
 
 export interface UserInstance extends Sequelize.Instance<UserAttribute>, UserAttribute
@@ -17,10 +24,33 @@ export interface UserModel extends Sequelize.Model<UserInstance, UserAttribute>
 {}
 
 const User : UserModel = db.define<UserInstance, UserAttribute>("User", {
-    name: {
+    nickname: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    email: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    rating: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    isBanned: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        field: 'is_banned'
+    },
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        field: 'is_admin'
+        
+    },
 }, {
     tableName: 'users',
     timestamps: true,
@@ -28,10 +58,12 @@ const User : UserModel = db.define<UserInstance, UserAttribute>("User", {
     updatedAt: "updated_at"
 })
 
-User.sync({force: true}).then(() => {
-    return User.create(<UserAttribute> {
-        name : 'LOL'
-    })
+import users from '../mocks/users'
+
+User.sync().then(() => {
+    // users.forEach((user) => {
+        // User.create(<UserAttribute> user)
+    // })
 })
 
 export default User

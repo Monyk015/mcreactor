@@ -9,7 +9,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './bin'),
         publicPath: '/bin/',
-        filename: 'app.js'
+        filename: 'bin.js',
+        devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
+        devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
     },
     module: {
         loaders: [
