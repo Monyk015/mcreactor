@@ -2,13 +2,14 @@
  * Created by Monyk on 05.11.2016.
  */
 
-import { Controller, Param, Body, Get, Post, Put, Delete, JsonController, Res, Middleware, UseBefore } from 'routing-controllers';
+import { Controller, Param, Body, Get, Post, Put, Delete, JsonController, Res, Middleware, UseBefore, Req } from 'routing-controllers';
 import User from '../models/User';
 import {ServerResponse} from "http";
 import { UserAttribute } from '../models/User';
 import * as _ from 'lodash'
 import { AuthMiddleware } from '../middlewares/AuthMiddleware';
 import { AdminMiddleware } from '../middlewares/AdminMiddleware'
+import { Request } from '~koa/lib/request';
 
 @JsonController()
 export class UserController
@@ -25,12 +26,6 @@ export class UserController
     async getOne(@Param("id") id: number)
     {
         return await User.findById(id, {raw : true})//todo: validation
-    }
-
-    @Post("/users")
-    async post(@Body() user: UserAttribute)
-    {
-        return await User.create(user, {raw: true})
     }
 
     @UseBefore(AuthMiddleware, AdminMiddleware)

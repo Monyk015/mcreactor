@@ -16,9 +16,16 @@ export class AuthController {
             }
         })
         if (found && found.password == user.password)
-            return generateToken(found.dataValues)
+            return {success: true, token: generateToken(found.dataValues)}
         else
             return {success: false, message: 'Incorrect password or username'}
 
+    }
+
+
+    @Post("/register")
+    async register(@Body() user: UserAttribute)
+    {
+        return await User.create(user, {raw: true})
     }
 }
