@@ -10,10 +10,18 @@ import * as _ from 'lodash'
 import { AuthMiddleware } from '../middlewares/AuthMiddleware';
 import { AdminMiddleware } from '../middlewares/AdminMiddleware'
 import { Request } from '~koa/lib/request';
+import { Response } from '~koa/lib/response';
+import { PugMiddleware } from '../middlewares/PugMiddleware';
 
-@JsonController()
+@UseBefore(PugMiddleware)
+@Controller()
 export class UserController
 {
+    @Get('/')
+    async main(@Res() res : Response,)
+    {
+		res.render('index')
+    }
 
     @UseBefore(AuthMiddleware)
     @Get("/users")

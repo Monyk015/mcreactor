@@ -1,7 +1,9 @@
-import { JsonController, Post, Body } from 'routing-controllers';
+import { JsonController, Post, Body, Req, Res } from 'routing-controllers';
 import { UserAttribute, UserModel } from '../models/User';
 import User from '../models/User';
 import { generateToken } from '../config/jwt';
+import { Request } from '~koa/lib/request';
+import { Response } from '~koa/lib/response';
 
 
 

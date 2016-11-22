@@ -5,6 +5,7 @@
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "es6-shim": "^0.35.1",
+    "js-koa-pug": "^1.0.3",
     "json-loader": "^0.5.4",
     "jsonwebtoken": "^7.1.9",
     "koa": "^2.0.0",

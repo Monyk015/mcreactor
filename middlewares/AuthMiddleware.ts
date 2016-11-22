@@ -3,6 +3,8 @@ import {Context} from 'koa'
 import { UserAttribute } from '../models/User';
 import { verifyToken } from '../config/jwt';
 
+
+
 @Middleware()
 export class AuthMiddleware implements MiddlewareInterface {
 
