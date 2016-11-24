@@ -1,5 +1,7 @@
 <script>
     import Cookies from 'js-cookie'
+    const jwt = require('jwt-decode')
+    
     export default
     {
         template: '#login-component',
@@ -17,10 +19,12 @@
                 $.post('', {
                     email: this.email, 
                     password: this.password
-                }, function(res) {
+                }, (res) => {
                     if(res.success)
                     {
+                        this.$store.commit('setUser', jwt(res.token))
                         Cookies.set('token', res.token)
+                        window.location.replace('/')
                     }
                 })
             }

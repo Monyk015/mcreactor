@@ -7,7 +7,6 @@ import { Response } from '~koa/lib/response';
 import { PugMiddleware } from '../middlewares/PugMiddleware';
 
 
-@UseBefore(PugMiddleware)
 @JsonController()
 export class AuthController {
     @Get('/login')

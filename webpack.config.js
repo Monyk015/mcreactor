@@ -7,8 +7,8 @@ module.exports = {
     target: 'node',
     externals: [node_externals()],
     output: {
-        path: path.resolve(__dirname, './bin'),
-        publicPath: '/bin/',
+        path: path.resolve(__dirname),
+        publicPath: '',
         filename: 'bin.js',
         devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
         devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'

@@ -130,7 +130,7 @@ namespace req {
         /**
          * Return request header, alias as request.header
          */
-        headers: IncomingHeaders;
+        headers: any;
 
         /**
          * Get/Set request URL.
@@ -842,6 +842,7 @@ namespace ctx {
         cookies: Cookies;
         accept: any;
         state: any;
+        cookie: any;
     }
 }
 

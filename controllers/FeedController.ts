@@ -2,7 +2,6 @@ import { Controller, UseBefore, Get, Res, JsonController } from 'routing-control
 import { PugMiddleware } from '../middlewares/PugMiddleware';
 import { Response } from '~koa/lib/response';
 
-@UseBefore(PugMiddleware)
 @JsonController()
 export class FeedController {
     @Get('/')

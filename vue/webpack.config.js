@@ -10,7 +10,7 @@ module.exports = {
         devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
         devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

@@ -23,8 +23,20 @@ html
                         a(href='/') Home
                     li
                         a(href='/users') Users
-                    li
-                        a(href='/login') Login
+                    span(v-if="$store.state.user")
+                        li
+                            ul.dropdown-content#user-dropdown
+                                li
+                                    a(href='/') Profile  
+                                li
+                                    a(href='/') Logout
+                            a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          
+                                | {{$store.state.user.nickname}}        
+                    span(v-else)
+                        li
+                            a(href='/login') Login
+                        li
+                            a(href='/register') Register
         #content.container
             block content
     script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
