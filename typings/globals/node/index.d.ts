@@ -805,6 +805,8 @@ declare module "http" {
     rawHeaders: string[];
     trailers: IncomingHeaders;
     rawTrailers: string[];
+    file: any;
+    body: any;
     setTimeout(msecs: number, callback: Function): NodeJS.Timer;
     /**
      * Only valid for request obtained from http.Server.

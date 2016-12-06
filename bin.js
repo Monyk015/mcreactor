@@ -48,34 +48,35 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-	    return new (P || (P = Promise))(function (resolve, reject) {
-	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-	        step((generator = generator.apply(thisArg, _arguments)).next());
-	    });
-	};
 	__webpack_require__(/*! es6-shim */ 1);
 	__webpack_require__(/*! reflect-metadata */ 2);
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	__webpack_require__(/*! ./controllers/UserController.ts */ 4);
-	__webpack_require__(/*! ./controllers/AuthController.ts */ 16);
-	__webpack_require__(/*! ./controllers/FeedController.ts */ 17);
-	__webpack_require__(/*! ./middlewares/PugMiddleware.ts */ 12);
-	__webpack_require__(/*! ./middlewares/CookieMiddleware.ts */ 23);
-	const path = __webpack_require__(/*! path */ 14);
-	const convert = __webpack_require__(/*! koa-convert */ 18);
-	const serve = __webpack_require__(/*! koa-static-folder */ 19);
-	const app = routing_controllers_1.createKoaServer();
-	app.use(__webpack_require__(/*! koa-bodyparser */ 20)());
+	const Koa = __webpack_require__(/*! koa */ 3);
+	const Router = __webpack_require__(/*! koa-router */ 4);
+	const AuthController_1 = __webpack_require__(/*! ./controllers/AuthController */ 5);
+	const FeedController_1 = __webpack_require__(/*! ./controllers/FeedController */ 16);
+	const UserController_1 = __webpack_require__(/*! ./controllers/UserController */ 18);
+	const path = __webpack_require__(/*! path */ 20);
+	const convert = __webpack_require__(/*! koa-convert */ 21);
+	const serve = __webpack_require__(/*! koa-static-folder */ 22);
+	const app = new Koa();
+	app.use(__webpack_require__(/*! koa-bodyparser */ 23)());
 	app.use(convert(serve('./public')));
-	let cors = __webpack_require__(/*! koa-cors */ 21);
+	app.use(convert(serve('./public/images')));
+	let cors = __webpack_require__(/*! koa-cors */ 24);
 	app.use(convert(cors()));
-	//cookie middleware
-	app.use((context, next) => __awaiter(this, void 0, void 0, function* () {
-	}));
-	//
+	const pug_1 = __webpack_require__(/*! ./config/pug */ 25);
+	pug_1.default.use(app);
+	app.use(convert(__webpack_require__(/*! koa-json */ 27)()));
+	const CookieMiddleware_1 = __webpack_require__(/*! ./middlewares/CookieMiddleware */ 28);
+	app.use(CookieMiddleware_1.default);
+	const router = new Router();
+	router
+	    .use('', UserController_1.default.routes())
+	    .use('', AuthController_1.default.routes())
+	    .use('', FeedController_1.default.routes());
+	app
+	    .use(router.routes())
+	    .use(router.allowedMethods());
 	app.listen(3000);
 
 
@@ -99,36 +100,30 @@
 
 /***/ },
 /* 3 */
-/*!**************************************!*\
-  !*** external "routing-controllers" ***!
-  \**************************************/
+/*!**********************!*\
+  !*** external "koa" ***!
+  \**********************/
 /***/ function(module, exports) {
 
-	module.exports = require("routing-controllers");
+	module.exports = require("koa");
 
 /***/ },
 /* 4 */
+/*!*****************************!*\
+  !*** external "koa-router" ***!
+  \*****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("koa-router");
+
+/***/ },
+/* 5 */
 /*!***************************************!*\
-  !*** ./controllers/UserController.ts ***!
+  !*** ./controllers/AuthController.ts ***!
   \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Created by Monyk on 05.11.2016.
-	 */
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var __param = (this && this.__param) || function (paramIndex, decorator) {
-	    return function (target, key) { decorator(target, key, paramIndex); }
-	};
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -137,65 +132,89 @@
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
 	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	const User_1 = __webpack_require__(/*! ../models/User */ 5);
-	const AuthMiddleware_1 = __webpack_require__(/*! ../middlewares/AuthMiddleware */ 8);
-	const AdminMiddleware_1 = __webpack_require__(/*! ../middlewares/AdminMiddleware */ 11);
-	let UserController = class UserController {
-	    getAll() {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            return yield User_1.default.findAll({ raw: true, order: 'id' });
-	        });
+	const models_1 = __webpack_require__(/*! ../models/models */ 6);
+	const jwt_1 = __webpack_require__(/*! ../config/jwt */ 13);
+	const Router = __webpack_require__(/*! koa-router */ 4);
+	const hash = __webpack_require__(/*! sha256 */ 15);
+	const AuthController = new Router();
+	AuthController
+	    .get('/login', (ctx) => {
+	    ctx.render('auth/login');
+	})
+	    .post('/login', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    const user = ctx.request.body;
+	    const found = yield models_1.User.findOne({
+	        where: {
+	            email: user.email
+	        }
+	    });
+	    if (found && found.password == hash(user.password))
+	        ctx.body = { success: true, token: jwt_1.generateToken(found.dataValues) };
+	    else if (!found)
+	        ctx.body = { success: false, message: 'Wrong email' };
+	    else
+	        ctx.body = { success: false, message: 'Wrong password' };
+	}))
+	    .get('/register', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    ctx.render('auth/register');
+	}))
+	    .post('/register', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let user = ctx.request.body;
+	    if (user.password != user.confirmPassword)
+	        ctx.body = { success: false, message: 'Passwords do not match' };
+	    user.password = hash(user.password);
+	    try {
+	        let createdUser = yield models_1.User.create(user);
 	    }
-	    getOne(id) {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            return yield User_1.default.findById(id, { raw: true }); //todo: validation
-	        });
+	    catch (err) {
+	        console.log(err);
+	        if (err.name == "SequelizeUniqueConstraintError")
+	            ctx.body = { success: false, message: 'Email busy' };
+	        ctx.body = { success: false, message: 'Some error' };
 	    }
-	    put(id, user) {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            const foundUser = yield User_1.default.findById(id); //todo: restring access
-	            if (foundUser) {
-	                return (yield foundUser.update(user)).get();
-	            }
-	            return { success: false, message: 'User not found' };
-	        });
-	    }
-	};
-	__decorate([
-	    routing_controllers_1.UseBefore(AuthMiddleware_1.AuthMiddleware),
-	    routing_controllers_1.Get("/users"), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', []), 
-	    __metadata('design:returntype', Promise)
-	], UserController.prototype, "getAll", null);
-	__decorate([
-	    routing_controllers_1.Get("/users/:id"),
-	    __param(0, routing_controllers_1.Param("id")), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Number]), 
-	    __metadata('design:returntype', Promise)
-	], UserController.prototype, "getOne", null);
-	__decorate([
-	    routing_controllers_1.UseBefore(AuthMiddleware_1.AuthMiddleware, AdminMiddleware_1.AdminMiddleware),
-	    routing_controllers_1.Put("/users/:id"),
-	    __param(0, routing_controllers_1.Param("id")),
-	    __param(1, routing_controllers_1.Body()), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Number, Object]), 
-	    __metadata('design:returntype', Promise)
-	], UserController.prototype, "put", null);
-	UserController = __decorate([
-	    routing_controllers_1.JsonController(), 
-	    __metadata('design:paramtypes', [])
-	], UserController);
-	exports.UserController = UserController;
+	    ctx.body = { success: true, message: '' };
+	}));
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = AuthController;
 
 
 /***/ },
-/* 5 */
+/* 6 */
+/*!**************************!*\
+  !*** ./models/models.ts ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const Post_1 = __webpack_require__(/*! ./Post */ 7);
+	exports.Post = Post_1.default;
+	const Commentary_1 = __webpack_require__(/*! ./Commentary */ 10);
+	exports.Commentary = Commentary_1.default;
+	const Tag_1 = __webpack_require__(/*! ./Tag */ 11);
+	exports.Tag = Tag_1.default;
+	const User_1 = __webpack_require__(/*! ./User */ 12);
+	exports.User = User_1.default;
+	const db_1 = __webpack_require__(/*! ../config/db */ 8);
+	Post_1.default.belongsTo(User_1.default);
+	User_1.default.hasMany(Post_1.default);
+	User_1.default.hasMany(Commentary_1.default);
+	Commentary_1.default.belongsTo(User_1.default);
+	Post_1.default.hasMany(Commentary_1.default);
+	Commentary_1.default.belongsTo(Post_1.default);
+	const PostTag = db_1.default.define('PostTag', {}, { tableName: 'PostTag' });
+	Tag_1.default.belongsToMany(Post_1.default, { through: 'PostTag' });
+	Post_1.default.belongsToMany(Tag_1.default, { through: 'PostTag' });
+	User_1.default.sync();
+	Post_1.default.sync();
+	Tag_1.default.sync();
+	Commentary_1.default.sync();
+	PostTag.sync();
+
+
+/***/ },
+/* 7 */
 /*!************************!*\
-  !*** ./models/User.ts ***!
+  !*** ./models/Post.ts ***!
   \************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -203,53 +222,22 @@
 	/**
 	 * Created by Monyk on 06.11.2016.
 	 */
-	const db_1 = __webpack_require__(/*! ../config/db */ 6);
-	const Sequelize = __webpack_require__(/*! sequelize */ 7);
-	const User = db_1.default.define("User", {
-	    nickname: {
+	const db_1 = __webpack_require__(/*! ../config/db */ 8);
+	const Sequelize = __webpack_require__(/*! sequelize */ 9);
+	const Post = db_1.default.define("Post", {
+	    content: {
 	        type: Sequelize.STRING,
 	        allowNull: false,
-	    },
-	    email: {
-	        type: Sequelize.STRING,
-	        allowNull: false,
-	        unique: true
-	    },
-	    password: {
-	        type: Sequelize.STRING,
-	        allowNull: false
-	    },
-	    rating: {
-	        type: Sequelize.INTEGER,
-	        allowNull: true
-	    },
-	    isBanned: {
-	        type: Sequelize.BOOLEAN,
-	        allowNull: true,
-	        field: 'is_banned'
-	    },
-	    isAdmin: {
-	        type: Sequelize.BOOLEAN,
-	        allowNull: true,
-	        field: 'is_admin'
-	    },
+	    }
 	}, {
-	    tableName: 'users',
-	    timestamps: true,
-	    createdAt: "created_at",
-	    updatedAt: "updated_at"
-	});
-	User.sync().then(() => {
-	    // users.forEach((user) => {
-	    // User.create(<UserAttribute> user)
-	    // })
+	    timestamps: true
 	});
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = User;
+	exports.default = Post;
 
 
 /***/ },
-/* 6 */
+/* 8 */
 /*!**********************!*\
   !*** ./config/db.ts ***!
   \**********************/
@@ -259,14 +247,14 @@
 	/**
 	 * Created by Monyk on 05.11.2016.
 	 */
-	const Sequelize = __webpack_require__(/*! sequelize */ 7);
-	const db = new Sequelize('postgres://monyk:root@localhost:5432/mcreactor');
+	const Sequelize = __webpack_require__(/*! sequelize */ 9);
+	const db = new Sequelize('mysql://root:root@localhost:3306/mcreactor');
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = db;
 
 
 /***/ },
-/* 7 */
+/* 9 */
 /*!****************************!*\
   !*** external "sequelize" ***!
   \****************************/
@@ -275,55 +263,117 @@
 	module.exports = require("sequelize");
 
 /***/ },
-/* 8 */
-/*!***************************************!*\
-  !*** ./middlewares/AuthMiddleware.ts ***!
-  \***************************************/
+/* 10 */
+/*!******************************!*\
+  !*** ./models/Commentary.ts ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	const jwt_1 = __webpack_require__(/*! ../config/jwt */ 9);
-	let AuthMiddleware = class AuthMiddleware {
-	    use(context, next) {
-	        const token = context.cookie.token;
-	        if (token) {
-	            const user = jwt_1.verifyToken(token.toString());
-	            if (user) {
-	                context.request.user = user;
-	                return next();
-	            }
-	        }
-	        context.response.status = 403;
-	        context.response.body = '403 Forbidden';
-	        return;
+	/**
+	 * Created by Monyk on 06.11.2016.
+	 */
+	const db_1 = __webpack_require__(/*! ../config/db */ 8);
+	const Sequelize = __webpack_require__(/*! sequelize */ 9);
+	const Commentary = db_1.default.define("Commentary", {
+	    content: {
+	        type: Sequelize.STRING,
+	        allowNull: false,
 	    }
-	};
-	AuthMiddleware = __decorate([
-	    routing_controllers_1.Middleware(), 
-	    __metadata('design:paramtypes', [])
-	], AuthMiddleware);
-	exports.AuthMiddleware = AuthMiddleware;
+	}, {
+	    timestamps: true
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Commentary;
 
 
 /***/ },
-/* 9 */
+/* 11 */
+/*!***********************!*\
+  !*** ./models/Tag.ts ***!
+  \***********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * Created by Monyk on 06.11.2016.
+	 */
+	const db_1 = __webpack_require__(/*! ../config/db */ 8);
+	const Sequelize = __webpack_require__(/*! sequelize */ 9);
+	const Tag = db_1.default.define("Tag", {
+	    name: {
+	        type: Sequelize.STRING,
+	        allowNull: false,
+	        unique: true
+	    }
+	}, {
+	    indexes: [
+	        {
+	            fields: ['name'],
+	            unique: true
+	        }
+	    ],
+	    timestamps: true,
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Tag;
+
+
+/***/ },
+/* 12 */
+/*!************************!*\
+  !*** ./models/User.ts ***!
+  \************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * Created by Monyk on 06.11.2016.
+	 */
+	const db_1 = __webpack_require__(/*! ../config/db */ 8);
+	const Sequelize = __webpack_require__(/*! sequelize */ 9);
+	const User = db_1.default.define("User", {
+	    nickname: {
+	        type: Sequelize.STRING(30),
+	        allowNull: false,
+	    },
+	    email: {
+	        type: Sequelize.STRING(30),
+	        allowNull: false,
+	        unique: true
+	    },
+	    password: {
+	        type: Sequelize.STRING(100),
+	        allowNull: false
+	    },
+	    rating: {
+	        type: Sequelize.INTEGER,
+	        allowNull: true
+	    },
+	    isBanned: {
+	        type: Sequelize.BOOLEAN,
+	        allowNull: true
+	    },
+	    isAdmin: {
+	        type: Sequelize.BOOLEAN,
+	        allowNull: true
+	    },
+	}, {
+	    timestamps: true
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = User;
+
+
+/***/ },
+/* 13 */
 /*!***********************!*\
   !*** ./config/jwt.ts ***!
   \***********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const jwt = __webpack_require__(/*! jsonwebtoken */ 10);
+	const jwt = __webpack_require__(/*! jsonwebtoken */ 14);
 	const secret = 'veryverysecret';
 	function generateToken(user) {
 	    return jwt.sign(user, secret);
@@ -346,7 +396,7 @@
 
 
 /***/ },
-/* 10 */
+/* 14 */
 /*!*******************************!*\
   !*** external "jsonwebtoken" ***!
   \*******************************/
@@ -355,87 +405,164 @@
 	module.exports = require("jsonwebtoken");
 
 /***/ },
-/* 11 */
-/*!****************************************!*\
-  !*** ./middlewares/AdminMiddleware.ts ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	let AdminMiddleware = class AdminMiddleware {
-	    use(context, next) {
-	        if (context.request.user && context.request.user.isAdmin) {
-	            return next();
-	        }
-	        context.response.status = 403;
-	        context.response.body = '403 Forbidden';
-	        return;
-	    }
-	};
-	AdminMiddleware = __decorate([
-	    routing_controllers_1.Middleware(), 
-	    __metadata('design:paramtypes', [])
-	], AdminMiddleware);
-	exports.AdminMiddleware = AdminMiddleware;
-
-
-/***/ },
-/* 12 */
-/*!**************************************!*\
-  !*** ./middlewares/PugMiddleware.ts ***!
-  \**************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	const pug = __webpack_require__(/*! pug */ 13);
-	const path = __webpack_require__(/*! path */ 14);
-	const defaults = __webpack_require__(/*! lodash.defaults */ 15);
-	let PugMiddleware = class PugMiddleware {
-	    use(ctx, next) {
-	        ctx.response.render = function (file) {
-	            ctx.body = pug.renderFile(path.resolve('./views', file + '.pug'), defaults({}));
-	        };
-	        return next();
-	    }
-	};
-	PugMiddleware = __decorate([
-	    routing_controllers_1.MiddlewareGlobalBefore(), 
-	    __metadata('design:paramtypes', [])
-	], PugMiddleware);
-	exports.PugMiddleware = PugMiddleware;
-
-
-/***/ },
-/* 13 */
-/*!**********************!*\
-  !*** external "pug" ***!
-  \**********************/
+/* 15 */
+/*!*************************!*\
+  !*** external "sha256" ***!
+  \*************************/
 /***/ function(module, exports) {
 
-	module.exports = require("pug");
+	module.exports = require("sha256");
 
 /***/ },
-/* 14 */
+/* 16 */
+/*!***************************************!*\
+  !*** ./controllers/FeedController.ts ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
+	const models_1 = __webpack_require__(/*! ../models/models */ 6);
+	const Router = __webpack_require__(/*! koa-router */ 4);
+	const multer = __webpack_require__(/*! koa-multer */ 17);
+	const upload = multer({ dest: './public/images' });
+	const FeedController = new Router();
+	FeedController
+	    .get('/', (ctx) => {
+	    ctx.render('index');
+	})
+	    .post('/', upload.single('image'), (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    try {
+	        let htmlCode = (ctx.req.body.content ? `<p>${ctx.req.body.content}</p>` : '') + `<img src="public/images/${ctx.req.file.filename}"></img>`;
+	        let tags = ctx.req.body.tags
+	            .split(',')
+	            .map(tag => {
+	            return { 'name': tag.trim() };
+	        });
+	        yield models_1.Tag.bulkCreate(tags, {
+	            updateOnDuplicate: ['name']
+	        });
+	        let post = yield models_1.Post.create({
+	            content: htmlCode
+	        });
+	        yield post.setTags(yield models_1.Tag.findAll({
+	            where: {
+	                name: {
+	                    in: ctx.req.body.tags.split(',').map(tag => tag.trim())
+	                }
+	            }
+	        }));
+	        ctx.body = { success: true, message: '' };
+	    }
+	    catch (e) {
+	        ctx.body = { success: false, message: `Something went wrong: ${e}` };
+	    }
+	}))
+	    .get('/post/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    const id = ctx.params.id;
+	    const post = models_1.Post.findById();
+	}))
+	    .get('/post', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    const posts = yield models_1.Post.findAll({
+	        include: [models_1.Tag]
+	    });
+	    ctx.body = posts.map(post => post.get());
+	}));
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = FeedController;
+
+
+/***/ },
+/* 17 */
+/*!*****************************!*\
+  !*** external "koa-multer" ***!
+  \*****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("koa-multer");
+
+/***/ },
+/* 18 */
+/*!***************************************!*\
+  !*** ./controllers/UserController.ts ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Monyk on 05.11.2016.
+	 */
+	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
+	const Router = __webpack_require__(/*! koa-router */ 4);
+	const models_1 = __webpack_require__(/*! ../models/models */ 6);
+	const AuthMiddleware_1 = __webpack_require__(/*! ../middlewares/AuthMiddleware */ 19);
+	const UserController = new Router();
+	// UserController.use(authMiddleware)
+	UserController
+	    .get('/users', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    ctx.body = yield models_1.User.findAll({ raw: true, order: 'id' });
+	}))
+	    .get('/users/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.params.id;
+	    ctx.body = yield models_1.User.findById(id, { raw: true });
+	}))
+	    .put('/users/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.params.id;
+	    let user = ctx.request.body;
+	    const foundUser = yield models_1.User.findById(id); //todo: restring access
+	    if (foundUser) {
+	        ctx.body = (yield foundUser.update(user)).get();
+	    }
+	    ctx.body = { success: false, message: 'User not found' };
+	}));
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = UserController;
+
+
+/***/ },
+/* 19 */
+/*!***************************************!*\
+  !*** ./middlewares/AuthMiddleware.ts ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const jwt_1 = __webpack_require__(/*! ../config/jwt */ 13);
+	const authMiddleware = (context, next) => {
+	    let token = false;
+	    if (context.cookie)
+	        token = context.cookie.token;
+	    if (token) {
+	        const user = jwt_1.verifyToken(token.toString());
+	        if (user) {
+	            context.user = user;
+	            return next();
+	        }
+	    }
+	    context.response.status = 403;
+	    context.response.body = '403 Forbidden';
+	    return;
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = authMiddleware;
+
+
+/***/ },
+/* 20 */
 /*!***********************!*\
   !*** external "path" ***!
   \***********************/
@@ -444,148 +571,7 @@
 	module.exports = require("path");
 
 /***/ },
-/* 15 */
-/*!**********************************!*\
-  !*** external "lodash.defaults" ***!
-  \**********************************/
-/***/ function(module, exports) {
-
-	module.exports = require("lodash.defaults");
-
-/***/ },
-/* 16 */
-/*!***************************************!*\
-  !*** ./controllers/AuthController.ts ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var __param = (this && this.__param) || function (paramIndex, decorator) {
-	    return function (target, key) { decorator(target, key, paramIndex); }
-	};
-	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-	    return new (P || (P = Promise))(function (resolve, reject) {
-	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-	        step((generator = generator.apply(thisArg, _arguments)).next());
-	    });
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	const User_1 = __webpack_require__(/*! ../models/User */ 5);
-	const jwt_1 = __webpack_require__(/*! ../config/jwt */ 9);
-	let AuthController = class AuthController {
-	    login(res) {
-	        res.render('auth/login');
-	    }
-	    postLogin(user) {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            const found = yield User_1.default.findOne({
-	                where: {
-	                    email: user.email
-	                }
-	            });
-	            if (found && found.password == user.password)
-	                return { success: true, token: jwt_1.generateToken(found.dataValues) };
-	            else
-	                return { success: false, message: 'Incorrect password or username' };
-	        });
-	    }
-	    register(user) {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            return yield User_1.default.create(user, { raw: true });
-	        });
-	    }
-	};
-	__decorate([
-	    routing_controllers_1.Get('/login'),
-	    __param(0, routing_controllers_1.Res()), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Object]), 
-	    __metadata('design:returntype', void 0)
-	], AuthController.prototype, "login", null);
-	__decorate([
-	    routing_controllers_1.Post('/login'),
-	    __param(0, routing_controllers_1.Body()), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Object]), 
-	    __metadata('design:returntype', Promise)
-	], AuthController.prototype, "postLogin", null);
-	__decorate([
-	    routing_controllers_1.Post("/register"),
-	    __param(0, routing_controllers_1.Body()), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Object]), 
-	    __metadata('design:returntype', Promise)
-	], AuthController.prototype, "register", null);
-	AuthController = __decorate([
-	    routing_controllers_1.JsonController(), 
-	    __metadata('design:paramtypes', [])
-	], AuthController);
-	exports.AuthController = AuthController;
-
-
-/***/ },
-/* 17 */
-/*!***************************************!*\
-  !*** ./controllers/FeedController.ts ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var __param = (this && this.__param) || function (paramIndex, decorator) {
-	    return function (target, key) { decorator(target, key, paramIndex); }
-	};
-	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-	    return new (P || (P = Promise))(function (resolve, reject) {
-	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-	        step((generator = generator.apply(thisArg, _arguments)).next());
-	    });
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	let FeedController = class FeedController {
-	    home(res) {
-	        return __awaiter(this, void 0, void 0, function* () {
-	            res.render('index');
-	        });
-	    }
-	};
-	__decorate([
-	    routing_controllers_1.Get('/'),
-	    __param(0, routing_controllers_1.Res()), 
-	    __metadata('design:type', Function), 
-	    __metadata('design:paramtypes', [Object]), 
-	    __metadata('design:returntype', Promise)
-	], FeedController.prototype, "home", null);
-	FeedController = __decorate([
-	    routing_controllers_1.JsonController(), 
-	    __metadata('design:paramtypes', [])
-	], FeedController);
-	exports.FeedController = FeedController;
-
-
-/***/ },
-/* 18 */
+/* 21 */
 /*!******************************!*\
   !*** external "koa-convert" ***!
   \******************************/
@@ -594,7 +580,7 @@
 	module.exports = require("koa-convert");
 
 /***/ },
-/* 19 */
+/* 22 */
 /*!************************************!*\
   !*** external "koa-static-folder" ***!
   \************************************/
@@ -603,7 +589,7 @@
 	module.exports = require("koa-static-folder");
 
 /***/ },
-/* 20 */
+/* 23 */
 /*!*********************************!*\
   !*** external "koa-bodyparser" ***!
   \*********************************/
@@ -612,7 +598,7 @@
 	module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 21 */
+/* 24 */
 /*!***************************!*\
   !*** external "koa-cors" ***!
   \***************************/
@@ -621,44 +607,63 @@
 	module.exports = require("koa-cors");
 
 /***/ },
-/* 22 */,
-/* 23 */
-/*!*****************************************!*\
-  !*** ./middlewares/CookieMiddleware.ts ***!
-  \*****************************************/
+/* 25 */
+/*!***********************!*\
+  !*** ./config/pug.ts ***!
+  \***********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	const routing_controllers_1 = __webpack_require__(/*! routing-controllers */ 3);
-	let CookieMiddleware = class CookieMiddleware {
-	    use(context, next) {
-	        const cookieHeader = context.headers.cookie;
-	        if (cookieHeader) {
-	            const cookies = cookieHeader.split(';');
-	            context.cookie = {};
-	            cookies.forEach(function (item) {
-	                const crumbs = item.split('=');
-	                if (crumbs.length > 1)
-	                    context.cookie[crumbs[0].trim()] = crumbs[1].trim();
-	            });
-	        }
-	        return next();
+	const Pug = __webpack_require__(/*! koa-pug */ 26);
+	const pug = new Pug({
+	    viewPath: './views',
+	    noCache: true
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = pug;
+
+
+/***/ },
+/* 26 */
+/*!**************************!*\
+  !*** external "koa-pug" ***!
+  \**************************/
+/***/ function(module, exports) {
+
+	module.exports = require("koa-pug");
+
+/***/ },
+/* 27 */
+/*!***************************!*\
+  !*** external "koa-json" ***!
+  \***************************/
+/***/ function(module, exports) {
+
+	module.exports = require("koa-json");
+
+/***/ },
+/* 28 */
+/*!*****************************************!*\
+  !*** ./middlewares/CookieMiddleware.ts ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	const cookieMiddleware = (context, next) => {
+	    const cookieHeader = context.headers.cookie;
+	    if (cookieHeader) {
+	        const cookies = cookieHeader.split(';');
+	        context.cookie = {};
+	        cookies.forEach(function (item) {
+	            const crumbs = item.split('=');
+	            if (crumbs.length > 1)
+	                context.cookie[crumbs[0].trim()] = crumbs[1].trim();
+	        });
 	    }
+	    return next();
 	};
-	CookieMiddleware = __decorate([
-	    routing_controllers_1.MiddlewareGlobalBefore(), 
-	    __metadata('design:paramtypes', [])
-	], CookieMiddleware);
-	exports.CookieMiddleware = CookieMiddleware;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = cookieMiddleware;
 
 
 /***/ }

@@ -1,36 +1,59 @@
-import { JsonController, Post, Body, Req, Res, Get, Controller, UseBefore } from 'routing-controllers';
 import { UserAttribute, UserModel } from '../models/User';
-import User from '../models/User';
+import { User } from '../models/models';
 import { generateToken } from '../config/jwt';
 import { Request } from '~koa/lib/request';
 import { Response } from '~koa/lib/response';
-import { PugMiddleware } from '../middlewares/PugMiddleware';
+import * as Router from 'koa-router'
+import { Context } from 'koa';
 
+const hash = require('sha256')
 
-@JsonController()
-export class AuthController {
-    @Get('/login')
-    login( @Res() res: Response) {
-        res.render('auth/login')
-    }
+const AuthController = new Router()
 
-    @Post('/login')
-    async postLogin( @Body() user: UserAttribute): Promise<any> {
+AuthController
+
+    .get('/login',
+    (ctx: Context) => {
+        ctx.render('auth/login')
+    })
+
+    .post('/login',
+    async (ctx: Context): Promise<any> => {
+        const user = ctx.request.body
         const found = await User.findOne({
             where: {
                 email: user.email
             }
         })
-        if (found && found.password == user.password)
-            return { success: true, token: generateToken(found.dataValues) }
+        if (found && found.password == hash(user.password))
+            ctx.body =  { success: true, token: generateToken(found.dataValues) }
+        else if (!found)
+            ctx.body =  { success: false, message: 'Wrong email' }
         else
-            return { success: false, message: 'Incorrect password or username' }
+            ctx.body = { success: false, message: 'Wrong password' }
+    })
 
-    }
+    .get('/register',
+    async (ctx: Context) => {
+        ctx.render('auth/register')
+    })
+    
+    .post('/register',
+    async (ctx: Context) => {
+        let user = ctx.request.body
+        if (user.password != user.confirmPassword)
+            ctx.body = { success: false, message: 'Passwords do not match' }
+        user.password = hash(user.password)
+        try {
+            let createdUser = await User.create(user)
+        }
+        catch (err) {
+            console.log(err)
+            if (err.name == "SequelizeUniqueConstraintError")
+                ctx.body =  { success: false, message: 'Email busy' }
+            ctx.body =  { success: false, message: 'Some error' }
+        }
+        ctx.body =  { success: true, message: '' }
+    })
 
-
-    @Post("/register")
-    async register( @Body() user: UserAttribute) {
-        return await User.create(user, { raw: true })
-    }
-}
+export default AuthController

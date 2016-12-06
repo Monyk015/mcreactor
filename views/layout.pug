@@ -8,11 +8,13 @@ html
     link(href='http://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     // Import materialize.css
     link(type='text/css', rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css', media='screen,projection')
+    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
     // Let browser know website is optimized for mobile
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='icon', type='image/x-icon', href='favicon.ico')
     link(type='text/css',rel='stylesheet',href="public/styles.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css")
   body.amber.lighten-4
     #body
         nav.yellow.darken-4
@@ -21,24 +23,26 @@ html
                 ul#nav.right.hide-on-med-and-down
                     li
                         a(href='/') Home
-                    li
-                        a(href='/users') Users
                     span(v-if="$store.state.user")
+                        li
+                            a(href='/users') Users
                         li
                             ul.dropdown-content#user-dropdown
                                 li
                                     a(href='/') Profile  
-                                li
+                                li(@click="logout")
                                     a(href='/') Logout
                             a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          
-                                | {{$store.state.user.nickname}}        
+                                | {{$store.state.user.nickname}}
+                                <i class="material-icons">keyboard_arrow_down</i>        
                     span(v-else)
                         li
                             a(href='/login') Login
                         li
                             a(href='/register') Register
         #content.container
-            block content
+            block content        
     script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
     script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.min.js")
     script(src="public/build.js")

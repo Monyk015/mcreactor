@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookies from 'js-cookie'
-import LoginComponent from './LoginComponent.vue'
+import LoginComponent from './components/LoginComponent.vue'
+import RegisterComponent from './components/RegisterComponent.vue'
+import FeedComponent from './components/FeedComponent.vue'
 
 const jwt = require('jwt-decode')
 
@@ -12,26 +14,28 @@ const store = new Vuex.Store({
         user: null
     },
     mutations: {
-        setUser(state, user)
-        {
+        setUser(state, user) {
             state.user = user
         }
     }
 })
 
-new Vue({
-    el: '#body',
+new Vue({    
     store,
-    data: {
-        title: 'HELLO VUE!'
-    },
     components: {
-        LoginComponent
+        LoginComponent,
+        RegisterComponent,
+        FeedComponent
     },
     created() {
-        if(Cookies.get('token'))
-        {
-            this.$store.commit('setUser',jwt(Cookies.get('token')))
+        if (Cookies.get('token')) {
+            this.$store.commit('setUser', jwt(Cookies.get('token')))
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.commit('setUser', null)
+            Cookies.remove('token')
         }
     }
-})
+}).$mount('#body')

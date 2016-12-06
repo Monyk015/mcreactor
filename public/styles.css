@@ -1,3 +1,10 @@
 .container{
     padding: 25px;
 }
+
+nav i {
+    display: inline !important;
+    font-size: 1rem !important;
+}
+
+

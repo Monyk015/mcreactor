@@ -26,6 +26,14 @@
                         Cookies.set('token', res.token)
                         window.location.replace('/')
                     }
+                    else if(res.message == 'Wrong password')
+                    {
+                        $('#password').addClass('invalid')
+                    }
+                    else
+                    {
+                        $('#email').addClass('invalid')                        
+                    }    
                 })
             }
         }  

@@ -5,18 +5,18 @@ import { verifyToken } from '../config/jwt';
 
 
 
-@Middleware()
-export class AuthMiddleware implements MiddlewareInterface {
 
-    use(context: Context, next: (err?: any) => Promise<any>): Promise<any> | null 
-    {
-        const token = context.cookie.token
+
+const authMiddleware =  (context: Context, next: (err?: any) => Promise<any>): Promise<any> | null  => {
+        let token = false
+        if(context.cookie)
+            token = context.cookie.token
         if(token)
         {
             const user : UserAttribute | boolean = verifyToken(token.toString())
             if(user)
             {
-                context.request.user = user
+                context.user = user
                 return next()
             }
         }
@@ -25,4 +25,4 @@ export class AuthMiddleware implements MiddlewareInterface {
         return
     }
 
-}
+export default authMiddleware

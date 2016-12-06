@@ -396,6 +396,8 @@ namespace req {
          */
         type: string;
 
+        body: any;
+
         /**
          * Inspect implementation.
          */
@@ -415,6 +417,7 @@ namespace req {
         response: Response;
         originalUrl: string;
         accept: any;
+        file: any;
     }
 }
 
@@ -635,7 +638,7 @@ declare module '~koa/lib/response' {
 	        res: ServerResponse;
 	        ctx: Context;
 	        request: Request;
-            render: (String) => any
+            render: (file : String, opts? : any) => any
 	    }
 	}
 	
@@ -798,6 +801,8 @@ namespace ctx {
          */
         toJSON(): any;
 
+        render(path: String, parameters?: any) : any;
+
         /**
          * Similar to .throw(), adds assertion.
          *
@@ -832,6 +837,7 @@ namespace ctx {
         onerror(err: Error): void;
     }
 
+
     export interface Context extends BaseContext {
         app: Application;
         request: Request;
@@ -843,6 +849,8 @@ namespace ctx {
         accept: any;
         state: any;
         cookie: any;
+        params: any;
+        user?: any;
     }
 }
 

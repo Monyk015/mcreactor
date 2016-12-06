@@ -5,19 +5,21 @@ module.exports = {
   entry: './main.js',
   output: {
     path: path.resolve(__dirname ,'../public'),
-    // publicPath: '../public',
+    publicPath: '../public',
     filename: 'build.js',
-        devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
-        devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+    devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
   },
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          // vue-loader options go here
+          loaders:{
+                jade:'pug-loader'
+          }
         }
       },
       {
@@ -38,11 +40,11 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.common.js'
     }
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
   }
-//   devServer: {
-//     historyApiFallback: true,
-//     noInfo: true
-//   }
 }
 
 // if (process.env.NODE_ENV === 'production') {

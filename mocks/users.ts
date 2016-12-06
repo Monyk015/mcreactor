@@ -1,5 +1,4 @@
 const users = [{
-
     "isAdmin": true,
     "rating": 21,
     "isBanned": null,
