@@ -1,6 +1,5 @@
 <script>
     export default {
-        template: '#new-post-component',
         data(){
             return {
                 tagsArray:[],
@@ -11,12 +10,23 @@
             onSubmit(){
                 $.ajax({
                         method:'POST',
-                        url:'', 
+                        url:'post', 
                         data: new FormData($('#new-post-form')[0]),
                         cache: false,
                         contentType: false,
-                        processData: false
-                    })
+                        processData: false,
+                        success: res => {
+                            if(res.success)
+                            {
+                                this.tagsArray = []
+                                this.content = ''
+                                $('#new-post-component .collapsible-header,li').removeClass('active')
+                                $('#new-post-component .collapsible-body').hide()
+                                $('input[type=file]').val("")
+                                $('.file-path-wrapper input').val("")
+                                this.$emit('submitted')
+                            }                
+                        }})
             }
         },
         computed:{

@@ -11,6 +11,7 @@ export interface CommentaryAttribute
     content?:any
     createdAt?:number
     updatedAt?:number
+    rating?:number
 }
 
 export interface CommentaryInstance extends Sequelize.Instance<CommentaryAttribute>, CommentaryAttribute
@@ -23,6 +24,10 @@ const Commentary : CommentaryModel = db.define<CommentaryInstance, CommentaryAtt
     content: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    rating: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
     }
 }, {
     timestamps: true

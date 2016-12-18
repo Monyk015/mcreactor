@@ -4,10 +4,31 @@ import Cookies from 'js-cookie'
 import LoginComponent from './components/LoginComponent.vue'
 import RegisterComponent from './components/RegisterComponent.vue'
 import FeedComponent from './components/FeedComponent.vue'
+import VueRouter from 'vue-router'
 
 const jwt = require('jwt-decode')
 
 Vue.use(Vuex)
+
+let url = window.location.pathname
+
+let router = null
+
+if(url == '/')
+{
+    Vue.use(VueRouter)
+
+    const routes = [
+        {path: '/login'},
+        {path: '/'},
+        {path: '/post/tag/:id'}
+    ]
+
+    router = new VueRouter({
+        routes
+    })
+}
+
 
 const store = new Vuex.Store({
     state: {
@@ -20,7 +41,8 @@ const store = new Vuex.Store({
     }
 })
 
-new Vue({    
+new Vue({ 
+    router,
     store,
     components: {
         LoginComponent,

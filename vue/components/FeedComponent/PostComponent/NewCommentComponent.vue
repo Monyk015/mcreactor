@@ -1,0 +1,34 @@
+<script>
+    export default {
+        props:['post'],
+        data(){
+            return {
+                text: ''
+            }
+        },
+        methods:{
+            onSubmit() {
+                console.log(this)
+                let postId = this.post.id
+                $.ajax({
+                    method:'POST',
+                    url:'post/' + postId + '/comment', 
+                    data: {content: this.text},
+                    success: res => {
+                        if(res.success)
+                        {
+                            this.post.Commentaries = res.comments
+                            this.text = ''
+                        }                
+                    }})
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    #submit-comment{
+        margin: 5px;
+        margin-top: -20px;
+    }
+</style>

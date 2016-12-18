@@ -1,25 +1,26 @@
-div
-    ul.collapsible(data-collapsible="accordion")
-        li.white
-            .collapsible-header
-                i.material-icons add 
-                | New post
-            .collapsible-body.white
-                form#new-post-form(@submit.prevent="onSubmit")
-                    .input-field
-                        input#tags(type="text",name="tags",v-model="tags")
-                        label(for="tags") Tags
-                    .input-field    
-                        textarea.materialize-textarea#content(name="content",v-model="content")
-                        label(for="content") Content
-                    .row
-                        .file-field.input-field.left
-                            button.btn
-                                | Image
-                                input#image(name="image",type="file")
-                            .file-path-wrapper
-                                input.file-path.validate(type="text")
-                        button#submit(class="btn waves-effect waves-light right" type="submit" name="action") 
-                            | Submit
-                            i(class="material-icons right") send
+new-post-component(inline-template, @submitted="loadData")
+    div#new-post-component
+        ul.collapsible(data-collapsible="accordion")
+            li.white
+                .collapsible-header
+                    i.material-icons add 
+                    | New post
+                .collapsible-body.white
+                    form#new-post-form(@submit.prevent="onSubmit")
+                        .input-field
+                            input#tags(type="text",name="tags",v-model="tags")
+                            label(for="tags") Tags
+                        .input-field    
+                            textarea.materialize-textarea#content(name="content",v-model="content")
+                            label(for="content") Content
+                        .row
+                            .file-field.input-field.left
+                                button.btn
+                                    | Image
+                                    input#image(name="image",type="file")
+                                .file-path-wrapper
+                                    input.file-path.validate(type="text")
+                            button#submit-post(class="btn waves-effect waves-light right" type="submit" name="action") 
+                                | Submit
+                                i(class="material-icons right") send
         

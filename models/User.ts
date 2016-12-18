@@ -38,8 +38,7 @@ const User : UserModel = db.define<UserInstance, UserAttribute>("User", {
         allowNull: false
     },
     rating: {
-        type: Sequelize.INTEGER,
-        allowNull: true
+        type: Sequelize.INTEGER
     },
     isBanned: {
         type: Sequelize.BOOLEAN,

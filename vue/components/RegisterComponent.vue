@@ -1,7 +1,6 @@
 <script>
     export default
     {
-        template: '#register-component',
         data() {
             return {
                 email: '',

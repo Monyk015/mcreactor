@@ -3,19 +3,11 @@ extends layout.pug
 block content
     feed-component(inline-template)
         .row
-            new-post-component(inline-template)
+            template(v-if="this.$store.state.user")
                 include feed/new-post.pug
             | {{title}}
             ul
-                li.card(v-for="(post,index) in posts" )
-                    .collection
-                        .row.collection-item
-                            .col.s12(v-html="post.content")
-                        .row.comments.collection-item
-                            .col.s12
-                                .trigger(@click="triggerComments(index)")
-                                    span.material-icons(v-if="showComments[index]") keyboard_arrow_up
-                                    span.material-icons(v-else) keyboard_arrow_down
-                                    | Comments
-                                .display-comments(v-if="showComments[index]") Zalupa
+                li.card(v-for="(post,index) in posts")
+                    include feed/post.pug
+
                     

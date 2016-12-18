@@ -13,19 +13,19 @@ const UserController = new Router()
 
 UserController
 
-    .get('/users',
+    .get('/user',
     authMiddleware,
     async (ctx: Context) => {
         ctx.body = await User.findAll({raw: true, order: 'id'})
     })
 
-    .get('/users/:id',
+    .get('/user/:id',
     async (ctx) => {
         let id = ctx.params.id
         ctx.body = await User.findById(id, { raw: true })
     })
 
-    .put('/users/:id',
+    .put('/user/:id',
     async (ctx: Context) => {
         let id = ctx.params.id
         let user = ctx.request.body

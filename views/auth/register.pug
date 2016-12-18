@@ -1,8 +1,7 @@
 extends ../layout.pug
 
 block content
-    register-component
-    script(type="text/x-template" id="register-component")
+    register-component(inline-template)
         .row
             .card.col.s4.offset-s4
                 form(@submit.prevent="submit")

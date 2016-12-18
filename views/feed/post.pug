@@ -1,0 +1,27 @@
+post-component.collection(inline-template, v-bind:post="post")
+    div
+        .row.collection-item
+            a.userinfo(v-bind:href="'/user/' + post.UserId")
+                | {{post.User.nickname}}
+            div
+                .chip(v-for="tag in post.Tags")
+                    router-link(v-bind:to="'/post/tag/' + tag.id") {{tag.name}}
+                    //- i.close.material-icons close
+            p.col.s12 {{post.content}}
+            img(v-if="post.image",v-bind:src="'images/' + post.image")
+            .row
+                .rates
+                    span.material-icons(@click="thumbUp",v-bind:class="{'activated-rate': ifThumbUp}") thumb_up
+                    span.material-icons(@click="thumbDown",v-bind:class="{'activated-rate': ifThumbDown}") thumb_down
+        .row.comments.collection-item
+            .col.s12
+                .trigger(@click="triggerComments")
+                    span.material-icons(v-if="showComments") keyboard_arrow_up
+                    span.material-icons(v-else) keyboard_arrow_down
+                    | Comments
+                .display-comments.collection(v-if="showComments")
+                    ul
+                        li.collection-item(v-for="comment in post.Commentaries")
+                            include post/comment.pug
+                        li.collection-item(v-if="this.$store.state.user")                        
+                            include post/new-comment.pug        

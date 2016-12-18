@@ -1,32 +1,37 @@
 <script>
     import NewPostComponent from './FeedComponent/NewPostComponent.vue'
+    import PostComponent from './FeedComponent/PostComponent.vue'
+    // import VueRouter from 'vue-router'
 
+    
     export default
     {
-        template:'#feed-component',
         components:{
-            NewPostComponent
+            NewPostComponent,
+            PostComponent
         },
         data(){
             return {
                 title: 'Hello Feed!',
-                posts: [],
-                showComments: []
+                posts: []
             }
         },
         created() {
-            $.get('post', (posts) => {
-                this.posts = posts
-                posts.forEach(() => {
-                    this.showComments.push(false)
-                })
-                console.log(this.posts)
-            })
+            this.loadData()
         },
         methods:{
-            triggerComments(index){
-                this.$set(this.showComments,index,!this.showComments[index])
+            loadData(){
+                let path = this.$route.path
+                if(path == "/")
+                    path = 'post'
+                $.get(path, (posts) => {
+                    this.posts = posts
+                    console.log(this.posts)
+                })
             }
+        },
+        watch:{
+            '$route' : 'loadData'
         }
     }
 </script>

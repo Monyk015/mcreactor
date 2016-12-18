@@ -4,7 +4,6 @@
     
     export default
     {
-        template: '#login-component',
         data() {
             return {
                 email: '',

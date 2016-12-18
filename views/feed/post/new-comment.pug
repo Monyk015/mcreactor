@@ -1,0 +1,7 @@
+new-comment-component(inline-template,v-bind:post="post")
+    form#new-commentary-form.input-field(@submit.prevent="onSubmit")
+        textarea.materialize-textarea(name="new-comment",v-model="text")
+        label(for="new-comment") New comment
+        button#submit-comment(class="btn waves-effect waves-light right" type="submit" name="action") 
+            | Submit
+            i(class="material-icons right") send

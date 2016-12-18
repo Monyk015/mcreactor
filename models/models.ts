@@ -1,3 +1,5 @@
+import CommentaryRate from './CommentaryRate';
+import PostRate from './PostRate';
 import Post from './Post';
 import Commentary from './Commentary';
 import Tag from './Tag';
@@ -23,11 +25,25 @@ Tag.belongsToMany(Post, { through: 'PostTag' })
 
 Post.belongsToMany(Tag, { through: 'PostTag' })
 
+PostRate.belongsTo(Post)
 
-User.sync()
-Post.sync()
-Tag.sync()
-Commentary.sync()
-PostTag.sync()
+PostRate.belongsTo(User)
 
-export { Tag, Commentary, Post, User }
+Post.hasMany(PostRate)
+
+CommentaryRate.belongsTo(Commentary)
+
+CommentaryRate.belongsTo(User)
+
+Commentary.hasMany(CommentaryRate)
+
+
+// User.sync({force: true})
+// Post.sync({force: true})
+// Tag.sync({force: true})
+// Commentary.sync({force: true})
+// PostTag.sync({force: true})
+// PostRate.sync({force:true})
+// CommentaryRate.sync({force:true})
+
+export { Tag, Commentary, Post, User, CommentaryRate, PostRate}

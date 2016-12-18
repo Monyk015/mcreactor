@@ -1,0 +1,5 @@
+comment-component(inline-template,v-bind:comment="comment")
+    div 
+        div {{comment.content}}
+        .row.comment-info-row
+            a.user-nickname(v-bind:href="'/user/' + comment.UserId") {{comment.User.nickname}}
