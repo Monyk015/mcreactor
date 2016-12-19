@@ -201,13 +201,16 @@
 	CommentaryRate_1.default.belongsTo(Commentary_1.default);
 	CommentaryRate_1.default.belongsTo(User_1.default);
 	Commentary_1.default.hasMany(CommentaryRate_1.default);
-	// User.sync({force: true})
-	// Post.sync({force: true})
-	// Tag.sync({force: true})
-	// Commentary.sync({force: true})
-	// PostTag.sync({force: true})
-	// PostRate.sync({force:true})
-	// CommentaryRate.sync({force:true})
+	// ;(async () =>
+	// {
+	//     await User.sync({force:true})
+	//     await Post.sync({force:true})
+	//     await Tag.sync({force:true})
+	//     await PostTag.sync({force:true})
+	//     await Commentary.sync({force:true})
+	//     await PostRate.sync({force:true})
+	//     await CommentaryRate.sync({force:true})
+	// })()
 
 
 /***/ },
@@ -294,7 +297,8 @@
 	        allowNull: true
 	    },
 	    rating: {
-	        type: Sequelize.INTEGER
+	        type: Sequelize.INTEGER,
+	        defaultValue: 0
 	    }
 	}, {
 	    timestamps: true
@@ -321,6 +325,7 @@
 	    rating: {
 	        type: Sequelize.INTEGER,
 	        allowNull: true,
+	        defaultValue: 0
 	    }
 	}, {
 	    timestamps: true
@@ -600,7 +605,13 @@
 	            models_1.User,
 	            {
 	                model: models_1.Commentary,
-	                include: [models_1.User, CommentaryRate_1.default]
+	                include: [models_1.User, {
+	                        model: CommentaryRate_1.default,
+	                        where: {
+	                            UserId: ctx.user.id
+	                        },
+	                        required: false
+	                    }]
 	            }
 	        ],
 	        order: [
@@ -612,24 +623,31 @@
 	}))
 	    .get('/post/tag/:id', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
-	    let posts = yield models_1.Post.findAll({
+	    ctx.body = yield models_1.Post.findAll({
 	        where: {
 	            id: {
 	                $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
 	            }
 	        },
 	        include: [
-	            models_1.Tag,
-	            models_1.User,
-	            {
-	                model: models_1.Commentary,
-	                include: [models_1.User, CommentaryRate_1.default]
-	            },
 	            {
 	                model: PostRate_1.default,
 	                where: {
 	                    UserId: ctx.user.id
-	                }
+	                },
+	                required: false
+	            },
+	            models_1.Tag,
+	            models_1.User,
+	            {
+	                model: models_1.Commentary,
+	                include: [models_1.User, {
+	                        model: CommentaryRate_1.default,
+	                        where: {
+	                            UserId: ctx.user.id
+	                        },
+	                        required: false
+	                    }]
 	            }
 	        ],
 	        order: [
@@ -637,7 +655,6 @@
 	            [models_1.Commentary, 'createdAt']
 	        ]
 	    });
-	    ctx.body = posts;
 	}))
 	    .get('/post/:id/rate/:rate', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
@@ -681,6 +698,9 @@
 	        yield post.User.save();
 	        ctx.body = { success: true, rating: post.rating };
 	    }
+	    else {
+	        ctx.body = { success: true };
+	    }
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PostController;
@@ -720,6 +740,49 @@
 	    }
 	    catch (e) {
 	        ctx.body = { success: false, message: `something went wrong: ${e}` };
+	    }
+	}))
+	    .get('/comment/:id/rate/:rate', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.params.id;
+	    let rate = ctx.params.rate;
+	    let previousRate = yield models_1.CommentaryRate.findOne({
+	        where: {
+	            CommentaryId: id,
+	            UserId: ctx.user.id
+	        },
+	        include: [models_1.Commentary, models_1.User]
+	    });
+	    if (previousRate) {
+	        previousRate.User.rating -= previousRate.rate;
+	        previousRate.Commentary.rating -= previousRate.rate;
+	        if (rate == 'neutral') {
+	            yield previousRate.destroy();
+	        }
+	        else {
+	            previousRate.rate = (rate == 'like' ? 1 : -1);
+	            previousRate.User.rating += previousRate.rate;
+	            previousRate.Commentary.rating += previousRate.rate;
+	            yield previousRate.save();
+	        }
+	        yield previousRate.User.save();
+	        yield previousRate.Commentary.save();
+	        ctx.body = { success: true, rating: previousRate.Commentary.rating };
+	    }
+	    else if (rate != 'neutral') {
+	        let newRate = yield models_1.CommentaryRate.create({
+	            rate: (rate == 'like' ? 1 : -1),
+	            UserId: ctx.user.id,
+	            CommentaryId: id
+	        });
+	        let commentary = yield models_1.Commentary.findById(id, {
+	            include: [models_1.User]
+	        });
+	        commentary.User.rating += newRate.rate;
+	        commentary.rating += newRate.rate;
+	        yield newRate.save();
+	        yield commentary.save();
+	        yield commentary.User.save();
+	        ctx.body = { success: true, rating: commentary.rating };
 	    }
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });

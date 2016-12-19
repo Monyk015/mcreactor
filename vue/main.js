@@ -41,6 +41,12 @@ const store = new Vuex.Store({
     }
 })
 
+Vue.filter('formatDate', (dateString) => {
+    let date = new Date(dateString)
+    const dateFormat = require('dateformat')
+    return dateFormat(date, "dd.mm.yyyy HH:MM")
+})
+
 new Vue({ 
     router,
     store,

@@ -5,7 +5,6 @@ block content
         .row
             template(v-if="this.$store.state.user")
                 include feed/new-post.pug
-            | {{title}}
             ul
                 li.card(v-for="(post,index) in posts")
                     include feed/post.pug

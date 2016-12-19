@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "../public";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -511,7 +511,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 'use strict';
 
-var base64_url_decode = __webpack_require__(25);
+var base64_url_decode = __webpack_require__(26);
 
 module.exports = function (token,options) {
   if (typeof token !== 'string') {
@@ -714,11 +714,243 @@ process.umask = function() { return 0; };
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * Date Format 1.2.3
+ * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+ * MIT license
+ *
+ * Includes enhancements by Scott Trenda <scott.trenda.net>
+ * and Kris Kowal <cixar.com/~kris.kowal/>
+ *
+ * Accepts a date, a mask, or a date and a mask.
+ * Returns a formatted version of the given date.
+ * The date defaults to the current date/time.
+ * The mask defaults to dateFormat.masks.default.
+ */
+
+(function(global) {
+  'use strict';
+
+  var dateFormat = (function() {
+      var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZWN]|'[^']*'|'[^']*'/g;
+      var timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
+      var timezoneClip = /[^-+\dA-Z]/g;
+  
+      // Regexes and supporting functions are cached through closure
+      return function (date, mask, utc, gmt) {
+  
+        // You can't provide utc if you skip other args (use the 'UTC:' mask prefix)
+        if (arguments.length === 1 && kindOf(date) === 'string' && !/\d/.test(date)) {
+          mask = date;
+          date = undefined;
+        }
+  
+        date = date || new Date;
+  
+        if(!(date instanceof Date)) {
+          date = new Date(date);
+        }
+  
+        if (isNaN(date)) {
+          throw TypeError('Invalid date');
+        }
+  
+        mask = String(dateFormat.masks[mask] || mask || dateFormat.masks['default']);
+  
+        // Allow setting the utc/gmt argument via the mask
+        var maskSlice = mask.slice(0, 4);
+        if (maskSlice === 'UTC:' || maskSlice === 'GMT:') {
+          mask = mask.slice(4);
+          utc = true;
+          if (maskSlice === 'GMT:') {
+            gmt = true;
+          }
+        }
+  
+        var _ = utc ? 'getUTC' : 'get';
+        var d = date[_ + 'Date']();
+        var D = date[_ + 'Day']();
+        var m = date[_ + 'Month']();
+        var y = date[_ + 'FullYear']();
+        var H = date[_ + 'Hours']();
+        var M = date[_ + 'Minutes']();
+        var s = date[_ + 'Seconds']();
+        var L = date[_ + 'Milliseconds']();
+        var o = utc ? 0 : date.getTimezoneOffset();
+        var W = getWeek(date);
+        var N = getDayOfWeek(date);
+        var flags = {
+          d:    d,
+          dd:   pad(d),
+          ddd:  dateFormat.i18n.dayNames[D],
+          dddd: dateFormat.i18n.dayNames[D + 7],
+          m:    m + 1,
+          mm:   pad(m + 1),
+          mmm:  dateFormat.i18n.monthNames[m],
+          mmmm: dateFormat.i18n.monthNames[m + 12],
+          yy:   String(y).slice(2),
+          yyyy: y,
+          h:    H % 12 || 12,
+          hh:   pad(H % 12 || 12),
+          H:    H,
+          HH:   pad(H),
+          M:    M,
+          MM:   pad(M),
+          s:    s,
+          ss:   pad(s),
+          l:    pad(L, 3),
+          L:    pad(Math.round(L / 10)),
+          t:    H < 12 ? 'a'  : 'p',
+          tt:   H < 12 ? 'am' : 'pm',
+          T:    H < 12 ? 'A'  : 'P',
+          TT:   H < 12 ? 'AM' : 'PM',
+          Z:    gmt ? 'GMT' : utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
+          o:    (o > 0 ? '-' : '+') + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+          S:    ['th', 'st', 'nd', 'rd'][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10],
+          W:    W,
+          N:    N
+        };
+  
+        return mask.replace(token, function (match) {
+          if (match in flags) {
+            return flags[match];
+          }
+          return match.slice(1, match.length - 1);
+        });
+      };
+    })();
+
+  dateFormat.masks = {
+    'default':               'ddd mmm dd yyyy HH:MM:ss',
+    'shortDate':             'm/d/yy',
+    'mediumDate':            'mmm d, yyyy',
+    'longDate':              'mmmm d, yyyy',
+    'fullDate':              'dddd, mmmm d, yyyy',
+    'shortTime':             'h:MM TT',
+    'mediumTime':            'h:MM:ss TT',
+    'longTime':              'h:MM:ss TT Z',
+    'isoDate':               'yyyy-mm-dd',
+    'isoTime':               'HH:MM:ss',
+    'isoDateTime':           'yyyy-mm-dd\'T\'HH:MM:sso',
+    'isoUtcDateTime':        'UTC:yyyy-mm-dd\'T\'HH:MM:ss\'Z\'',
+    'expiresHeaderFormat':   'ddd, dd mmm yyyy HH:MM:ss Z'
+  };
+
+  // Internationalization strings
+  dateFormat.i18n = {
+    dayNames: [
+      'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+      'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ],
+    monthNames: [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+  };
+
+function pad(val, len) {
+  val = String(val);
+  len = len || 2;
+  while (val.length < len) {
+    val = '0' + val;
+  }
+  return val;
+}
+
+/**
+ * Get the ISO 8601 week number
+ * Based on comments from
+ * http://techblog.procurios.nl/k/n618/news/view/33796/14863/Calculate-ISO-8601-week-and-year-in-javascript.html
+ *
+ * @param  {Object} `date`
+ * @return {Number}
+ */
+function getWeek(date) {
+  // Remove time components of date
+  var targetThursday = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  // Change date to Thursday same week
+  targetThursday.setDate(targetThursday.getDate() - ((targetThursday.getDay() + 6) % 7) + 3);
+
+  // Take January 4th as it is always in week 1 (see ISO 8601)
+  var firstThursday = new Date(targetThursday.getFullYear(), 0, 4);
+
+  // Change date to Thursday same week
+  firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+  // Check if daylight-saving-time-switch occured and correct for it
+  var ds = targetThursday.getTimezoneOffset() - firstThursday.getTimezoneOffset();
+  targetThursday.setHours(targetThursday.getHours() - ds);
+
+  // Number of weeks between target Thursday and first Thursday
+  var weekDiff = (targetThursday - firstThursday) / (86400000*7);
+  return 1 + Math.floor(weekDiff);
+}
+
+/**
+ * Get ISO-8601 numeric representation of the day of the week
+ * 1 (for Monday) through 7 (for Sunday)
+ * 
+ * @param  {Object} `date`
+ * @return {Number}
+ */
+function getDayOfWeek(date) {
+  var dow = date.getDay();
+  if(dow === 0) {
+    dow = 7;
+  }
+  return dow;
+}
+
+/**
+ * kind-of shortcut
+ * @param  {*} val
+ * @return {String}
+ */
+function kindOf(val) {
+  if (val === null) {
+    return 'null';
+  }
+
+  if (val === undefined) {
+    return 'undefined';
+  }
+
+  if (typeof val !== 'object') {
+    return typeof val;
+  }
+
+  if (Array.isArray(val)) {
+    return 'array';
+  }
+
+  return {}.toString.call(val)
+    .slice(8, -1).toLowerCase();
+};
+
+
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+      return dateFormat;
+    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports === 'object') {
+    module.exports = dateFormat;
+  } else {
+    global.dateFormat = dateFormat;
+  }
+})(this);
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(11)
+__vue_exports__ = __webpack_require__(12)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -750,17 +982,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(30)
+__webpack_require__(31)
 
 /* script */
-__vue_exports__ = __webpack_require__(16)
+__vue_exports__ = __webpack_require__(17)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -793,17 +1025,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(35)
+__webpack_require__(36)
 
 /* script */
-__vue_exports__ = __webpack_require__(17)
+__vue_exports__ = __webpack_require__(18)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -836,7 +1068,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2904,7 +3136,7 @@ module.exports = VueRouter;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10998,10 +11230,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37), __webpack_require__(4)))
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 /**
@@ -11534,13 +11766,13 @@ return index;
 })));
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__);
 
 
@@ -11581,7 +11813,7 @@ return index;
 };
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11631,13 +11863,13 @@ return index;
 };
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
 
 
@@ -11672,12 +11904,16 @@ return index;
             var _this = this;
 
             if (this.rate == 1) {
-                $.get('/post/' + this.post.id + '/rate/neutral');
+                $.get('/post/' + this.post.id + '/rate/neutral', function (res) {
+                    if (res.success) {
+                        _this.post.rating = res.rating;
+                    }
+                });
                 this.rate = 0;
             } else {
                 $.get('/post/' + this.post.id + '/rate/like', function (res) {
-                    if (!res.success) {
-                        _this.rate = 0;
+                    if (res.success) {
+                        _this.post.rating = res.rating;
                     }
                 });
                 this.rate = 1;
@@ -11687,12 +11923,16 @@ return index;
             var _this2 = this;
 
             if (this.rate == -1) {
-                $.get('/post/' + this.post.id + '/rate/neutral');
+                $.get('/post/' + this.post.id + '/rate/neutral', function (res) {
+                    if (res.success) {
+                        _this2.post.rating = res.rating;
+                    }
+                });
                 this.rate = 0;
             } else {
                 $.get('/post/' + this.post.id + '/rate/dislike', function (res) {
-                    if (!res.success) {
-                        _this2.rate = 0;
+                    if (res.success) {
+                        _this2.post.rating = res.rating;
                     }
                 });
                 this.rate = -1;
@@ -11702,12 +11942,16 @@ return index;
     created: function created() {
         if (this.post.PostRates && this.post.PostRates[0]) {
             this.rate = this.post.PostRates[0].rate;
+        } else {
+            this.rate = 0;
         }
+
+        if (!this.post.rating) this.post.rating = 0;
     }
 };
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11715,12 +11959,72 @@ return index;
 /* harmony default export */ exports["default"] = {
     props: ['comment'],
     data: function data() {
-        return {};
+        return {
+            rate: 0
+        };
+    },
+    created: function created() {
+        if (this.comment.CommentaryRates && this.comment.CommentaryRates[0]) {
+            this.rate = this.comment.CommentaryRates[0].rate;
+        } else {
+            this.rate = 0;
+        }
+
+        if (!this.comment.rating) this.comment.rating = 0;
+    },
+
+    computed: {
+        ifThumbUp: function ifThumbUp() {
+            return this.rate == 1;
+        },
+        ifThumbDown: function ifThumbDown() {
+            return this.rate == -1;
+        }
+    },
+    methods: {
+        thumbUp: function thumbUp() {
+            var _this = this;
+
+            if (this.rate == 1) {
+                $.get('/comment/' + this.comment.id + '/rate/neutral', function (res) {
+                    if (res.success) {
+                        _this.comment.rating = res.rating;
+                    }
+                });
+                this.rate = 0;
+            } else {
+                $.get('/comment/' + this.comment.id + '/rate/like', function (res) {
+                    if (res.success) {
+                        _this.comment.rating = res.rating;
+                    }
+                });
+                this.rate = 1;
+            }
+        },
+        thumbDown: function thumbDown() {
+            var _this2 = this;
+
+            if (this.rate == -1) {
+                $.get('/comment/' + this.comment.id + '/rate/neutral', function (res) {
+                    if (res.success) {
+                        _this2.comment.rating = res.rating;
+                    }
+                });
+                this.rate = 0;
+            } else {
+                $.get('/comment/' + this.comment.id + '/rate/dislike', function (res) {
+                    if (res.success) {
+                        _this2.comment.rating = res.rating;
+                    }
+                });
+                this.rate = -1;
+            }
+        }
     }
 };
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11754,7 +12058,7 @@ return index;
 };
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11796,7 +12100,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11833,7 +12137,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -11847,20 +12151,6 @@ exports.push([module.i, "\n.card[data-v-03680cfd]{\n    padding: 25px;\n}\n", ""
 
 
 /***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.row[data-v-0e895c83]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-0e895c83]{\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/CommentComponent.vue?92e96e9c"],"names":[],"mappings":";AAYA;IACA,iBAAA;CACA;AACA;CAEA","file":"CommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props: ['comment'],\n        data(){\n            return {\n                \n            }\n        }\n    }\n</script>\n\n<style scoped>\n    .row{\n        margin-bottom: 0;\n    }\n    .user-nickname{\n        \n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11869,7 +12159,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n#submit-comment[data-v-5921e409]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/NewCommentComponent.vue?1bae3a64"],"names":[],"mappings":";AA6BA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props:['post'],\n        data(){\n            return {\n                text: ''\n            }\n        },\n        methods:{\n            onSubmit() {\n                console.log(this)\n                let postId = this.post.id\n                $.ajax({\n                    method:'POST',\n                    url:'post/' + postId + '/comment', \n                    data: {content: this.text},\n                    success: res => {\n                        if(res.success)\n                        {\n                            this.post.Commentaries = res.comments\n                            this.text = ''\n                        }                \n                    }})\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    #submit-comment{\n        margin: 5px;\n        margin-top: -20px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.row[data-v-0e895c83]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-0e895c83]{\n}\n.rates span[data-v-0e895c83] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-0e895c83]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-0e895c83]{\n    color: rgba(0,0,0,0.87) !important;\n}\n\n\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/CommentComponent.vue?13505669"],"names":[],"mappings":";AA+EA;IACA,iBAAA;CACA;AACA;CAEA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"CommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props: ['comment'],\n        data(){\n            return {\n                rate: 0\n            }\n        },\n        created(){\n            if(this.comment.CommentaryRates && this.comment.CommentaryRates[0])\n            {\n                this.rate = this.comment.CommentaryRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(!this.comment.rating)\n                this.comment.rating = 0\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            },\n        },\n        methods: {\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/like`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        }\n    }\n\n\n</script>\n\n<style scoped>\n    .row{\n        margin-bottom: 0;\n    }\n    .user-nickname{\n        \n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n\n\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -11883,7 +12173,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?6fd7130a"],"names":[],"mappings":";AA6CA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<script>\n    export default {\n        data(){\n            return {\n                tagsArray:[],\n                content: ''\n            }\n        },\n        methods: {\n            onSubmit(){\n                $.ajax({\n                        method:'POST',\n                        url:'post', \n                        data: new FormData($('#new-post-form')[0]),\n                        cache: false,\n                        contentType: false,\n                        processData: false,\n                        success: res => {\n                            if(res.success)\n                            {\n                                this.tagsArray = []\n                                this.content = ''\n                                $('#new-post-component .collapsible-header,li').removeClass('active')\n                                $('#new-post-component .collapsible-body').hide()\n                                $('input[type=file]').val(\"\")\n                                $('.file-path-wrapper input').val(\"\")\n                                this.$emit('submitted')\n                            }                \n                        }})\n            }\n        },\n        computed:{\n            tags:{\n                get(){\n                    return this.tagsArray.join(',')\n                },\n                set(tags){\n                    this.tagsArray = tags.split(',')\n                }\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    textarea{\n        margin: 0;\n    }\n    .collapsible-body{\n        height: auto;\n        padding: 0 10px 0;\n    }\n    .row{\n        padding: 5px 15px 5px;\n        margin-bottom: 0;\n    }\n    .file-field{\n        height: 36px;\n        margin-top: 0;\n    }\n    .file-field .btn{\n        height: 36px;\n        line-height: 36px;\n    }\n    .file-field .file-path{\n        height: 36px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n#submit-comment[data-v-5921e409]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/NewCommentComponent.vue?1bae3a64"],"names":[],"mappings":";AA6BA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props:['post'],\n        data(){\n            return {\n                text: ''\n            }\n        },\n        methods:{\n            onSubmit() {\n                console.log(this)\n                let postId = this.post.id\n                $.ajax({\n                    method:'POST',\n                    url:'post/' + postId + '/comment', \n                    data: {content: this.text},\n                    success: res => {\n                        if(res.success)\n                        {\n                            this.post.Commentaries = res.comments\n                            this.text = ''\n                        }                \n                    }})\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    #submit-comment{\n        margin: 5px;\n        margin-top: -20px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -11897,7 +12187,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-64bc3967] {\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-64bc3967] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-64bc3967]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-64bc3967]{\n    color: rgba(0,0,0,0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent.vue?30420a2b"],"names":[],"mappings":";AAuEA;IACA,cAAA;IACA,gBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"PostComponent.vue","sourcesContent":["<script>\n    import CommentComponent from './PostComponent/CommentComponent.vue'    \n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'    \n\n    export default {\n        props: ['post'],\n        data(){\n            return {\n                showComments: false,\n                rate: 0\n            }\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            }\n        },\n        components:{\n            CommentComponent,\n            NewCommentComponent\n        },\n        methods:{\n            triggerComments(){\n                this.showComments = !this.showComments\n            },\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`)\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/like`,(res) => {\n                        if(!res.success)\n                        {\n                            this.rate = 0 \n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`)\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/dislike`,(res) => {\n                        if(!res.success)\n                        {\n                            this.rate = 0 \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        },\n        created(){\n            if(this.post.PostRates && this.post.PostRates[0])\n            {\n                this.rate = this.post.PostRates[0].rate\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    .userinfo {\n        padding: 15px;\n        font-size: 25px;\n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?6fd7130a"],"names":[],"mappings":";AA6CA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<script>\n    export default {\n        data(){\n            return {\n                tagsArray:[],\n                content: ''\n            }\n        },\n        methods: {\n            onSubmit(){\n                $.ajax({\n                        method:'POST',\n                        url:'post', \n                        data: new FormData($('#new-post-form')[0]),\n                        cache: false,\n                        contentType: false,\n                        processData: false,\n                        success: res => {\n                            if(res.success)\n                            {\n                                this.tagsArray = []\n                                this.content = ''\n                                $('#new-post-component .collapsible-header,li').removeClass('active')\n                                $('#new-post-component .collapsible-body').hide()\n                                $('input[type=file]').val(\"\")\n                                $('.file-path-wrapper input').val(\"\")\n                                this.$emit('submitted')\n                            }                \n                        }})\n            }\n        },\n        computed:{\n            tags:{\n                get(){\n                    return this.tagsArray.join(',')\n                },\n                set(tags){\n                    this.tagsArray = tags.split(',')\n                }\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    textarea{\n        margin: 0;\n    }\n    .collapsible-body{\n        height: auto;\n        padding: 0 10px 0;\n    }\n    .row{\n        padding: 5px 15px 5px;\n        margin-bottom: 0;\n    }\n    .file-field{\n        height: 36px;\n        margin-top: 0;\n    }\n    .file-field .btn{\n        height: 36px;\n        line-height: 36px;\n    }\n    .file-field .file-path{\n        height: 36px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -11911,13 +12201,27 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?357fe1e5"],"names":[],"mappings":";AAyCA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<script>\n    export default\n    {\n        data() {\n            return {\n                email: '',\n                password: '',\n                nickname: '',\n                confirmPassword: ''\n            }\n        },\n        created() {\n            \n        },\n        methods: {\n            submit(){\n                $.post('', {\n                    email: this.email, \n                    password: this.password,\n                    nickname: this.nickname,\n                    confirmPassword: this.confirmPassword\n                }, (res) => {\n                    if(res.success)\n                    {\n                        window.location.replace('/login')\n                    }\n                    else if(res.message == \"Passwords do not match\")\n                    {\n                        $('#passwordConfirmation').addClass('invalid')\n                    }\n                    else\n                    {\n                        $('#email').addClass('invalid')                        \n                    }    \n                })\n            }\n        }  \n    }\n</script>\n\n<style scoped>\n    .card{\n        padding: 25px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.userinfo[data-v-64bc3967] {\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-64bc3967] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-64bc3967]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-64bc3967]{\n    color: rgba(0,0,0,0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent.vue?00af64a6"],"names":[],"mappings":";AAwFA;IACA,cAAA;IACA,gBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"PostComponent.vue","sourcesContent":["<script>\n    import CommentComponent from './PostComponent/CommentComponent.vue'    \n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'    \n\n    export default {\n        props: ['post'],\n        data(){\n            return {\n                showComments: false,\n                rate: 0\n            }\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            }\n        },\n        components:{\n            CommentComponent,\n            NewCommentComponent\n        },\n        methods:{\n            triggerComments(){\n                this.showComments = !this.showComments\n            },\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/like`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/dislike`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        },\n        created(){\n            if(this.post.PostRates && this.post.PostRates[0])\n            {\n                this.rate = this.post.PostRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(!this.post.rating)\n                this.post.rating = 0\n        }\n    }\n</script>\n\n<style scoped>\n    .userinfo {\n        padding: 15px;\n        font-size: 25px;\n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
 
 /***/ },
 /* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?357fe1e5"],"names":[],"mappings":";AAyCA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<script>\n    export default\n    {\n        data() {\n            return {\n                email: '',\n                password: '',\n                nickname: '',\n                confirmPassword: ''\n            }\n        },\n        created() {\n            \n        },\n        methods: {\n            submit(){\n                $.post('', {\n                    email: this.email, \n                    password: this.password,\n                    nickname: this.nickname,\n                    confirmPassword: this.confirmPassword\n                }, (res) => {\n                    if(res.success)\n                    {\n                        window.location.replace('/login')\n                    }\n                    else if(res.message == \"Passwords do not match\")\n                    {\n                        $('#passwordConfirmation').addClass('invalid')\n                    }\n                    else\n                    {\n                        $('#email').addClass('invalid')                        \n                    }    \n                })\n            }\n        }  \n    }\n</script>\n\n<style scoped>\n    .card{\n        padding: 25px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 25 */
 /***/ function(module, exports) {
 
 /**
@@ -11961,10 +12265,10 @@ module.exports = typeof window !== 'undefined' && window.atob && window.atob.bin
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-var atob = __webpack_require__(24);
+var atob = __webpack_require__(25);
 
 function b64DecodeUnicode(str) {
   return decodeURIComponent(atob(str).replace(/(.)/g, function (m, p) {
@@ -12000,17 +12304,17 @@ module.exports = function(str) {
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(33)
+__webpack_require__(34)
 
 /* script */
-__vue_exports__ = __webpack_require__(12)
+__vue_exports__ = __webpack_require__(13)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12043,17 +12347,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(34)
+__webpack_require__(35)
 
 /* script */
-__vue_exports__ = __webpack_require__(13)
+__vue_exports__ = __webpack_require__(14)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12086,17 +12390,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(31)
+__webpack_require__(32)
 
 /* script */
-__vue_exports__ = __webpack_require__(14)
+__vue_exports__ = __webpack_require__(15)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12129,17 +12433,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(32)
+__webpack_require__(33)
 
 /* script */
-__vue_exports__ = __webpack_require__(15)
+__vue_exports__ = __webpack_require__(16)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12172,32 +12476,6 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(18);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ },
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12213,8 +12491,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-0e895c83&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-0e895c83&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -12239,8 +12517,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5921e409&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5921e409&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-0e895c83&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-0e895c83&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -12265,8 +12543,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5921e409&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5921e409&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -12291,8 +12569,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64bc3967&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64bc3967&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -12317,6 +12595,32 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64bc3967&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64bc3967&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(24);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
 		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue", function() {
 			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
@@ -12328,7 +12632,7 @@ if(false) {
 }
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 var g;
@@ -12353,23 +12657,23 @@ module.exports = g;
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuex__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_router__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_router__);
 
 
@@ -12406,6 +12710,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex___default.a.Store({
             state.user = user;
         }
     }
+});
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('formatDate', function (dateString) {
+    var date = new Date(dateString);
+    var dateFormat = __webpack_require__(5);
+    return dateFormat(date, "dd.mm.yyyy HH:MM");
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({

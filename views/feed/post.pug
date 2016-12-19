@@ -13,6 +13,8 @@ post-component.collection(inline-template, v-bind:post="post")
                 .rates
                     span.material-icons(@click="thumbUp",v-bind:class="{'activated-rate': ifThumbUp}") thumb_up
                     span.material-icons(@click="thumbDown",v-bind:class="{'activated-rate': ifThumbDown}") thumb_down
+                .rating {{post.rating}}
+                .date {{post.createdAt | formatDate}}
         .row.comments.collection-item
             .col.s12
                 .trigger(@click="triggerComments")

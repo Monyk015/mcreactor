@@ -29,14 +29,19 @@
             thumbUp(){
                 if(this.rate == 1)
                 {
-                    $.get(`/post/${this.post.id}/rate/neutral`)
+                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {
+                        if(res.success)
+                        {
+                            this.post.rating = res.rating 
+                        }
+                    })
                     this.rate = 0
                 }
                 else{
                     $.get(`/post/${this.post.id}/rate/like`,(res) => {
-                        if(!res.success)
+                        if(res.success)
                         {
-                            this.rate = 0 
+                            this.post.rating = res.rating
                         }
                     })
                     this.rate = 1
@@ -45,14 +50,19 @@
             thumbDown(){
                 if(this.rate == -1)
                 {
-                    $.get(`/post/${this.post.id}/rate/neutral`)
+                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {
+                        if(res.success)
+                        {
+                            this.post.rating = res.rating 
+                        }
+                    })
                     this.rate = 0
                 }
                 else{
                     $.get(`/post/${this.post.id}/rate/dislike`,(res) => {
-                        if(!res.success)
+                        if(res.success)
                         {
-                            this.rate = 0 
+                            this.post.rating = res.rating 
                         }
                     })
                     this.rate = -1
@@ -64,6 +74,13 @@
             {
                 this.rate = this.post.PostRates[0].rate
             }
+            else
+            {
+                this.rate = 0
+            }
+
+            if(!this.post.rating)
+                this.post.rating = 0
         }
     }
 </script>

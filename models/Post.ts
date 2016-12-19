@@ -34,15 +34,12 @@ const Post: PostModel = db.define<PostInstance, PostAttribute>("Post", {
         allowNull: true
     },
     rating: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     }
 }, {
         timestamps: true
     })
-
-import Commentary from './Commentary';
-
-
 
 export default Post
 

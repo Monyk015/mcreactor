@@ -19,11 +19,11 @@ Post.hasMany(Commentary)
 
 Commentary.belongsTo(Post)
 
-const PostTag = db.define('PostTag',{},{tableName:'PostTag'})
+const PostTag = db.define('PostTag', {}, {tableName: 'PostTag'})
 
-Tag.belongsToMany(Post, { through: 'PostTag' })
+Tag.belongsToMany(Post, {through: 'PostTag'})
 
-Post.belongsToMany(Tag, { through: 'PostTag' })
+Post.belongsToMany(Tag, {through: 'PostTag'})
 
 PostRate.belongsTo(Post)
 
@@ -37,13 +37,15 @@ CommentaryRate.belongsTo(User)
 
 Commentary.hasMany(CommentaryRate)
 
-
-// User.sync({force: true})
-// Post.sync({force: true})
-// Tag.sync({force: true})
-// Commentary.sync({force: true})
-// PostTag.sync({force: true})
-// PostRate.sync({force:true})
-// CommentaryRate.sync({force:true})
-
-export { Tag, Commentary, Post, User, CommentaryRate, PostRate}
+          
+// ;(async () =>
+// {
+//     await User.sync({force:true})
+//     await Post.sync({force:true})
+//     await Tag.sync({force:true})
+//     await PostTag.sync({force:true})
+//     await Commentary.sync({force:true})
+//     await PostRate.sync({force:true})
+//     await CommentaryRate.sync({force:true})
+// })()
+export {Tag, Commentary, Post, User, CommentaryRate, PostRate}

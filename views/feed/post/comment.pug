@@ -2,4 +2,8 @@ comment-component(inline-template,v-bind:comment="comment")
     div 
         div {{comment.content}}
         .row.comment-info-row
+            .rates
+                span.material-icons(@click="thumbUp",v-bind:class="{'activated-rate': ifThumbUp}") thumb_up
+                span.material-icons(@click="thumbDown",v-bind:class="{'activated-rate': ifThumbDown}") thumb_down
+            .rating {{comment.rating}}    
             a.user-nickname(v-bind:href="'/user/' + comment.UserId") {{comment.User.nickname}}
