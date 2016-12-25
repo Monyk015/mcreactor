@@ -3,10 +3,13 @@ extends layout.pug
 block content
     feed-component(inline-template)
         .row
-            template(v-if="this.$store.state.user")
-                include feed/new-post.pug
-            ul
-                li.card(v-for="(post,index) in posts")
-                    include feed/post.pug
+            .col.s8
+                template(v-if="this.$store.state.user")
+                    include feed/new-post.pug
+                ul
+                    li.card(v-if="ifEmpty") So empty.
+                    li.card(v-for="(post,index) in posts")
+                        include feed/post.pug
+            include feed/nav.pug
 
                     

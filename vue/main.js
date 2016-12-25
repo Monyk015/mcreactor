@@ -32,11 +32,24 @@ if(url == '/')
 
 const store = new Vuex.Store({
     state: {
-        user: null
+        user: null,
+        subscriptions: []
     },
     mutations: {
         setUser(state, user) {
             state.user = user
+        },
+        loadSubscriptions(state){
+            $.get(`/user/${state.user.id}/subscriptions`, (res) => {
+                if(res.success)
+                {
+                    state.subscriptions =  res.subscriptions
+                }
+                else
+                {
+                    console.log('Something went wrong')
+                }
+            })
         }
     }
 })

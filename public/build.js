@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "../public";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -511,7 +511,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 'use strict';
 
-var base64_url_decode = __webpack_require__(26);
+var base64_url_decode = __webpack_require__(30);
 
 module.exports = function (token,options) {
   if (typeof token !== 'string') {
@@ -989,10 +989,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(31)
+__webpack_require__(37)
 
 /* script */
-__vue_exports__ = __webpack_require__(17)
+__vue_exports__ = __webpack_require__(19)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1032,10 +1032,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(36)
+__webpack_require__(44)
 
 /* script */
-__vue_exports__ = __webpack_require__(18)
+__vue_exports__ = __webpack_require__(20)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -11230,7 +11230,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45), __webpack_require__(4)))
 
 /***/ },
 /* 11 */
@@ -11770,20 +11770,22 @@ return index;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__);
 
 
 
-// import VueRouter from 'vue-router'
 
 
 /* harmony default export */ exports["default"] = {
     components: {
         NewPostComponent: __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default.a,
-        PostComponent: __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue___default.a
+        PostComponent: __WEBPACK_IMPORTED_MODULE_1__FeedComponent_PostComponent_vue___default.a,
+        NavComponent: __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default.a
     },
     data: function data() {
         return {
@@ -11792,11 +11794,17 @@ return index;
         };
     },
     created: function created() {
-        this.loadData();
+        this.loadPosts();
+        if (this.$store.state.user) this.$store.commit('loadSubscriptions');
     },
 
+    computed: {
+        ifEmpty: function ifEmpty() {
+            return this.posts.length == 0;
+        }
+    },
     methods: {
-        loadData: function loadData() {
+        loadPosts: function loadPosts() {
             var _this = this;
 
             var path = this.$route.path;
@@ -11808,12 +11816,109 @@ return index;
         }
     },
     watch: {
-        '$route': 'loadData'
+        '$route': 'loadPosts'
     }
 };
 
 /***/ },
 /* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__);
+
+
+
+/* harmony default export */ exports["default"] = {
+    components: {
+        TagHeaderComponent: __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default.a
+    },
+    data: function data() {
+        return {};
+    },
+
+    computed: {
+        ifTagSection: function ifTagSection() {
+            return this.$route.path.includes('/post/tag');
+        }
+    }
+};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* harmony default export */ exports["default"] = {
+    data: function data() {
+        return {
+            tagId: null,
+            tagName: ''
+        };
+    },
+    created: function created() {
+        this.getCurrentTag();
+    },
+
+    computed: {
+        ifSubscribed: function ifSubscribed() {
+            var _this = this;
+
+            if (this.$store.state.subscriptions) {
+                return this.$store.state.subscriptions.some(function (sub) {
+                    console.log(_this.tagId);
+                    console.log(sub.Tag.id);
+                    if (sub.Tag.id == _this.tagId) {
+                        return true;
+                    }
+                });
+            }
+            return false;
+        }
+    },
+    methods: {
+        getCurrentTag: function getCurrentTag() {
+            var _this2 = this;
+
+            this.tagId = this.$route.path.split('/')[3];
+            $.get('/tag/' + this.tagId, function (res) {
+                if (res.success) {
+                    _this2.tagName = res.tagName;
+                }
+            });
+        },
+        subscribe: function subscribe() {
+            var _this3 = this;
+
+            $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/subscribe', function (res) {
+                if (res.success) {
+                    _this3.$store.commit('loadSubscriptions');
+                } else {
+                    console.log('subscription went wrong');
+                }
+            });
+        },
+        unsubscribe: function unsubscribe() {
+            var _this4 = this;
+
+            $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/unsubscribe', function (res) {
+                if (res.success) {
+                    _this4.$store.commit('loadSubscriptions');
+                } else {
+                    console.log('unsubscription went wrong');
+                }
+            });
+        }
+    },
+    watch: {
+        '$route': 'getCurrentTag'
+    }
+};
+
+/***/ },
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11863,13 +11968,13 @@ return index;
 };
 
 /***/ },
-/* 14 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
 
 
@@ -11946,12 +12051,12 @@ return index;
             this.rate = 0;
         }
 
-        if (!this.post.rating) this.post.rating = 0;
+        if (this.post.rating == null) this.post.rating = 0;
     }
 };
 
 /***/ },
-/* 15 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12024,7 +12129,7 @@ return index;
 };
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12058,7 +12163,7 @@ return index;
 };
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12100,7 +12205,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12137,7 +12242,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12151,34 +12256,6 @@ exports.push([module.i, "\n.card[data-v-03680cfd]{\n    padding: 25px;\n}\n", ""
 
 
 /***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.row[data-v-0e895c83]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-0e895c83]{\n}\n.rates span[data-v-0e895c83] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-0e895c83]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-0e895c83]{\n    color: rgba(0,0,0,0.87) !important;\n}\n\n\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/CommentComponent.vue?13505669"],"names":[],"mappings":";AA+EA;IACA,iBAAA;CACA;AACA;CAEA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"CommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props: ['comment'],\n        data(){\n            return {\n                rate: 0\n            }\n        },\n        created(){\n            if(this.comment.CommentaryRates && this.comment.CommentaryRates[0])\n            {\n                this.rate = this.comment.CommentaryRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(!this.comment.rating)\n                this.comment.rating = 0\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            },\n        },\n        methods: {\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/like`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        }\n    }\n\n\n</script>\n\n<style scoped>\n    .row{\n        margin-bottom: 0;\n    }\n    .user-nickname{\n        \n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n\n\n</style>\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n#submit-comment[data-v-5921e409]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/NewCommentComponent.vue?1bae3a64"],"names":[],"mappings":";AA6BA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props:['post'],\n        data(){\n            return {\n                text: ''\n            }\n        },\n        methods:{\n            onSubmit() {\n                console.log(this)\n                let postId = this.post.id\n                $.ajax({\n                    method:'POST',\n                    url:'post/' + postId + '/comment', \n                    data: {content: this.text},\n                    success: res => {\n                        if(res.success)\n                        {\n                            this.post.Commentaries = res.comments\n                            this.text = ''\n                        }                \n                    }})\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    #submit-comment{\n        margin: 5px;\n        margin-top: -20px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12187,7 +12264,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?6fd7130a"],"names":[],"mappings":";AA6CA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<script>\n    export default {\n        data(){\n            return {\n                tagsArray:[],\n                content: ''\n            }\n        },\n        methods: {\n            onSubmit(){\n                $.ajax({\n                        method:'POST',\n                        url:'post', \n                        data: new FormData($('#new-post-form')[0]),\n                        cache: false,\n                        contentType: false,\n                        processData: false,\n                        success: res => {\n                            if(res.success)\n                            {\n                                this.tagsArray = []\n                                this.content = ''\n                                $('#new-post-component .collapsible-header,li').removeClass('active')\n                                $('#new-post-component .collapsible-body').hide()\n                                $('input[type=file]').val(\"\")\n                                $('.file-path-wrapper input').val(\"\")\n                                this.$emit('submitted')\n                            }                \n                        }})\n            }\n        },\n        computed:{\n            tags:{\n                get(){\n                    return this.tagsArray.join(',')\n                },\n                set(tags){\n                    this.tagsArray = tags.split(',')\n                }\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    textarea{\n        margin: 0;\n    }\n    .collapsible-body{\n        height: auto;\n        padding: 0 10px 0;\n    }\n    .row{\n        padding: 5px 15px 5px;\n        margin-bottom: 0;\n    }\n    .file-field{\n        height: 36px;\n        margin-top: 0;\n    }\n    .file-field .btn{\n        height: 36px;\n        line-height: 36px;\n    }\n    .file-field .file-path{\n        height: 36px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.row[data-v-0e895c83]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-0e895c83]{\n}\n.rates span[data-v-0e895c83] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-0e895c83]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-0e895c83]{\n    color: rgba(0,0,0,0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/CommentComponent.vue?5361792e"],"names":[],"mappings":";AA+EA;IACA,iBAAA;CACA;AACA;CAEA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"CommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props: ['comment'],\n        data(){\n            return {\n                rate: 0\n            }\n        },\n        created(){\n            if(this.comment.CommentaryRates && this.comment.CommentaryRates[0])\n            {\n                this.rate = this.comment.CommentaryRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(!this.comment.rating)\n                this.comment.rating = 0\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            },\n        },\n        methods: {\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/like`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {\n                        if(res.success)\n                        {\n                            this.comment.rating = res.rating \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        }\n    }\n\n\n</script>\n\n<style scoped>\n    .row{\n        margin-bottom: 0;\n    }\n    .user-nickname{\n        \n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12201,7 +12278,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-64bc3967] {\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-64bc3967] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-64bc3967]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-64bc3967]{\n    color: rgba(0,0,0,0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent.vue?00af64a6"],"names":[],"mappings":";AAwFA;IACA,cAAA;IACA,gBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA","file":"PostComponent.vue","sourcesContent":["<script>\n    import CommentComponent from './PostComponent/CommentComponent.vue'    \n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'    \n\n    export default {\n        props: ['post'],\n        data(){\n            return {\n                showComments: false,\n                rate: 0\n            }\n        },\n        computed:{\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            }\n        },\n        components:{\n            CommentComponent,\n            NewCommentComponent\n        },\n        methods:{\n            triggerComments(){\n                this.showComments = !this.showComments\n            },\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/like`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = 0\n                }\n                else{\n                    $.get(`/post/${this.post.id}/rate/dislike`,(res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating \n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        },\n        created(){\n            if(this.post.PostRates && this.post.PostRates[0])\n            {\n                this.rate = this.post.PostRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(!this.post.rating)\n                this.post.rating = 0\n        }\n    }\n</script>\n\n<style scoped>\n    .userinfo {\n        padding: 15px;\n        font-size: 25px;\n    }\n    .rates span {\n        color: rgba(0,0,0,0.30)    \n    }\n    .rates span:hover{\n        color: rgba(0,0,0,0.87);\n        cursor: context-menu;    \n    }\n    .activated-rate{\n        color: rgba(0,0,0,0.87) !important;        \n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n#submit-comment[data-v-5921e409]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent/NewCommentComponent.vue?1bae3a64"],"names":[],"mappings":";AA6BA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<script>\n    export default {\n        props:['post'],\n        data(){\n            return {\n                text: ''\n            }\n        },\n        methods:{\n            onSubmit() {\n                console.log(this)\n                let postId = this.post.id\n                $.ajax({\n                    method:'POST',\n                    url:'post/' + postId + '/comment', \n                    data: {content: this.text},\n                    success: res => {\n                        if(res.success)\n                        {\n                            this.post.Commentaries = res.comments\n                            this.text = ''\n                        }                \n                    }})\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    #submit-comment{\n        margin: 5px;\n        margin-top: -20px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12215,13 +12292,69 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?357fe1e5"],"names":[],"mappings":";AAyCA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<script>\n    export default\n    {\n        data() {\n            return {\n                email: '',\n                password: '',\n                nickname: '',\n                confirmPassword: ''\n            }\n        },\n        created() {\n            \n        },\n        methods: {\n            submit(){\n                $.post('', {\n                    email: this.email, \n                    password: this.password,\n                    nickname: this.nickname,\n                    confirmPassword: this.confirmPassword\n                }, (res) => {\n                    if(res.success)\n                    {\n                        window.location.replace('/login')\n                    }\n                    else if(res.message == \"Passwords do not match\")\n                    {\n                        $('#passwordConfirmation').addClass('invalid')\n                    }\n                    else\n                    {\n                        $('#email').addClass('invalid')                        \n                    }    \n                })\n            }\n        }  \n    }\n</script>\n\n<style scoped>\n    .card{\n        padding: 25px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?6fd7130a"],"names":[],"mappings":";AA6CA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<script>\n    export default {\n        data(){\n            return {\n                tagsArray:[],\n                content: ''\n            }\n        },\n        methods: {\n            onSubmit(){\n                $.ajax({\n                        method:'POST',\n                        url:'post', \n                        data: new FormData($('#new-post-form')[0]),\n                        cache: false,\n                        contentType: false,\n                        processData: false,\n                        success: res => {\n                            if(res.success)\n                            {\n                                this.tagsArray = []\n                                this.content = ''\n                                $('#new-post-component .collapsible-header,li').removeClass('active')\n                                $('#new-post-component .collapsible-body').hide()\n                                $('input[type=file]').val(\"\")\n                                $('.file-path-wrapper input').val(\"\")\n                                this.$emit('submitted')\n                            }                \n                        }})\n            }\n        },\n        computed:{\n            tags:{\n                get(){\n                    return this.tagsArray.join(',')\n                },\n                set(tags){\n                    this.tagsArray = tags.split(',')\n                }\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    textarea{\n        margin: 0;\n    }\n    .collapsible-body{\n        height: auto;\n        padding: 0 10px 0;\n    }\n    .row{\n        padding: 5px 15px 5px;\n        margin-bottom: 0;\n    }\n    .file-field{\n        height: 36px;\n        margin-top: 0;\n    }\n    .file-field .btn{\n        height: 36px;\n        line-height: 36px;\n    }\n    .file-field .file-path{\n        height: 36px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
 
 /***/ },
 /* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"TagHeaderComponent.vue","sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.userinfo[data-v-64bc3967]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-64bc3967]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-64bc3967]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-64bc3967]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/PostComponent.vue?3c25e42e"],"names":[],"mappings":";AA0FA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA","file":"PostComponent.vue","sourcesContent":["<script>\n    import CommentComponent from './PostComponent/CommentComponent.vue'\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\n\n    export default {\n        props: ['post'],\n        data(){\n            return {\n                showComments: false,\n                rate: 0\n            }\n        },\n        computed: {\n            ifThumbUp(){\n                return this.rate == 1\n            },\n            ifThumbDown(){\n                return this.rate == -1\n            }\n        },\n        components: {\n            CommentComponent,\n            NewCommentComponent\n        },\n        methods: {\n            triggerComments(){\n                this.showComments = !this.showComments\n            },\n            thumbUp(){\n                if(this.rate == 1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = 0\n                }\n                else\n                {\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = 1\n                }\n            },\n            thumbDown(){\n                if(this.rate == -1)\n                {\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = 0\n                }\n                else\n                {\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\n                        if(res.success)\n                        {\n                            this.post.rating = res.rating\n                        }\n                    })\n                    this.rate = -1\n                }\n            }\n        },\n        created(){\n            if(this.post.PostRates && this.post.PostRates[0])\n            {\n                this.rate = this.post.PostRates[0].rate\n            }\n            else\n            {\n                this.rate = 0\n            }\n\n            if(this.post.rating == null)\n                this.post.rating = 0\n        }\n    }\n</script>\n\n<style scoped>\n    .userinfo\n    {\n        padding: 15px;\n        font-size: 25px;\n    }\n\n    .rates span\n    {\n        color: rgba(0, 0, 0, 0.30)\n    }\n\n    .rates span:hover\n    {\n        color: rgba(0, 0, 0, 0.87);\n        cursor: context-menu;\n    }\n\n    .activated-rate\n    {\n        color: rgba(0, 0, 0, 0.87) !important;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?0d337319"],"names":[],"mappings":";AAmBA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components:{\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?357fe1e5"],"names":[],"mappings":";AAyCA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<script>\n    export default\n    {\n        data() {\n            return {\n                email: '',\n                password: '',\n                nickname: '',\n                confirmPassword: ''\n            }\n        },\n        created() {\n            \n        },\n        methods: {\n            submit(){\n                $.post('', {\n                    email: this.email, \n                    password: this.password,\n                    nickname: this.nickname,\n                    confirmPassword: this.confirmPassword\n                }, (res) => {\n                    if(res.success)\n                    {\n                        window.location.replace('/login')\n                    }\n                    else if(res.message == \"Passwords do not match\")\n                    {\n                        $('#passwordConfirmation').addClass('invalid')\n                    }\n                    else\n                    {\n                        $('#email').addClass('invalid')                        \n                    }    \n                })\n            }\n        }  \n    }\n</script>\n\n<style scoped>\n    .card{\n        padding: 25px;\n    }\n</style>\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 29 */
 /***/ function(module, exports) {
 
 /**
@@ -12265,10 +12398,10 @@ module.exports = typeof window !== 'undefined' && window.atob && window.atob.bin
 
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
-var atob = __webpack_require__(25);
+var atob = __webpack_require__(29);
 
 function b64DecodeUnicode(str) {
   return decodeURIComponent(atob(str).replace(/(.)/g, function (m, p) {
@@ -12304,17 +12437,103 @@ module.exports = function(str) {
 
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(34)
+__webpack_require__(43)
 
 /* script */
 __vue_exports__ = __webpack_require__(13)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent.vue"
+__vue_options__._scopeId = "data-v-70884160"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-70884160", __vue_options__)
+  } else {
+    hotAPI.reload("data-v-70884160", __vue_options__)
+  }
+})()}
+if (__vue_options__.functional) {console.error("[vue-loader] NavComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+module.exports = __vue_exports__
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = {}
+
+/* styles */
+__webpack_require__(41)
+
+/* script */
+__vue_exports__ = __webpack_require__(14)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\TagHeaderComponent.vue"
+__vue_options__._scopeId = "data-v-61782d42"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61782d42", __vue_options__)
+  } else {
+    hotAPI.reload("data-v-61782d42", __vue_options__)
+  }
+})()}
+if (__vue_options__.functional) {console.error("[vue-loader] TagHeaderComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+module.exports = __vue_exports__
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = {}
+
+/* styles */
+__webpack_require__(40)
+
+/* script */
+__vue_exports__ = __webpack_require__(15)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12347,17 +12566,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 28 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(35)
+__webpack_require__(42)
 
 /* script */
-__vue_exports__ = __webpack_require__(14)
+__vue_exports__ = __webpack_require__(16)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12390,17 +12609,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 29 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(32)
+__webpack_require__(38)
 
 /* script */
-__vue_exports__ = __webpack_require__(15)
+__vue_exports__ = __webpack_require__(17)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12433,17 +12652,17 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 30 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(33)
+__webpack_require__(39)
 
 /* script */
-__vue_exports__ = __webpack_require__(16)
+__vue_exports__ = __webpack_require__(18)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12476,13 +12695,13 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 31 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(19);
+var content = __webpack_require__(21);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12502,13 +12721,13 @@ if(false) {
 }
 
 /***/ },
-/* 32 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(22);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12528,13 +12747,13 @@ if(false) {
 }
 
 /***/ },
-/* 33 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(21);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12554,13 +12773,13 @@ if(false) {
 }
 
 /***/ },
-/* 34 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(22);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12580,13 +12799,39 @@ if(false) {
 }
 
 /***/ },
-/* 35 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(25);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12606,13 +12851,39 @@ if(false) {
 }
 
 /***/ },
-/* 36 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(24);
+var content = __webpack_require__(27);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(28);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -12632,7 +12903,7 @@ if(false) {
 }
 
 /***/ },
-/* 37 */
+/* 45 */
 /***/ function(module, exports) {
 
 var g;
@@ -12657,7 +12928,7 @@ module.exports = g;
 
 
 /***/ },
-/* 38 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12703,11 +12974,21 @@ if (url == '/') {
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex___default.a.Store({
     state: {
-        user: null
+        user: null,
+        subscriptions: []
     },
     mutations: {
         setUser: function setUser(state, user) {
             state.user = user;
+        },
+        loadSubscriptions: function loadSubscriptions(state) {
+            $.get('/user/' + state.user.id + '/subscriptions', function (res) {
+                if (res.success) {
+                    state.subscriptions = res.subscriptions;
+                } else {
+                    console.log('Something went wrong');
+                }
+            });
         }
     }
 });

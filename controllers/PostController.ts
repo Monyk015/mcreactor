@@ -16,7 +16,7 @@ PostController
     
     .post('/post',
         upload.single('image'),
-        authMiddleware,
+        authMiddleware(),
         async(ctx: Context) =>
         {
             try
@@ -57,23 +57,17 @@ PostController
         })
     
     .get('/post/:id',
+        authMiddleware(true),
         async(ctx) =>
         {
             const id = ctx.params.id
-            const post = Post.findById()
-        })
-    
-    .get('/post',
-        authMiddleware,
-        async(ctx) =>
-        {
-            const posts = await Post.findAll({
+            ctx.body = [await Post.findById(id, {
                 include: [
                     {
                         model: PostRate,
-                        where: {
-                            UserId: ctx.user.id
-                        },
+                        where: ctx.user ? {
+                                UserId: ctx.user.id
+                            } : null,
                         required: false
                     },
                     Tag,
@@ -82,9 +76,38 @@ PostController
                         model: Commentary,
                         include: [User, {
                             model: CommentaryRate,
-                            where: {
+                            where: ctx.user ? {
+                                    UserId: ctx.user.id
+                                } : null,
+                            required: false
+                        }]
+                    }
+                ]
+            })]
+        })
+    
+    .get('/post',
+        authMiddleware(true),
+        async(ctx) =>
+        {
+            const posts = await Post.findAll({
+                include: [
+                    {
+                        model: PostRate,
+                        where: ctx.user ? {
                                 UserId: ctx.user.id
-                            },
+                            } : null,
+                        required: false
+                    },
+                    Tag,
+                    User,
+                    {
+                        model: Commentary,
+                        include: [User, {
+                            model: CommentaryRate,
+                            where: ctx.user ? {
+                                    UserId: ctx.user.id
+                                } : null,
                             required: false
                         }]
                     }
@@ -98,7 +121,7 @@ PostController
         })
     
     .get('/post/tag/:id',
-        authMiddleware,
+        authMiddleware(true),
         async(ctx) =>
         {
             let id = ctx.params.id
@@ -111,9 +134,9 @@ PostController
                 include: [
                     {
                         model: PostRate,
-                        where: {
-                            UserId: ctx.user.id
-                        },
+                        where: ctx.user ? {
+                                UserId: ctx.user.id
+                            } : null,
                         required: false
                     },
                     Tag,
@@ -122,9 +145,9 @@ PostController
                         model: Commentary,
                         include: [User, {
                             model: CommentaryRate,
-                            where: {
-                                UserId: ctx.user.id
-                            },
+                            where: ctx.user ? {
+                                        UserId: ctx.user.id
+                                    } : null,
                             required: false
                         }]
                     }
@@ -138,7 +161,7 @@ PostController
     
     //ajax rate route
     .get('/post/:id/rate/:rate',
-        authMiddleware,
+        authMiddleware(),
         async(ctx) =>
         {
             let id = ctx.params.id

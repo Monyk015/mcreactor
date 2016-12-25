@@ -1,28 +1,35 @@
-import { Middleware, MiddlewareInterface} from 'routing-controllers';
 import {Context} from 'koa'
-import { UserAttribute } from '../models/User';
-import { verifyToken } from '../config/jwt';
+import {UserAttribute} from '../models/User';
+import {verifyToken} from '../config/jwt';
 
 
-
-
-
-const authMiddleware =  (context: Context, next: (err?: any) => Promise<any>): Promise<any> | null  => {
+const authMiddleware = (allowNotLoggedIn: boolean = false) => {
+    return (context: Context, next: (err?: any) => Promise<any>): Promise<any> | null => {
         let token = false
-        if(context.cookie)
+        if (context.cookie)
             token = context.cookie.token
-        if(token)
+        if (token)
         {
-            const user : UserAttribute | boolean = verifyToken(token.toString())
-            if(user)
+            const user: UserAttribute | boolean = verifyToken(token.toString())
+            if (user)
             {
                 context.user = user
                 return next()
             }
         }
-        context.response.status = 403
-        context.response.body = '403 Forbidden'
-        return
+        context.user = null
+        
+        if (!allowNotLoggedIn)
+        {
+            context.response.status = 403
+            context.response.body = '403 Forbidden'
+            return
+        }
+        else
+        {
+            return next()
+        }
     }
+}
 
 export default authMiddleware

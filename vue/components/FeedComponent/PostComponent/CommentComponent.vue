@@ -93,6 +93,4 @@
     .activated-rate{
         color: rgba(0,0,0,0.87) !important;        
     }
-
-
 </style>

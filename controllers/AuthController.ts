@@ -1,5 +1,5 @@
 import { UserAttribute, UserModel } from '../models/User';
-import { User } from '../models/models';
+import { User, Subscription } from '../models/models';
 import { generateToken } from '../config/jwt';
 import { Request } from '~koa/lib/request';
 import { Response } from '~koa/lib/response';
@@ -23,7 +23,10 @@ AuthController
         const found = await User.findOne({
             where: {
                 email: user.email
-            }
+            },
+            include:[
+                Subscription
+            ]
         })
         if (found && found.password == hash(user.password))
             ctx.body =  { success: true, token: generateToken(found.dataValues) }

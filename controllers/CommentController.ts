@@ -8,7 +8,7 @@ const CommentController = new Router()
 CommentController
     
     .post('/post/:id/comment',
-        authMiddleware,
+        authMiddleware(),
         async(ctx) =>
         {
             try
@@ -32,7 +32,7 @@ CommentController
         })
     
     .get('/comment/:id/rate/:rate',
-        authMiddleware,
+        authMiddleware(),
         async(ctx) =>
         {
             let id = ctx.params.id

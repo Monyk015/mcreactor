@@ -34,7 +34,7 @@ html
                                     a(href='/') Logout
                             a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          
                                 | {{$store.state.user.nickname}}
-                                <i class="material-icons">keyboard_arrow_down</i>        
+                                i.material-icons keyboard_arrow_down
                     span(v-else)
                         li
                             a(href='/login') Login
@@ -44,5 +44,4 @@ html
             block content        
     script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
     script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.min.js")
     script(src="build.js")

@@ -1,0 +1,9 @@
+tag-header-component(inline-template)
+    div
+        .tagname {{tagName}}
+        button.waves-effect.waves-light.btn.subscribe-button(
+        @click="subscribe",
+        v-if="$store.state.user && !ifSubscribed") Subscribe
+        button.waves-effect.red.btn.subscribe-button(
+        @click="unsubscribe",
+        v-if="$store.state.user && ifSubscribed") Unsubscribe

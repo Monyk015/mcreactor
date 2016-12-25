@@ -1,4 +1,4 @@
-post-component.collection(inline-template, v-bind:post="post")
+post-component(inline-template, v-bind:post="post")
     div
         .row.collection-item
             a.userinfo(v-bind:href="'/user/' + post.UserId")
@@ -10,11 +10,12 @@ post-component.collection(inline-template, v-bind:post="post")
             p.col.s12 {{post.content}}
             img(v-if="post.image",v-bind:src="'images/' + post.image")
             .row
-                .rates
+                .rates(v-if="$store.state.user")
                     span.material-icons(@click="thumbUp",v-bind:class="{'activated-rate': ifThumbUp}") thumb_up
                     span.material-icons(@click="thumbDown",v-bind:class="{'activated-rate': ifThumbDown}") thumb_down
                 .rating {{post.rating}}
                 .date {{post.createdAt | formatDate}}
+                router-link.link(v-bind:to="'/post/' + post.id") Link
         .row.comments.collection-item
             .col.s12
                 .trigger(@click="triggerComments")
@@ -25,5 +26,5 @@ post-component.collection(inline-template, v-bind:post="post")
                     ul
                         li.collection-item(v-for="comment in post.Commentaries")
                             include post/comment.pug
-                        li.collection-item(v-if="this.$store.state.user")                        
+                        li.collection-item(v-if="this.$store.state.user")
                             include post/new-comment.pug        

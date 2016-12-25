@@ -1,6 +1,6 @@
 <script>
-    import CommentComponent from './PostComponent/CommentComponent.vue'    
-    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'    
+    import CommentComponent from './PostComponent/CommentComponent.vue'
+    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'
 
     export default {
         props: ['post'],
@@ -10,7 +10,7 @@
                 rate: 0
             }
         },
-        computed:{
+        computed: {
             ifThumbUp(){
                 return this.rate == 1
             },
@@ -18,27 +18,28 @@
                 return this.rate == -1
             }
         },
-        components:{
+        components: {
             CommentComponent,
             NewCommentComponent
         },
-        methods:{
+        methods: {
             triggerComments(){
                 this.showComments = !this.showComments
             },
             thumbUp(){
                 if(this.rate == 1)
                 {
-                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {
+                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {
                         if(res.success)
                         {
-                            this.post.rating = res.rating 
+                            this.post.rating = res.rating
                         }
                     })
                     this.rate = 0
                 }
-                else{
-                    $.get(`/post/${this.post.id}/rate/like`,(res) => {
+                else
+                {
+                    $.get(`/post/${this.post.id}/rate/like`, (res) => {
                         if(res.success)
                         {
                             this.post.rating = res.rating
@@ -50,19 +51,20 @@
             thumbDown(){
                 if(this.rate == -1)
                 {
-                    $.get(`/post/${this.post.id}/rate/neutral`,(res) => {
+                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {
                         if(res.success)
                         {
-                            this.post.rating = res.rating 
+                            this.post.rating = res.rating
                         }
                     })
                     this.rate = 0
                 }
-                else{
-                    $.get(`/post/${this.post.id}/rate/dislike`,(res) => {
+                else
+                {
+                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {
                         if(res.success)
                         {
-                            this.post.rating = res.rating 
+                            this.post.rating = res.rating
                         }
                     })
                     this.rate = -1
@@ -79,25 +81,32 @@
                 this.rate = 0
             }
 
-            if(!this.post.rating)
+            if(this.post.rating == null)
                 this.post.rating = 0
         }
     }
 </script>
 
 <style scoped>
-    .userinfo {
+    .userinfo
+    {
         padding: 15px;
         font-size: 25px;
     }
-    .rates span {
-        color: rgba(0,0,0,0.30)    
+
+    .rates span
+    {
+        color: rgba(0, 0, 0, 0.30)
     }
-    .rates span:hover{
-        color: rgba(0,0,0,0.87);
-        cursor: context-menu;    
+
+    .rates span:hover
+    {
+        color: rgba(0, 0, 0, 0.87);
+        cursor: context-menu;
     }
-    .activated-rate{
-        color: rgba(0,0,0,0.87) !important;        
+
+    .activated-rate
+    {
+        color: rgba(0, 0, 0, 0.87) !important;
     }
 </style>

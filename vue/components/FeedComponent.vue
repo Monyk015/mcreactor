@@ -1,14 +1,14 @@
 <script>
     import NewPostComponent from './FeedComponent/NewPostComponent.vue'
     import PostComponent from './FeedComponent/PostComponent.vue'
-    // import VueRouter from 'vue-router'
+    import NavComponent from './FeedComponent/NavComponent.vue'
 
-    
     export default
     {
         components:{
             NewPostComponent,
-            PostComponent
+            PostComponent,
+            NavComponent
         },
         data(){
             return {
@@ -17,10 +17,17 @@
             }
         },
         created() {
-            this.loadData()
+            this.loadPosts()
+            if(this.$store.state.user)
+                this.$store.commit('loadSubscriptions')
+        },
+        computed:{
+            ifEmpty(){
+                return this.posts.length == 0
+            }
         },
         methods:{
-            loadData(){
+            loadPosts(){
                 let path = this.$route.path
                 if(path == "/")
                     path = 'post'
@@ -31,7 +38,7 @@
             }
         },
         watch:{
-            '$route' : 'loadData'
+            '$route' : 'loadPosts'
         }
     }
 </script>

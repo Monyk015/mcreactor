@@ -50,26 +50,26 @@
 	const Koa = __webpack_require__(3);
 	const Router = __webpack_require__(4);
 	const AuthController_1 = __webpack_require__(5);
-	const FeedController_1 = __webpack_require__(18);
-	const UserController_1 = __webpack_require__(20);
-	const PostController_1 = __webpack_require__(22);
-	const CommentController_1 = __webpack_require__(23);
-	const TagController_1 = __webpack_require__(24);
-	const path = __webpack_require__(25);
-	const convert = __webpack_require__(26);
-	const serve = __webpack_require__(27);
+	const FeedController_1 = __webpack_require__(20);
+	const UserController_1 = __webpack_require__(22);
+	const PostController_1 = __webpack_require__(24);
+	const CommentController_1 = __webpack_require__(25);
+	const TagController_1 = __webpack_require__(26);
+	const path = __webpack_require__(27);
+	const convert = __webpack_require__(28);
+	const serve = __webpack_require__(29);
 	const app = new Koa();
-	app.use(__webpack_require__(28)());
+	app.use(__webpack_require__(30)());
 	app.use(convert(serve('./public')));
 	// app.use(convert(serve('./public/images')))
-	let cors = __webpack_require__(29);
-	let logger = __webpack_require__(30);
+	let cors = __webpack_require__(31);
+	let logger = __webpack_require__(32);
 	app.use(convert(logger()));
 	app.use(convert(cors()));
-	const pug_1 = __webpack_require__(31);
+	const pug_1 = __webpack_require__(33);
 	pug_1.default.use(app);
-	app.use(convert(__webpack_require__(33)()));
-	const CookieMiddleware_1 = __webpack_require__(34);
+	app.use(convert(__webpack_require__(35)()));
+	const CookieMiddleware_1 = __webpack_require__(36);
 	app.use(CookieMiddleware_1.default);
 	const router = new Router();
 	router
@@ -123,9 +123,9 @@
 	    });
 	};
 	const models_1 = __webpack_require__(6);
-	const jwt_1 = __webpack_require__(15);
+	const jwt_1 = __webpack_require__(17);
 	const Router = __webpack_require__(4);
-	const hash = __webpack_require__(17);
+	const hash = __webpack_require__(19);
 	const AuthController = new Router();
 	AuthController
 	    .get('/login', (ctx) => {
@@ -136,7 +136,10 @@
 	    const found = yield models_1.User.findOne({
 	        where: {
 	            email: user.email
-	        }
+	        },
+	        include: [
+	            models_1.Subscription
+	        ]
 	    });
 	    if (found && found.password == hash(user.password))
 	        ctx.body = { success: true, token: jwt_1.generateToken(found.dataValues) };
@@ -186,6 +189,10 @@
 	const User_1 = __webpack_require__(14);
 	exports.User = User_1.default;
 	const db_1 = __webpack_require__(8);
+	const Subscription_1 = __webpack_require__(15);
+	exports.Subscription = Subscription_1.default;
+	const Ban_1 = __webpack_require__(16);
+	exports.Ban = Ban_1.default;
 	Post_1.default.belongsTo(User_1.default);
 	User_1.default.hasMany(Post_1.default);
 	User_1.default.hasMany(Commentary_1.default);
@@ -201,6 +208,14 @@
 	CommentaryRate_1.default.belongsTo(Commentary_1.default);
 	CommentaryRate_1.default.belongsTo(User_1.default);
 	Commentary_1.default.hasMany(CommentaryRate_1.default);
+	Subscription_1.default.belongsTo(User_1.default);
+	Subscription_1.default.belongsTo(Tag_1.default);
+	User_1.default.hasMany(Subscription_1.default);
+	Tag_1.default.hasMany(Subscription_1.default);
+	Ban_1.default.belongsTo(User_1.default);
+	Ban_1.default.belongsTo(Tag_1.default);
+	User_1.default.hasMany(Ban_1.default);
+	Tag_1.default.hasMany(Ban_1.default);
 	// ;(async () =>
 	// {
 	//     await User.sync({force:true})
@@ -210,6 +225,8 @@
 	//     await Commentary.sync({force:true})
 	//     await PostRate.sync({force:true})
 	//     await CommentaryRate.sync({force:true})
+	//     await Ban.sync({force:true})
+	//     await Subscription.sync({force:true})
 	// })()
 
 
@@ -410,7 +427,33 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const jwt = __webpack_require__(16);
+	const db_1 = __webpack_require__(8);
+	const Subscription = db_1.default.define("Subscription", {}, {
+	    timestamps: true
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Subscription;
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const db_1 = __webpack_require__(8);
+	const Ban = db_1.default.define("Ban", {}, {
+	    timestamps: true
+	});
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Ban;
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	const jwt = __webpack_require__(18);
 	const secret = 'veryverysecret';
 	function generateToken(user) {
 	    return jwt.sign(user, secret);
@@ -433,24 +476,24 @@
 
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = require("jsonwebtoken");
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports) {
 
 	module.exports = require("sha256");
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	const Router = __webpack_require__(4);
-	const multer = __webpack_require__(19);
+	const multer = __webpack_require__(21);
 	const upload = multer({ dest: './public/images' });
 	const FeedController = new Router();
 	FeedController
@@ -462,13 +505,13 @@
 
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-multer");
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -485,11 +528,11 @@
 	};
 	const Router = __webpack_require__(4);
 	const models_1 = __webpack_require__(6);
-	const AuthMiddleware_1 = __webpack_require__(21);
+	const AuthMiddleware_1 = __webpack_require__(23);
 	const UserController = new Router();
 	// UserController.use(authMiddleware)
 	UserController
-	    .get('/user', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/user', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    ctx.body = yield models_1.User.findAll({ raw: true, order: 'id' });
 	}))
 	    .get('/user/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
@@ -504,38 +547,88 @@
 	        ctx.body = (yield foundUser.update(user)).get();
 	    }
 	    ctx.body = { success: false, message: 'User not found' };
+	}))
+	    .get('/user/:id/subscriptions', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.params.id;
+	    let subscriptions = yield models_1.Subscription.findAll({
+	        where: {
+	            UserId: id
+	        },
+	        include: [models_1.Tag]
+	    });
+	    ctx.body = { success: true, subscriptions: subscriptions };
+	}))
+	    .get('/user/:id/tag/:tagId/subscribe', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    try {
+	        let userId = ctx.params.id;
+	        let tagId = ctx.params.tagId;
+	        yield models_1.Subscription.create({
+	            UserId: userId,
+	            TagId: tagId
+	        });
+	    }
+	    catch (e) {
+	        ctx.body = { success: false, message: 'Something went wrong' };
+	        return;
+	    }
+	    ctx.body = { success: true };
+	}))
+	    .get('/user/:id/tag/:tagId/unsubscribe', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    try {
+	        let userId = ctx.params.id;
+	        let tagId = ctx.params.tagId;
+	        yield models_1.Subscription.destroy({
+	            where: {
+	                UserId: userId,
+	                TagId: tagId
+	            }
+	        });
+	    }
+	    catch (e) {
+	        ctx.body = { success: false, message: 'Something went wrong' };
+	        return;
+	    }
+	    ctx.body = { success: true };
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = UserController;
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const jwt_1 = __webpack_require__(15);
-	const authMiddleware = (context, next) => {
-	    let token = false;
-	    if (context.cookie)
-	        token = context.cookie.token;
-	    if (token) {
-	        const user = jwt_1.verifyToken(token.toString());
-	        if (user) {
-	            context.user = user;
+	const jwt_1 = __webpack_require__(17);
+	const authMiddleware = (allowNotLoggedIn = false) => {
+	    return (context, next) => {
+	        let token = false;
+	        if (context.cookie)
+	            token = context.cookie.token;
+	        if (token) {
+	            const user = jwt_1.verifyToken(token.toString());
+	            if (user) {
+	                context.user = user;
+	                return next();
+	            }
+	        }
+	        context.user = null;
+	        if (!allowNotLoggedIn) {
+	            context.response.status = 403;
+	            context.response.body = '403 Forbidden';
+	            return;
+	        }
+	        else {
 	            return next();
 	        }
-	    }
-	    context.response.status = 403;
-	    context.response.body = '403 Forbidden';
-	    return;
+	    };
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = authMiddleware;
 
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -550,14 +643,14 @@
 	const PostRate_1 = __webpack_require__(10);
 	const CommentaryRate_1 = __webpack_require__(7);
 	const db_1 = __webpack_require__(8);
-	const AuthMiddleware_1 = __webpack_require__(21);
+	const AuthMiddleware_1 = __webpack_require__(23);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
 	const PostController = new Router();
-	const multer = __webpack_require__(19);
+	const multer = __webpack_require__(21);
 	const upload = multer({ dest: './public/images' });
 	PostController
-	    .post('/post', upload.single('image'), AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .post('/post', upload.single('image'), AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    try {
 	        let userId = ctx.user.id;
 	        let tags = ctx.req.body.tags
@@ -587,18 +680,40 @@
 	        ctx.body = { success: false, message: `Something went wrong: ${e}` };
 	    }
 	}))
-	    .get('/post/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/post/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const id = ctx.params.id;
-	    const post = models_1.Post.findById();
+	    ctx.body = [yield models_1.Post.findById(id, {
+	            include: [
+	                {
+	                    model: PostRate_1.default,
+	                    where: ctx.user ? {
+	                        UserId: ctx.user.id
+	                    } : null,
+	                    required: false
+	                },
+	                models_1.Tag,
+	                models_1.User,
+	                {
+	                    model: models_1.Commentary,
+	                    include: [models_1.User, {
+	                            model: CommentaryRate_1.default,
+	                            where: ctx.user ? {
+	                                UserId: ctx.user.id
+	                            } : null,
+	                            required: false
+	                        }]
+	                }
+	            ]
+	        })];
 	}))
-	    .get('/post', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/post', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const posts = yield models_1.Post.findAll({
 	        include: [
 	            {
 	                model: PostRate_1.default,
-	                where: {
+	                where: ctx.user ? {
 	                    UserId: ctx.user.id
-	                },
+	                } : null,
 	                required: false
 	            },
 	            models_1.Tag,
@@ -607,9 +722,9 @@
 	                model: models_1.Commentary,
 	                include: [models_1.User, {
 	                        model: CommentaryRate_1.default,
-	                        where: {
+	                        where: ctx.user ? {
 	                            UserId: ctx.user.id
-	                        },
+	                        } : null,
 	                        required: false
 	                    }]
 	            }
@@ -621,7 +736,7 @@
 	    });
 	    ctx.body = posts.map(post => post.get());
 	}))
-	    .get('/post/tag/:id', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/post/tag/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
 	    ctx.body = yield models_1.Post.findAll({
 	        where: {
@@ -632,9 +747,9 @@
 	        include: [
 	            {
 	                model: PostRate_1.default,
-	                where: {
+	                where: ctx.user ? {
 	                    UserId: ctx.user.id
-	                },
+	                } : null,
 	                required: false
 	            },
 	            models_1.Tag,
@@ -643,9 +758,9 @@
 	                model: models_1.Commentary,
 	                include: [models_1.User, {
 	                        model: CommentaryRate_1.default,
-	                        where: {
+	                        where: ctx.user ? {
 	                            UserId: ctx.user.id
-	                        },
+	                        } : null,
 	                        required: false
 	                    }]
 	            }
@@ -656,7 +771,7 @@
 	        ]
 	    });
 	}))
-	    .get('/post/:id/rate/:rate', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/post/:id/rate/:rate', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
 	    let rate = ctx.params.rate;
 	    let previousRate = yield PostRate_1.default.findOne({
@@ -707,7 +822,7 @@
 
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -719,12 +834,12 @@
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
 	};
-	const AuthMiddleware_1 = __webpack_require__(21);
+	const AuthMiddleware_1 = __webpack_require__(23);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
 	const CommentController = new Router();
 	CommentController
-	    .post('/post/:id/comment', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .post('/post/:id/comment', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    try {
 	        let commentary = ctx.request.body;
 	        commentary.PostId = ctx.params.id;
@@ -742,7 +857,7 @@
 	        ctx.body = { success: false, message: `something went wrong: ${e}` };
 	    }
 	}))
-	    .get('/comment/:id/rate/:rate', AuthMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    .get('/comment/:id/rate/:rate', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
 	    let rate = ctx.params.rate;
 	    let previousRate = yield models_1.CommentaryRate.findOne({
@@ -790,59 +905,73 @@
 
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
+	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
 	const TagController = new Router();
-	TagController;
+	TagController
+	    .get('/tag/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.params.id;
+	    let tag = yield models_1.Tag.findById(id);
+	    ctx.body = { success: true, tagName: tag.name };
+	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = TagController;
 
 
 /***/ },
-/* 25 */
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-convert");
 
 /***/ },
-/* 27 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-static");
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-cors");
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-logger");
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const Pug = __webpack_require__(32);
+	const Pug = __webpack_require__(34);
 	const pug = new Pug({
 	    viewPath: './views',
 	    noCache: true
@@ -852,19 +981,19 @@
 
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-pug");
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-json");
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports) {
 
 	"use strict";

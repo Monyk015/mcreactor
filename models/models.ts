@@ -6,6 +6,8 @@ import Tag from './Tag';
 import User from './User';
 import * as Sequelize from 'sequelize';
 import db from '../config/db';
+import Subscription from "./Subscription";
+import Ban from "./Ban";
 
 Post.belongsTo(User)
 
@@ -37,6 +39,22 @@ CommentaryRate.belongsTo(User)
 
 Commentary.hasMany(CommentaryRate)
 
+Subscription.belongsTo(User)
+
+Subscription.belongsTo(Tag)
+
+User.hasMany(Subscription)
+
+Tag.hasMany(Subscription)
+
+Ban.belongsTo(User)
+
+Ban.belongsTo(Tag)
+
+User.hasMany(Ban)
+
+Tag.hasMany(Ban)
+
           
 // ;(async () =>
 // {
@@ -47,5 +65,8 @@ Commentary.hasMany(CommentaryRate)
 //     await Commentary.sync({force:true})
 //     await PostRate.sync({force:true})
 //     await CommentaryRate.sync({force:true})
+//     await Ban.sync({force:true})
+//     await Subscription.sync({force:true})
 // })()
-export {Tag, Commentary, Post, User, CommentaryRate, PostRate}
+
+export {Tag, Commentary, Post, User, CommentaryRate, PostRate, Ban, Subscription}

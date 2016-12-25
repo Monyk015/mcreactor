@@ -1,12 +1,16 @@
-import * as sequelize from 'sequelize';
-import authMiddleware from '../middlewares/AuthMiddleware';
-import {Commentary, Tag, User, Post} from '../models/models';
-import { Context } from '~koa/lib/context';
+import {Tag} from '../models/models';
 import * as Router from 'koa-router';
 
 const TagController = new Router()
 
 TagController
+    
+        .get('/tag/:id',
+            async (ctx) => {
+                let id = ctx.params.id
+                let tag = await Tag.findById(id)
+                ctx.body = {success: true, tagName: tag.name}
+            })
   
 
 
