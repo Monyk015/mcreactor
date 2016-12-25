@@ -17,15 +17,13 @@ PostController
     .post('/post',
         upload.single('image'),
         authMiddleware(),
-        async(ctx: Context) =>
-        {
+        async(ctx: Context) => {
             try
             {
                 let userId = ctx.user.id
                 let tags = ctx.req.body.tags
                               .split(',')
-                              .map(tag =>
-                              {
+                              .map(tag => {
                                   return {'name': tag.trim()}
                               })
                 
@@ -58,112 +56,45 @@ PostController
     
     .get('/post/:id',
         authMiddleware(true),
-        async(ctx) =>
-        {
+        async(ctx) => {
             const id = ctx.params.id
-            ctx.body = [await Post.findById(id, {
-                include: [
-                    {
-                        model: PostRate,
-                        where: ctx.user ? {
-                                UserId: ctx.user.id
-                            } : null,
-                        required: false
-                    },
-                    Tag,
-                    User,
-                    {
-                        model: Commentary,
-                        include: [User, {
-                            model: CommentaryRate,
-                            where: ctx.user ? {
-                                    UserId: ctx.user.id
-                                } : null,
-                            required: false
-                        }]
-                    }
-                ]
-            })]
+            ctx.body = await getPosts(ctx.user, {
+                id: id
+            })
         })
     
     .get('/post',
         authMiddleware(true),
-        async(ctx) =>
-        {
-            const posts = await Post.findAll({
-                include: [
-                    {
-                        model: PostRate,
-                        where: ctx.user ? {
-                                UserId: ctx.user.id
-                            } : null,
-                        required: false
-                    },
-                    Tag,
-                    User,
-                    {
-                        model: Commentary,
-                        include: [User, {
-                            model: CommentaryRate,
-                            where: ctx.user ? {
-                                    UserId: ctx.user.id
-                                } : null,
-                            required: false
-                        }]
-                    }
-                ],
-                order: [
-                    ['createdAt', 'DESC'],
-                    [Commentary, 'createdAt']
-                ]
-            })
-            ctx.body = posts.map(post => post.get())
+        async(ctx) => {
+            ctx.body = await getPosts(ctx.user)
         })
     
     .get('/post/tag/:id',
         authMiddleware(true),
-        async(ctx) =>
-        {
+        async(ctx) => {
             let id = ctx.params.id
-            ctx.body = await Post.findAll({
-                where: {
-                    id: {
-                        $in: db.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
-                    }
-                },
-                include: [
-                    {
-                        model: PostRate,
-                        where: ctx.user ? {
-                                UserId: ctx.user.id
-                            } : null,
-                        required: false
-                    },
-                    Tag,
-                    User,
-                    {
-                        model: Commentary,
-                        include: [User, {
-                            model: CommentaryRate,
-                            where: ctx.user ? {
-                                        UserId: ctx.user.id
-                                    } : null,
-                            required: false
-                        }]
-                    }
-                ],
-                order: [
-                    ['createdAt', 'DESC'],
-                    [Commentary, 'createdAt']
-                ]
+            ctx.body = await getPosts(ctx.user, {
+                id: {
+                    $in: db.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
+                }
             })
         })
+        
+    .get('/post/user/subscribed',
+    authMiddleware(),
+    async (ctx) => {
+        let id = ctx.user.id
+        ctx.body = await getPosts(ctx.user, {
+            id: {
+                $in: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
+            }
+        })
+    })
     
     //ajax rate route
     .get('/post/:id/rate/:rate',
         authMiddleware(),
-        async(ctx) =>
-        {
+        async(ctx) => {
             let id = ctx.params.id
             let rate = ctx.params.rate
             let previousRate = await PostRate.findOne({
@@ -216,3 +147,34 @@ PostController
         })
 
 export default PostController
+
+async function getPosts(forUser = null, where = null) {
+    return await Post.findAll({
+        where,
+        include: [
+            {
+                model: PostRate,
+                where: forUser ? {
+                        UserId: forUser.id
+                    } : null,
+                required: false
+            },
+            Tag,
+            User,
+            {
+                model: Commentary,
+                include: [User, {
+                    model: CommentaryRate,
+                    where: forUser ? {
+                            UserId: forUser.id
+                        } : null,
+                    required: false
+                }]
+            }
+        ],
+        order: [
+            ['createdAt', 'DESC'],
+            [Commentary, 'createdAt']
+        ]
+    })
+}

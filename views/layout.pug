@@ -25,6 +25,8 @@ html
                         a(href='/') Home
                     span(v-if="$store.state.user")
                         li
+                            router-link(to="/post/user/subscribed") Subscriptions
+                        li
                             a(href='/user') Users
                         li
                             ul.dropdown-content#user-dropdown

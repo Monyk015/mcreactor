@@ -682,93 +682,27 @@
 	}))
 	    .get('/post/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const id = ctx.params.id;
-	    ctx.body = [yield models_1.Post.findById(id, {
-	            include: [
-	                {
-	                    model: PostRate_1.default,
-	                    where: ctx.user ? {
-	                        UserId: ctx.user.id
-	                    } : null,
-	                    required: false
-	                },
-	                models_1.Tag,
-	                models_1.User,
-	                {
-	                    model: models_1.Commentary,
-	                    include: [models_1.User, {
-	                            model: CommentaryRate_1.default,
-	                            where: ctx.user ? {
-	                                UserId: ctx.user.id
-	                            } : null,
-	                            required: false
-	                        }]
-	                }
-	            ]
-	        })];
+	    ctx.body = yield getPosts(ctx.user, {
+	        id: id
+	    });
 	}))
 	    .get('/post', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
-	    const posts = yield models_1.Post.findAll({
-	        include: [
-	            {
-	                model: PostRate_1.default,
-	                where: ctx.user ? {
-	                    UserId: ctx.user.id
-	                } : null,
-	                required: false
-	            },
-	            models_1.Tag,
-	            models_1.User,
-	            {
-	                model: models_1.Commentary,
-	                include: [models_1.User, {
-	                        model: CommentaryRate_1.default,
-	                        where: ctx.user ? {
-	                            UserId: ctx.user.id
-	                        } : null,
-	                        required: false
-	                    }]
-	            }
-	        ],
-	        order: [
-	            ['createdAt', 'DESC'],
-	            [models_1.Commentary, 'createdAt']
-	        ]
-	    });
-	    ctx.body = posts.map(post => post.get());
+	    ctx.body = yield getPosts(ctx.user);
 	}))
 	    .get('/post/tag/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
-	    ctx.body = yield models_1.Post.findAll({
-	        where: {
-	            id: {
-	                $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
-	            }
-	        },
-	        include: [
-	            {
-	                model: PostRate_1.default,
-	                where: ctx.user ? {
-	                    UserId: ctx.user.id
-	                } : null,
-	                required: false
-	            },
-	            models_1.Tag,
-	            models_1.User,
-	            {
-	                model: models_1.Commentary,
-	                include: [models_1.User, {
-	                        model: CommentaryRate_1.default,
-	                        where: ctx.user ? {
-	                            UserId: ctx.user.id
-	                        } : null,
-	                        required: false
-	                    }]
-	            }
-	        ],
-	        order: [
-	            ['createdAt', 'DESC'],
-	            [models_1.Commentary, 'createdAt']
-	        ]
+	    ctx.body = yield getPosts(ctx.user, {
+	        id: {
+	            $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
+	        }
+	    });
+	}))
+	    .get('/post/user/subscribed', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let id = ctx.user.id;
+	    ctx.body = yield getPosts(ctx.user, {
+	        id: {
+	            $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
+	        }
 	    });
 	}))
 	    .get('/post/:id/rate/:rate', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
@@ -819,6 +753,38 @@
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PostController;
+	function getPosts(forUser = null, where = null) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        return yield models_1.Post.findAll({
+	            where,
+	            include: [
+	                {
+	                    model: PostRate_1.default,
+	                    where: forUser ? {
+	                        UserId: forUser.id
+	                    } : null,
+	                    required: false
+	                },
+	                models_1.Tag,
+	                models_1.User,
+	                {
+	                    model: models_1.Commentary,
+	                    include: [models_1.User, {
+	                            model: CommentaryRate_1.default,
+	                            where: forUser ? {
+	                                UserId: forUser.id
+	                            } : null,
+	                            required: false
+	                        }]
+	                }
+	            ],
+	            order: [
+	                ['createdAt', 'DESC'],
+	                [models_1.Commentary, 'createdAt']
+	            ]
+	        });
+	    });
+	}
 
 
 /***/ },

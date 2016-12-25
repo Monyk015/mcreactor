@@ -6,4 +6,3 @@ nav-component.col.s4(inline-template)
             ul
                 li(v-for="subscription in $store.state.subscriptions")
                     router-link(v-bind:to="'/post/tag/' + subscription.Tag.id") {{subscription.Tag.name}}
-
