@@ -11,24 +11,21 @@ const jwt = require('jwt-decode')
 
 Vue.use(Vuex)
 
-let url = window.location.pathname
 
 let router = null
 
-if(url == '/')
-{
-    Vue.use(VueRouter)
+Vue.use(VueRouter)
 
-    const routes = [
-        {path: '/login'},
-        {path: '/'},
-        {path: '/post/tag/:id'}
-    ]
+const routes = [
+    {path: '/login', component: FeedComponent},
+    {path: '/', component: FeedComponent},
+    {path: '/post/tag/:id', component: FeedComponent},
+    {path: '/user/:id/profile', component: ProfileComponent}
+]
 
-    router = new VueRouter({
-        routes
-    })
-}
+router = new VueRouter({
+    routes
+})
 
 
 const store = new Vuex.Store({
@@ -44,7 +41,7 @@ const store = new Vuex.Store({
             $.get(`/user/${state.user.id}/subscriptions`, (res) => {
                 if(res.success)
                 {
-                    state.subscriptions =  res.subscriptions
+                    state.subscriptions = res.subscriptions
                 }
                 else
                 {
@@ -61,7 +58,7 @@ Vue.filter('formatDate', (dateString) => {
     return dateFormat(date, "dd.mm.yyyy HH:MM")
 })
 
-new Vue({ 
+new Vue({
     router,
     store,
     components: {
@@ -71,7 +68,8 @@ new Vue({
         ProfileComponent
     },
     created() {
-        if (Cookies.get('token')) {
+        if(Cookies.get('token'))
+        {
             this.$store.commit('setUser', jwt(Cookies.get('token')))
         }
     },

@@ -1,12 +1,12 @@
 extends layout.pug
 
 block content
-    feed-component(inline-template)
-        .row
-            .col.s8
-                template(v-if="this.$store.state.user")
-                    include feed/new-post.pug
-                include posts.pug
-            include feed/nav.pug
+    router-view(inline-template)
+        // This shit is sick AF but i don't mind this since my deadline is too soon
+        div
+            .row(v-if="this.name=='feed'")
+                include feed.pug
+            .row(v-if="this.name=='profile'")
+                include profile.pug
 
-                    
+

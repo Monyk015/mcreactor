@@ -13,13 +13,15 @@
         data(){
             return {
                 title: 'Hello Feed!',
-                posts: []
+                posts: [],
+                name: 'feed'
             }
         },
         created() {
             this.loadPosts()
             if(this.$store.state.user)
                 this.$store.commit('loadSubscriptions')
+            console.log(this)
         },
         methods:{
             loadPosts(){

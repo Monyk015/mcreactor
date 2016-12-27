@@ -33,7 +33,7 @@ html
                         li
                             ul.dropdown-content#user-dropdown
                                 li
-                                    a(:href='"/user/" + $store.state.user.id + "/profile"') Profile
+                                    router-link(:to='"/user/" + $store.state.user.id + "/profile"') Profile
                                 li(@click="logout")
                                     a(href='/') Logout
                             a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          

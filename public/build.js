@@ -11790,12 +11790,14 @@ return index;
     data: function data() {
         return {
             title: 'Hello Feed!',
-            posts: []
+            posts: [],
+            name: 'feed'
         };
     },
     created: function created() {
         this.loadPosts();
         if (this.$store.state.user) this.$store.commit('loadSubscriptions');
+        console.log(this);
     },
 
     methods: {
@@ -12956,19 +12958,15 @@ var jwt = __webpack_require__(3);
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex___default.a);
 
-var url = window.location.pathname;
-
 var router = null;
 
-if (url == '/') {
-    __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vue_router___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vue_router___default.a);
 
-    var routes = [{ path: '/login' }, { path: '/' }, { path: '/post/tag/:id' }];
+var routes = [{ path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue___default.a }, { path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue___default.a }, { path: '/post/tag/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue___default.a }, { path: '/user/:id/profile', component: __WEBPACK_IMPORTED_MODULE_6__components_ProfileComponent_vue___default.a }];
 
-    router = new __WEBPACK_IMPORTED_MODULE_7_vue_router___default.a({
-        routes: routes
-    });
-}
+router = new __WEBPACK_IMPORTED_MODULE_7_vue_router___default.a({
+    routes: routes
+});
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex___default.a.Store({
     state: {
@@ -13080,13 +13078,14 @@ module.exports = __vue_exports__
     data: function data() {
         return {
             posts: [],
-            user: null
+            user: null,
+            name: 'profile'
         };
     },
     created: function created() {
         var _this = this;
 
-        var path = window.location.pathname; //'/user/:id/profile'
+        var path = this.$route.path; //'/user/:id/profile'
         var userId = path.split('/')[2];
         $.get('/user/' + userId, function (res) {
             _this.posts = res.posts;
@@ -13104,7 +13103,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"ProfileComponent.vue","sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"ProfileComponent.vue","sourceRoot":"webpack://"}]);
 
 // exports
 

@@ -9,11 +9,12 @@
         data() {
             return {
                 posts:[],
-                user: null
+                user: null,
+                name:'profile'
             }
         },
         created(){
-            let path = window.location.pathname //'/user/:id/profile'
+            let path = this.$route.path //'/user/:id/profile'
             let userId = path.split('/')[2]
             $.get(`/user/${userId}`, (res) => {
                 this.posts = res.posts

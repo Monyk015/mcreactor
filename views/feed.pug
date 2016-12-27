@@ -1,0 +1,8 @@
+//
+   Created by Monyk on 27.12.2016.
+.col.s8
+    template(v-if="this.$store.state.user")
+        include feed/new-post.pug
+    include posts.pug
+include feed/nav.pug
+
