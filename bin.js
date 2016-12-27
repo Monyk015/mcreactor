@@ -529,6 +529,7 @@
 	const Router = __webpack_require__(4);
 	const models_1 = __webpack_require__(6);
 	const AuthMiddleware_1 = __webpack_require__(23);
+	const post_1 = __webpack_require__(37);
 	const UserController = new Router();
 	// UserController.use(authMiddleware)
 	UserController
@@ -537,8 +538,21 @@
 	}))
 	    .get('/user/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
-	    ctx.body = yield models_1.User.findById(id, { raw: true });
+	    let posts = yield post_1.default(id, {
+	        UserId: id
+	    });
+	    let user = null;
+	    if (posts.length) {
+	        user = posts[0].User;
+	    }
+	    else {
+	        user = yield models_1.User.findById(id, { raw: true });
+	    }
+	    ctx.body = { posts, user };
 	}))
+	    .get('/user/:id/profile', (ctx) => {
+	    ctx.render('profile');
+	})
 	    .put('/user/:id', (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
 	    let user = ctx.request.body;
@@ -641,11 +655,11 @@
 	    });
 	};
 	const PostRate_1 = __webpack_require__(10);
-	const CommentaryRate_1 = __webpack_require__(7);
 	const db_1 = __webpack_require__(8);
 	const AuthMiddleware_1 = __webpack_require__(23);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
+	const post_1 = __webpack_require__(37);
 	const PostController = new Router();
 	const multer = __webpack_require__(21);
 	const upload = multer({ dest: './public/images' });
@@ -682,16 +696,16 @@
 	}))
 	    .get('/post/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const id = ctx.params.id;
-	    ctx.body = yield getPosts(ctx.user, {
+	    ctx.body = yield post_1.default(ctx.user.id, {
 	        id: id
 	    });
 	}))
 	    .get('/post', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
-	    ctx.body = yield getPosts(ctx.user);
+	    ctx.body = yield post_1.default(ctx.user.id);
 	}))
 	    .get('/post/tag/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
-	    ctx.body = yield getPosts(ctx.user, {
+	    ctx.body = yield post_1.default(ctx.user.id, {
 	        id: {
 	            $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
 	        }
@@ -699,7 +713,7 @@
 	}))
 	    .get('/post/user/subscribed', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.user.id;
-	    ctx.body = yield getPosts(ctx.user, {
+	    ctx.body = yield post_1.default(ctx.user.id, {
 	        id: {
 	            $in: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
 	        }
@@ -753,38 +767,6 @@
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PostController;
-	function getPosts(forUser = null, where = null) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        return yield models_1.Post.findAll({
-	            where,
-	            include: [
-	                {
-	                    model: PostRate_1.default,
-	                    where: forUser ? {
-	                        UserId: forUser.id
-	                    } : null,
-	                    required: false
-	                },
-	                models_1.Tag,
-	                models_1.User,
-	                {
-	                    model: models_1.Commentary,
-	                    include: [models_1.User, {
-	                            model: CommentaryRate_1.default,
-	                            where: forUser ? {
-	                                UserId: forUser.id
-	                            } : null,
-	                            required: false
-	                        }]
-	                }
-	            ],
-	            order: [
-	                ['createdAt', 'DESC'],
-	                [models_1.Commentary, 'createdAt']
-	            ]
-	        });
-	    });
-	}
 
 
 /***/ },
@@ -978,6 +960,56 @@
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = cookieMiddleware;
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
+	const models_1 = __webpack_require__(6);
+	function getPosts(userId = null, where = null) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        return yield models_1.Post.findAll({
+	            where,
+	            include: [
+	                {
+	                    model: models_1.PostRate,
+	                    where: userId ? {
+	                        UserId: userId
+	                    } : null,
+	                    required: false
+	                },
+	                models_1.Tag,
+	                models_1.User,
+	                {
+	                    model: models_1.Commentary,
+	                    include: [models_1.User, {
+	                            model: models_1.CommentaryRate,
+	                            where: userId ? {
+	                                UserId: userId
+	                            } : null,
+	                            required: false
+	                        }]
+	                }
+	            ],
+	            order: [
+	                ['createdAt', 'DESC'],
+	                [models_1.Commentary, 'createdAt']
+	            ]
+	        });
+	    });
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = getPosts;
 
 
 /***/ }

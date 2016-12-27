@@ -21,11 +21,6 @@
             if(this.$store.state.user)
                 this.$store.commit('loadSubscriptions')
         },
-        computed:{
-            ifEmpty(){
-                return this.posts.length == 0
-            }
-        },
         methods:{
             loadPosts(){
                 let path = this.$route.path

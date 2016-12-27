@@ -25,13 +25,15 @@ html
                         a(href='/') Home
                     span(v-if="$store.state.user")
                         li
-                            router-link(to="/post/user/subscribed") Subscriptions
+                            a(href="/post/user/subscribed") Subscriptions
+                            //
+                                todo: move to feed and change to router link
                         li
                             a(href='/user') Users
                         li
                             ul.dropdown-content#user-dropdown
                                 li
-                                    a(href='/') Profile  
+                                    a(:href='"/user/" + $store.state.user.id + "/profile"') Profile
                                 li(@click="logout")
                                     a(href='/') Logout
                             a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          

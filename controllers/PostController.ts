@@ -6,6 +6,7 @@ import authMiddleware from '../middlewares/AuthMiddleware';
 import {Commentary, Tag, User, Post} from '../models/models';
 import {Context} from '~koa/lib/context';
 import * as Router from 'koa-router';
+import getPosts from "../lib/post";
 
 const PostController = new Router()
 
@@ -58,7 +59,7 @@ PostController
         authMiddleware(true),
         async(ctx) => {
             const id = ctx.params.id
-            ctx.body = await getPosts(ctx.user, {
+            ctx.body = await getPosts(ctx.user.id, {
                 id: id
             })
         })
@@ -66,14 +67,14 @@ PostController
     .get('/post',
         authMiddleware(true),
         async(ctx) => {
-            ctx.body = await getPosts(ctx.user)
+            ctx.body = await getPosts(ctx.user.id)
         })
     
     .get('/post/tag/:id',
         authMiddleware(true),
         async(ctx) => {
             let id = ctx.params.id
-            ctx.body = await getPosts(ctx.user, {
+            ctx.body = await getPosts(ctx.user.id, {
                 id: {
                     $in: db.literal("(select `PostId` from `PostTag` where `TagId` = " + id + ")")
                 }
@@ -84,7 +85,7 @@ PostController
     authMiddleware(),
     async (ctx) => {
         let id = ctx.user.id
-        ctx.body = await getPosts(ctx.user, {
+        ctx.body = await getPosts(ctx.user.id, {
             id: {
                 $in: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
             }
@@ -147,34 +148,3 @@ PostController
         })
 
 export default PostController
-
-async function getPosts(forUser = null, where = null) {
-    return await Post.findAll({
-        where,
-        include: [
-            {
-                model: PostRate,
-                where: forUser ? {
-                        UserId: forUser.id
-                    } : null,
-                required: false
-            },
-            Tag,
-            User,
-            {
-                model: Commentary,
-                include: [User, {
-                    model: CommentaryRate,
-                    where: forUser ? {
-                            UserId: forUser.id
-                        } : null,
-                    required: false
-                }]
-            }
-        ],
-        order: [
-            ['createdAt', 'DESC'],
-            [Commentary, 'createdAt']
-        ]
-    })
-}

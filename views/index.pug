@@ -6,10 +6,7 @@ block content
             .col.s8
                 template(v-if="this.$store.state.user")
                     include feed/new-post.pug
-                ul
-                    li.card(v-if="ifEmpty") So empty.
-                    li.card(v-for="(post,index) in posts")
-                        include feed/post.pug
+                include posts.pug
             include feed/nav.pug
 
                     

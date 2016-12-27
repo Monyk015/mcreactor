@@ -6,6 +6,7 @@ import * as Router from 'koa-router';
 import {Context} from 'koa';
 import {User, Subscription, Tag} from '../models/models';
 import authMiddleware from '../middlewares/AuthMiddleware';
+import getPosts from "../lib/post";
 
 const UserController = new Router()
 
@@ -22,7 +23,27 @@ UserController
     .get('/user/:id',
         async(ctx) => {
             let id = ctx.params.id
-            ctx.body = await User.findById(id, {raw: true})
+            
+            let posts = await getPosts(id, {
+                UserId: id
+            })
+            let user = null
+            
+            if (posts.length)
+            {
+                user = posts[0].User
+            }
+            else
+            {
+                user = await User.findById(id, {raw:true})
+            }
+            
+            ctx.body = {posts, user}
+        })
+    
+    .get('/user/:id/profile',
+        (ctx) => {
+            ctx.render('profile')
         })
     
     .put('/user/:id',
@@ -51,7 +72,8 @@ UserController
     
     .get('/user/:id/tag/:tagId/subscribe',
         async(ctx) => {
-            try{
+            try
+            {
                 let userId = ctx.params.id
                 let tagId = ctx.params.tagId
                 await Subscription.create({
@@ -69,7 +91,8 @@ UserController
     
     .get('/user/:id/tag/:tagId/unsubscribe',
         async(ctx) => {
-            try{
+            try
+            {
                 let userId = ctx.params.id
                 let tagId = ctx.params.tagId
                 await Subscription.destroy({

@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import LoginComponent from './components/LoginComponent.vue'
 import RegisterComponent from './components/RegisterComponent.vue'
 import FeedComponent from './components/FeedComponent.vue'
+import ProfileComponent from './components/ProfileComponent.vue'
 import VueRouter from 'vue-router'
 
 const jwt = require('jwt-decode')
@@ -66,7 +67,8 @@ new Vue({
     components: {
         LoginComponent,
         RegisterComponent,
-        FeedComponent
+        FeedComponent,
+        ProfileComponent
     },
     created() {
         if (Cookies.get('token')) {
