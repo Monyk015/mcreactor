@@ -150,4 +150,8 @@
     {
         color: rgba(0, 0, 0, 0.87) !important;
     }
+
+    img {
+        max-width: 80%;
+    }
 </style>
