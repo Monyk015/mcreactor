@@ -11852,6 +11852,7 @@ return index;
 //
 //
 //
+//
 
 
 
@@ -11862,31 +11863,6 @@ return index;
         NewPostComponent: __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default.a,
         PostListComponent: __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue___default.a,
         NavComponent: __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default.a
-    },
-    data: function data() {
-        return {
-            posts: []
-        };
-    },
-    created: function created() {
-        this.loadPosts();
-        if (this.$store.state.user) this.$store.commit('loadSubscriptions');
-    },
-
-    methods: {
-        loadPosts: function loadPosts() {
-            var _this = this;
-
-            var path = this.$route.path;
-            if (path == "/") path = 'post';
-            $.get(path, function (posts) {
-                _this.posts = posts;
-                console.log(_this.posts);
-            });
-        }
-    },
-    watch: {
-        '$route': 'loadPosts'
     }
 };
 
@@ -12954,13 +12930,9 @@ module.exports={render:function (){var _vm=this;
     staticClass: "row"
   }, [_vm._h('div', {
     staticClass: "col s8"
-  }, [(this.$store.state.user) ? [_vm._h('new-post-component', {
+  }, [(this.$store.state.user) ? [_vm._h('new-post-component')] : _vm._e(), " ", _vm._h('post-list-component', {
     on: {
       "submitted": _vm.loadPosts
-    }
-  })] : _vm._e(), " ", _vm._h('post-list-component', {
-    attrs: {
-      "posts": _vm.posts
     }
   })]), " ", _vm._h('nav-component', {
     staticClass: "col s4"
@@ -13041,9 +13013,31 @@ module.exports = __vue_exports__
     components: {
         PostComponent: __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue___default.a
     },
-    props: ['posts'],
     data: function data() {
-        return {};
+        return {
+            posts: []
+        };
+    },
+    created: function created() {
+        this.loadPosts();
+        if (this.$store.state.user) this.$store.commit('loadSubscriptions');
+        console.log(this);
+    },
+
+    methods: {
+        loadPosts: function loadPosts() {
+            var _this = this;
+
+            var path = this.$route.path;
+            if (path == "/") path = 'post';
+            $.get(path, function (posts) {
+                _this.posts = posts;
+                console.log(_this.posts);
+            });
+        }
+    },
+    watch: {
+        '$route': 'loadPosts'
     }
 };
 
@@ -13341,7 +13335,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\nimg[data-v-a60c4bb2] {\n    max-width: 80%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?7b2d2ee2"],"names":[],"mappings":";AAmIA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"row collection-item\"><a v-bind:href=\"'/user/' + post.UserId\"\r\n                                            class=\"userinfo\">{{post.User.nickname}}</a>\r\n            <div>\r\n                <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                    <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n                </div>\r\n            </div>\r\n            <p class=\"col s12\">{{post.content}}</p><img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n            <div class=\"row\">\r\n                <div v-if=\"$store.state.user\" class=\"rates\"><span @click=\"thumbUp\"\r\n                                                                  v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                  class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\" class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n                <div class=\"rating\">{{post.rating}}</div>\r\n                <div class=\"date\">{{post.createdAt | formatDate}}</div>\r\n                <router-link v-bind:to=\"'/post/' + post.id\" class=\"link\">Link</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row comments collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger\"><span v-if=\"showComments\" class=\"material-icons\">keyboard_arrow_up</span><span\r\n                        v-else=\"v-else\" class=\"material-icons\">keyboard_arrow_down</span>Comments\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    img {\r\n        max-width: 80%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?f7f31396"],"names":[],"mappings":";AAmIA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"row collection-item\"><a v-bind:href=\"'/user/' + post.UserId\"\r\n                                            class=\"userinfo\">{{post.User.nickname}}</a>\r\n            <div>\r\n                <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                    <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n                </div>\r\n            </div>\r\n            <p class=\"col s12\">{{post.content}}</p><img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n            <div class=\"row\">\r\n                <div v-if=\"$store.state.user\" class=\"rates\"><span @click=\"thumbUp\"\r\n                                                                  v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                  class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\" class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n                <div class=\"rating\">{{post.rating}}</div>\r\n                <div class=\"date\">{{post.createdAt | formatDate}}</div>\r\n                <router-link v-bind:to=\"'/post/' + post.id\" class=\"link\">Link</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row comments collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger\"><span v-if=\"showComments\" class=\"material-icons\">keyboard_arrow_up</span><span\r\n                        v-else=\"v-else\" class=\"material-icons\">keyboard_arrow_down</span>Comments\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
