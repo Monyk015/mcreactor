@@ -1,3 +1,11 @@
+<template>
+    <div>
+        <div class="tagname">{{tagName}}</div>
+        <button @click="subscribe" v-if="$store.state.user && !ifSubscribed" class="waves-effect waves-light btn subscribe-button">Subscribe</button>
+        <button @click="unsubscribe" v-if="$store.state.user && ifSubscribed" class="waves-effect red btn subscribe-button">Unsubscribe</button>
+    </div>
+</template>
+
 <script>
     export default{
         data(){

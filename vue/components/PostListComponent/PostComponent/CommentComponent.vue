@@ -1,3 +1,14 @@
+<template>
+    <div>
+        <div>{{comment.content}}</div>
+        <div class="row comment-info-row">
+            <div v-if="$store.state.user" class="rates"><span @click="thumbUp" v-bind:class="{'activated-rate': ifThumbUp}" class="material-icons">thumb_up</span><span @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}" class="material-icons">thumb_down</span></div>
+            <div class="rating">{{comment.rating}}</div>
+            <div class="date">{{comment.createdAt | formatDate}}</div><a v-bind:href="'/user/' + comment.UserId" class="user-nickname">{{comment.User.nickname}}</a>
+        </div>
+    </div>
+</template>
+
 <script>
     export default {
         props: ['comment'],

@@ -1,12 +1,6 @@
 extends layout.pug
 
 block content
-    router-view(inline-template)
-        // This shit is sick AF but i don't mind this since my deadline is too soon
-        div
-            .row(v-if="this.name=='feed'")
-                include feed.pug
-            .row(v-if="this.name=='profile'")
-                include profile.pug
+    router-view
 
 

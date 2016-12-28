@@ -1,3 +1,38 @@
+<template>
+    <div id="new-post-component">
+            <ul data-collapsible="accordion" class="collapsible">
+                <li class="white">
+                    <div class="collapsible-header"><i class="material-icons">add </i>New post</div>
+                    <div class="collapsible-body white">
+                        <form id="new-post-form" @submit.prevent="onSubmit">
+                            <div class="input-field">
+                                <input id="tags" type="text" name="tags" v-model="tags"/>
+                                <label for="tags">Tags</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea id="content" name="content" v-model="content" class="materialize-textarea"></textarea>
+                                <label for="content">Content</label>
+                            </div>
+                            <div class="row">
+                                <div class="file-field input-field left">
+                                    <button class="btn">Image
+                                        <input id="image" name="image" type="file"/>
+                                    </button>
+                                    <div class="file-path-wrapper">
+                                        <input type="text" class="file-path validate"/>
+                                    </div>
+                                </div>
+                                <button id="submit-post" type="submit" name="action" class="btn waves-effect waves-light right">
+                                    Submit<i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</template>
+
 <script>
     export default {
         data(){

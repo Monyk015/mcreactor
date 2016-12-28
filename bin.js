@@ -52,24 +52,24 @@
 	const AuthController_1 = __webpack_require__(5);
 	const FeedController_1 = __webpack_require__(20);
 	const UserController_1 = __webpack_require__(22);
-	const PostController_1 = __webpack_require__(24);
-	const CommentController_1 = __webpack_require__(25);
-	const TagController_1 = __webpack_require__(26);
-	const path = __webpack_require__(27);
-	const convert = __webpack_require__(28);
-	const serve = __webpack_require__(29);
+	const PostController_1 = __webpack_require__(25);
+	const CommentController_1 = __webpack_require__(26);
+	const TagController_1 = __webpack_require__(27);
+	const path = __webpack_require__(28);
+	const convert = __webpack_require__(29);
+	const serve = __webpack_require__(30);
 	const app = new Koa();
-	app.use(__webpack_require__(30)());
+	app.use(__webpack_require__(31)());
 	app.use(convert(serve('./public')));
 	// app.use(convert(serve('./public/images')))
-	let cors = __webpack_require__(31);
-	let logger = __webpack_require__(32);
+	let cors = __webpack_require__(32);
+	let logger = __webpack_require__(33);
 	app.use(convert(logger()));
 	app.use(convert(cors()));
-	const pug_1 = __webpack_require__(33);
+	const pug_1 = __webpack_require__(34);
 	pug_1.default.use(app);
-	app.use(convert(__webpack_require__(35)()));
-	const CookieMiddleware_1 = __webpack_require__(36);
+	app.use(convert(__webpack_require__(36)()));
+	const CookieMiddleware_1 = __webpack_require__(37);
 	app.use(CookieMiddleware_1.default);
 	const router = new Router();
 	router
@@ -529,7 +529,7 @@
 	const Router = __webpack_require__(4);
 	const models_1 = __webpack_require__(6);
 	const AuthMiddleware_1 = __webpack_require__(23);
-	const post_1 = __webpack_require__(37);
+	const post_1 = __webpack_require__(24);
 	const UserController = new Router();
 	// UserController.use(authMiddleware)
 	UserController
@@ -654,12 +654,62 @@
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
 	};
+	const models_1 = __webpack_require__(6);
+	function getPosts(userId = null, where = null) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        return yield models_1.Post.findAll({
+	            where,
+	            include: [
+	                {
+	                    model: models_1.PostRate,
+	                    where: userId ? {
+	                        UserId: userId
+	                    } : null,
+	                    required: false
+	                },
+	                models_1.Tag,
+	                models_1.User,
+	                {
+	                    model: models_1.Commentary,
+	                    include: [models_1.User, {
+	                            model: models_1.CommentaryRate,
+	                            where: userId ? {
+	                                UserId: userId
+	                            } : null,
+	                            required: false
+	                        }]
+	                }
+	            ],
+	            order: [
+	                ['createdAt', 'DESC'],
+	                [models_1.Commentary, 'createdAt']
+	            ]
+	        });
+	    });
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = getPosts;
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
 	const PostRate_1 = __webpack_require__(10);
 	const db_1 = __webpack_require__(8);
 	const AuthMiddleware_1 = __webpack_require__(23);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
-	const post_1 = __webpack_require__(37);
+	const post_1 = __webpack_require__(24);
 	const PostController = new Router();
 	const multer = __webpack_require__(21);
 	const upload = multer({ dest: './public/images' });
@@ -770,7 +820,7 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -853,7 +903,7 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -879,47 +929,47 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-convert");
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-static");
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-cors");
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-logger");
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const Pug = __webpack_require__(34);
+	const Pug = __webpack_require__(35);
 	const pug = new Pug({
 	    viewPath: './views',
 	    noCache: true
@@ -929,19 +979,19 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-pug");
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-json");
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -960,56 +1010,6 @@
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = cookieMiddleware;
-
-
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-	    return new (P || (P = Promise))(function (resolve, reject) {
-	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-	        step((generator = generator.apply(thisArg, _arguments)).next());
-	    });
-	};
-	const models_1 = __webpack_require__(6);
-	function getPosts(userId = null, where = null) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        return yield models_1.Post.findAll({
-	            where,
-	            include: [
-	                {
-	                    model: models_1.PostRate,
-	                    where: userId ? {
-	                        UserId: userId
-	                    } : null,
-	                    required: false
-	                },
-	                models_1.Tag,
-	                models_1.User,
-	                {
-	                    model: models_1.Commentary,
-	                    include: [models_1.User, {
-	                            model: models_1.CommentaryRate,
-	                            where: userId ? {
-	                                UserId: userId
-	                            } : null,
-	                            required: false
-	                        }]
-	                }
-	            ],
-	            order: [
-	                ['createdAt', 'DESC'],
-	                [models_1.Commentary, 'createdAt']
-	            ]
-	        });
-	    });
-	}
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = getPosts;
 
 
 /***/ }

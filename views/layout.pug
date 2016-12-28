@@ -41,9 +41,9 @@ html
                                 i.material-icons keyboard_arrow_down
                     span(v-else)
                         li
-                            a(href='/login') Login
+                            router-link(to='/login') Login
                         li
-                            a(href='/register') Register
+                            router-link(to='/register') Register
         #content.container
             block content        
     script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")

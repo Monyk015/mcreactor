@@ -1,10 +1,15 @@
+<template>
+    <post-list-component></post-list-component>
+    <div>ZALUPA</div>
+</template>
+
 <script>
-    import PostComponent from './FeedComponent/PostComponent.vue'
+    import PostListComponent from './PostListComponent.vue'
 
     export default
     {
         components: {
-          PostComponent
+          PostListComponent
         },
         data() {
             return {

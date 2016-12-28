@@ -1,41 +1,25 @@
+
+<template>
+    <div class="col s8">
+        <template v-if="this.$store.state.user">
+            <new-post-component></new-post-component>
+        </template>
+        <post-list-component @submitted="loadPosts"></post-list-component>
+        <nav-component></nav-component>
+    </div>
+</template>
+
 <script>
     import NewPostComponent from './FeedComponent/NewPostComponent.vue'
-    import PostComponent from './FeedComponent/PostComponent.vue'
+    import PostListComponent from './PostListComponent.vue'
     import NavComponent from './FeedComponent/NavComponent.vue'
 
     export default
     {
         components:{
             NewPostComponent,
-            PostComponent,
+            PostListComponent,
             NavComponent
-        },
-        data(){
-            return {
-                title: 'Hello Feed!',
-                posts: [],
-                name: 'feed'
-            }
-        },
-        created() {
-            this.loadPosts()
-            if(this.$store.state.user)
-                this.$store.commit('loadSubscriptions')
-            console.log(this)
-        },
-        methods:{
-            loadPosts(){
-                let path = this.$route.path
-                if(path == "/")
-                    path = 'post'
-                $.get(path, (posts) => {
-                    this.posts = posts
-                    console.log(this.posts)
-                })
-            }
-        },
-        watch:{
-            '$route' : 'loadPosts'
         }
     }
 </script>

@@ -17,7 +17,8 @@ let router = null
 Vue.use(VueRouter)
 
 const routes = [
-    {path: '/login', component: FeedComponent},
+    {path: '/login', component: LoginComponent},
+    {path: '/register', component: RegisterComponent},
     {path: '/', component: FeedComponent},
     {path: '/post/tag/:id', component: FeedComponent},
     {path: '/user/:id/profile', component: ProfileComponent}

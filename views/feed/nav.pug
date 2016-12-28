@@ -1,8 +1,0 @@
-nav-component.col.s4(inline-template)
-    .card
-        .tag-header.card(v-if="ifTagSection")
-            include nav/tag-header.pug
-        .subscriptions.card Subscriptions
-            ul
-                li(v-for="subscription in $store.state.subscriptions")
-                    router-link(v-bind:to="'/post/tag/' + subscription.Tag.id") {{subscription.Tag.name}}
