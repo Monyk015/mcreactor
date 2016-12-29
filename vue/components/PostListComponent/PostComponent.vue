@@ -1,28 +1,39 @@
 <template>
-    <div>
-        <div class="row collection-item"><a v-bind:href="'/user/' + post.UserId"
-                                            class="userinfo">{{post.User.nickname}}</a>
-            <div>
-                <div v-for="tag in post.Tags" class="chip">
-                    <router-link v-bind:to="'/post/tag/' + tag.id">{{tag.name}}</router-link>
-                </div>
-            </div>
-            <p class="col s12">{{post.content}}</p><img v-if="post.image" v-bind:src="'images/' + post.image"/>
-            <div class="row">
-                <div v-if="$store.state.user" class="rates"><span @click="thumbUp"
-                                                                  v-bind:class="{'activated-rate': ifThumbUp}"
-                                                                  class="material-icons">thumb_up</span><span
-                        @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}" class="material-icons">thumb_down</span>
-                </div>
-                <div class="rating">{{post.rating}}</div>
-                <div class="date">{{post.createdAt | formatDate}}</div>
-                <router-link v-bind:to="'/post/' + post.id" class="link">Link</router-link>
+    <div class="collection row">
+
+        <router-link :to="'/user/' + post.UserId + '/profile'"
+                     class="userinfo collection-item">{{post.User.nickname}}
+        </router-link>
+        <div class="collection-item" v-if="post.Tags.length">
+            <div v-for="tag in post.Tags" class="chip">
+                <router-link v-bind:to="'/post/tag/' + tag.id">{{tag.name}}</router-link>
             </div>
         </div>
-        <div class="row comments collection-item">
+        <div class="row collection-item">
+            <p class="col s12">{{post.content}}</p>
+            <img v-if="post.image" v-bind:src="'images/' + post.image"/>
+        </div>
+        <div class="info row collection-item">
+            <div class="date col s3">{{post.createdAt | formatDate}}</div>
+            <router-link v-bind:to="'/post/' + post.id" class="link col s1">Link</router-link>
+            <div class="row col s3 offset-s5">
+                <div class="rating col s2 offset-s4">{{post.rating}}</div>
+                <div v-if="$store.state.user" class="rates col s6"><span @click="thumbUp"
+                                                                         v-bind:class="{'activated-rate': ifThumbUp}"
+                                                                         class="material-icons">thumb_up</span><span
+                        @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}"
+                        class="material-icons">thumb_down</span>
+                </div>
+            </div>
+        </div>
+        <div class="comments row collection-item">
             <div class="col s12">
-                <div @click="triggerComments" class="trigger"><span v-if="showComments" class="material-icons">keyboard_arrow_up</span><span
-                        v-else="v-else" class="material-icons">keyboard_arrow_down</span>Comments
+                <div @click="triggerComments" class="trigger valign-wrapper">
+                    <span v-if="showComments" class="material-icons valign">keyboard_arrow_up</span>
+                    <span v-else="v-else" class="material-icons valign">keyboard_arrow_down</span>
+                    <span class="valign">
+                        Comments
+                    </span>
                 </div>
                 <div v-if="showComments" class="display-comments collection">
                     <ul>
@@ -149,5 +160,10 @@
     .activated-rate
     {
         color: rgba(0, 0, 0, 0.87) !important;
+    }
+
+    .info
+    {
+        height: 45px;
     }
 </style>

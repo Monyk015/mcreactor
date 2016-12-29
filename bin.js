@@ -176,6 +176,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
 	const CommentaryRate_1 = __webpack_require__(7);
 	exports.CommentaryRate = CommentaryRate_1.default;
 	const PostRate_1 = __webpack_require__(10);
@@ -216,18 +224,17 @@
 	Ban_1.default.belongsTo(Tag_1.default);
 	User_1.default.hasMany(Ban_1.default);
 	Tag_1.default.hasMany(Ban_1.default);
-	// ;(async () =>
-	// {
-	//     await User.sync({force:true})
-	//     await Post.sync({force:true})
-	//     await Tag.sync({force:true})
-	//     await PostTag.sync({force:true})
-	//     await Commentary.sync({force:true})
-	//     await PostRate.sync({force:true})
-	//     await CommentaryRate.sync({force:true})
-	//     await Ban.sync({force:true})
-	//     await Subscription.sync({force:true})
-	// })()
+	(() => __awaiter(this, void 0, void 0, function* () {
+	    yield User_1.default.sync({ force: true });
+	    yield Post_1.default.sync({ force: true });
+	    yield Tag_1.default.sync({ force: true });
+	    yield PostTag.sync({ force: true });
+	    yield Commentary_1.default.sync({ force: true });
+	    yield PostRate_1.default.sync({ force: true });
+	    yield CommentaryRate_1.default.sync({ force: true });
+	    yield Ban_1.default.sync({ force: true });
+	    yield Subscription_1.default.sync({ force: true });
+	}))();
 
 
 /***/ },
@@ -682,6 +689,7 @@
 	            ],
 	            order: [
 	                ['createdAt', 'DESC'],
+	                [models_1.Tag, 'name'],
 	                [models_1.Commentary, 'createdAt']
 	            ]
 	        });
@@ -719,11 +727,9 @@
 	        let userId = ctx.user.id;
 	        let tags = ctx.req.body.tags
 	            .split(',')
+	            .filter(tag => tag != '')
 	            .map(tag => {
 	            return { 'name': tag.trim() };
-	        });
-	        yield models_1.Tag.bulkCreate(tags, {
-	            updateOnDuplicate: ['name']
 	        });
 	        let image = ctx.req.file ? ctx.req.file.filename : null;
 	        let post = yield models_1.Post.create({
@@ -731,13 +737,18 @@
 	            image: image,
 	            UserId: userId
 	        });
-	        yield post.setTags(yield models_1.Tag.findAll({
-	            where: {
-	                name: {
-	                    in: ctx.req.body.tags.split(',').map(tag => tag.trim())
+	        if (tags.length) {
+	            yield models_1.Tag.bulkCreate(tags, {
+	                updateOnDuplicate: ['name']
+	            });
+	            yield post.setTags(yield models_1.Tag.findAll({
+	                where: {
+	                    name: {
+	                        in: ctx.req.body.tags.split(',').map(tag => tag.trim())
+	                    }
 	                }
-	            }
-	        }));
+	            }));
+	        }
 	        ctx.body = { success: true, message: '' };
 	    }
 	    catch (e) {
@@ -751,7 +762,7 @@
 	    });
 	}))
 	    .get('/post', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
-	    ctx.body = yield post_1.default(ctx.user.id);
+	    ctx.body = yield post_1.default(ctx.user ? ctx.user.id : null);
 	}))
 	    .get('/post/tag/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;

@@ -26,6 +26,7 @@ async function getPosts(userId = null, where = null) {
         ],
         order: [
             ['createdAt', 'DESC'],
+            [Tag, 'name'],
             [Commentary, 'createdAt']
         ]
     })

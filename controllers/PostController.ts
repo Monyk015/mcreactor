@@ -24,13 +24,10 @@ PostController
                 let userId = ctx.user.id
                 let tags = ctx.req.body.tags
                               .split(',')
+                              .filter(tag => tag != '')
                               .map(tag => {
                                   return {'name': tag.trim()}
                               })
-                
-                await Tag.bulkCreate(tags, {
-                    updateOnDuplicate: ['name']
-                })
                 
                 let image = ctx.req.file ? ctx.req.file.filename : null
                 
@@ -40,13 +37,20 @@ PostController
                     UserId: userId
                 }) as any
                 
-                await post.setTags(await Tag.findAll({
-                    where: {
-                        name: {
-                            in: ctx.req.body.tags.split(',').map(tag => tag.trim())
+                if(tags.length)
+                {
+                    await Tag.bulkCreate(tags, {
+                        updateOnDuplicate: ['name']
+                    })
+                    
+                    await post.setTags(await Tag.findAll({
+                        where: {
+                            name: {
+                                in: ctx.req.body.tags.split(',').map(tag => tag.trim())
+                            }
                         }
-                    }
-                }))
+                    }))
+                }
                 ctx.body = {success: true, message: ''}
             }
             catch (e)
@@ -67,7 +71,7 @@ PostController
     .get('/post',
         authMiddleware(true),
         async(ctx) => {
-            ctx.body = await getPosts(ctx.user.id)
+            ctx.body = await getPosts(ctx.user? ctx.user.id : null)
         })
     
     .get('/post/tag/:id',

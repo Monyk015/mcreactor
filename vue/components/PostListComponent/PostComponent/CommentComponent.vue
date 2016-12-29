@@ -1,10 +1,20 @@
 <template>
-    <div>
-        <div>{{comment.content}}</div>
-        <div class="row comment-info-row">
-            <div v-if="$store.state.user" class="rates"><span @click="thumbUp" v-bind:class="{'activated-rate': ifThumbUp}" class="material-icons">thumb_up</span><span @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}" class="material-icons">thumb_down</span></div>
-            <div class="rating">{{comment.rating}}</div>
-            <div class="date">{{comment.createdAt | formatDate}}</div><a v-bind:href="'/user/' + comment.UserId" class="user-nickname">{{comment.User.nickname}}</a>
+    <div class="collection">
+        <router-link :to="'/user/' + comment.UserId + '/profile'" class="user-nickname collection-item row">{{comment.User.nickname}}</router-link>
+        <div class="collection-item collection row">
+            <div class="row collection-item">{{comment.content}}</div>
+            <div class="row comment-info-row  valign-wrapper">
+                <div class="date col s5 valign">{{comment.createdAt | formatDate}}</div>
+                <div class="rating col offset-s5 s1 valign">{{comment.rating}}</div>
+                <div v-show="$store.state.user" class="valign rates col s2">
+                    <span @click="thumbUp"
+                          v-bind:class="{'activated-rate': ifThumbUp}"
+                          class="material-icons">thumb_up</span>
+                    <span
+                            @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}"
+                            class="material-icons">thumb_down</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -45,7 +55,7 @@
                     $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {
                         if(res.success)
                         {
-                            this.comment.rating = res.rating 
+                            this.comment.rating = res.rating
                         }
                     })
                     this.rate = 0
@@ -66,7 +76,7 @@
                     $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {
                         if(res.success)
                         {
-                            this.comment.rating = res.rating 
+                            this.comment.rating = res.rating
                         }
                     })
                     this.rate = 0
@@ -75,7 +85,7 @@
                     $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {
                         if(res.success)
                         {
-                            this.comment.rating = res.rating 
+                            this.comment.rating = res.rating
                         }
                     })
                     this.rate = -1
@@ -92,16 +102,21 @@
         margin-bottom: 0;
     }
     .user-nickname{
-        
+
     }
     .rates span {
-        color: rgba(0,0,0,0.30)    
+        color: rgba(0,0,0,0.30)
     }
     .rates span:hover{
         color: rgba(0,0,0,0.87);
-        cursor: context-menu;    
+        cursor: context-menu;
     }
     .activated-rate{
-        color: rgba(0,0,0,0.87) !important;        
+        color: rgba(0,0,0,0.87) !important;
+    }
+
+    .comment-info-row{
+        height: 40px;
+        margin-bottom: -10px;
     }
 </style>

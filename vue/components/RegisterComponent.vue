@@ -50,7 +50,7 @@
                 }, (res) => {
                     if(res.success)
                     {
-                        window.location.replace('/login')
+                        this.$router.replace('/login')
                     }
                     else if(res.message == "Passwords do not match")
                     {

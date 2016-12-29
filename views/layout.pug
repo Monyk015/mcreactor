@@ -25,7 +25,7 @@ html
                         a(href='/') Home
                     span(v-if="$store.state.user")
                         li
-                            a(href="/post/user/subscribed") Subscriptions
+                            router-link(to="/post/user/subscribed") Subscriptions
                             //
                                 todo: move to feed and change to router link
                         li

@@ -21,6 +21,8 @@ const routes = [
     {path: '/register', component: RegisterComponent},
     {path: '/', component: FeedComponent},
     {path: '/post/tag/:id', component: FeedComponent},
+    {path: '/post/:id', component: FeedComponent},
+    {path: '/post/user/subscribed', component: FeedComponent},
     {path: '/user/:id/profile', component: ProfileComponent}
 ]
 

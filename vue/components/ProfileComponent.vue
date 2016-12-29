@@ -1,6 +1,30 @@
 <template>
-    <post-list-component></post-list-component>
-    <div>ZALUPA</div>
+    <div>
+        <div class="card">
+            <ul class="collection">
+                <li class="collection-item">
+                    <div class="title">
+                        Email
+                    </div>
+                    {{user.email}}
+                </li>
+                <li class="collection-item">
+                    <div class="title">
+                        Nickname
+                    </div>
+                    {{user.nickname}}
+                </li>
+                <li class="collection-item">
+                    <div class="title">
+                        Rating
+                    </div>
+                    {{user.rating}}
+                </li>
+                <!--<li class="collection-item"></li>-->
+            </ul>
+        </div>
+        <post-list-component :posts="posts"></post-list-component>
+    </div>
 </template>
 
 <script>
@@ -9,13 +33,12 @@
     export default
     {
         components: {
-          PostListComponent
+            PostListComponent
         },
         data() {
             return {
-                posts:[],
-                user: null,
-                name:'profile'
+                posts: [],
+                user: null
             }
         },
         created(){
@@ -30,4 +53,7 @@
 </script>
 
 <style scoped>
+    .title{
+        font-weight: 700;
+    }
 </style>
