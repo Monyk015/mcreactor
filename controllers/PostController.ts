@@ -170,11 +170,52 @@ PostController
         async(ctx) => {
             let postId = ctx.params.id
             await Post.destroy({
-                where:{
+                where: {
                     id: postId
                 }
             })
             ctx.body = {success: true}
+        })
+    
+    .post('/post/filter',
+        authMiddleware(true),
+        async(ctx) => {
+            let filter = ctx.request.body
+            let whereClause: any = {}
+            if (filter.tagsArray && filter.tagsArray.length)
+            {
+                filter.tags = filter.tagsArray
+                                    .filter(tag => tag != '')
+                                    .map(tag =>"'" + tag.trim() + "'")
+                whereClause.id = {
+                    $in: db.literal(" (select `Posts`.`id` from `Posts` " +
+                        "where (select count(`TagId`) from `PostTag` inner join `Tags` on `Tags`.`id` = `PostTag`.`TagId` " +
+                        "where `PostTag`.`PostId` = `Posts`.`id` and `Tags`.`name` in (" + filter.tags.join(',') + ") ) = " + filter.tags.length +" ) ")
+                }
+            }
+            if (filter.content)
+                whereClause.content = {
+                    $like: `%${filter.content}%`
+                }
+            if(filter.dateFrom || filter.dateTo)
+            {
+                whereClause.createdAt = {}
+                if (filter.dateFrom)
+                    whereClause.createdAt.$gte = new Date(filter.dateFrom)
+                if (filter.dateTo)
+                    whereClause.createdAt.$lte = new Date(filter.dateTo)
+            }
+            if(filter.ratingTo || filter.ratingFrom)
+            {
+                whereClause.rating = {}
+                if(filter.ratingTo)
+                    whereClause.rating.$lte = filter.ratingTo
+                if(filter.ratingFrom)
+                    whereClause.rating.$gte = filter.ratingFrom
+            }
+            console.log(whereClause)
+            let posts = await getPosts(ctx.user ? ctx.user.id : null, whereClause)
+            ctx.body = {success: true, posts}
         })
 
 export default PostController

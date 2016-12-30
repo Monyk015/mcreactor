@@ -3,7 +3,7 @@
         <div v-if="ifTagSection" class="tag-header row">
             <tag-header-component class="col s12"></tag-header-component>
         </div>
-        <div  v-if="$store.state.subscriptions.length" class="subscriptions row collection">
+        <div  v-if="$store.state.subscriptions.length" class="subscriptions collection">
             <div class="collection-item">
                 Subscriptions
             </div>
@@ -15,7 +15,7 @@
                 </li>
             </ul>
         </div>
-        <div  v-if="$store.state.bans.length" class="bans row collection">
+        <div  v-if="$store.state.bans.length" class="bans collection">
             <div class="collection-item">
                 Bans
             </div>
@@ -26,15 +26,18 @@
                 </li>
             </ul>
         </div>
+        <filter-component></filter-component>
     </div>
 </template>
 
 <script>
     import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'
+    import FilterComponent from './NavComponent/FilterComponent.vue'
 
     export default{
         components: {
-            TagHeaderComponent
+            TagHeaderComponent,
+            FilterComponent
         },
         data(){
             return {}

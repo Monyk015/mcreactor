@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "../public";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 64);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -511,7 +511,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 'use strict';
 
-var base64_url_decode = __webpack_require__(36);
+var base64_url_decode = __webpack_require__(38);
 
 module.exports = function (token,options) {
   if (typeof token !== 'string') {
@@ -718,10 +718,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(20)
+__vue_exports__ = __webpack_require__(21)
 
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(55)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -787,10 +787,16 @@ module.exports = __vue_exports__
         },
         loadPosts: function loadPosts(state, path) {
             if (path == "/") path = 'post';
-            console.log(path);
             $.get(path, function (posts) {
                 state.posts = posts;
                 console.log(state.posts);
+            });
+        },
+        loadPostsWithFilter: function loadPostsWithFilter(state, filter) {
+            $.post('/post/filter', filter, function (res) {
+                if (res.success) {
+                    state.posts = res.posts;
+                }
             });
         },
         updateSearch: function updateSearch(state, newSearch) {
@@ -1057,7 +1063,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(15)
 
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(50)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1098,13 +1104,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(54)
+__webpack_require__(58)
 
 /* script */
-__vue_exports__ = __webpack_require__(19)
+__vue_exports__ = __webpack_require__(20)
 
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(46)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1146,13 +1152,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(56)
+__webpack_require__(60)
 
 /* script */
-__vue_exports__ = __webpack_require__(24)
+__vue_exports__ = __webpack_require__(25)
 
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(48)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1194,13 +1200,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(61)
+__webpack_require__(65)
 
 /* script */
-__vue_exports__ = __webpack_require__(25)
+__vue_exports__ = __webpack_require__(26)
 
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(54)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -11397,7 +11403,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(63), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(68), __webpack_require__(4)))
 
 /***/ },
 /* 14 */
@@ -11937,11 +11943,11 @@ return index;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__);
 //
 //
@@ -11981,8 +11987,10 @@ return index;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue__);
 //
 //
 //
@@ -12014,12 +12022,15 @@ return index;
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ exports["default"] = {
     components: {
-        TagHeaderComponent: __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default.a
+        TagHeaderComponent: __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default.a,
+        FilterComponent: __WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue___default.a
     },
     data: function data() {
         return {};
@@ -12034,6 +12045,92 @@ return index;
 
 /***/ },
 /* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ exports["default"] = {
+    data: function data() {
+        return {
+            tagsArray: [],
+            content: '',
+            ratingFrom: '',
+            ratingTo: ''
+        };
+    },
+
+    methods: {
+        submit: function submit() {
+            var data = this.$data;
+            data.dateFrom = $('#dateFrom').val();
+            data.dateTo = $('#dateTo').val();
+            this.$store.commit('loadPostsWithFilter', data);
+        }
+    },
+    computed: {
+        tags: {
+            get: function get() {
+                return this.tagsArray.join(',');
+            },
+            set: function set(tags) {
+                this.tagsArray = tags.split(',');
+            }
+        }
+    },
+    mounted: function mounted() {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+    }
+};
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12157,7 +12254,7 @@ return index;
 };
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12245,7 +12342,7 @@ return index;
 };
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12306,11 +12403,11 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__);
 //
 //
@@ -12349,13 +12446,13 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
 //
 //
@@ -12500,7 +12597,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12594,7 +12691,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12638,7 +12735,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12733,7 +12830,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12800,7 +12897,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12814,7 +12911,7 @@ exports.push([module.i, "\n.card[data-v-03680cfd]{\n    padding: 25px;\n}\n", ""
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12828,7 +12925,7 @@ exports.push([module.i, "\n#submit-comment[data-v-2d07a4c9]{\n    margin: 5px;\n
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12842,7 +12939,7 @@ exports.push([module.i, "\n.title[data-v-3dd9ab06]{\n    font-weight: 700;\n}\n"
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12856,7 +12953,7 @@ exports.push([module.i, "\n.row[data-v-42a953c3]{\n    margin-bottom: 0;\n}\n.us
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12870,7 +12967,7 @@ exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.colla
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12884,20 +12981,6 @@ exports.push([module.i, "\nbutton[data-v-61782d42]{\n    margin-top: 15px;\n}\n"
 
 
 /***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?dfe0869c"],"names":[],"mappings":";AAkDA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div  v-if=\"$store.state.subscriptions.length\" class=\"subscriptions row collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div  v-if=\"$store.state.bans.length\" class=\"bans row collection\">\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
 /* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12906,7 +12989,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?437db4ce"],"names":[],"mappings":";AAqDA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div  v-if=\"$store.state.subscriptions.length\" class=\"subscriptions collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div  v-if=\"$store.state.bans.length\" class=\"bans collection\">\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <filter-component></filter-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n    import FilterComponent from './NavComponent/FilterComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent,\r\n            FilterComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12920,13 +13003,41 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?0528556f"],"names":[],"mappings":";AAwJA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deletePost\">Delete post</a>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user && !this.$store.state.user.isBanned\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deletePost(){\r\n                $.get(`/post/${this.post.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n                })\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
 
 /***/ },
 /* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?0528556f"],"names":[],"mappings":";AAwJA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deletePost\">Delete post</a>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user && !this.$store.state.user.isBanned\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deletePost(){\r\n                $.get(`/post/${this.post.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n                })\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-bb88bd6e]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/FilterComponent.vue?463962ef"],"names":[],"mappings":";AAkFA;;IAEA,aAAA;CACA","file":"FilterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <div class=\"collection-item\">Filter</div>\r\n        <form @submit.prevent=\"submit\" class=\"collection-item row\">\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                    <label for=\"tags\">Tags</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"content\" type=\"text\" name=\"content\" v-model=\"content\"/>\r\n                    <label for=\"content\">Content</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingFrom\" v-model=\"ratingFrom\" name=\"ratingFrom\" type=\"number\">\r\n                    <label for=\"ratingFrom\">Rating From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingTo\" v-model=\"ratingTo\" name=\"ratingTo\" type=\"number\">\r\n                    <label for=\"ratingTo\">Rating To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateFrom\" v-model=\"dateFrom\" name=\"dateFrom\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateFrom\">Date From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateTo\" v-model=\"dateTo\" name=\"dateTo\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateTo\">Date To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"center-align collection-item\">\r\n                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light\">\r\n                    Apply\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagsArray: [],\r\n                content:'',\r\n                ratingFrom:'',\r\n                ratingTo:''\r\n            }\r\n        },\r\n        methods: {\r\n            submit(){\r\n                let data = this.$data\r\n                data.dateFrom = $('#dateFrom').val()\r\n                data.dateTo = $('#dateTo').val()\r\n                this.$store.commit('loadPostsWithFilter', data)\r\n            }\r\n        },\r\n        computed: {\r\n            tags: {\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        },\r\n        mounted(){\r\n            $('.datepicker').pickadate({\r\n                selectMonths: true, // Creates a dropdown to control month\r\n                selectYears: 15 // Creates a dropdown of 15 years to control year\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 37 */
 /***/ function(module, exports) {
 
 /**
@@ -12970,10 +13081,10 @@ module.exports = typeof window !== 'undefined' && window.atob && window.atob.bin
 
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-var atob = __webpack_require__(35);
+var atob = __webpack_require__(37);
 
 function b64DecodeUnicode(str) {
   return decodeURIComponent(atob(str).replace(/(.)/g, function (m, p) {
@@ -13009,20 +13120,20 @@ module.exports = function(str) {
 
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(60)
+__webpack_require__(64)
 
 /* script */
 __vue_exports__ = __webpack_require__(16)
 
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(53)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13057,20 +13168,68 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(59)
+__webpack_require__(67)
 
 /* script */
 __vue_exports__ = __webpack_require__(17)
 
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(57)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\FilterComponent.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-bb88bd6e"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bb88bd6e", __vue_options__)
+  } else {
+    hotAPI.reload("data-v-bb88bd6e", __vue_options__)
+  }
+})()}
+if (__vue_options__.functional) {console.error("[vue-loader] FilterComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+module.exports = __vue_exports__
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = {}
+
+/* styles */
+__webpack_require__(63)
+
+/* script */
+__vue_exports__ = __webpack_require__(18)
+
+/* template */
+var __vue_template__ = __webpack_require__(52)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13105,20 +13264,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 39 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(58)
+__webpack_require__(62)
 
 /* script */
-__vue_exports__ = __webpack_require__(18)
+__vue_exports__ = __webpack_require__(19)
 
 /* template */
-var __vue_template__ = __webpack_require__(48)
+var __vue_template__ = __webpack_require__(51)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13153,20 +13312,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 40 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(62)
+__webpack_require__(66)
 
 /* script */
-__vue_exports__ = __webpack_require__(21)
+__vue_exports__ = __webpack_require__(22)
 
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(56)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13201,20 +13360,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 41 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(57)
+__webpack_require__(61)
 
 /* script */
-__vue_exports__ = __webpack_require__(22)
+__vue_exports__ = __webpack_require__(23)
 
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(49)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13249,20 +13408,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 42 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(55)
+__webpack_require__(59)
 
 /* script */
-__vue_exports__ = __webpack_require__(23)
+__vue_exports__ = __webpack_require__(24)
 
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(47)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13297,7 +13456,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 43 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13385,7 +13544,7 @@ if (false) {
 }
 
 /***/ },
-/* 44 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13445,7 +13604,7 @@ if (false) {
 }
 
 /***/ },
-/* 45 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13491,7 +13650,7 @@ if (false) {
 }
 
 /***/ },
-/* 46 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13546,16 +13705,16 @@ if (false) {
 }
 
 /***/ },
-/* 47 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
   return _vm._h('div', {
     staticClass: "row"
   }, [_vm._h('div', {
-    staticClass: "col s8"
+    staticClass: "col s9"
   }, [(this.$store.state.user && !this.$store.state.user.isBanned) ? [_vm._h('new-post-component')] : _vm._e(), " ", _vm._h('post-list-component')]), " ", _vm._h('nav-component', {
-    staticClass: "col s4"
+    staticClass: "col s3"
   })])
 },staticRenderFns: []}
 if (false) {
@@ -13566,7 +13725,7 @@ if (false) {
 }
 
 /***/ },
-/* 48 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13691,7 +13850,7 @@ if (false) {
 }
 
 /***/ },
-/* 49 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13729,7 +13888,7 @@ if (false) {
 }
 
 /***/ },
-/* 50 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13740,7 +13899,7 @@ module.exports={render:function (){var _vm=this;
   }, [_vm._h('tag-header-component', {
     staticClass: "col s12"
   })]) : _vm._e(), " ", (_vm.$store.state.subscriptions.length) ? _vm._h('div', {
-    staticClass: "subscriptions row collection"
+    staticClass: "subscriptions collection"
   }, [_vm._h('div', {
     staticClass: "collection-item"
   }, ["\n            Subscriptions\n        "]), " ", _vm._h('ul', [_vm._l((_vm.$store.state.subscriptions), function(subscription) {
@@ -13751,7 +13910,7 @@ module.exports={render:function (){var _vm=this;
       }
     }, ["\n                    " + _vm._s(subscription.Tag.name) + "\n                "])])
   })])]) : _vm._e(), " ", (_vm.$store.state.bans.length) ? _vm._h('div', {
-    staticClass: "bans row collection"
+    staticClass: "bans collection"
   }, [_vm._h('div', {
     staticClass: "collection-item"
   }, ["\n            Bans\n        "]), " ", _vm._h('ul', [_vm._l((_vm.$store.state.bans), function(ban) {
@@ -13761,7 +13920,7 @@ module.exports={render:function (){var _vm=this;
         "to": '/post/tag/' + ban.Tag.id
       }
     }, [_vm._s(ban.Tag.name) + "\n                "])])
-  })])]) : _vm._e()])
+  })])]) : _vm._e(), " ", _vm._h('filter-component')])
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
@@ -13771,7 +13930,7 @@ if (false) {
 }
 
 /***/ },
-/* 51 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13916,7 +14075,7 @@ if (false) {
 }
 
 /***/ },
-/* 52 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13946,7 +14105,7 @@ if (false) {
 }
 
 /***/ },
-/* 53 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -14053,13 +14212,220 @@ if (false) {
 }
 
 /***/ },
-/* 54 */
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;
+  return _vm._h('div', {
+    staticClass: "collection"
+  }, [_vm._h('div', {
+    staticClass: "collection-item"
+  }, ["Filter"]), " ", _vm._h('form', {
+    staticClass: "collection-item row",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.submit($event)
+      }
+    }
+  }, [_vm._h('div', {
+    staticClass: "collection-item row"
+  }, [_vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.tags),
+      expression: "tags"
+    }],
+    attrs: {
+      "id": "tags",
+      "type": "text",
+      "name": "tags"
+    },
+    domProps: {
+      "value": _vm._s(_vm.tags)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.tags = $event.target.value
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "tags"
+    }
+  }, ["Tags"])]), " ", _vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }],
+    attrs: {
+      "id": "content",
+      "type": "text",
+      "name": "content"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "content"
+    }
+  }, ["Content"])])]), " ", _vm._h('div', {
+    staticClass: "collection-item row"
+  }, [_vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ratingFrom),
+      expression: "ratingFrom"
+    }],
+    attrs: {
+      "id": "ratingFrom",
+      "name": "ratingFrom",
+      "type": "number"
+    },
+    domProps: {
+      "value": _vm._s(_vm.ratingFrom)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ratingFrom = _vm._n($event.target.value)
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "ratingFrom"
+    }
+  }, ["Rating From"])]), " ", _vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ratingTo),
+      expression: "ratingTo"
+    }],
+    attrs: {
+      "id": "ratingTo",
+      "name": "ratingTo",
+      "type": "number"
+    },
+    domProps: {
+      "value": _vm._s(_vm.ratingTo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ratingTo = _vm._n($event.target.value)
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "ratingTo"
+    }
+  }, ["Rating To"])])]), " ", _vm._h('div', {
+    staticClass: "collection-item row"
+  }, [_vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.dateFrom),
+      expression: "dateFrom"
+    }],
+    staticClass: "datepicker",
+    attrs: {
+      "id": "dateFrom",
+      "name": "dateFrom",
+      "type": "date"
+    },
+    domProps: {
+      "value": _vm._s(_vm.dateFrom)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.dateFrom = $event.target.value
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "dateFrom"
+    }
+  }, ["Date From"])]), " ", _vm._h('div', {
+    staticClass: "input-field"
+  }, [_vm._h('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.dateTo),
+      expression: "dateTo"
+    }],
+    staticClass: "datepicker",
+    attrs: {
+      "id": "dateTo",
+      "name": "dateTo",
+      "type": "date"
+    },
+    domProps: {
+      "value": _vm._s(_vm.dateTo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.dateTo = $event.target.value
+      }
+    }
+  }), " ", _vm._h('label', {
+    attrs: {
+      "for": "dateTo"
+    }
+  }, ["Date To"])])]), " ", _vm._m(0)])])
+},staticRenderFns: [function (){var _vm=this;
+  return _vm._h('div', {
+    staticClass: "center-align collection-item"
+  }, [_vm._h('button', {
+    staticClass: "btn waves-effect waves-light",
+    attrs: {
+      "id": "submit-post",
+      "type": "submit",
+      "name": "action"
+    }
+  }, ["\n                Apply\n            "])])
+}]}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-bb88bd6e", module.exports)
+  }
+}
+
+/***/ },
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(26);
+var content = __webpack_require__(27);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14079,13 +14445,13 @@ if(false) {
 }
 
 /***/ },
-/* 55 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(27);
+var content = __webpack_require__(28);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14105,13 +14471,13 @@ if(false) {
 }
 
 /***/ },
-/* 56 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(28);
+var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14131,13 +14497,13 @@ if(false) {
 }
 
 /***/ },
-/* 57 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14157,13 +14523,13 @@ if(false) {
 }
 
 /***/ },
-/* 58 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(30);
+var content = __webpack_require__(31);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14183,13 +14549,13 @@ if(false) {
 }
 
 /***/ },
-/* 59 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(31);
+var content = __webpack_require__(32);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14209,13 +14575,13 @@ if(false) {
 }
 
 /***/ },
-/* 60 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(32);
+var content = __webpack_require__(33);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14235,13 +14601,13 @@ if(false) {
 }
 
 /***/ },
-/* 61 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(33);
+var content = __webpack_require__(34);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14261,13 +14627,13 @@ if(false) {
 }
 
 /***/ },
-/* 62 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(34);
+var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(1)(content, {});
@@ -14287,7 +14653,33 @@ if(false) {
 }
 
 /***/ },
-/* 63 */
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(36);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-bb88bd6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-bb88bd6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+/* 68 */
 /***/ function(module, exports) {
 
 var g;
@@ -14312,7 +14704,7 @@ module.exports = g;
 
 
 /***/ },
-/* 64 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -30,10 +30,17 @@ export default {
         loadPosts(state, path){
             if(path == "/")
                 path = 'post'
-            console.log(path)
             $.get(path, (posts) => {
                 state.posts = posts
                 console.log(state.posts)
+            })
+        },
+        loadPostsWithFilter(state, filter){
+            $.post('/post/filter', filter, (res) => {
+                if(res.success)
+                {
+                    state.posts = res.posts
+                }
             })
         },
         updateSearch(state, newSearch)

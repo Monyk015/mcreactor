@@ -56,22 +56,22 @@ User.hasMany(Ban)
 
 Tag.hasMany(Ban)
 
-;(async () =>
-{
-    await User.sync({force:true})
-    User.bulkCreate(users.map(user => {
-        user.password = require('sha256')(user.password)
-        return user
-    }))
-    await Post.sync({force:true})
-    await Tag.sync({force:true})
-    await PostTag.sync({force:true})
-    await Commentary.sync({force:true})
-    await PostRate.sync({force:true})
-    await CommentaryRate.sync({force:true})
-    await Ban.sync({force:true})
-    await Subscription.sync({force:true})
-})()
+// ;(async () =>
+// {
+//     await User.sync({force:true})
+//     User.bulkCreate(users.map(user => {
+//         user.password = require('sha256')(user.password)
+//         return user
+//     }))
+//     await Post.sync({force:true})
+//     await Tag.sync({force:true})
+//     await PostTag.sync({force:true})
+//     await Commentary.sync({force:true})
+//     await PostRate.sync({force:true})
+//     await CommentaryRate.sync({force:true})
+//     await Ban.sync({force:true})
+//     await Subscription.sync({force:true})
+// })()
 
 
 export {Tag, Commentary, Post, User, CommentaryRate, PostRate, Ban, Subscription}
