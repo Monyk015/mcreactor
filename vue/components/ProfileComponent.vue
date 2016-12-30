@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card">
-            <ul class="collection">
+            <ul v-if="user" class="collection">
                 <li class="collection-item">
                     <div class="title">
                         Email

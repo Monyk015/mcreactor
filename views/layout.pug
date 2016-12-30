@@ -18,18 +18,18 @@ html
   body.amber.lighten-4
     #body
         nav.yellow.darken-4
-            .nav-wrapper
-                a.brand-logo(href='#') Coursach
+            .nav-wrapper.row
+                a.brand-logo.col.s3(href='#') Memasiki
                 ul#nav.right.hide-on-med-and-down
                     li
-                        a(href='/') Home
+                        router-link(to='/') Home
                     span(v-if="$store.state.user")
                         li
                             router-link(to="/post/user/subscribed") Subscriptions
                             //
                                 todo: move to feed and change to router link
-                        li
-                            a(href='/user') Users
+                        //- li
+                        //-     a(href='/user') Users
                         li
                             ul.dropdown-content#user-dropdown
                                 li

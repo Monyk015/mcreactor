@@ -1,6 +1,5 @@
 <template>
-    <div class="collection row">
-
+    <div class="collection">
         <router-link :to="'/user/' + post.UserId + '/profile'"
                      class="userinfo collection-item">{{post.User.nickname}}
         </router-link>
@@ -16,9 +15,9 @@
         <div class="info row collection-item">
             <div class="date col s3">{{post.createdAt | formatDate}}</div>
             <router-link v-bind:to="'/post/' + post.id" class="link col s1">Link</router-link>
-            <div class="row col s3 offset-s5">
-                <div class="rating col s2 offset-s4">{{post.rating}}</div>
-                <div v-if="$store.state.user" class="rates col s6"><span @click="thumbUp"
+            <div class="row col s4 offset-s4">
+                <div class="rating col s2 offset-s2">{{post.rating}}</div>
+                <div v-if="$store.state.user" class="rates col s8"><span @click="thumbUp"
                                                                          v-bind:class="{'activated-rate': ifThumbUp}"
                                                                          class="material-icons">thumb_up</span><span
                         @click="thumbDown" v-bind:class="{'activated-rate': ifThumbDown}"
@@ -165,5 +164,9 @@
     .info
     {
         height: 45px;
+    }
+
+    img{
+        max-width: 90%;
     }
 </style>
