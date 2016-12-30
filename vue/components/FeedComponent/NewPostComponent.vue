@@ -59,7 +59,7 @@
                                 $('#new-post-component .collapsible-body').hide()
                                 $('input[type=file]').val("")
                                 $('.file-path-wrapper input').val("")
-                                this.$emit('submitted')
+                                this.$store.commit('loadPosts', this.$route.path)
                             }                
                         }})
             }

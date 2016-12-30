@@ -2,7 +2,7 @@
 <template>
     <div id="post-list-component">
         <ul>
-            <li v-if="!posts.length" class="card">So empty.</li>
+            <li v-if="!$store.state.posts.length" class="card">So empty.</li>
             <li v-for="(post,index) in posts" class="card">
                 <post-component :post="post"></post-component>
             </li>
@@ -23,26 +23,15 @@
                 
             }
         },
-        props:['posts'],
         created() {
-            // this.loadPosts()
-            // if(this.$store.state.user)
-            //     this.$store.commit('loadSubscriptions')
-            // console.log(this)
+
+        },
+        computed:{
+            posts(){
+                console.log(this.$store.state.posts)
+                return this.$store.state.posts
+            }
         }
-        // methods:{
-        //     loadPosts(){
-        //         let path = this.$route.path
-        //         if(path == "/")
-        //             path = 'post'
-        //         $.get(path, (posts) => {
-        //             this.posts = posts
-        //             console.log(this.posts)
-        //         })
-        //     }
-        // },
-        // watch:{
-        //     '$route' : 'loadPosts'
-        // }
+
     }
 </script>

@@ -11,9 +11,6 @@ const jwt = require('jwt-decode')
 
 Vue.use(Vuex)
 
-
-let router = null
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,34 +23,13 @@ const routes = [
     {path: '/user/:id/profile', component: ProfileComponent}
 ]
 
-router = new VueRouter({
+const router = new VueRouter({
     routes
 })
 
+import storeObject from './store.js'
 
-const store = new Vuex.Store({
-    state: {
-        user: null,
-        subscriptions: []
-    },
-    mutations: {
-        setUser(state, user) {
-            state.user = user
-        },
-        loadSubscriptions(state){
-            $.get(`/user/${state.user.id}/subscriptions`, (res) => {
-                if(res.success)
-                {
-                    state.subscriptions = res.subscriptions
-                }
-                else
-                {
-                    console.log('Something went wrong')
-                }
-            })
-        }
-    }
-})
+const store = new Vuex.Store(storeObject)
 
 Vue.filter('formatDate', (dateString) => {
     let date = new Date(dateString)
@@ -81,5 +57,11 @@ new Vue({
             this.$store.commit('setUser', null)
             Cookies.remove('token')
         }
+    },
+    watch:{
+        '$route' : function (){
+            this.$store.commit('loadPosts', this.$route.path)
+        }
     }
+
 }).$mount('#body')
