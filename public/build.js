@@ -768,7 +768,8 @@ module.exports = __vue_exports__
         user: null,
         subscriptions: [],
         posts: [],
-        bans: []
+        bans: [],
+        search: ''
     },
     mutations: {
         setUser: function setUser(state, user) {
@@ -786,10 +787,29 @@ module.exports = __vue_exports__
         },
         loadPosts: function loadPosts(state, path) {
             if (path == "/") path = 'post';
+            console.log(path);
             $.get(path, function (posts) {
                 state.posts = posts;
                 console.log(state.posts);
             });
+        },
+        updateSearch: function updateSearch(state, newSearch) {
+            state.search = newSearch;
+        }
+    },
+    getters: {
+        getFoundPosts: function getFoundPosts(state) {
+            var posts = state.search ? state.posts.filter(function (post) {
+                var isFine = false;
+                post.Tags.forEach(function (tag) {
+                    if (tag.name.includes(state.search)) {
+                        isFine = true;
+                    }
+                });
+                if (post.content.includes(state.search)) isFine = true;
+                return isFine;
+            }) : state.posts;
+            return posts;
         }
     }
 };
@@ -11992,6 +12012,8 @@ return index;
 //
 //
 //
+//
+//
 
 
 
@@ -12179,7 +12201,8 @@ return index;
     data: function data() {
         return {
             tagsArray: [],
-            content: ''
+            content: '',
+            showBody: false
         };
     },
 
@@ -12198,13 +12221,15 @@ return index;
                     if (res.success) {
                         _this.tagsArray = [];
                         _this.content = '';
-                        $('#new-post-component .collapsible-header,li').removeClass('active');
-                        $('#new-post-component .collapsible-body').hide();
+                        _this.showBody = false;
                         $('input[type=file]').val("");
                         $('.file-path-wrapper input').val("");
                         _this.$store.commit('loadPosts', _this.$route.path);
                     }
                 } });
+        },
+        toggleBody: function toggleBody() {
+            this.showBody = !this.showBody;
         }
     },
     computed: {
@@ -12299,6 +12324,10 @@ var jwt = __webpack_require__(3);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -12313,8 +12342,7 @@ var jwt = __webpack_require__(3);
 
     computed: {
         posts: function posts() {
-            console.log(this.$store.state.posts);
-            return this.$store.state.posts;
+            return this.$store.getters.getFoundPosts;
         }
     }
 
@@ -12329,6 +12357,9 @@ var jwt = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
+//
+//
+//
 //
 //
 //
@@ -12446,6 +12477,15 @@ var jwt = __webpack_require__(3);
                 });
                 this.rate = -1;
             }
+        },
+        deletePost: function deletePost() {
+            var _this3 = this;
+
+            $.get('/post/' + this.post.id + '/delete', function (res) {
+                if (res.success) {
+                    _this3.$store.commit('loadPosts', _this3.$route.path);
+                }
+            });
         }
     },
     created: function created() {
@@ -12633,6 +12673,17 @@ var jwt = __webpack_require__(3);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -12642,19 +12693,42 @@ var jwt = __webpack_require__(3);
     },
     data: function data() {
         return {
-            posts: [],
-            user: null
+            user: {}
         };
     },
     created: function created() {
-        var _this = this;
+        this.getUser();
+    },
 
-        var path = this.$route.path; //'/user/:id/profile'
-        var userId = path.split('/')[2];
-        $.get('/user/' + userId, function (res) {
-            _this.posts = res.posts;
-            _this.user = res.user;
-        });
+    methods: {
+        getUser: function getUser() {
+            var _this = this;
+
+            var path = this.$route.path;
+            var userId = path.split('/')[2];
+            $.get('/user/' + userId, function (res) {
+                _this.user = res;
+            });
+            this.$store.commit('loadPosts', this.$route.path);
+        },
+        ban: function ban() {
+            var _this2 = this;
+
+            $.get('/user/' + this.user.id + '/ban', function (res) {
+                if (res.success) {
+                    _this2.getUser();
+                }
+            });
+        },
+        unban: function unban() {
+            var _this3 = this;
+
+            $.get('/user/' + this.user.id + '/unban', function (res) {
+                if (res.success) {
+                    _this3.getUser();
+                }
+            });
+        }
     }
 };
 
@@ -12762,7 +12836,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.title[data-v-3dd9ab06]{\n    font-weight: 700;\n}\n", "", {"version":3,"sources":["/./components/ProfileComponent.vue?67e70b86"],"names":[],"mappings":";AAuDA;IACA,iBAAA;CACA","file":"ProfileComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"card\">\r\n            <ul v-if=\"user\" class=\"collection\">\r\n                <li class=\"collection-item\">\r\n                    <div class=\"title\">\r\n                        Email\r\n                    </div>\r\n                    {{user.email}}\r\n                </li>\r\n                <li class=\"collection-item\">\r\n                    <div class=\"title\">\r\n                        Nickname\r\n                    </div>\r\n                    {{user.nickname}}\r\n                </li>\r\n                <li class=\"collection-item\">\r\n                    <div class=\"title\">\r\n                        Rating\r\n                    </div>\r\n                    {{user.rating}}\r\n                </li>\r\n                <!--<li class=\"collection-item\"></li>-->\r\n            </ul>\r\n        </div>\r\n        <post-list-component :posts=\"posts\"></post-list-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import PostListComponent from './PostListComponent.vue'\r\n\r\n    export default\r\n    {\r\n        components: {\r\n            PostListComponent\r\n        },\r\n        data() {\r\n            return {\r\n                posts: [],\r\n                user: null\r\n            }\r\n        },\r\n        created(){\r\n            let path = this.$route.path //'/user/:id/profile'\r\n            let userId = path.split('/')[2]\r\n            $.get(`/user/${userId}`, (res) => {\r\n                this.posts = res.posts\r\n                this.user = res.user\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .title{\r\n        font-weight: 700;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.title[data-v-3dd9ab06]{\n    font-weight: 700;\n}\n", "", {"version":3,"sources":["/./components/ProfileComponent.vue?f7b20510"],"names":[],"mappings":";AAsFA;IACA,iBAAA;CACA","file":"ProfileComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"card\">\r\n            <div class=\"card-content\">\r\n                <span class=\"card-title\">\r\n                    Nickname: {{user.nickname}}\r\n                </span>\r\n                <ul v-if=\"user\" class=\"collection\">\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Email\r\n                        </div>\r\n                        {{user.email}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Nickname\r\n                        </div>\r\n                        {{user.nickname}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Rating\r\n                        </div>\r\n                        {{user.rating ? user.rating : 0}}\r\n                    </li>\r\n                    <!--<li class=\"collection-item\"></li>-->\r\n                </ul>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && !user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"ban\">Ban user</a>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"unban\">Unban user</a>\r\n            </div>\r\n        </div>\r\n        <post-list-component></post-list-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import PostListComponent from './PostListComponent.vue'\r\n\r\n    export default\r\n    {\r\n        components: {\r\n            PostListComponent\r\n        },\r\n        data() {\r\n            return {\r\n                user: {}\r\n            }\r\n        },\r\n        created(){\r\n            this.getUser()\r\n        },\r\n        methods:{\r\n            getUser(){\r\n                let path = this.$route.path\r\n                let userId = path.split('/')[2]\r\n                $.get(`/user/${userId}`, (res) => {\r\n                    this.user = res\r\n                })\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            },\r\n            ban(){\r\n                $.get('/user/' + this.user.id + '/ban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get('/user/' + this.user.id + '/unban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .title{\r\n        font-weight: 700;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12790,7 +12864,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?480d462c"],"names":[],"mappings":";AAgFA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<template>\r\n    <div id=\"new-post-component\">\r\n            <ul data-collapsible=\"accordion\" class=\"collapsible\">\r\n                <li class=\"white\">\r\n                    <div class=\"collapsible-header\"><i class=\"material-icons\">add </i>New post</div>\r\n                    <div class=\"collapsible-body white\">\r\n                        <form id=\"new-post-form\" @submit.prevent=\"onSubmit\">\r\n                            <div class=\"input-field\">\r\n                                <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                                <label for=\"tags\">Tags</label>\r\n                            </div>\r\n                            <div class=\"input-field\">\r\n                                <textarea id=\"content\" name=\"content\" v-model=\"content\" class=\"materialize-textarea\"></textarea>\r\n                                <label for=\"content\">Content</label>\r\n                            </div>\r\n                            <div class=\"row\">\r\n                                <div class=\"file-field input-field left\">\r\n                                    <button class=\"btn\">Image\r\n                                        <input id=\"image\" name=\"image\" type=\"file\"/>\r\n                                    </button>\r\n                                    <div class=\"file-path-wrapper\">\r\n                                        <input type=\"text\" class=\"file-path validate\"/>\r\n                                    </div>\r\n                                </div>\r\n                                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                                    Submit<i class=\"material-icons right\">send</i>\r\n                                </button>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        data(){\r\n            return {\r\n                tagsArray:[],\r\n                content: ''\r\n            }\r\n        },\r\n        methods: {\r\n            onSubmit(){\r\n                $.ajax({\r\n                        method:'POST',\r\n                        url:'post', \r\n                        data: new FormData($('#new-post-form')[0]),\r\n                        cache: false,\r\n                        contentType: false,\r\n                        processData: false,\r\n                        success: res => {\r\n                            if(res.success)\r\n                            {\r\n                                this.tagsArray = []\r\n                                this.content = ''\r\n                                $('#new-post-component .collapsible-header,li').removeClass('active')\r\n                                $('#new-post-component .collapsible-body').hide()\r\n                                $('input[type=file]').val(\"\")\r\n                                $('.file-path-wrapper input').val(\"\")\r\n                                this.$store.commit('loadPosts', this.$route.path)\r\n                            }                \r\n                        }})\r\n            }\r\n        },\r\n        computed:{\r\n            tags:{\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    textarea{\r\n        margin: 0;\r\n    }\r\n    .collapsible-body{\r\n        height: auto;\r\n        padding: 0 10px 0;\r\n    }\r\n    .row{\r\n        padding: 5px 15px 5px;\r\n        margin-bottom: 0;\r\n    }\r\n    .file-field{\r\n        height: 36px;\r\n        margin-top: 0;\r\n    }\r\n    .file-field .btn{\r\n        height: 36px;\r\n        line-height: 36px;\r\n    }\r\n    .file-field .file-path{\r\n        height: 36px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n    display: block;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?2f89acfa"],"names":[],"mappings":";AAmFA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;IACA,eAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<template>\r\n    <div id=\"new-post-component\">\r\n            <ul class=\"card\">\r\n                <li class=\"white\">\r\n                    <div @click=\"toggleBody\" class=\"collapsible-header\"><i class=\"material-icons\">add </i>New post</div>\r\n                    <div v-if=\"showBody\" class=\"collapsible-body white\">\r\n                        <form id=\"new-post-form\" @submit.prevent=\"onSubmit\">\r\n                            <div class=\"input-field\">\r\n                                <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                                <label for=\"tags\">Tags</label>\r\n                            </div>\r\n                            <div class=\"input-field\">\r\n                                <textarea id=\"content\" name=\"content\" v-model=\"content\" class=\"materialize-textarea\"></textarea>\r\n                                <label for=\"content\">Content</label>\r\n                            </div>\r\n                            <div class=\"row\">\r\n                                <div class=\"file-field input-field left\">\r\n                                    <button class=\"btn\">Image\r\n                                        <input id=\"image\" name=\"image\" type=\"file\"/>\r\n                                    </button>\r\n                                    <div class=\"file-path-wrapper\">\r\n                                        <input type=\"text\" class=\"file-path validate\"/>\r\n                                    </div>\r\n                                </div>\r\n                                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                                    Submit<i class=\"material-icons right\">send</i>\r\n                                </button>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        data(){\r\n            return {\r\n                tagsArray:[],\r\n                content: '',\r\n                showBody: false\r\n            }\r\n        },\r\n        methods: {\r\n            onSubmit(){\r\n                $.ajax({\r\n                        method:'POST',\r\n                        url:'post',\r\n                        data: new FormData($('#new-post-form')[0]),\r\n                        cache: false,\r\n                        contentType: false,\r\n                        processData: false,\r\n                        success: res => {\r\n                            if(res.success)\r\n                            {\r\n                                this.tagsArray = []\r\n                                this.content = ''\r\n                                this.showBody = false\r\n                                $('input[type=file]').val(\"\")\r\n                                $('.file-path-wrapper input').val(\"\")\r\n                                this.$store.commit('loadPosts', this.$route.path)\r\n                            }\r\n                        }})\r\n            },\r\n            toggleBody(){\r\n                this.showBody = !this.showBody\r\n            }\r\n        },\r\n        computed:{\r\n            tags:{\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    textarea{\r\n        margin: 0;\r\n    }\r\n    .collapsible-body{\r\n        height: auto;\r\n        padding: 0 10px 0;\r\n        display: block;\r\n    }\r\n    .row{\r\n        padding: 5px 15px 5px;\r\n        margin-bottom: 0;\r\n    }\r\n    .file-field{\r\n        height: 36px;\r\n        margin-top: 0;\r\n    }\r\n    .file-field .btn{\r\n        height: 36px;\r\n        line-height: 36px;\r\n    }\r\n    .file-field .file-path{\r\n        height: 36px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12818,7 +12892,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?57a317a8"],"names":[],"mappings":";AAgDA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div class=\"subscriptions row collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?dfe0869c"],"names":[],"mappings":";AAkDA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div  v-if=\"$store.state.subscriptions.length\" class=\"subscriptions row collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div  v-if=\"$store.state.bans.length\" class=\"bans row collection\">\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12846,7 +12920,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?019555a8"],"names":[],"mappings":";AA6IA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?0528556f"],"names":[],"mappings":";AAwJA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deletePost\">Delete post</a>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user && !this.$store.state.user.isBanned\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deletePost(){\r\n                $.get(`/post/${this.post.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n                })\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -13377,25 +13451,37 @@ if (false) {
 module.exports={render:function (){var _vm=this;
   return _vm._h('div', [_vm._h('div', {
     staticClass: "card"
-  }, [(_vm.user) ? _vm._h('ul', {
+  }, [_vm._h('div', {
+    staticClass: "card-content"
+  }, [_vm._h('span', {
+    staticClass: "card-title"
+  }, ["\n                Nickname: " + _vm._s(_vm.user.nickname) + "\n            "]), " ", (_vm.user) ? _vm._h('ul', {
     staticClass: "collection"
   }, [_vm._h('li', {
     staticClass: "collection-item"
   }, [_vm._h('div', {
     staticClass: "title"
-  }, ["\n                    Email\n                "]), "\n                " + _vm._s(_vm.user.email) + "\n            "]), " ", _vm._h('li', {
+  }, ["\n                        Email\n                    "]), "\n                    " + _vm._s(_vm.user.email) + "\n                "]), " ", _vm._h('li', {
     staticClass: "collection-item"
   }, [_vm._h('div', {
     staticClass: "title"
-  }, ["\n                    Nickname\n                "]), "\n                " + _vm._s(_vm.user.nickname) + "\n            "]), " ", _vm._h('li', {
+  }, ["\n                        Nickname\n                    "]), "\n                    " + _vm._s(_vm.user.nickname) + "\n                "]), " ", _vm._h('li', {
     staticClass: "collection-item"
   }, [_vm._h('div', {
     staticClass: "title"
-  }, ["\n                    Rating\n                "]), "\n                " + _vm._s(_vm.user.rating) + "\n            "]), " "]) : _vm._e()]), " ", _vm._h('post-list-component', {
-    attrs: {
-      "posts": _vm.posts
+  }, ["\n                        Rating\n                    "]), "\n                    " + _vm._s(_vm.user.rating ? _vm.user.rating : 0) + "\n                "]), " "]) : _vm._e()]), " ", (_vm.$store.state.user.isAdmin && !_vm.user.isBanned) ? _vm._h('div', {
+    staticClass: "card-action admin-actions"
+  }, [_vm._h('a', {
+    on: {
+      "click": _vm.ban
     }
-  })])
+  }, ["Ban user"])]) : _vm._e(), " ", (_vm.$store.state.user.isAdmin && _vm.user.isBanned) ? _vm._h('div', {
+    staticClass: "card-action admin-actions"
+  }, [_vm._h('a', {
+    on: {
+      "click": _vm.unban
+    }
+  }, ["Unban user"])]) : _vm._e()]), " ", _vm._h('post-list-component')])
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
@@ -13468,7 +13554,7 @@ module.exports={render:function (){var _vm=this;
     staticClass: "row"
   }, [_vm._h('div', {
     staticClass: "col s8"
-  }, [(this.$store.state.user) ? [_vm._h('new-post-component')] : _vm._e(), " ", _vm._h('post-list-component')]), " ", _vm._h('nav-component', {
+  }, [(this.$store.state.user && !this.$store.state.user.isBanned) ? [_vm._h('new-post-component')] : _vm._e(), " ", _vm._h('post-list-component')]), " ", _vm._h('nav-component', {
     staticClass: "col s4"
   })])
 },staticRenderFns: []}
@@ -13489,13 +13575,17 @@ module.exports={render:function (){var _vm=this;
       "id": "new-post-component"
     }
   }, [_vm._h('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "accordion"
-    }
+    staticClass: "card"
   }, [_vm._h('li', {
     staticClass: "white"
-  }, [_vm._m(0), " ", _vm._h('div', {
+  }, [_vm._h('div', {
+    staticClass: "collapsible-header",
+    on: {
+      "click": _vm.toggleBody
+    }
+  }, [_vm._h('i', {
+    staticClass: "material-icons"
+  }, ["add "]), "New post"]), " ", (_vm.showBody) ? _vm._h('div', {
     staticClass: "collapsible-body white"
   }, [_vm._h('form', {
     attrs: {
@@ -13561,14 +13651,8 @@ module.exports={render:function (){var _vm=this;
     attrs: {
       "for": "content"
     }
-  }, ["Content"])]), " ", _vm._m(1)])])])])])
+  }, ["Content"])]), " ", _vm._m(0)])]) : _vm._e()])])])
 },staticRenderFns: [function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "collapsible-header"
-  }, [_vm._h('i', {
-    staticClass: "material-icons"
-  }, ["add "]), "New post"])
-},function (){var _vm=this;
   return _vm._h('div', {
     staticClass: "row"
   }, [_vm._h('div', {
@@ -13655,7 +13739,7 @@ module.exports={render:function (){var _vm=this;
     staticClass: "tag-header row"
   }, [_vm._h('tag-header-component', {
     staticClass: "col s12"
-  })]) : _vm._e(), " ", _vm._h('div', {
+  })]) : _vm._e(), " ", (_vm.$store.state.subscriptions.length) ? _vm._h('div', {
     staticClass: "subscriptions row collection"
   }, [_vm._h('div', {
     staticClass: "collection-item"
@@ -13666,7 +13750,9 @@ module.exports={render:function (){var _vm=this;
         "to": '/post/tag/' + subscription.Tag.id
       }
     }, ["\n                    " + _vm._s(subscription.Tag.name) + "\n                "])])
-  })]), " ", _vm._h('div', {
+  })])]) : _vm._e(), " ", (_vm.$store.state.bans.length) ? _vm._h('div', {
+    staticClass: "bans row collection"
+  }, [_vm._h('div', {
     staticClass: "collection-item"
   }, ["\n            Bans\n        "]), " ", _vm._h('ul', [_vm._l((_vm.$store.state.bans), function(ban) {
     return _vm._h('li', [_vm._h('router-link', {
@@ -13675,7 +13761,7 @@ module.exports={render:function (){var _vm=this;
         "to": '/post/tag/' + ban.Tag.id
       }
     }, [_vm._s(ban.Tag.name) + "\n                "])])
-  })])])])
+  })])]) : _vm._e()])
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
@@ -13840,7 +13926,9 @@ module.exports={render:function (){var _vm=this;
     }
   }, [_vm._h('ul', [(!_vm.$store.state.posts.length) ? _vm._h('li', {
     staticClass: "card"
-  }, ["So empty."]) : _vm._e(), " ", _vm._l((_vm.posts), function(post, index) {
+  }, [_vm._h('div', {
+    staticClass: "card-content"
+  }, ["\n                So empty.\n            "])]) : _vm._e(), " ", _vm._l((_vm.posts), function(post, index) {
     return _vm._h('li', {
       staticClass: "card"
     }, [_vm._h('post-component', {
@@ -13918,7 +14006,13 @@ module.exports={render:function (){var _vm=this;
     on: {
       "click": _vm.thumbDown
     }
-  }, ["thumb_down"])]) : _vm._e()])]), " ", _vm._h('div', {
+  }, ["thumb_down"])]) : _vm._e()])]), " ", (_vm.$store.state.user && (_vm.$store.state.user.isAdmin || _vm.$store.state.user.id == _vm.post.UserId)) ? _vm._h('div', {
+    staticClass: "card-action admin-actions collection-item"
+  }, [_vm._h('a', {
+    on: {
+      "click": _vm.deletePost
+    }
+  }, ["Delete post"])]) : _vm._e(), " ", _vm._h('div', {
     staticClass: "comments row collection-item"
   }, [_vm._h('div', {
     staticClass: "col s12"
@@ -13943,7 +14037,7 @@ module.exports={render:function (){var _vm=this;
         "comment": comment
       }
     })])
-  }), " ", (this.$store.state.user) ? _vm._h('li', {
+  }), " ", (this.$store.state.user && !this.$store.state.user.isBanned) ? _vm._h('li', {
     staticClass: "collection-item"
   }, [_vm._h('new-comment-component', {
     attrs: {
@@ -14283,12 +14377,16 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         if (__WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.get('token')) {
             this.$store.commit('setUser', jwt(__WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.get('token')));
         }
+        this.$store.commit('loadPosts', this.$route.path);
     },
 
     methods: {
         logout: function logout() {
             this.$store.commit('setUser', null);
             __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.remove('token');
+        },
+        updateSearch: function updateSearch(e) {
+            this.$store.commit('updateSearch', e.target.value);
         }
     },
     watch: {

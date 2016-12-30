@@ -1,9 +1,9 @@
 <template>
     <div id="new-post-component">
-            <ul data-collapsible="accordion" class="collapsible">
+            <ul class="card">
                 <li class="white">
-                    <div class="collapsible-header"><i class="material-icons">add </i>New post</div>
-                    <div class="collapsible-body white">
+                    <div @click="toggleBody" class="collapsible-header"><i class="material-icons">add </i>New post</div>
+                    <div v-if="showBody" class="collapsible-body white">
                         <form id="new-post-form" @submit.prevent="onSubmit">
                             <div class="input-field">
                                 <input id="tags" type="text" name="tags" v-model="tags"/>
@@ -38,14 +38,15 @@
         data(){
             return {
                 tagsArray:[],
-                content: ''
+                content: '',
+                showBody: false
             }
         },
         methods: {
             onSubmit(){
                 $.ajax({
                         method:'POST',
-                        url:'post', 
+                        url:'post',
                         data: new FormData($('#new-post-form')[0]),
                         cache: false,
                         contentType: false,
@@ -55,13 +56,15 @@
                             {
                                 this.tagsArray = []
                                 this.content = ''
-                                $('#new-post-component .collapsible-header,li').removeClass('active')
-                                $('#new-post-component .collapsible-body').hide()
+                                this.showBody = false
                                 $('input[type=file]').val("")
                                 $('.file-path-wrapper input').val("")
                                 this.$store.commit('loadPosts', this.$route.path)
-                            }                
+                            }
                         }})
+            },
+            toggleBody(){
+                this.showBody = !this.showBody
             }
         },
         computed:{
@@ -84,6 +87,7 @@
     .collapsible-body{
         height: auto;
         padding: 0 10px 0;
+        display: block;
     }
     .row{
         padding: 5px 15px 5px;

@@ -71,10 +71,9 @@ PostController
     .get('/post',
         authMiddleware(true),
         async(ctx) => {
-            let id = ctx.user.id
             ctx.body = await getPosts(ctx.user ? ctx.user.id : null, ctx.user ? {
                     id: {
-                        $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + id + "))")
+                        $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
                     }
                 } : null) //exclude banned posts when user is logged in
         })
@@ -154,6 +153,28 @@ PostController
             {
                 ctx.body = {success: true}
             }
+        })
+    
+    
+    .get('/user/:id/profile',
+        authMiddleware(true),
+        async(ctx) => {
+            let userId = ctx.params.id
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, {
+                UserId: userId
+            })
+        })
+    
+    .get('/post/:id/delete',
+        authMiddleware(),
+        async(ctx) => {
+            let postId = ctx.params.id
+            await Post.destroy({
+                where:{
+                    id: postId
+                }
+            })
+            ctx.body = {success: true}
         })
 
 export default PostController

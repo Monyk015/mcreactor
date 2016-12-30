@@ -3,7 +3,7 @@
         <div v-if="ifTagSection" class="tag-header row">
             <tag-header-component class="col s12"></tag-header-component>
         </div>
-        <div class="subscriptions row collection">
+        <div  v-if="$store.state.subscriptions.length" class="subscriptions row collection">
             <div class="collection-item">
                 Subscriptions
             </div>
@@ -14,6 +14,8 @@
                     </router-link>
                 </li>
             </ul>
+        </div>
+        <div  v-if="$store.state.bans.length" class="bans row collection">
             <div class="collection-item">
                 Bans
             </div>

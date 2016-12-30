@@ -2,7 +2,7 @@
 <template>
     <div class="row">
         <div class="col s8">
-            <template v-if="this.$store.state.user">
+            <template v-if="this.$store.state.user && !this.$store.state.user.isBanned">
                 <new-post-component></new-post-component>
             </template>
             <post-list-component></post-list-component>

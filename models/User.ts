@@ -29,7 +29,7 @@ const User : UserModel = db.define<UserInstance, UserAttribute>("User", {
         allowNull: false,
     },
     email: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
         allowNull: false,
         unique: true
     },

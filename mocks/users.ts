@@ -2,9 +2,9 @@ const users = [{
     "isAdmin": true,
     "rating": 21,
     "isBanned": null,
-    "email": "dfowler0@mapy.cz",
-    "nickname": "jknight0",
-    "password": "TLCBKldVE"
+    "email": "admin@gmail.com",
+    "nickname": "admin",
+    "password": "admin"
 }, {
 
     "isAdmin": false,

@@ -7,7 +7,8 @@ export default {
         user: null,
         subscriptions: [],
         posts: [],
-        bans: []
+        bans: [],
+        search: ''
     },
     mutations: {
         setUser(state, user) {
@@ -29,10 +30,32 @@ export default {
         loadPosts(state, path){
             if(path == "/")
                 path = 'post'
+            console.log(path)
             $.get(path, (posts) => {
                 state.posts = posts
                 console.log(state.posts)
             })
+        },
+        updateSearch(state, newSearch)
+        {
+            state.search = newSearch
+        }
+    },
+    getters: {
+        getFoundPosts(state){
+            let posts = state.search ? state.posts.filter((post) => {
+                    let isFine = false
+                    post.Tags.forEach(tag => {
+                        if(tag.name.includes(state.search))
+                        {
+                            isFine = true
+                        }
+                    })
+                    if(post.content.includes(state.search))
+                        isFine = true
+                    return isFine
+                }) : state.posts
+            return posts
         }
     }
 }

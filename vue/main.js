@@ -51,11 +51,15 @@ new Vue({
         {
             this.$store.commit('setUser', jwt(Cookies.get('token')))
         }
+        this.$store.commit('loadPosts', this.$route.path)
     },
     methods: {
         logout() {
             this.$store.commit('setUser', null)
             Cookies.remove('token')
+        },
+        updateSearch(e){
+            this.$store.commit('updateSearch', e.target.value)
         }
     },
     watch:{

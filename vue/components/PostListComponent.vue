@@ -2,7 +2,11 @@
 <template>
     <div id="post-list-component">
         <ul>
-            <li v-if="!$store.state.posts.length" class="card">So empty.</li>
+            <li v-if="!$store.state.posts.length" class="card">
+                <div class="card-content">
+                    So empty.
+                </div>
+            </li>
             <li v-for="(post,index) in posts" class="card">
                 <post-component :post="post"></post-component>
             </li>
@@ -28,8 +32,7 @@
         },
         computed:{
             posts(){
-                console.log(this.$store.state.posts)
-                return this.$store.state.posts
+                return this.$store.getters.getFoundPosts
             }
         }
 

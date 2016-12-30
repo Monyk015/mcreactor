@@ -7,6 +7,7 @@ import {Context} from 'koa';
 import {User, Subscription, Tag, Ban, Post} from '../models/models';
 import authMiddleware from '../middlewares/AuthMiddleware';
 import getPosts from "../lib/post";
+import adminMiddleware from "../middlewares/AdminMiddleware";
 
 const UserController = new Router()
 
@@ -23,31 +24,7 @@ UserController
     .get('/user/:id',
         async(ctx) => {
             let id = ctx.params.id
-            
-            let posts = await getPosts(id, {
-                UserId: id
-            })
-            let user = null
-            
-            if (posts.length)
-            {
-                user = posts[0].User
-            }
-            else
-            {
-                user = await User.findById(id, {raw: true})
-            }
-            
-            ctx.body = {posts, user}
-        })
-    
-    .get('/user/:id/profile',
-        authMiddleware(true),
-        async(ctx) => {
-            let userId = ctx.params.id
-            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, {
-                UserId: userId
-            })
+            ctx.body = await User.findById(id)
         })
     
     .put('/user/:id',
@@ -169,6 +146,41 @@ UserController
                 ctx.body = {success: false, message: 'Something went wrong'}
                 return
             }
+            ctx.body = {success: true}
+        })
+    
+    .get('/user/:id/ban',
+        authMiddleware(),
+        adminMiddleware,
+        async(ctx) => {
+            let id = ctx.params.id
+            await User.update({
+                isBanned: true
+            }, {
+                where: {
+                    id: id
+                }
+            })
+            await Post.destroy({
+                where: {
+                    UserId: id
+                }
+            })
+            ctx.body = {success: true}
+        })
+    
+    .get('/user/:id/unban',
+        authMiddleware(),
+        adminMiddleware,
+        async(ctx) => {
+            let id = ctx.params.id
+            await User.update({
+                isBanned: false
+            }, {
+                where: {
+                    id: id
+                }
+            })
             ctx.body = {success: true}
         })
 

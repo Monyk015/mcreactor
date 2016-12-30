@@ -25,6 +25,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)" class="card-action admin-actions collection-item">
+            <a @click="deletePost">Delete post</a>
+        </div>
         <div class="comments row collection-item">
             <div class="col s12">
                 <div @click="triggerComments" class="trigger valign-wrapper">
@@ -39,7 +42,7 @@
                         <li v-for="comment in post.Commentaries" class="collection-item">
                             <comment-component :comment="comment"></comment-component>
                         </li>
-                        <li v-if="this.$store.state.user" class="collection-item">
+                        <li v-if="this.$store.state.user && !this.$store.state.user.isBanned" class="collection-item">
                             <new-comment-component :post="post"></new-comment-component>
                         </li>
                     </ul>
@@ -120,6 +123,14 @@
                     })
                     this.rate = -1
                 }
+            },
+            deletePost(){
+                $.get(`/post/${this.post.id}/delete`, (res) => {
+                    if(res.success)
+                {
+                    this.$store.commit('loadPosts', this.$route.path)
+                }
+                })
             }
         },
         created(){

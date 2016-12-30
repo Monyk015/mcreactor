@@ -1,29 +1,40 @@
 <template>
     <div>
         <div class="card">
-            <ul v-if="user" class="collection">
-                <li class="collection-item">
-                    <div class="title">
-                        Email
-                    </div>
-                    {{user.email}}
-                </li>
-                <li class="collection-item">
-                    <div class="title">
-                        Nickname
-                    </div>
-                    {{user.nickname}}
-                </li>
-                <li class="collection-item">
-                    <div class="title">
-                        Rating
-                    </div>
-                    {{user.rating}}
-                </li>
-                <!--<li class="collection-item"></li>-->
-            </ul>
+            <div class="card-content">
+                <span class="card-title">
+                    Nickname: {{user.nickname}}
+                </span>
+                <ul v-if="user" class="collection">
+                    <li class="collection-item">
+                        <div class="title">
+                            Email
+                        </div>
+                        {{user.email}}
+                    </li>
+                    <li class="collection-item">
+                        <div class="title">
+                            Nickname
+                        </div>
+                        {{user.nickname}}
+                    </li>
+                    <li class="collection-item">
+                        <div class="title">
+                            Rating
+                        </div>
+                        {{user.rating ? user.rating : 0}}
+                    </li>
+                    <!--<li class="collection-item"></li>-->
+                </ul>
+            </div>
+            <div v-if="$store.state.user.isAdmin && !user.isBanned" class="card-action admin-actions">
+                <a @click="ban">Ban user</a>
+            </div>
+            <div v-if="$store.state.user.isAdmin && user.isBanned" class="card-action admin-actions">
+                <a @click="unban">Unban user</a>
+            </div>
         </div>
-        <post-list-component :posts="posts"></post-list-component>
+        <post-list-component></post-list-component>
     </div>
 </template>
 
@@ -37,17 +48,37 @@
         },
         data() {
             return {
-                posts: [],
-                user: null
+                user: {}
             }
         },
         created(){
-            let path = this.$route.path //'/user/:id/profile'
-            let userId = path.split('/')[2]
-            $.get(`/user/${userId}`, (res) => {
-                this.posts = res.posts
-                this.user = res.user
-            })
+            this.getUser()
+        },
+        methods:{
+            getUser(){
+                let path = this.$route.path
+                let userId = path.split('/')[2]
+                $.get(`/user/${userId}`, (res) => {
+                    this.user = res
+                })
+                this.$store.commit('loadPosts', this.$route.path)
+            },
+            ban(){
+                $.get('/user/' + this.user.id + '/ban', (res) => {
+                    if(res.success)
+                    {
+                        this.getUser()
+                    }
+                })
+            },
+            unban(){
+                $.get('/user/' + this.user.id + '/unban', (res) => {
+                    if(res.success)
+                    {
+                        this.getUser()
+                    }
+                })
+            }
         }
     }
 </script>

@@ -17,10 +17,17 @@ html
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css")
   body.amber.lighten-4
     #body
-        nav.yellow.darken-4
+        nav.yellow.darken-4.row
             .nav-wrapper.row
-                a.brand-logo.col.s3(href='#') Memasiki
-                ul#nav.right.hide-on-med-and-down
+                .col.s1
+                    a.brand-logo(href='#') Memasiki
+                form.col.s3
+                    .input-field
+                        input#search(type='search', :value="$store.state.search", @input="updateSearch")
+                        label(for='search')
+                            i.material-icons search
+                        i.material-icons close
+                ul#nav.right.hide-on-med-and-down.col
                     li
                         router-link(to='/') Home
                     span(v-if="$store.state.user")
