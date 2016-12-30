@@ -6,17 +6,19 @@ export default {
     state: {
         user: null,
         subscriptions: [],
-        posts: []
+        posts: [],
+        bans: []
     },
     mutations: {
         setUser(state, user) {
             state.user = user
         },
-        loadSubscriptions(state){
+        loadSubscriptionsAndBans(state){
             $.get(`/user/${state.user.id}/subscriptions`, (res) => {
                 if(res.success)
                 {
                     state.subscriptions = res.subscriptions
+                    state.bans = res.bans
                 }
                 else
                 {

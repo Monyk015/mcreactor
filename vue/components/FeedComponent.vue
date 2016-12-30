@@ -31,7 +31,7 @@
         created() {
             this.$store.commit('loadPosts', this.$route.path)
             if(this.$store.state.user)
-                this.$store.commit('loadSubscriptions')
+                this.$store.commit('loadSubscriptionsAndBans')
         }
     }
 </script>

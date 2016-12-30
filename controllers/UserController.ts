@@ -4,7 +4,7 @@
 
 import * as Router from 'koa-router';
 import {Context} from 'koa';
-import {User, Subscription, Tag} from '../models/models';
+import {User, Subscription, Tag, Ban, Post} from '../models/models';
 import authMiddleware from '../middlewares/AuthMiddleware';
 import getPosts from "../lib/post";
 
@@ -35,22 +35,26 @@ UserController
             }
             else
             {
-                user = await User.findById(id, {raw:true})
+                user = await User.findById(id, {raw: true})
             }
             
             ctx.body = {posts, user}
         })
     
     .get('/user/:id/profile',
-        (ctx) => {
-            ctx.render('profile')
+        authMiddleware(true),
+        async(ctx) => {
+            let userId = ctx.params.id
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, {
+                UserId: userId
+            })
         })
     
     .put('/user/:id',
         async(ctx: Context) => {
             let id = ctx.params.id
             let user = ctx.request.body
-            const foundUser = await User.findById(id)//todo: restring access
+            const foundUser = await User.findById(id)
             if (foundUser)
             {
                 ctx.body = (await foundUser.update(user)).get()
@@ -67,7 +71,13 @@ UserController
                 },
                 include: [Tag]
             })
-            ctx.body = {success: true, subscriptions: subscriptions}
+            let bans = await Ban.findAll({
+                where: {
+                    UserId: id
+                },
+                include: [Tag]
+            })
+            ctx.body = {success: true, subscriptions: subscriptions, bans: bans}
         })
     
     .get('/user/:id/tag/:tagId/subscribe',
@@ -76,6 +86,12 @@ UserController
             {
                 let userId = ctx.params.id
                 let tagId = ctx.params.tagId
+                await Ban.destroy({
+                    where: {
+                        UserId: userId,
+                        TagId: tagId
+                    }
+                })
                 await Subscription.create({
                     UserId: userId,
                     TagId: tagId
@@ -96,6 +112,52 @@ UserController
                 let userId = ctx.params.id
                 let tagId = ctx.params.tagId
                 await Subscription.destroy({
+                    where: {
+                        UserId: userId,
+                        TagId: tagId
+                    }
+                })
+            }
+            catch (e)
+            {
+                ctx.body = {success: false, message: 'Something went wrong'}
+                return
+            }
+            ctx.body = {success: true}
+        })
+    
+    .get('/user/:id/tag/:tagId/ban',
+        async(ctx) => {
+            try
+            {
+                let userId = ctx.params.id
+                let tagId = ctx.params.tagId
+                await Subscription.destroy({
+                    where: {
+                        UserId: userId,
+                        TagId: tagId
+                    }
+                })
+                await Ban.create({
+                    UserId: userId,
+                    TagId: tagId
+                })
+            }
+            catch (e)
+            {
+                ctx.body = {success: false, message: 'Something went wrong'}
+                return
+            }
+            ctx.body = {success: true}
+        })
+    
+    .get('/user/:id/tag/:tagId/unban',
+        async(ctx) => {
+            try
+            {
+                let userId = ctx.params.id
+                let tagId = ctx.params.tagId
+                await Ban.destroy({
                     where: {
                         UserId: userId,
                         TagId: tagId

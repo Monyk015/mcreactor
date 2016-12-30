@@ -37,7 +37,7 @@ PostController
                     UserId: userId
                 }) as any
                 
-                if(tags.length)
+                if (tags.length)
                 {
                     await Tag.bulkCreate(tags, {
                         updateOnDuplicate: ['name']
@@ -71,7 +71,12 @@ PostController
     .get('/post',
         authMiddleware(true),
         async(ctx) => {
-            ctx.body = await getPosts(ctx.user? ctx.user.id : null)
+            let id = ctx.user.id
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, ctx.user ? {
+                    id: {
+                        $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + id + "))")
+                    }
+                } : null) //exclude banned posts when user is logged in
         })
     
     .get('/post/tag/:id',
@@ -84,17 +89,17 @@ PostController
                 }
             })
         })
-        
+    
     .get('/post/user/subscribed',
-    authMiddleware(),
-    async (ctx) => {
-        let id = ctx.user.id
-        ctx.body = await getPosts(ctx.user.id, {
-            id: {
-                $in: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
-            }
+        authMiddleware(),
+        async(ctx) => {
+            let id = ctx.user.id
+            ctx.body = await getPosts(ctx.user.id, {
+                id: {
+                    $in: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Subscriptions` where `UserId` = " + id + "))")
+                }
+            })
         })
-    })
     
     //ajax rate route
     .get('/post/:id/rate/:rate',

@@ -8,8 +8,19 @@
                 Subscriptions
             </div>
             <ul>
-                <li  v-for="subscription in $store.state.subscriptions">
-                    <router-link class="collection-item" v-bind:to="'/post/tag/' + subscription.Tag.id">{{subscription.Tag.name}}</router-link>
+                <li v-for="subscription in $store.state.subscriptions">
+                    <router-link class="collection-item" v-bind:to="'/post/tag/' + subscription.Tag.id">
+                        {{subscription.Tag.name}}
+                    </router-link>
+                </li>
+            </ul>
+            <div class="collection-item">
+                Bans
+            </div>
+            <ul>
+                <li v-for="ban in $store.state.bans">
+                    <router-link class="collection-item" v-bind:to="'/post/tag/' + ban.Tag.id">{{ban.Tag.name}}
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -20,7 +31,7 @@
     import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'
 
     export default{
-        components:{
+        components: {
             TagHeaderComponent
         },
         data(){

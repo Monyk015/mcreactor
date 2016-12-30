@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "../public";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 63);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -511,7 +511,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 'use strict';
 
-var base64_url_decode = __webpack_require__(35);
+var base64_url_decode = __webpack_require__(36);
 
 module.exports = function (token,options) {
   if (typeof token !== 'string') {
@@ -718,10 +718,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(19)
+__vue_exports__ = __webpack_require__(20)
 
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(52)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -756,6 +756,46 @@ module.exports = __vue_exports__
 
 /***/ },
 /* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by Monyk on 30.12.2016.
+ */
+
+/* harmony default export */ exports["a"] = {
+    state: {
+        user: null,
+        subscriptions: [],
+        posts: [],
+        bans: []
+    },
+    mutations: {
+        setUser: function setUser(state, user) {
+            state.user = user;
+        },
+        loadSubscriptionsAndBans: function loadSubscriptionsAndBans(state) {
+            $.get('/user/' + state.user.id + '/subscriptions', function (res) {
+                if (res.success) {
+                    state.subscriptions = res.subscriptions;
+                    state.bans = res.bans;
+                } else {
+                    console.log('Something went wrong');
+                }
+            });
+        },
+        loadPosts: function loadPosts(state, path) {
+            if (path == "/") path = 'post';
+            $.get(path, function (posts) {
+                state.posts = posts;
+                console.log(state.posts);
+            });
+        }
+    }
+};
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -987,17 +1027,17 @@ function kindOf(val) {
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(14)
+__vue_exports__ = __webpack_require__(15)
 
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(47)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1031,20 +1071,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(53)
+__webpack_require__(54)
 
 /* script */
-__vue_exports__ = __webpack_require__(18)
+__vue_exports__ = __webpack_require__(19)
 
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(43)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1079,20 +1119,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(55)
+__webpack_require__(56)
 
 /* script */
-__vue_exports__ = __webpack_require__(23)
+__vue_exports__ = __webpack_require__(24)
 
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(45)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1127,20 +1167,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(60)
+__webpack_require__(61)
 
 /* script */
-__vue_exports__ = __webpack_require__(24)
+__vue_exports__ = __webpack_require__(25)
 
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(51)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1175,7 +1215,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3243,7 +3283,7 @@ module.exports = VueRouter;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11337,10 +11377,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(62), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(63), __webpack_require__(4)))
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 /**
@@ -11873,15 +11913,15 @@ return index;
 })));
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FeedComponent_NewPostComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__);
 //
 //
@@ -11912,17 +11952,28 @@ return index;
     },
     created: function created() {
         this.$store.commit('loadPosts', this.$route.path);
-        if (this.$store.state.user) this.$store.commit('loadSubscriptions');
+        if (this.$store.state.user) this.$store.commit('loadSubscriptionsAndBans');
     }
 };
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11960,10 +12011,20 @@ return index;
 };
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11992,9 +12053,19 @@ return index;
 
             if (this.$store.state.subscriptions) {
                 return this.$store.state.subscriptions.some(function (sub) {
-                    console.log(_this.tagId);
-                    console.log(sub.Tag.id);
                     if (sub.Tag.id == _this.tagId) {
+                        return true;
+                    }
+                });
+            }
+            return false;
+        },
+        ifBanned: function ifBanned() {
+            var _this2 = this;
+
+            if (this.$store.state.subscriptions) {
+                return this.$store.state.bans.some(function (ban) {
+                    if (ban.Tag.id == _this2.tagId) {
                         return true;
                     }
                 });
@@ -12004,32 +12075,54 @@ return index;
     },
     methods: {
         getCurrentTag: function getCurrentTag() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.tagId = this.$route.path.split('/')[3];
             $.get('/tag/' + this.tagId, function (res) {
                 if (res.success) {
-                    _this2.tagName = res.tagName;
+                    _this3.tagName = res.tagName;
                 }
             });
         },
         subscribe: function subscribe() {
-            var _this3 = this;
+            var _this4 = this;
 
             $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/subscribe', function (res) {
                 if (res.success) {
-                    _this3.$store.commit('loadSubscriptions');
+                    _this4.$store.commit('loadSubscriptionsAndBans');
                 } else {
                     console.log('subscription went wrong');
                 }
             });
         },
         unsubscribe: function unsubscribe() {
-            var _this4 = this;
+            var _this5 = this;
 
             $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/unsubscribe', function (res) {
                 if (res.success) {
-                    _this4.$store.commit('loadSubscriptions');
+                    _this5.$store.commit('loadSubscriptionsAndBans');
+                } else {
+                    console.log('unsubscription went wrong');
+                }
+            });
+        },
+        ban: function ban() {
+            var _this6 = this;
+
+            $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/ban', function (res) {
+                if (res.success) {
+                    _this6.$store.commit('loadSubscriptionsAndBans');
+                } else {
+                    console.log('unsubscription went wrong');
+                }
+            });
+        },
+        unban: function unban() {
+            var _this7 = this;
+
+            $.get('/user/' + this.$store.state.user.id + '/tag/' + this.tagId + '/unban', function (res) {
+                if (res.success) {
+                    _this7.$store.commit('loadSubscriptionsAndBans');
                 } else {
                     console.log('unsubscription went wrong');
                 }
@@ -12042,7 +12135,7 @@ return index;
 };
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12127,7 +12220,7 @@ return index;
 };
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12188,11 +12281,11 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__);
 //
 //
@@ -12228,13 +12321,13 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
 //
 //
@@ -12367,7 +12460,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12461,7 +12554,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12505,7 +12598,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12566,7 +12659,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12633,7 +12726,7 @@ var jwt = __webpack_require__(3);
 };
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12647,7 +12740,7 @@ exports.push([module.i, "\n.card[data-v-03680cfd]{\n    padding: 25px;\n}\n", ""
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12661,7 +12754,7 @@ exports.push([module.i, "\n#submit-comment[data-v-2d07a4c9]{\n    margin: 5px;\n
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12675,7 +12768,7 @@ exports.push([module.i, "\n.title[data-v-3dd9ab06]{\n    font-weight: 700;\n}\n"
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12689,7 +12782,7 @@ exports.push([module.i, "\n.row[data-v-42a953c3]{\n    margin-bottom: 0;\n}\n.us
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -12703,20 +12796,6 @@ exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.colla
 
 
 /***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"TagHeaderComponent.vue","sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12725,7 +12804,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?4bbcd6d2"],"names":[],"mappings":";AAqCA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div class=\"subscriptions row collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li  v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">{{subscription.Tag.name}}</router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components:{\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\nbutton[data-v-61782d42]{\n    margin-top: 15px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/TagHeaderComponent.vue?80e5758a"],"names":[],"mappings":";AA2HA;IACA,iBAAA;CACA","file":"TagHeaderComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"tagname center-align\"><h4>{{tagName}}</h4></div>\r\n        <div class=\"row\">\r\n            <button @click=\"subscribe\" v-if=\"$store.state.user && !ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect waves-light btn subscribe-button\">Subscribe\r\n            </button>\r\n            <button @click=\"unsubscribe\" v-if=\"$store.state.user && ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Unsubscribe\r\n            </button>\r\n            <button @click=\"ban\" v-if=\"$store.state.user && !ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Ban\r\n            </button>\r\n            <button @click=\"unban\" v-if=\"$store.state.user && ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect wawes-light btn subscribe-button\">Unban\r\n            </button>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagId: null,\r\n                tagName: ''\r\n            }\r\n        },\r\n        created(){\r\n            this.getCurrentTag()\r\n        },\r\n        computed: {\r\n            ifSubscribed() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.subscriptions.some((sub) => {\r\n                        if(sub.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            },\r\n            ifBanned() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.bans.some((ban) => {\r\n                        if(ban.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            }\r\n        },\r\n        methods: {\r\n            getCurrentTag(){\r\n                this.tagId = this.$route.path.split('/')[3]\r\n                $.get(`/tag/${this.tagId}`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.tagName = res.tagName\r\n                    }\r\n                })\r\n            },\r\n            subscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/subscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('subscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unsubscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unsubscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            ban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/ban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            }\r\n        },\r\n        watch: {\r\n            '$route': 'getCurrentTag'\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    button{\r\n        margin-top: 15px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12739,7 +12818,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?57a317a8"],"names":[],"mappings":";AAgDA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div class=\"subscriptions row collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul>\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -12753,13 +12832,27 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?019555a8"],"names":[],"mappings":";AA6IA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
 
 /***/ },
 /* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?019555a8"],"names":[],"mappings":";AA6IA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(this.post.rating == null)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+/* 35 */
 /***/ function(module, exports) {
 
 /**
@@ -12803,10 +12896,10 @@ module.exports = typeof window !== 'undefined' && window.atob && window.atob.bin
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-var atob = __webpack_require__(34);
+var atob = __webpack_require__(35);
 
 function b64DecodeUnicode(str) {
   return decodeURIComponent(atob(str).replace(/(.)/g, function (m, p) {
@@ -12842,20 +12935,20 @@ module.exports = function(str) {
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(59)
+__webpack_require__(60)
 
 /* script */
-__vue_exports__ = __webpack_require__(15)
+__vue_exports__ = __webpack_require__(16)
 
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(50)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12890,20 +12983,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(58)
+__webpack_require__(59)
 
 /* script */
-__vue_exports__ = __webpack_require__(16)
+__vue_exports__ = __webpack_require__(17)
 
 /* template */
-var __vue_template__ = __webpack_require__(48)
+var __vue_template__ = __webpack_require__(49)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12938,20 +13031,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(57)
+__webpack_require__(58)
 
 /* script */
-__vue_exports__ = __webpack_require__(17)
+__vue_exports__ = __webpack_require__(18)
 
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(48)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -12986,20 +13079,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(61)
+__webpack_require__(62)
 
 /* script */
-__vue_exports__ = __webpack_require__(20)
+__vue_exports__ = __webpack_require__(21)
 
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(53)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13034,20 +13127,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(56)
+__webpack_require__(57)
 
 /* script */
-__vue_exports__ = __webpack_require__(21)
+__vue_exports__ = __webpack_require__(22)
 
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(46)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13082,20 +13175,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(54)
+__webpack_require__(55)
 
 /* script */
-__vue_exports__ = __webpack_require__(22)
+__vue_exports__ = __webpack_require__(23)
 
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(44)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -13130,7 +13223,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13218,7 +13311,7 @@ if (false) {
 }
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13278,7 +13371,7 @@ if (false) {
 }
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13312,7 +13405,7 @@ if (false) {
 }
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13367,7 +13460,7 @@ if (false) {
 }
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13387,7 +13480,7 @@ if (false) {
 }
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13514,25 +13607,35 @@ if (false) {
 }
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
   return _vm._h('div', [_vm._h('div', {
     staticClass: "tagname center-align"
   }, [_vm._h('h4', [_vm._s(_vm.tagName)])]), " ", _vm._h('div', {
-    staticClass: "center-align"
+    staticClass: "row"
   }, [(_vm.$store.state.user && !_vm.ifSubscribed) ? _vm._h('button', {
-    staticClass: "center-align waves-effect waves-light btn subscribe-button",
+    staticClass: "col s8 offset-s2 center-align waves-effect waves-light btn subscribe-button",
     on: {
       "click": _vm.subscribe
     }
-  }, ["Subscribe"]) : _vm._e(), " ", (_vm.$store.state.user && _vm.ifSubscribed) ? _vm._h('button', {
-    staticClass: "center-align waves-effect red btn subscribe-button",
+  }, ["Subscribe\n        "]) : _vm._e(), " ", (_vm.$store.state.user && _vm.ifSubscribed) ? _vm._h('button', {
+    staticClass: "col s8 offset-s2 center-align waves-effect red btn subscribe-button",
     on: {
       "click": _vm.unsubscribe
     }
-  }, ["Unsubscribe"]) : _vm._e()])])
+  }, ["Unsubscribe\n        "]) : _vm._e(), " ", (_vm.$store.state.user && !_vm.ifBanned) ? _vm._h('button', {
+    staticClass: "col s8 offset-s2 center-align waves-effect red btn subscribe-button",
+    on: {
+      "click": _vm.ban
+    }
+  }, ["Ban\n        "]) : _vm._e(), " ", (_vm.$store.state.user && _vm.ifBanned) ? _vm._h('button', {
+    staticClass: "col s8 offset-s2 center-align waves-effect wawes-light btn subscribe-button",
+    on: {
+      "click": _vm.unban
+    }
+  }, ["Unban\n        "]) : _vm._e()])])
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
@@ -13542,7 +13645,7 @@ if (false) {
 }
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13562,7 +13665,16 @@ module.exports={render:function (){var _vm=this;
       attrs: {
         "to": '/post/tag/' + subscription.Tag.id
       }
-    }, [_vm._s(subscription.Tag.name)])])
+    }, ["\n                    " + _vm._s(subscription.Tag.name) + "\n                "])])
+  })]), " ", _vm._h('div', {
+    staticClass: "collection-item"
+  }, ["\n            Bans\n        "]), " ", _vm._h('ul', [_vm._l((_vm.$store.state.bans), function(ban) {
+    return _vm._h('li', [_vm._h('router-link', {
+      staticClass: "collection-item",
+      attrs: {
+        "to": '/post/tag/' + ban.Tag.id
+      }
+    }, [_vm._s(ban.Tag.name) + "\n                "])])
   })])])])
 },staticRenderFns: []}
 if (false) {
@@ -13573,7 +13685,7 @@ if (false) {
 }
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13718,7 +13830,7 @@ if (false) {
 }
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13746,7 +13858,7 @@ if (false) {
 }
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;
@@ -13847,32 +13959,6 @@ if (false) {
 }
 
 /***/ },
-/* 53 */
-/***/ function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(25);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ },
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13888,8 +13974,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -13914,8 +14000,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -13940,8 +14026,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -13966,8 +14052,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -13992,8 +14078,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -14018,8 +14104,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -14044,8 +14130,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -14070,6 +14156,32 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(34);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
 		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-a60c4bb2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue", function() {
 			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-a60c4bb2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
@@ -14081,7 +14193,7 @@ if(false) {
 }
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 var g;
@@ -14106,27 +14218,27 @@ module.exports = g;
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuex__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_LoginComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_RegisterComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_FeedComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ProfileComponent_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ProfileComponent_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ProfileComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ProfileComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_router__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_router__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store_js__ = __webpack_require__(6);
 
 
 
@@ -14154,7 +14266,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex___default.a.Store(__WEBPACK_IMP
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('formatDate', function (dateString) {
     var date = new Date(dateString);
-    var dateFormat = __webpack_require__(6);
+    var dateFormat = __webpack_require__(7);
     return dateFormat(date, "dd.mm.yyyy HH:MM");
 });
 
@@ -14186,44 +14298,6 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     }
 
 }).$mount('#body');
-
-/***/ },
-/* 64 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Created by Monyk on 30.12.2016.
- */
-
-/* harmony default export */ exports["a"] = {
-    state: {
-        user: null,
-        subscriptions: [],
-        posts: []
-    },
-    mutations: {
-        setUser: function setUser(state, user) {
-            state.user = user;
-        },
-        loadSubscriptions: function loadSubscriptions(state) {
-            $.get('/user/' + state.user.id + '/subscriptions', function (res) {
-                if (res.success) {
-                    state.subscriptions = res.subscriptions;
-                } else {
-                    console.log('Something went wrong');
-                }
-            });
-        },
-        loadPosts: function loadPosts(state, path) {
-            if (path == "/") path = 'post';
-            $.get(path, function (posts) {
-                state.posts = posts;
-                console.log(state.posts);
-            });
-        }
-    }
-};
 
 /***/ }
 /******/ ]);

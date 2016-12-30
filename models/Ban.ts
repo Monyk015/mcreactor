@@ -11,6 +11,8 @@ export interface BanAttribute
     Tag?:TagInstance
     createdAt?:number
     updatedAt?:number
+    UserId?:number
+    TagId?:number
 }
 
 export interface BanInstance extends Sequelize.Instance<BanAttribute>, BanAttribute
