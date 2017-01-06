@@ -71,7 +71,6 @@ Tag.hasMany(Ban)
 
 ;(async() => {
     await User.sync({force: true})
-
     await Post.sync({force: true})
     await Tag.sync({force: true})
     await PostTag.sync({force: true})
@@ -90,6 +89,5 @@ Tag.hasMany(Ban)
         await db.query(query)
     })()
 })()
-
 
 export {Tag, Commentary, Post, User, CommentaryRate, PostRate, Ban, Subscription}

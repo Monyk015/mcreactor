@@ -50,26 +50,26 @@
 	const Koa = __webpack_require__(3);
 	const Router = __webpack_require__(4);
 	const AuthController_1 = __webpack_require__(5);
-	const FeedController_1 = __webpack_require__(20);
-	const UserController_1 = __webpack_require__(22);
-	const PostController_1 = __webpack_require__(25);
-	const CommentController_1 = __webpack_require__(27);
-	const TagController_1 = __webpack_require__(28);
-	const path = __webpack_require__(29);
-	const convert = __webpack_require__(30);
-	const serve = __webpack_require__(31);
+	const FeedController_1 = __webpack_require__(22);
+	const UserController_1 = __webpack_require__(24);
+	const PostController_1 = __webpack_require__(27);
+	const CommentController_1 = __webpack_require__(29);
+	const TagController_1 = __webpack_require__(30);
+	const path = __webpack_require__(31);
+	const convert = __webpack_require__(32);
+	const serve = __webpack_require__(33);
 	const app = new Koa();
-	app.use(__webpack_require__(32)());
+	app.use(__webpack_require__(34)());
 	app.use(convert(serve('./public')));
 	// app.use(convert(serve('./public/images')))
-	let cors = __webpack_require__(33);
-	let logger = __webpack_require__(34);
+	let cors = __webpack_require__(35);
+	let logger = __webpack_require__(36);
 	app.use(convert(logger()));
 	app.use(convert(cors()));
-	const pug_1 = __webpack_require__(35);
+	const pug_1 = __webpack_require__(37);
 	pug_1.default.use(app);
-	app.use(convert(__webpack_require__(37)()));
-	const CookieMiddleware_1 = __webpack_require__(38);
+	app.use(convert(__webpack_require__(39)()));
+	const CookieMiddleware_1 = __webpack_require__(40);
 	app.use(CookieMiddleware_1.default);
 	const router = new Router();
 	router
@@ -123,7 +123,7 @@
 	    });
 	};
 	const models_1 = __webpack_require__(6);
-	const jwt_1 = __webpack_require__(17);
+	const jwt_1 = __webpack_require__(20);
 	const Router = __webpack_require__(4);
 	const hash = __webpack_require__(19);
 	const AuthController = new Router();
@@ -201,8 +201,8 @@
 	exports.Subscription = Subscription_1.default;
 	const Ban_1 = __webpack_require__(16);
 	exports.Ban = Ban_1.default;
-	const users_1 = __webpack_require__(39);
-	const fs = __webpack_require__(40);
+	const users_1 = __webpack_require__(17);
+	const fs = __webpack_require__(18);
 	Post_1.default.belongsTo(User_1.default);
 	User_1.default.hasMany(Post_1.default);
 	User_1.default.hasMany(Commentary_1.default);
@@ -290,7 +290,7 @@
 	 * Created by Monyk on 05.11.2016.
 	 */
 	const Sequelize = __webpack_require__(9);
-	const db = new Sequelize('mysql://root:root@localhost:3306/mcreactor', {
+	const db = new Sequelize('mysql://root:root@db/mcreactor', {
 	    dialectOptions: {
 	        multipleStatements: true
 	    }
@@ -483,10 +483,88 @@
 
 /***/ },
 /* 17 */
+/***/ function(module, exports) {
+
+	"use strict";
+	const users = [{
+	        "isAdmin": true,
+	        "rating": 21,
+	        "isBanned": null,
+	        "email": "admin@gmail.com",
+	        "nickname": "admin",
+	        "password": "admin"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 87,
+	        "isBanned": null,
+	        "email": "jburton1@smugmug.com",
+	        "nickname": "cramos1",
+	        "password": "aAJfgYUpMgs"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 42,
+	        "isBanned": null,
+	        "email": "kday2@photobucket.com",
+	        "nickname": "jprice2",
+	        "password": "fQ7IZbm"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 12,
+	        "isBanned": false,
+	        "email": "gyoung3@dyndns.org",
+	        "nickname": "dpierce3",
+	        "password": "za5DeM"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 96,
+	        "isBanned": null,
+	        "email": "gburns4@smugmug.com",
+	        "nickname": "jclark4",
+	        "password": "SyAHlw8L69K2"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 67,
+	        "isBanned": null,
+	        "email": "smorales5@godaddy.com",
+	        "nickname": "ralvarez5",
+	        "password": "54QgRT2OHLJC"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 41,
+	        "isBanned": null,
+	        "email": "kmoreno6@seesaa.net",
+	        "nickname": "lmurray6",
+	        "password": "aS1ZtShNaph"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 24,
+	        "isBanned": null,
+	        "email": "aferguson7@google.com",
+	        "nickname": "mnguyen7",
+	        "password": "3DQeUgDK"
+	    }];
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = users;
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = require("fs");
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = require("sha256");
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const jwt = __webpack_require__(18);
+	const jwt = __webpack_require__(21);
 	const secret = 'veryverysecret';
 	function generateToken(user) {
 	    return jwt.sign(user, secret);
@@ -509,24 +587,18 @@
 
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = require("jsonwebtoken");
 
 /***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	module.exports = require("sha256");
-
-/***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	const Router = __webpack_require__(4);
-	const multer = __webpack_require__(21);
+	const multer = __webpack_require__(23);
 	const upload = multer({ dest: './public/images' });
 	const FeedController = new Router();
 	FeedController
@@ -538,13 +610,13 @@
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-multer");
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -561,8 +633,8 @@
 	};
 	const Router = __webpack_require__(4);
 	const models_1 = __webpack_require__(6);
-	const AuthMiddleware_1 = __webpack_require__(23);
-	const AdminMiddleware_1 = __webpack_require__(24);
+	const AuthMiddleware_1 = __webpack_require__(25);
+	const AdminMiddleware_1 = __webpack_require__(26);
 	const UserController = new Router();
 	// UserController.use(authMiddleware)
 	UserController
@@ -706,11 +778,11 @@
 
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const jwt_1 = __webpack_require__(17);
+	const jwt_1 = __webpack_require__(20);
 	const authMiddleware = (allowNotLoggedIn = false) => {
 	    return (context, next) => {
 	        let token = false;
@@ -739,7 +811,7 @@
 
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -756,7 +828,7 @@
 
 
 /***/ },
-/* 25 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -770,13 +842,13 @@
 	};
 	const PostRate_1 = __webpack_require__(10);
 	const db_1 = __webpack_require__(8);
-	const AuthMiddleware_1 = __webpack_require__(23);
+	const AuthMiddleware_1 = __webpack_require__(25);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
-	const post_1 = __webpack_require__(26);
-	const AdminMiddleware_1 = __webpack_require__(24);
+	const post_1 = __webpack_require__(28);
+	const AdminMiddleware_1 = __webpack_require__(26);
 	const PostController = new Router();
-	const multer = __webpack_require__(21);
+	const multer = __webpack_require__(23);
 	const upload = multer({ dest: './public/images' });
 	PostController
 	    .post('/post', upload.single('image'), AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
@@ -986,7 +1058,7 @@
 
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1037,7 +1109,7 @@
 
 
 /***/ },
-/* 27 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1049,7 +1121,7 @@
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
 	};
-	const AuthMiddleware_1 = __webpack_require__(23);
+	const AuthMiddleware_1 = __webpack_require__(25);
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
 	const CommentController = new Router();
@@ -1129,7 +1201,7 @@
 
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1155,47 +1227,47 @@
 
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-convert");
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-static");
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-cors");
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-logger");
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	const Pug = __webpack_require__(36);
+	const Pug = __webpack_require__(38);
 	const pug = new Pug({
 	    viewPath: './views',
 	    noCache: true
@@ -1205,19 +1277,19 @@
 
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-pug");
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports) {
 
 	module.exports = require("koa-json");
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1237,78 +1309,6 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = cookieMiddleware;
 
-
-/***/ },
-/* 39 */
-/***/ function(module, exports) {
-
-	"use strict";
-	const users = [{
-	        "isAdmin": true,
-	        "rating": 21,
-	        "isBanned": null,
-	        "email": "admin@gmail.com",
-	        "nickname": "admin",
-	        "password": "admin"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 87,
-	        "isBanned": null,
-	        "email": "jburton1@smugmug.com",
-	        "nickname": "cramos1",
-	        "password": "aAJfgYUpMgs"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 42,
-	        "isBanned": null,
-	        "email": "kday2@photobucket.com",
-	        "nickname": "jprice2",
-	        "password": "fQ7IZbm"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 12,
-	        "isBanned": false,
-	        "email": "gyoung3@dyndns.org",
-	        "nickname": "dpierce3",
-	        "password": "za5DeM"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 96,
-	        "isBanned": null,
-	        "email": "gburns4@smugmug.com",
-	        "nickname": "jclark4",
-	        "password": "SyAHlw8L69K2"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 67,
-	        "isBanned": null,
-	        "email": "smorales5@godaddy.com",
-	        "nickname": "ralvarez5",
-	        "password": "54QgRT2OHLJC"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 41,
-	        "isBanned": null,
-	        "email": "kmoreno6@seesaa.net",
-	        "nickname": "lmurray6",
-	        "password": "aS1ZtShNaph"
-	    }, {
-	        "isAdmin": false,
-	        "rating": 24,
-	        "isBanned": null,
-	        "email": "aferguson7@google.com",
-	        "nickname": "mnguyen7",
-	        "password": "3DQeUgDK"
-	    }];
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = users;
-
-
-/***/ },
-/* 40 */
-/***/ function(module, exports) {
-
-	module.exports = require("fs");
 
 /***/ }
 /******/ ]);

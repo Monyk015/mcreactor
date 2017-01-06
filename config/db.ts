@@ -3,11 +3,10 @@
  */
 import * as Sequelize from 'sequelize'
 
-const db : Sequelize.Sequelize = new Sequelize('mysql://root:root@localhost:3306/mcreactor', {
+const db : Sequelize.Sequelize = new Sequelize('mysql://root:root@db/mcreactor', {
     dialectOptions: {
         multipleStatements: true
     }
 })
-
 
 export default db
