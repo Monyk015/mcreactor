@@ -1,12 +1,11 @@
-import {PostAttribute} from '../models/Post';
 import PostRate from '../models/PostRate';
-import CommentaryRate from '../models/CommentaryRate';
 import db from '../config/db';
 import authMiddleware from '../middlewares/AuthMiddleware';
 import {Commentary, Tag, User, Post} from '../models/models';
 import {Context} from '~koa/lib/context';
 import * as Router from 'koa-router';
 import getPosts from "../lib/post";
+import adminMiddleware from "../middlewares/AdminMiddleware";
 
 const PostController = new Router()
 
@@ -63,7 +62,7 @@ PostController
         authMiddleware(true),
         async(ctx) => {
             const id = ctx.params.id
-            ctx.body = await getPosts(ctx.user.id, {
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, {
                 id: id
             })
         })
@@ -76,6 +75,40 @@ PostController
                         $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
                     }
                 } : null) //exclude banned posts when user is logged in
+        })
+    
+    .get('/best',
+        authMiddleware(true),
+        async(ctx) => {
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, ctx.user ? {
+                    id: {
+                        $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
+                    },
+                    rating: {
+                        $gte: 50
+                    }
+                } : {
+                    rating: {
+                        $gte: 50
+                    }
+                }) //exclude banned posts when user is logged in
+        })
+    
+    .get('/good',
+        authMiddleware(true),
+        async(ctx) => {
+            ctx.body = await getPosts(ctx.user ? ctx.user.id : null, ctx.user ? {
+                    id: {
+                        $notIn: db.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
+                    },
+                    rating: {
+                        $gte: 20
+                    }
+                } : {
+                    rating: {
+                        $gte: 20
+                    }
+                }) //exclude banned posts when user is logged in
         })
     
     .get('/post/tag/:id',
@@ -186,36 +219,58 @@ PostController
             {
                 filter.tags = filter.tagsArray
                                     .filter(tag => tag != '')
-                                    .map(tag =>"'" + tag.trim() + "'")
+                                    .map(tag => "'" + tag.trim() + "'")
                 whereClause.id = {
                     $in: db.literal(" (select `Posts`.`id` from `Posts` " +
                         "where (select count(`TagId`) from `PostTag` inner join `Tags` on `Tags`.`id` = `PostTag`.`TagId` " +
-                        "where `PostTag`.`PostId` = `Posts`.`id` and `Tags`.`name` in (" + filter.tags.join(',') + ") ) = " + filter.tags.length +" ) ")
+                        "where `PostTag`.`PostId` = `Posts`.`id` and `Tags`.`name` in (" + filter.tags.join(',') + ") ) = " + filter.tags.length + " ) ")
                 }
             }
             if (filter.content)
                 whereClause.content = {
                     $like: `%${filter.content}%`
                 }
-            if(filter.dateFrom || filter.dateTo)
+            if (filter.dateFrom || filter.dateTo)
             {
                 whereClause.createdAt = {}
                 if (filter.dateFrom)
                     whereClause.createdAt.$gte = new Date(filter.dateFrom)
                 if (filter.dateTo)
-                    whereClause.createdAt.$lte = new Date(filter.dateTo)
+                {
+                    let date = new Date(filter.dateTo)
+                    date.setHours(23, 59, 59, 0)
+                    whereClause.createdAt.$lte = date
+                }
             }
-            if(filter.ratingTo || filter.ratingFrom)
+            if (filter.ratingTo || filter.ratingFrom)
             {
                 whereClause.rating = {}
-                if(filter.ratingTo)
+                if (filter.ratingTo)
                     whereClause.rating.$lte = filter.ratingTo
-                if(filter.ratingFrom)
+                if (filter.ratingFrom)
                     whereClause.rating.$gte = filter.ratingFrom
             }
             console.log(whereClause)
             let posts = await getPosts(ctx.user ? ctx.user.id : null, whereClause)
             ctx.body = {success: true, posts}
+        })
+    
+    .get('/stats',
+        authMiddleware(),
+        adminMiddleware,
+        async(ctx) => {
+            let postCountByDay = await Post.findAll({
+                attributes: [db.fn('date', db.col('createdAt')), db.fn('count', 'id')],
+                group: [db.fn('date', db.col('createdAt'))],
+                raw: true
+            })
+            let commentCountByDay = await Commentary.findAll({
+                attributes: [db.fn('date', db.col('createdAt')), db.fn('count', 'id')],
+                group: [db.fn('date', db.col('createdAt'))],
+                raw: true
+            })
+            
+            ctx.body = {postCountByDay, commentCountByDay}
         })
 
 export default PostController

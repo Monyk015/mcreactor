@@ -82,5 +82,17 @@ CommentController
             }
         })
 
+    .get('/comment/:id/delete',
+        authMiddleware(),
+        async(ctx) => {
+            let commentId = ctx.params.id
+            await Commentary.destroy({
+                where: {
+                    id: commentId
+                }
+            })
+            ctx.body = {success: true}
+        })
+
 
 export default CommentController

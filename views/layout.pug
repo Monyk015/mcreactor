@@ -1,58 +1,66 @@
 doctype html
 html
-  head
-    meta(charset='utf-8')
-    title Mcreactor
-    base(href='/')
-    // Import Google Icon Font
-    link(href='http://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    // Import materialize.css
-    link(type='text/css', rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css', media='screen,projection')
-    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
-    // Let browser know website is optimized for mobile
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='icon', type='image/x-icon', href='favicon.ico')
-    link(type='text/css',rel='stylesheet',href="styles.css")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css")
-  body.amber.lighten-4
-    #body
-        nav.yellow.darken-4.row
-            .nav-wrapper.row
-                .col.s1
-                    a.brand-logo(href='#') Memasiki
-                form.col.s3
-                    .input-field
-                        input#search(type='search', :value="$store.state.search", @input="updateSearch")
-                        label(for='search')
-                            i.material-icons search
-                        i.material-icons close
-                ul#nav.right.hide-on-med-and-down.col
-                    li
-                        router-link(to='/') Home
-                    span(v-if="$store.state.user")
+    head
+        meta(charset='utf-8')
+        title Mcreactor
+        base(href='/')
+        // Import Google Icon Font
+        link(href='http://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        // Import materialize.css
+        link(type='text/css', rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css', media='screen,projection')
+        //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+        // Let browser know website is optimized for mobile
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='icon', type='image/x-icon', href='favicon.ico')
+        link(type='text/css',rel='stylesheet',href="styles.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css")
+    body.amber.lighten-4
+        #body
+            nav.yellow.darken-4.row
+                .nav-wrapper.row
+                    .col.s1
+                        a.brand-logo(href='#') Memasiki
+                    form.col.s3
+                        .input-field
+                            input#search(type='search', :value="$store.state.search", @input="updateSearch")
+                            label(for='search')
+                                i.material-icons search
+                            i.material-icons close
+                    ul#nav.right.hide-on-med-and-down.col
+                        span(v-if="$store.state.user && $store.state.user.isAdmin")
+                            li
+                                router-link(to='/admin') Admin
                         li
-                            router-link(to="/post/user/subscribed") Subscriptions
-                            //
-                                todo: move to feed and change to router link
-                        //- li
-                        //-     a(href='/user') Users
+                            router-link(to='/best') Best
                         li
-                            ul.dropdown-content#user-dropdown
-                                li
-                                    router-link(:to='"/user/" + $store.state.user.id + "/profile"') Profile
-                                li(@click="logout")
-                                    a(href='/') Logout
-                            a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")          
-                                | {{$store.state.user.nickname}}
-                                i.material-icons keyboard_arrow_down
-                    span(v-else)
+                            router-link(to='/good') Good
                         li
-                            router-link(to='/login') Login
-                        li
-                            router-link(to='/register') Register
-        #content.container
-            block content        
-    script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
-    script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js")
-    script(src="build.js")
+                            router-link(to='/') All
+                        span(v-if="$store.state.user")
+                            li
+                                router-link(to="/post/user/subscribed") Subscriptions
+                                //
+                                    todo: move to feed and change to router link
+                            //- li
+                            //-     a(href='/user') Users
+                            li
+                                ul.dropdown-content#user-dropdown
+                                    li
+                                        router-link(:to='"/user/" + $store.state.user.id + "/profile"') Profile
+                                    li(@click="logout")
+                                        a(href='/') Logout
+                                a.dropdown-button(data-activates="user-dropdown", data-beloworigin="true")
+                                    | {{$store.state.user.nickname}}
+                                    i.material-icons keyboard_arrow_down
+                        span(v-else)
+                            li
+                                router-link(to='/login') Login
+                            li
+                                router-link(to='/register') Register
+            #content.container
+                block content
+        script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
+        script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js")
+        script(type="text/javascript", src="https://www.gstatic.com/charts/loader.js")
+        script(src="build.js")

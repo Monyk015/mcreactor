@@ -14,7 +14,7 @@ AuthController
 
     .get('/login',
     (ctx: Context) => {
-        ctx.render('auth/login')
+        ctx.body = []
     })
 
     .post('/login',
@@ -38,7 +38,7 @@ AuthController
 
     .get('/register',
     async (ctx: Context) => {
-        ctx.render('auth/register')
+        ctx.body = []
     })
     
     .post('/register',

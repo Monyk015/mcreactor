@@ -3,30 +3,36 @@
         <div v-if="ifTagSection" class="tag-header row">
             <tag-header-component class="col s12"></tag-header-component>
         </div>
-        <div  v-if="$store.state.subscriptions.length" class="subscriptions collection">
+        <div v-if="$store.state.user" class="subscriptions collection">
             <div class="collection-item">
                 Subscriptions
             </div>
-            <ul>
+            <ul v-if="$store.state.subscriptions.length">
                 <li v-for="subscription in $store.state.subscriptions">
                     <router-link class="collection-item" v-bind:to="'/post/tag/' + subscription.Tag.id">
                         {{subscription.Tag.name}}
                     </router-link>
                 </li>
             </ul>
+            <p class="col s12" v-else>
+                So empty.
+            </p>
         </div>
-        <div  v-if="$store.state.bans.length" class="bans collection">
+        <div v-if="$store.state.user" class="bans collection">
             <div class="collection-item">
                 Bans
             </div>
-            <ul>
+            <ul v-if="$store.state.bans.length">
                 <li v-for="ban in $store.state.bans">
                     <router-link class="collection-item" v-bind:to="'/post/tag/' + ban.Tag.id">{{ban.Tag.name}}
                     </router-link>
                 </li>
             </ul>
+            <p class="col s12" v-else>
+                So empty.
+            </p>
         </div>
-        <filter-component></filter-component>
+        <filter-component v-if="$route.path == '/'"></filter-component>
     </div>
 </template>
 

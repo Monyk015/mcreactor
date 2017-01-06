@@ -5,6 +5,7 @@ import LoginComponent from './components/LoginComponent.vue'
 import RegisterComponent from './components/RegisterComponent.vue'
 import FeedComponent from './components/FeedComponent.vue'
 import ProfileComponent from './components/ProfileComponent.vue'
+import AdminComponent from './components/AdminComponent.vue'
 import VueRouter from 'vue-router'
 
 const jwt = require('jwt-decode')
@@ -17,10 +18,13 @@ const routes = [
     {path: '/login', component: LoginComponent},
     {path: '/register', component: RegisterComponent},
     {path: '/', component: FeedComponent},
+    {path: '/best', component: FeedComponent},
+    {path: '/good', component: FeedComponent},
     {path: '/post/tag/:id', component: FeedComponent},
     {path: '/post/:id', component: FeedComponent},
     {path: '/post/user/subscribed', component: FeedComponent},
-    {path: '/user/:id/profile', component: ProfileComponent}
+    {path: '/user/:id/profile', component: ProfileComponent},
+    {path: '/admin', component: AdminComponent}
 ]
 
 const router = new VueRouter({

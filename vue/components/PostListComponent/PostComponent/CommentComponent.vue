@@ -16,6 +16,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == comment.UserId)" class="card-action admin-actions collection-item">
+            <a @click="deleteComment">Delete comment</a>
+        </div>
     </div>
 </template>
 
@@ -90,6 +93,14 @@
                     })
                     this.rate = -1
                 }
+            },
+            deleteComment(){
+                $.get(`/comment/${this.comment.id}/delete`, (res) => {
+                    if(res.success)
+                {
+                    this.$store.commit('loadPosts', this.$route.path)
+                }
+            })
             }
         }
     }

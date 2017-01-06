@@ -117,7 +117,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -129,7 +129,7 @@
 	const AuthController = new Router();
 	AuthController
 	    .get('/login', (ctx) => {
-	    ctx.render('auth/login');
+	    ctx.body = [];
 	})
 	    .post('/login', (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const user = ctx.request.body;
@@ -149,7 +149,7 @@
 	        ctx.body = { success: false, message: 'Wrong password' };
 	}))
 	    .get('/register', (ctx) => __awaiter(this, void 0, void 0, function* () {
-	    ctx.render('auth/register');
+	    ctx.body = [];
 	}))
 	    .post('/register', (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let user = ctx.request.body;
@@ -176,6 +176,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments)).next());
+	    });
+	};
 	const CommentaryRate_1 = __webpack_require__(7);
 	exports.CommentaryRate = CommentaryRate_1.default;
 	const PostRate_1 = __webpack_require__(10);
@@ -193,45 +201,62 @@
 	exports.Subscription = Subscription_1.default;
 	const Ban_1 = __webpack_require__(16);
 	exports.Ban = Ban_1.default;
+	const users_1 = __webpack_require__(39);
+	const fs = __webpack_require__(40);
 	Post_1.default.belongsTo(User_1.default);
 	User_1.default.hasMany(Post_1.default);
 	User_1.default.hasMany(Commentary_1.default);
 	Commentary_1.default.belongsTo(User_1.default);
-	Post_1.default.hasMany(Commentary_1.default);
+	Post_1.default.hasMany(Commentary_1.default, {
+	    onDelete: 'CASCADE'
+	});
 	Commentary_1.default.belongsTo(Post_1.default);
 	const PostTag = db_1.default.define('PostTag', {}, { tableName: 'PostTag' });
 	Tag_1.default.belongsToMany(Post_1.default, { through: 'PostTag' });
 	Post_1.default.belongsToMany(Tag_1.default, { through: 'PostTag' });
 	PostRate_1.default.belongsTo(Post_1.default);
 	PostRate_1.default.belongsTo(User_1.default);
-	Post_1.default.hasMany(PostRate_1.default);
+	Post_1.default.hasMany(PostRate_1.default, {
+	    onDelete: 'CASCADE'
+	});
 	CommentaryRate_1.default.belongsTo(Commentary_1.default);
 	CommentaryRate_1.default.belongsTo(User_1.default);
-	Commentary_1.default.hasMany(CommentaryRate_1.default);
+	Commentary_1.default.hasMany(CommentaryRate_1.default, {
+	    onDelete: 'CASCADE'
+	});
 	Subscription_1.default.belongsTo(User_1.default);
 	Subscription_1.default.belongsTo(Tag_1.default);
-	User_1.default.hasMany(Subscription_1.default);
-	Tag_1.default.hasMany(Subscription_1.default);
+	User_1.default.hasMany(Subscription_1.default, {
+	    onDelete: 'CASCADE'
+	});
+	Tag_1.default.hasMany(Subscription_1.default, {
+	    onDelete: 'CASCADE'
+	});
 	Ban_1.default.belongsTo(User_1.default);
 	Ban_1.default.belongsTo(Tag_1.default);
-	User_1.default.hasMany(Ban_1.default);
+	User_1.default.hasMany(Ban_1.default, {
+	    onDelete: 'CASCADE'
+	});
 	Tag_1.default.hasMany(Ban_1.default);
-	// ;(async () =>
-	// {
-	//     await User.sync({force:true})
-	//     User.bulkCreate(users.map(user => {
-	//         user.password = require('sha256')(user.password)
-	//         return user
-	//     }))
-	//     await Post.sync({force:true})
-	//     await Tag.sync({force:true})
-	//     await PostTag.sync({force:true})
-	//     await Commentary.sync({force:true})
-	//     await PostRate.sync({force:true})
-	//     await CommentaryRate.sync({force:true})
-	//     await Ban.sync({force:true})
-	//     await Subscription.sync({force:true})
-	// })()
+	(() => __awaiter(this, void 0, void 0, function* () {
+	    yield User_1.default.sync({ force: true });
+	    yield Post_1.default.sync({ force: true });
+	    yield Tag_1.default.sync({ force: true });
+	    yield PostTag.sync({ force: true });
+	    yield Commentary_1.default.sync({ force: true });
+	    yield PostRate_1.default.sync({ force: true });
+	    yield CommentaryRate_1.default.sync({ force: true });
+	    yield Ban_1.default.sync({ force: true });
+	    yield Subscription_1.default.sync({ force: true });
+	    (() => __awaiter(this, void 0, void 0, function* () {
+	        yield User_1.default.bulkCreate(users_1.default.map(user => {
+	            user.password = __webpack_require__(19)(user.password);
+	            return user;
+	        }));
+	        let query = fs.readFileSync('./mocks/posts.sql', 'utf-8');
+	        yield db_1.default.query(query);
+	    }))();
+	}))();
 
 
 /***/ },
@@ -265,7 +290,11 @@
 	 * Created by Monyk on 05.11.2016.
 	 */
 	const Sequelize = __webpack_require__(9);
-	const db = new Sequelize('mysql://root:root@localhost:3306/mcreactor');
+	const db = new Sequelize('mysql://root:root@localhost:3306/mcreactor', {
+	    dialectOptions: {
+	        multipleStatements: true
+	    }
+	});
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = db;
 
@@ -310,7 +339,7 @@
 	const Sequelize = __webpack_require__(9);
 	const Post = db_1.default.define("Post", {
 	    content: {
-	        type: Sequelize.STRING,
+	        type: Sequelize.TEXT,
 	        allowNull: false,
 	    },
 	    image: {
@@ -525,7 +554,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -734,7 +763,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -745,6 +774,7 @@
 	const models_1 = __webpack_require__(6);
 	const Router = __webpack_require__(4);
 	const post_1 = __webpack_require__(26);
+	const AdminMiddleware_1 = __webpack_require__(24);
 	const PostController = new Router();
 	const multer = __webpack_require__(21);
 	const upload = multer({ dest: './public/images' });
@@ -784,7 +814,7 @@
 	}))
 	    .get('/post/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    const id = ctx.params.id;
-	    ctx.body = yield post_1.default(ctx.user.id, {
+	    ctx.body = yield post_1.default(ctx.user ? ctx.user.id : null, {
 	        id: id
 	    });
 	}))
@@ -794,6 +824,34 @@
 	            $notIn: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
 	        }
 	    } : null); //exclude banned posts when user is logged in
+	}))
+	    .get('/best', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    ctx.body = yield post_1.default(ctx.user ? ctx.user.id : null, ctx.user ? {
+	        id: {
+	            $notIn: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
+	        },
+	        rating: {
+	            $gte: 50
+	        }
+	    } : {
+	        rating: {
+	            $gte: 50
+	        }
+	    }); //exclude banned posts when user is logged in
+	}))
+	    .get('/good', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    ctx.body = yield post_1.default(ctx.user ? ctx.user.id : null, ctx.user ? {
+	        id: {
+	            $notIn: db_1.default.literal("(select `PostId` from `PostTag` where `TagId` in (select `TagId` from `Bans` where `UserId` = " + ctx.user.id + "))")
+	        },
+	        rating: {
+	            $gte: 20
+	        }
+	    } : {
+	        rating: {
+	            $gte: 20
+	        }
+	    }); //exclude banned posts when user is logged in
 	}))
 	    .get('/post/tag/:id', AuthMiddleware_1.default(true), (ctx) => __awaiter(this, void 0, void 0, function* () {
 	    let id = ctx.params.id;
@@ -893,8 +951,11 @@
 	        whereClause.createdAt = {};
 	        if (filter.dateFrom)
 	            whereClause.createdAt.$gte = new Date(filter.dateFrom);
-	        if (filter.dateTo)
-	            whereClause.createdAt.$lte = new Date(filter.dateTo);
+	        if (filter.dateTo) {
+	            let date = new Date(filter.dateTo);
+	            date.setHours(23, 59, 59, 0);
+	            whereClause.createdAt.$lte = date;
+	        }
 	    }
 	    if (filter.ratingTo || filter.ratingFrom) {
 	        whereClause.rating = {};
@@ -906,6 +967,19 @@
 	    console.log(whereClause);
 	    let posts = yield post_1.default(ctx.user ? ctx.user.id : null, whereClause);
 	    ctx.body = { success: true, posts };
+	}))
+	    .get('/stats', AuthMiddleware_1.default(), AdminMiddleware_1.default, (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let postCountByDay = yield models_1.Post.findAll({
+	        attributes: [db_1.default.fn('date', db_1.default.col('createdAt')), db_1.default.fn('count', 'id')],
+	        group: [db_1.default.fn('date', db_1.default.col('createdAt'))],
+	        raw: true
+	    });
+	    let commentCountByDay = yield models_1.Commentary.findAll({
+	        attributes: [db_1.default.fn('date', db_1.default.col('createdAt')), db_1.default.fn('count', 'id')],
+	        group: [db_1.default.fn('date', db_1.default.col('createdAt'))],
+	        raw: true
+	    });
+	    ctx.body = { postCountByDay, commentCountByDay };
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PostController;
@@ -919,7 +993,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -970,7 +1044,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -1040,6 +1114,15 @@
 	        yield commentary.User.save();
 	        ctx.body = { success: true, rating: commentary.rating };
 	    }
+	}))
+	    .get('/comment/:id/delete', AuthMiddleware_1.default(), (ctx) => __awaiter(this, void 0, void 0, function* () {
+	    let commentId = ctx.params.id;
+	    yield models_1.Commentary.destroy({
+	        where: {
+	            id: commentId
+	        }
+	    });
+	    ctx.body = { success: true };
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = CommentController;
@@ -1053,7 +1136,7 @@
 	var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
 	        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
 	        step((generator = generator.apply(thisArg, _arguments)).next());
 	    });
@@ -1154,6 +1237,78 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = cookieMiddleware;
 
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	"use strict";
+	const users = [{
+	        "isAdmin": true,
+	        "rating": 21,
+	        "isBanned": null,
+	        "email": "admin@gmail.com",
+	        "nickname": "admin",
+	        "password": "admin"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 87,
+	        "isBanned": null,
+	        "email": "jburton1@smugmug.com",
+	        "nickname": "cramos1",
+	        "password": "aAJfgYUpMgs"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 42,
+	        "isBanned": null,
+	        "email": "kday2@photobucket.com",
+	        "nickname": "jprice2",
+	        "password": "fQ7IZbm"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 12,
+	        "isBanned": false,
+	        "email": "gyoung3@dyndns.org",
+	        "nickname": "dpierce3",
+	        "password": "za5DeM"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 96,
+	        "isBanned": null,
+	        "email": "gburns4@smugmug.com",
+	        "nickname": "jclark4",
+	        "password": "SyAHlw8L69K2"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 67,
+	        "isBanned": null,
+	        "email": "smorales5@godaddy.com",
+	        "nickname": "ralvarez5",
+	        "password": "54QgRT2OHLJC"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 41,
+	        "isBanned": null,
+	        "email": "kmoreno6@seesaa.net",
+	        "nickname": "lmurray6",
+	        "password": "aS1ZtShNaph"
+	    }, {
+	        "isAdmin": false,
+	        "rating": 24,
+	        "isBanned": null,
+	        "email": "aferguson7@google.com",
+	        "nickname": "mnguyen7",
+	        "password": "3DQeUgDK"
+	    }];
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = users;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = require("fs");
 
 /***/ }
 /******/ ]);

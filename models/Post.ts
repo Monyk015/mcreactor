@@ -26,7 +26,7 @@ export interface PostModel extends Sequelize.Model<PostInstance, PostAttribute>
 
 const Post: PostModel = db.define<PostInstance, PostAttribute>("Post", {
     content: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
     },
     image: {

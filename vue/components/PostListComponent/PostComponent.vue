@@ -143,7 +143,7 @@
                 this.rate = 0
             }
 
-            if(this.post.rating == null)
+            if(!this.post.rating)
                 this.post.rating = 0
         }
     }

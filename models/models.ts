@@ -9,6 +9,7 @@ import db from '../config/db';
 import Subscription from "./Subscription";
 import Ban from "./Ban";
 import users from "../mocks/users";
+import * as fs from 'fs';
 
 Post.belongsTo(User)
 
@@ -18,7 +19,9 @@ User.hasMany(Commentary)
 
 Commentary.belongsTo(User)
 
-Post.hasMany(Commentary)
+Post.hasMany(Commentary, {
+    onDelete: 'CASCADE'
+})
 
 Commentary.belongsTo(Post)
 
@@ -32,46 +35,61 @@ PostRate.belongsTo(Post)
 
 PostRate.belongsTo(User)
 
-Post.hasMany(PostRate)
+Post.hasMany(PostRate, {
+    onDelete: 'CASCADE'
+})
 
 CommentaryRate.belongsTo(Commentary)
 
 CommentaryRate.belongsTo(User)
 
-Commentary.hasMany(CommentaryRate)
+Commentary.hasMany(CommentaryRate, {
+    onDelete: 'CASCADE'
+})
 
 Subscription.belongsTo(User)
 
 Subscription.belongsTo(Tag)
 
-User.hasMany(Subscription)
+User.hasMany(Subscription, {
+    onDelete: 'CASCADE'
+})
 
-Tag.hasMany(Subscription)
+Tag.hasMany(Subscription, {
+    onDelete: 'CASCADE'
+})
 
 Ban.belongsTo(User)
 
 Ban.belongsTo(Tag)
 
-User.hasMany(Ban)
+User.hasMany(Ban, {
+    onDelete: 'CASCADE'
+})
 
 Tag.hasMany(Ban)
 
-// ;(async () =>
-// {
-//     await User.sync({force:true})
-//     User.bulkCreate(users.map(user => {
-//         user.password = require('sha256')(user.password)
-//         return user
-//     }))
-//     await Post.sync({force:true})
-//     await Tag.sync({force:true})
-//     await PostTag.sync({force:true})
-//     await Commentary.sync({force:true})
-//     await PostRate.sync({force:true})
-//     await CommentaryRate.sync({force:true})
-//     await Ban.sync({force:true})
-//     await Subscription.sync({force:true})
-// })()
+;(async() => {
+    await User.sync({force: true})
+
+    await Post.sync({force: true})
+    await Tag.sync({force: true})
+    await PostTag.sync({force: true})
+    await Commentary.sync({force: true})
+    await PostRate.sync({force: true})
+    await CommentaryRate.sync({force: true})
+    await Ban.sync({force: true})
+    await Subscription.sync({force: true})
+
+    ;(async() => {
+        await User.bulkCreate(users.map(user => {
+            user.password = require('sha256')(user.password)
+            return user
+        }))
+        let query = fs.readFileSync('./mocks/posts.sql', 'utf-8')
+        await db.query(query)
+    })()
+})()
 
 
 export {Tag, Commentary, Post, User, CommentaryRate, PostRate, Ban, Subscription}

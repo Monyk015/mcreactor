@@ -36,6 +36,9 @@
                 <button id="submit-post" type="submit" name="action" class="btn waves-effect waves-light">
                     Apply
                 </button>
+                <button @click="reset" id="reset-filters"  class="btn waves-effect waves-light">
+                    Reset
+                </button>
             </div>
         </form>
     </div>
@@ -58,6 +61,15 @@
                 data.dateFrom = $('#dateFrom').val()
                 data.dateTo = $('#dateTo').val()
                 this.$store.commit('loadPostsWithFilter', data)
+            },
+            reset(){
+                this.tagsArray = []
+                this.content = ''
+                this.ratingFrom = ''
+                this.ratingTo = ''
+                $('#dateFrom').trigger('reset')
+                $('#dateTo').trigger('reset')
+                this.$store.commit('loadPosts', this.$route.path)
             }
         },
         computed: {
