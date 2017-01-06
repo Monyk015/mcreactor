@@ -1,9 +1,11 @@
 FROM node:boron
-WORKDIR /usr/src/app
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
 RUN npm install -g yarn
 RUN npm install -g nodemon
 RUN yarn
-WORKDIR /usr/src/app/vue
+WORKDIR /app/vue
 RUN yarn
-WORKDIR /usr/src/app/
+WORKDIR /app
 EXPOSE 3000

@@ -5,8 +5,6 @@ services:
       context: .
     ports:
       - "3000:3000"
-    volumes:
-      - .:/usr/src/app
     command: "nodemon -L bin.js"
   db:
       image: "mysql"
