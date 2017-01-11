@@ -37,6 +37,7 @@ pug.use(app)
 app.use(convert(require('koa-json')()))
 
 import cookieMiddleware from './middlewares/CookieMiddleware';
+import notifyAboutNewBestPost from "./lib/notifier";
 
 app.use(cookieMiddleware)
 
@@ -54,5 +55,7 @@ router
 app
     .use(router.routes())
     .use(router.allowedMethods())
+
+notifyAboutNewBestPost(2)
 
 app.listen(3000)

@@ -24,11 +24,11 @@
             </div>
             <div class="collection-item row">
                 <div class="input-field">
-                    <input id="dateFrom" v-model="dateFrom" name="dateFrom" type="date" class="datepicker">
+                    <input id="dateFrom" name="dateFrom" type="date" class="datepicker">
                     <label for="dateFrom">Date From</label>
                 </div>
                 <div class="input-field">
-                    <input id="dateTo" v-model="dateTo" name="dateTo" type="date" class="datepicker">
+                    <input id="dateTo" name="dateTo" type="date" class="datepicker">
                     <label for="dateTo">Date To</label>
                 </div>
             </div>

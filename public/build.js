@@ -40392,7 +40392,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-f41cc170]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/FilterComponent.vue?088c5fad"],"names":[],"mappings":";AA8FA;;IAEA,aAAA;CACA","file":"FilterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <div class=\"collection-item\">Filter</div>\r\n        <form @submit.prevent=\"submit\" class=\"collection-item row\">\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                    <label for=\"tags\">Tags</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"content\" type=\"text\" name=\"content\" v-model=\"content\"/>\r\n                    <label for=\"content\">Content</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingFrom\" v-model=\"ratingFrom\" name=\"ratingFrom\" type=\"number\">\r\n                    <label for=\"ratingFrom\">Rating From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingTo\" v-model=\"ratingTo\" name=\"ratingTo\" type=\"number\">\r\n                    <label for=\"ratingTo\">Rating To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateFrom\" v-model=\"dateFrom\" name=\"dateFrom\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateFrom\">Date From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateTo\" v-model=\"dateTo\" name=\"dateTo\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateTo\">Date To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"center-align collection-item\">\r\n                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light\">\r\n                    Apply\r\n                </button>\r\n                <button @click=\"reset\" id=\"reset-filters\"  class=\"btn waves-effect waves-light\">\r\n                    Reset\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagsArray: [],\r\n                content:'',\r\n                ratingFrom:'',\r\n                ratingTo:''\r\n            }\r\n        },\r\n        methods: {\r\n            submit(){\r\n                let data = this.$data\r\n                data.dateFrom = $('#dateFrom').val()\r\n                data.dateTo = $('#dateTo').val()\r\n                this.$store.commit('loadPostsWithFilter', data)\r\n            },\r\n            reset(){\r\n                this.tagsArray = []\r\n                this.content = ''\r\n                this.ratingFrom = ''\r\n                this.ratingTo = ''\r\n                $('#dateFrom').trigger('reset')\r\n                $('#dateTo').trigger('reset')\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            }\r\n        },\r\n        computed: {\r\n            tags: {\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        },\r\n        mounted(){\r\n            $('.datepicker').pickadate({\r\n                selectMonths: true, // Creates a dropdown to control month\r\n                selectYears: 15 // Creates a dropdown of 15 years to control year\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-f41cc170]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/FilterComponent.vue?84d36790"],"names":[],"mappings":";AA8FA;;IAEA,aAAA;CACA","file":"FilterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <div class=\"collection-item\">Filter</div>\r\n        <form @submit.prevent=\"submit\" class=\"collection-item row\">\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                    <label for=\"tags\">Tags</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"content\" type=\"text\" name=\"content\" v-model=\"content\"/>\r\n                    <label for=\"content\">Content</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingFrom\" v-model=\"ratingFrom\" name=\"ratingFrom\" type=\"number\">\r\n                    <label for=\"ratingFrom\">Rating From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingTo\" v-model=\"ratingTo\" name=\"ratingTo\" type=\"number\">\r\n                    <label for=\"ratingTo\">Rating To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateFrom\" name=\"dateFrom\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateFrom\">Date From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateTo\" name=\"dateTo\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateTo\">Date To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"center-align collection-item\">\r\n                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light\">\r\n                    Apply\r\n                </button>\r\n                <button @click=\"reset\" id=\"reset-filters\"  class=\"btn waves-effect waves-light\">\r\n                    Reset\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagsArray: [],\r\n                content:'',\r\n                ratingFrom:'',\r\n                ratingTo:''\r\n            }\r\n        },\r\n        methods: {\r\n            submit(){\r\n                let data = this.$data\r\n                data.dateFrom = $('#dateFrom').val()\r\n                data.dateTo = $('#dateTo').val()\r\n                this.$store.commit('loadPostsWithFilter', data)\r\n            },\r\n            reset(){\r\n                this.tagsArray = []\r\n                this.content = ''\r\n                this.ratingFrom = ''\r\n                this.ratingTo = ''\r\n                $('#dateFrom').trigger('reset')\r\n                $('#dateTo').trigger('reset')\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            }\r\n        },\r\n        computed: {\r\n            tags: {\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        },\r\n        mounted(){\r\n            $('.datepicker').pickadate({\r\n                selectMonths: true, // Creates a dropdown to control month\r\n                selectYears: 15 // Creates a dropdown of 15 years to control year\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -42020,65 +42020,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "ratingTo"
     }
-  }, [_vm._v("Rating To")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collection-item row"
-  }, [_c('div', {
-    staticClass: "input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.dateFrom),
-      expression: "dateFrom"
-    }],
-    staticClass: "datepicker",
-    attrs: {
-      "id": "dateFrom",
-      "name": "dateFrom",
-      "type": "date"
-    },
-    domProps: {
-      "value": _vm._s(_vm.dateFrom)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.dateFrom = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dateFrom"
-    }
-  }, [_vm._v("Date From")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.dateTo),
-      expression: "dateTo"
-    }],
-    staticClass: "datepicker",
-    attrs: {
-      "id": "dateTo",
-      "name": "dateTo",
-      "type": "date"
-    },
-    domProps: {
-      "value": _vm._s(_vm.dateTo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.dateTo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dateTo"
-    }
-  }, [_vm._v("Date To")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Rating To")])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "center-align collection-item"
   }, [_c('button', {
     staticClass: "btn waves-effect waves-light",
@@ -42096,7 +42038,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.reset
     }
   }, [_vm._v("\n                Reset\n            ")])])])])
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "collection-item row"
+  }, [_c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    staticClass: "datepicker",
+    attrs: {
+      "id": "dateFrom",
+      "name": "dateFrom",
+      "type": "date"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dateFrom"
+    }
+  }, [_vm._v("Date From")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    staticClass: "datepicker",
+    attrs: {
+      "id": "dateTo",
+      "name": "dateTo",
+      "type": "date"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dateTo"
+    }
+  }, [_vm._v("Date To")])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

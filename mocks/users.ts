@@ -14,7 +14,6 @@ const users = [{
     "nickname": "cramos1",
     "password": "aAJfgYUpMgs"
 }, {
-    
     "isAdmin": false,
     "rating": 42,
     "isBanned": null,

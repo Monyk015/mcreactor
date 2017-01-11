@@ -6,6 +6,7 @@ import {Context} from '~koa/lib/context';
 import * as Router from 'koa-router';
 import getPosts from "../lib/post";
 import adminMiddleware from "../middlewares/AdminMiddleware";
+import notifyAboutNewBestPost from "../lib/notifier";
 
 const PostController = new Router()
 
@@ -164,6 +165,10 @@ PostController
                 await previousRate.User.save()
                 await previousRate.Post.save()
                 ctx.body = {success: true, rating: previousRate.Post.rating}
+                if(previousRate.Post.rating >= 50)
+                {
+                    notifyAboutNewBestPost(id)
+                }
             }
             else if (rate != 'neutral')
             {
@@ -181,6 +186,10 @@ PostController
                 await post.save()
                 await post.User.save()
                 ctx.body = {success: true, rating: post.rating}
+                if(post.rating >= 50)
+                {
+                    notifyAboutNewBestPost(id)
+                }
             }
             else
             {

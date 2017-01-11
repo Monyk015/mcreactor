@@ -24,6 +24,7 @@
     "koa-static": "^2.0.0",
     "koa-static-folder": "^0.1.6",
     "mysql": "^2.12.0",
+    "nodemailer": "^2.7.0",
     "pg": "^6.1.0",
     "reflect-metadata": "^0.1.8",
     "routing-controllers": "^0.6.6",
