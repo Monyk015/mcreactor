@@ -79,7 +79,8 @@ Tag.hasMany(Ban)
     await CommentaryRate.sync({force: true})
     await Ban.sync({force: true})
     await Subscription.sync({force: true})
-
+    
+    
     ;(async() => {
         await User.bulkCreate(users.map(user => {
             user.password = require('sha256')(user.password)
@@ -87,6 +88,18 @@ Tag.hasMany(Ban)
         }))
         let query = fs.readFileSync('./mocks/posts.sql', 'utf-8')
         await db.query(query)
+        query = fs.readFileSync('./mocks/Tags.sql', 'utf-8')
+        await db.query(query)
+        query = fs.readFileSync('./mocks/PostTag.sql', 'utf-8')
+        await query.split(';').forEach(async (command) => {
+            if(command != '')
+                await db.query(command)
+        })
+        query = fs.readFileSync('./mocks/Commentaries.sql', 'utf-8')
+        await query.split(';').forEach(async (command) => {
+            if(command != '')
+                await db.query(command)
+        })
     })()
 })()
 

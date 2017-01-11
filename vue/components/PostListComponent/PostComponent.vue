@@ -5,7 +5,7 @@
         </router-link>
         <div class="collection-item" v-if="post.Tags.length">
             <div v-for="tag in post.Tags" class="chip">
-                <router-link v-bind:to="'/post/tag/' + tag.id">{{tag.name}}</router-link>
+                <router-link :to="`/post/tag/${tag.id}`">{{tag.name}}</router-link>
             </div>
         </div>
         <div class="row collection-item">
@@ -14,7 +14,7 @@
         </div>
         <div class="info row collection-item">
             <div class="date col s3">{{post.createdAt | formatDate}}</div>
-            <router-link v-bind:to="'/post/' + post.id" class="link col s1">Link</router-link>
+            <router-link :to="'/post/' + post.id" class="link col s1">Link</router-link>
             <div class="row col s4 offset-s4">
                 <div class="rating col s2 offset-s2">{{post.rating}}</div>
                 <div v-if="$store.state.user" class="rates col s8"><span @click="thumbUp"

@@ -255,6 +255,18 @@
 	        }));
 	        let query = fs.readFileSync('./mocks/posts.sql', 'utf-8');
 	        yield db_1.default.query(query);
+	        query = fs.readFileSync('./mocks/Tags.sql', 'utf-8');
+	        yield db_1.default.query(query);
+	        query = fs.readFileSync('./mocks/PostTag.sql', 'utf-8');
+	        yield query.split(';').forEach((command) => __awaiter(this, void 0, void 0, function* () {
+	            if (command != '')
+	                yield db_1.default.query(command);
+	        }));
+	        query = fs.readFileSync('./mocks/Commentaries.sql', 'utf-8');
+	        yield query.split(';').forEach((command) => __awaiter(this, void 0, void 0, function* () {
+	            if (command != '')
+	                yield db_1.default.query(command);
+	        }));
 	    }))();
 	}))();
 
@@ -369,7 +381,7 @@
 	const Sequelize = __webpack_require__(9);
 	const Commentary = db_1.default.define("Commentary", {
 	    content: {
-	        type: Sequelize.STRING,
+	        type: Sequelize.TEXT,
 	        allowNull: false,
 	    },
 	    rating: {
@@ -1051,7 +1063,13 @@
 	        group: [db_1.default.fn('date', db_1.default.col('createdAt'))],
 	        raw: true
 	    });
-	    ctx.body = { postCountByDay, commentCountByDay };
+	    let ratingCountByTag = yield db_1.default.query("SELECT `Tag`.`name` as 'name', sum(`Posts`.`rating`) as 'rating'" +
+	        " FROM `Tags` AS `Tag` LEFT OUTER JOIN (`PostTag` AS `Posts.PostTag` INNER JOIN `Posts` AS `Posts` ON `Posts`.`id` = `Posts.PostTag`.`PostId`)" +
+	        " ON `Tag`.`id` = `Posts.PostTag`.`TagId` GROUP BY `Tag`.`id`;");
+	    let ratingAvgByTag = yield db_1.default.query("SELECT `Tag`.`name` as 'name', avg(`Posts`.`rating`) as 'rating'" +
+	        " FROM `Tags` AS `Tag` LEFT OUTER JOIN (`PostTag` AS `Posts.PostTag` INNER JOIN `Posts` AS `Posts` ON `Posts`.`id` = `Posts.PostTag`.`PostId`)" +
+	        " ON `Tag`.`id` = `Posts.PostTag`.`TagId` GROUP BY `Tag`.`id`;");
+	    ctx.body = { postCountByDay, commentCountByDay, ratingCountByTag, ratingAvgByTag };
 	}));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PostController;

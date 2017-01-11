@@ -1,0 +1,10 @@
+insert into Tags (id, name, createdAt, updatedAt) values (1, 'eros', '2016-10-17 11:14:36', '2016-10-17 11:14:36');
+insert into Tags (id, name, createdAt, updatedAt) values (2, 'primis', '2016-09-11 13:22:15', '2016-09-11 13:22:15');
+insert into Tags (id, name, createdAt, updatedAt) values (3, 'pede', '2016-11-07 16:56:09', '2016-11-07 16:56:09');
+insert into Tags (id, name, createdAt, updatedAt) values (4, 'vel', '2016-05-11 01:27:57', '2016-05-11 01:27:57');
+insert into Tags (id, name, createdAt, updatedAt) values (5, 'penatibus', '2016-10-01 06:52:48', '2016-10-01 06:52:48');
+insert into Tags (id, name, createdAt, updatedAt) values (6, 'quam', '2016-01-27 07:14:48', '2016-01-27 07:14:48');
+insert into Tags (id, name, createdAt, updatedAt) values (7, 'donec', '2016-11-30 17:41:33', '2016-11-30 17:41:33');
+insert into Tags (id, name, createdAt, updatedAt) values (8, 'justo', '2016-09-01 02:38:43', '2016-09-01 02:38:43');
+insert into Tags (id, name, createdAt, updatedAt) values (9, 'porttitor', '2016-06-15 08:17:23', '2016-06-15 08:17:23');
+insert into Tags (id, name, createdAt, updatedAt) values (10, 'ololo', '2016-07-12 23:59:55', '2016-07-12 23:59:55');

@@ -33,16 +33,18 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmory imports with the correct context
+/******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
 /******/
-/******/ 	// define getter function for harmory exports
+/******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		Object.defineProperty(exports, name, {
-/******/ 			configurable: false,
-/******/ 			enumerable: true,
-/******/ 			get: getter
-/******/ 		});
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -15601,7 +15603,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(132)
 
 /* template */
-var __vue_template__ = __webpack_require__(213)
+var __vue_template__ = __webpack_require__(206)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15613,7 +15615,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\PostListComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\PostListComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -15624,9 +15626,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7d9d45e6", __vue_options__)
+    hotAPI.createRecord("data-v-2bc11f07", __vue_options__)
   } else {
-    hotAPI.reload("data-v-7d9d45e6", __vue_options__)
+    hotAPI.reload("data-v-2bc11f07", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] PostListComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15711,7 +15713,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(125)
 
 /* template */
-var __vue_template__ = __webpack_require__(210)
+var __vue_template__ = __webpack_require__(208)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15723,7 +15725,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\AdminComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\AdminComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -15734,9 +15736,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6341fed7", __vue_options__)
+    hotAPI.createRecord("data-v-5686bd54", __vue_options__)
   } else {
-    hotAPI.reload("data-v-6341fed7", __vue_options__)
+    hotAPI.reload("data-v-5686bd54", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] AdminComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15755,7 +15757,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(126)
 
 /* template */
-var __vue_template__ = __webpack_require__(207)
+var __vue_template__ = __webpack_require__(214)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15767,7 +15769,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\FeedComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -15778,9 +15780,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4bcb5526", __vue_options__)
+    hotAPI.createRecord("data-v-ed7a3272", __vue_options__)
   } else {
-    hotAPI.reload("data-v-4bcb5526", __vue_options__)
+    hotAPI.reload("data-v-ed7a3272", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] FeedComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15796,13 +15798,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(216)
+__webpack_require__(222)
 
 /* script */
 __vue_exports__ = __webpack_require__(131)
 
 /* template */
-var __vue_template__ = __webpack_require__(203)
+var __vue_template__ = __webpack_require__(211)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15814,10 +15816,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\LoginComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\LoginComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-03680cfd"
+__vue_options__._scopeId = "data-v-74e2af7c"
 
 /* hot reload */
 if (false) {(function () {
@@ -15826,9 +15828,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-03680cfd", __vue_options__)
+    hotAPI.createRecord("data-v-74e2af7c", __vue_options__)
   } else {
-    hotAPI.reload("data-v-03680cfd", __vue_options__)
+    hotAPI.reload("data-v-74e2af7c", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] LoginComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15844,13 +15846,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(218)
+__webpack_require__(219)
 
 /* script */
 __vue_exports__ = __webpack_require__(136)
 
 /* template */
-var __vue_template__ = __webpack_require__(205)
+var __vue_template__ = __webpack_require__(207)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15862,10 +15864,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\ProfileComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\ProfileComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-3dd9ab06"
+__vue_options__._scopeId = "data-v-4321ad88"
 
 /* hot reload */
 if (false) {(function () {
@@ -15874,9 +15876,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3dd9ab06", __vue_options__)
+    hotAPI.createRecord("data-v-4321ad88", __vue_options__)
   } else {
-    hotAPI.reload("data-v-3dd9ab06", __vue_options__)
+    hotAPI.reload("data-v-4321ad88", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] ProfileComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15892,13 +15894,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(223)
+__webpack_require__(221)
 
 /* script */
 __vue_exports__ = __webpack_require__(137)
 
 /* template */
-var __vue_template__ = __webpack_require__(212)
+var __vue_template__ = __webpack_require__(210)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -15910,10 +15912,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\RegisterComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\RegisterComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-7cb5067e"
+__vue_options__._scopeId = "data-v-6fc955e2"
 
 /* hot reload */
 if (false) {(function () {
@@ -15922,9 +15924,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7cb5067e", __vue_options__)
+    hotAPI.createRecord("data-v-6fc955e2", __vue_options__)
   } else {
-    hotAPI.reload("data-v-7cb5067e", __vue_options__)
+    hotAPI.reload("data-v-6fc955e2", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] RegisterComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -18005,8 +18007,8 @@ module.exports = VueRouter;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, process) {/*!
- * Vue.js v2.1.0
+/* WEBPACK VAR INJECTION */(function(process, global) {/*!
+ * Vue.js v2.1.8
  * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
@@ -18089,10 +18091,10 @@ function isPrimitive (value) {
  */
 function cached (fn) {
   var cache = Object.create(null);
-  return function cachedFn (str) {
+  return (function cachedFn (str) {
     var hit = cache[str];
     return hit || (cache[str] = fn(str))
-  }
+  })
 }
 
 /**
@@ -18204,6 +18206,11 @@ function noop () {}
 var no = function () { return false; };
 
 /**
+ * Return same value
+ */
+var identity = function (_) { return _; };
+
+/**
  * Generate a static keys string from compiler modules.
  */
 function genStaticKeys (modules) {
@@ -18217,13 +18224,15 @@ function genStaticKeys (modules) {
  * if they are plain objects, do they have the same shape?
  */
 function looseEqual (a, b) {
-  /* eslint-disable eqeqeq */
-  return a == b || (
-    isObject(a) && isObject(b)
-      ? JSON.stringify(a) === JSON.stringify(b)
-      : false
-  )
-  /* eslint-enable eqeqeq */
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    return JSON.stringify(a) === JSON.stringify(b)
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
 }
 
 function looseIndexOf (arr, val) {
@@ -18232,6 +18241,98 @@ function looseIndexOf (arr, val) {
   }
   return -1
 }
+
+/*  */
+
+var config = {
+  /**
+   * Option merge strategies (used in core/util/options)
+   */
+  optionMergeStrategies: Object.create(null),
+
+  /**
+   * Whether to suppress warnings.
+   */
+  silent: false,
+
+  /**
+   * Whether to enable devtools
+   */
+  devtools: process.env.NODE_ENV !== 'production',
+
+  /**
+   * Error handler for watcher errors
+   */
+  errorHandler: null,
+
+  /**
+   * Ignore certain custom elements
+   */
+  ignoredElements: [],
+
+  /**
+   * Custom user key aliases for v-on
+   */
+  keyCodes: Object.create(null),
+
+  /**
+   * Check if a tag is reserved so that it cannot be registered as a
+   * component. This is platform-dependent and may be overwritten.
+   */
+  isReservedTag: no,
+
+  /**
+   * Check if a tag is an unknown element.
+   * Platform-dependent.
+   */
+  isUnknownElement: no,
+
+  /**
+   * Get the namespace of an element
+   */
+  getTagNamespace: noop,
+
+  /**
+   * Parse the real tag name for the specific platform.
+   */
+  parsePlatformTagName: identity,
+
+  /**
+   * Check if an attribute must be bound using property, e.g. value
+   * Platform-dependent.
+   */
+  mustUseProp: no,
+
+  /**
+   * List of asset types that a component can own.
+   */
+  _assetTypes: [
+    'component',
+    'directive',
+    'filter'
+  ],
+
+  /**
+   * List of lifecycle hooks.
+   */
+  _lifecycleHooks: [
+    'beforeCreate',
+    'created',
+    'beforeMount',
+    'mounted',
+    'beforeUpdate',
+    'updated',
+    'beforeDestroy',
+    'destroyed',
+    'activated',
+    'deactivated'
+  ],
+
+  /**
+   * Max circular updates allowed in a scheduler flush cycle.
+   */
+  _maxUpdateCount: 100
+};
 
 /*  */
 
@@ -18281,10 +18382,7 @@ function parsePath (path) {
 var hasProto = '__proto__' in {};
 
 // Browser environment sniffing
-var inBrowser =
-  typeof window !== 'undefined' &&
-  Object.prototype.toString.call(window) !== '[object Object]';
-
+var inBrowser = typeof window !== 'undefined';
 var UA = inBrowser && window.navigator.userAgent.toLowerCase();
 var isIE = UA && /msie|trident/.test(UA);
 var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
@@ -18343,8 +18441,9 @@ var nextTick = (function () {
   /* istanbul ignore if */
   if (typeof Promise !== 'undefined' && isNative(Promise)) {
     var p = Promise.resolve();
+    var logError = function (err) { console.error(err); };
     timerFunc = function () {
-      p.then(nextTickHandler);
+      p.then(nextTickHandler).catch(logError);
       // in problematic UIWebViews, Promise.then doesn't completely break, but
       // it can get stuck in a weird state where callbacks are pushed into the
       // microtask queue but the queue isn't being flushed, until the browser
@@ -18407,10 +18506,10 @@ if (typeof Set !== 'undefined' && isNative(Set)) {
       this.set = Object.create(null);
     }
     Set.prototype.has = function has (key) {
-      return this.set[key] !== undefined
+      return this.set[key] === true
     };
     Set.prototype.add = function add (key) {
-      this.set[key] = 1;
+      this.set[key] = true;
     };
     Set.prototype.clear = function clear () {
       this.set = Object.create(null);
@@ -18419,93 +18518,6 @@ if (typeof Set !== 'undefined' && isNative(Set)) {
     return Set;
   }());
 }
-
-/*  */
-
-var config = {
-  /**
-   * Option merge strategies (used in core/util/options)
-   */
-  optionMergeStrategies: Object.create(null),
-
-  /**
-   * Whether to suppress warnings.
-   */
-  silent: false,
-
-  /**
-   * Whether to enable devtools
-   */
-  devtools: process.env.NODE_ENV !== 'production',
-
-  /**
-   * Error handler for watcher errors
-   */
-  errorHandler: null,
-
-  /**
-   * Ignore certain custom elements
-   */
-  ignoredElements: null,
-
-  /**
-   * Custom user key aliases for v-on
-   */
-  keyCodes: Object.create(null),
-
-  /**
-   * Check if a tag is reserved so that it cannot be registered as a
-   * component. This is platform-dependent and may be overwritten.
-   */
-  isReservedTag: no,
-
-  /**
-   * Check if a tag is an unknown element.
-   * Platform-dependent.
-   */
-  isUnknownElement: no,
-
-  /**
-   * Get the namespace of an element
-   */
-  getTagNamespace: noop,
-
-  /**
-   * Check if an attribute must be bound using property, e.g. value
-   * Platform-dependent.
-   */
-  mustUseProp: no,
-
-  /**
-   * List of asset types that a component can own.
-   */
-  _assetTypes: [
-    'component',
-    'directive',
-    'filter'
-  ],
-
-  /**
-   * List of lifecycle hooks.
-   */
-  _lifecycleHooks: [
-    'beforeCreate',
-    'created',
-    'beforeMount',
-    'mounted',
-    'beforeUpdate',
-    'updated',
-    'beforeDestroy',
-    'destroyed',
-    'activated',
-    'deactivated'
-  ],
-
-  /**
-   * Max circular updates allowed in a scheduler flush cycle.
-   */
-  _maxUpdateCount: 100
-};
 
 var warn = noop;
 var formatComponentName;
@@ -18715,9 +18727,8 @@ function protoAugment (target, src) {
 /**
  * Augment an target Object or Array by defining
  * hidden properties.
- *
- * istanbul ignore next
  */
+/* istanbul ignore next */
 function copyAugment (target, src, keys) {
   for (var i = 0, l = keys.length; i < l; i++) {
     var key = keys[i];
@@ -18730,7 +18741,7 @@ function copyAugment (target, src, keys) {
  * returns the new observer if successfully observed,
  * or the existing observer if the value already has one.
  */
-function observe (value) {
+function observe (value, asRootData) {
   if (!isObject(value)) {
     return
   }
@@ -18745,6 +18756,9 @@ function observe (value) {
     !value._isVue
   ) {
     ob = new Observer(value);
+  }
+  if (asRootData && ob) {
+    ob.vmCount++;
   }
   return ob
 }
@@ -18812,7 +18826,7 @@ function defineReactive$$1 (
  * triggers change notification if the property doesn't
  * already exist.
  */
-function set (obj, key, val) {
+function set$1 (obj, key, val) {
   if (Array.isArray(obj)) {
     obj.length = Math.max(obj.length, key);
     obj.splice(key, 1, val);
@@ -18911,7 +18925,7 @@ function mergeData (to, from) {
     toVal = to[key];
     fromVal = from[key];
     if (!hasOwn(to, key)) {
-      set(to, key, fromVal);
+      set$1(to, key, fromVal);
     } else if (isPlainObject(toVal) && isPlainObject(fromVal)) {
       mergeData(toVal, fromVal);
     }
@@ -19183,11 +19197,14 @@ function resolveAsset (
     return
   }
   var assets = options[type];
-  var res = assets[id] ||
-    // camelCase ID
-    assets[camelize(id)] ||
-    // Pascal Case ID
-    assets[capitalize(camelize(id))];
+  // check local registration variations first
+  if (hasOwn(assets, id)) { return assets[id] }
+  var camelizedId = camelize(id);
+  if (hasOwn(assets, camelizedId)) { return assets[camelizedId] }
+  var PascalCaseId = capitalize(camelizedId);
+  if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
+  // fallback to prototype chain
+  var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
   if (process.env.NODE_ENV !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
@@ -19209,10 +19226,10 @@ function validateProp (
   var absent = !hasOwn(propsData, key);
   var value = propsData[key];
   // handle boolean props
-  if (isBooleanType(prop.type)) {
+  if (isType(Boolean, prop.type)) {
     if (absent && !hasOwn(prop, 'default')) {
       value = false;
-    } else if (value === '' || value === hyphenate(key)) {
+    } else if (!isType(String, prop.type) && (value === '' || value === hyphenate(key))) {
       value = true;
     }
   }
@@ -19292,7 +19309,7 @@ function assertProp (
     }
     for (var i = 0; i < type.length && !valid; i++) {
       var assertedType = assertType(value, type[i]);
-      expectedTypes.push(assertedType.expectedType);
+      expectedTypes.push(assertedType.expectedType || '');
       valid = assertedType.valid;
     }
   }
@@ -19353,12 +19370,12 @@ function getType (fn) {
   return match && match[1]
 }
 
-function isBooleanType (fn) {
+function isType (type, fn) {
   if (!Array.isArray(fn)) {
-    return getType(fn) === 'Boolean'
+    return getType(fn) === getType(type)
   }
   for (var i = 0, len = fn.length; i < len; i++) {
-    if (getType(fn[i]) === 'Boolean') {
+    if (getType(fn[i]) === getType(type)) {
       return true
     }
   }
@@ -19389,6 +19406,7 @@ var util = Object.freeze({
 	toObject: toObject,
 	noop: noop,
 	no: no,
+	identity: identity,
 	genStaticKeys: genStaticKeys,
 	looseEqual: looseEqual,
 	looseIndexOf: looseIndexOf,
@@ -19416,8 +19434,6 @@ var util = Object.freeze({
 
 /* not type checking this file because flow doesn't play well with Proxy */
 
-var hasProxy;
-var proxyHandlers;
 var initProxy;
 
 if (process.env.NODE_ENV !== 'production') {
@@ -19428,29 +19444,62 @@ if (process.env.NODE_ENV !== 'production') {
     'require' // for Webpack/Browserify
   );
 
-  hasProxy =
+  var warnNonPresent = function (target, key) {
+    warn(
+      "Property or method \"" + key + "\" is not defined on the instance but " +
+      "referenced during render. Make sure to declare reactive data " +
+      "properties in the data option.",
+      target
+    );
+  };
+
+  var hasProxy =
     typeof Proxy !== 'undefined' &&
     Proxy.toString().match(/native code/);
 
-  proxyHandlers = {
+  if (hasProxy) {
+    var isBuiltInModifier = makeMap('stop,prevent,self,ctrl,shift,alt,meta');
+    config.keyCodes = new Proxy(config.keyCodes, {
+      set: function set (target, key, value) {
+        if (isBuiltInModifier(key)) {
+          warn(("Avoid overwriting built-in modifier in config.keyCodes: ." + key));
+          return false
+        } else {
+          target[key] = value;
+          return true
+        }
+      }
+    });
+  }
+
+  var hasHandler = {
     has: function has (target, key) {
       var has = key in target;
       var isAllowed = allowedGlobals(key) || key.charAt(0) === '_';
       if (!has && !isAllowed) {
-        warn(
-          "Property or method \"" + key + "\" is not defined on the instance but " +
-          "referenced during render. Make sure to declare reactive data " +
-          "properties in the data option.",
-          target
-        );
+        warnNonPresent(target, key);
       }
       return has || !isAllowed
     }
   };
 
+  var getHandler = {
+    get: function get (target, key) {
+      if (typeof key === 'string' && !(key in target)) {
+        warnNonPresent(target, key);
+      }
+      return target[key]
+    }
+  };
+
   initProxy = function initProxy (vm) {
     if (hasProxy) {
-      vm._renderProxy = new Proxy(vm, proxyHandlers);
+      // determine which proxy handler to use
+      var options = vm.$options;
+      var handlers = options.render && options.render._withStripped
+        ? getHandler
+        : hasHandler;
+      vm._renderProxy = new Proxy(vm, handlers);
     } else {
       vm._renderProxy = vm;
     }
@@ -19571,16 +19620,17 @@ var Watcher = function Watcher (
   cb,
   options
 ) {
-  if ( options === void 0 ) options = {};
-
   this.vm = vm;
   vm._watchers.push(this);
   // options
-  this.deep = !!options.deep;
-  this.user = !!options.user;
-  this.lazy = !!options.lazy;
-  this.sync = !!options.sync;
-  this.expression = expOrFn.toString();
+  if (options) {
+    this.deep = !!options.deep;
+    this.user = !!options.user;
+    this.lazy = !!options.lazy;
+    this.sync = !!options.sync;
+  } else {
+    this.deep = this.user = this.lazy = this.sync = false;
+  }
   this.cb = cb;
   this.id = ++uid$2; // uid for batching
   this.active = true;
@@ -19589,6 +19639,9 @@ var Watcher = function Watcher (
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
+  this.expression = process.env.NODE_ENV !== 'production'
+    ? expOrFn.toString()
+    : '';
   // parse expression for getter
   if (typeof expOrFn === 'function') {
     this.getter = expOrFn;
@@ -19684,8 +19737,8 @@ Watcher.prototype.update = function update () {
 Watcher.prototype.run = function run () {
   if (this.active) {
     var value = this.get();
-      if (
-        value !== this.value ||
+    if (
+      value !== this.value ||
       // Deep watchers and watchers on Object/Arrays should fire even
       // when the value is the same, because the value may
       // have mutated.
@@ -19699,14 +19752,14 @@ Watcher.prototype.run = function run () {
         try {
           this.cb.call(this.vm, value, oldValue);
         } catch (e) {
-          process.env.NODE_ENV !== 'production' && warn(
-            ("Error in watcher \"" + (this.expression) + "\""),
-            this.vm
-          );
           /* istanbul ignore else */
           if (config.errorHandler) {
             config.errorHandler.call(null, e, this.vm);
           } else {
+            process.env.NODE_ENV !== 'production' && warn(
+              ("Error in watcher \"" + (this.expression) + "\""),
+              this.vm
+            );
             throw e
           }
         }
@@ -19747,9 +19800,8 @@ Watcher.prototype.teardown = function teardown () {
   if (this.active) {
     // remove self from vm's watcher list
     // this is a somewhat expensive operation so we skip it
-    // if the vm is being destroyed or is performing a v-for
-    // re-render (the watcher list is then filtered by v-for).
-    if (!this.vm._isBeingDestroyed && !this.vm._vForRemoving) {
+    // if the vm is being destroyed.
+    if (!this.vm._isBeingDestroyed) {
       remove$1(this.vm._watchers, this);
     }
     var i = this.deps.length;
@@ -19798,52 +19850,54 @@ function _traverse (val, seen) {
 
 function initState (vm) {
   vm._watchers = [];
-  initProps(vm);
-  initData(vm);
-  initComputed(vm);
-  initMethods(vm);
-  initWatch(vm);
+  var opts = vm.$options;
+  if (opts.props) { initProps(vm, opts.props); }
+  if (opts.methods) { initMethods(vm, opts.methods); }
+  if (opts.data) {
+    initData(vm);
+  } else {
+    observe(vm._data = {}, true /* asRootData */);
+  }
+  if (opts.computed) { initComputed(vm, opts.computed); }
+  if (opts.watch) { initWatch(vm, opts.watch); }
 }
 
-var isReservedProp = makeMap('key,ref,slot');
+var isReservedProp = { key: 1, ref: 1, slot: 1 };
 
-function initProps (vm) {
-  var props = vm.$options.props;
-  if (props) {
-    var propsData = vm.$options.propsData || {};
-    var keys = vm.$options._propKeys = Object.keys(props);
-    var isRoot = !vm.$parent;
-    // root instance props should be converted
-    observerState.shouldConvert = isRoot;
-    var loop = function ( i ) {
-      var key = keys[i];
-      /* istanbul ignore else */
-      if (process.env.NODE_ENV !== 'production') {
-        if (isReservedProp(key)) {
+function initProps (vm, props) {
+  var propsData = vm.$options.propsData || {};
+  var keys = vm.$options._propKeys = Object.keys(props);
+  var isRoot = !vm.$parent;
+  // root instance props should be converted
+  observerState.shouldConvert = isRoot;
+  var loop = function ( i ) {
+    var key = keys[i];
+    /* istanbul ignore else */
+    if (process.env.NODE_ENV !== 'production') {
+      if (isReservedProp[key]) {
+        warn(
+          ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
+          vm
+        );
+      }
+      defineReactive$$1(vm, key, validateProp(key, props, propsData, vm), function () {
+        if (vm.$parent && !observerState.isSettingProps) {
           warn(
-            ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
+            "Avoid mutating a prop directly since the value will be " +
+            "overwritten whenever the parent component re-renders. " +
+            "Instead, use a data or computed property based on the prop's " +
+            "value. Prop being mutated: \"" + key + "\"",
             vm
           );
         }
-        defineReactive$$1(vm, key, validateProp(key, props, propsData, vm), function () {
-          if (vm.$parent && !observerState.isSettingProps) {
-            warn(
-              "Avoid mutating a prop directly since the value will be " +
-              "overwritten whenever the parent component re-renders. " +
-              "Instead, use a data or computed property based on the prop's " +
-              "value. Prop being mutated: \"" + key + "\"",
-              vm
-            );
-          }
-        });
-      } else {
-        defineReactive$$1(vm, key, validateProp(key, props, propsData, vm));
-      }
-    };
+      });
+    } else {
+      defineReactive$$1(vm, key, validateProp(key, props, propsData, vm));
+    }
+  };
 
-    for (var i = 0; i < keys.length; i++) loop( i );
-    observerState.shouldConvert = true;
-  }
+  for (var i = 0; i < keys.length; i++) loop( i );
+  observerState.shouldConvert = true;
 }
 
 function initData (vm) {
@@ -19854,7 +19908,8 @@ function initData (vm) {
   if (!isPlainObject(data)) {
     data = {};
     process.env.NODE_ENV !== 'production' && warn(
-      'data functions should return an object.',
+      'data functions should return an object:\n' +
+      'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
       vm
     );
   }
@@ -19874,8 +19929,7 @@ function initData (vm) {
     }
   }
   // observe data
-  observe(data);
-  data.__ob__ && data.__ob__.vmCount++;
+  observe(data, true /* asRootData */);
 }
 
 var computedSharedDefinition = {
@@ -19885,26 +19939,31 @@ var computedSharedDefinition = {
   set: noop
 };
 
-function initComputed (vm) {
-  var computed = vm.$options.computed;
-  if (computed) {
-    for (var key in computed) {
-      var userDef = computed[key];
-      if (typeof userDef === 'function') {
-        computedSharedDefinition.get = makeComputedGetter(userDef, vm);
-        computedSharedDefinition.set = noop;
-      } else {
-        computedSharedDefinition.get = userDef.get
-          ? userDef.cache !== false
-            ? makeComputedGetter(userDef.get, vm)
-            : bind$1(userDef.get, vm)
-          : noop;
-        computedSharedDefinition.set = userDef.set
-          ? bind$1(userDef.set, vm)
-          : noop;
-      }
-      Object.defineProperty(vm, key, computedSharedDefinition);
+function initComputed (vm, computed) {
+  for (var key in computed) {
+    /* istanbul ignore if */
+    if (process.env.NODE_ENV !== 'production' && key in vm) {
+      warn(
+        "existing instance property \"" + key + "\" will be " +
+        "overwritten by a computed property with the same name.",
+        vm
+      );
     }
+    var userDef = computed[key];
+    if (typeof userDef === 'function') {
+      computedSharedDefinition.get = makeComputedGetter(userDef, vm);
+      computedSharedDefinition.set = noop;
+    } else {
+      computedSharedDefinition.get = userDef.get
+        ? userDef.cache !== false
+          ? makeComputedGetter(userDef.get, vm)
+          : bind$1(userDef.get, vm)
+        : noop;
+      computedSharedDefinition.set = userDef.set
+        ? bind$1(userDef.set, vm)
+        : noop;
+    }
+    Object.defineProperty(vm, key, computedSharedDefinition);
   }
 }
 
@@ -19923,34 +19982,28 @@ function makeComputedGetter (getter, owner) {
   }
 }
 
-function initMethods (vm) {
-  var methods = vm.$options.methods;
-  if (methods) {
-    for (var key in methods) {
-      vm[key] = methods[key] == null ? noop : bind$1(methods[key], vm);
-      if (process.env.NODE_ENV !== 'production' && methods[key] == null) {
-        warn(
-          "method \"" + key + "\" has an undefined value in the component definition. " +
-          "Did you reference the function correctly?",
-          vm
-        );
-      }
+function initMethods (vm, methods) {
+  for (var key in methods) {
+    vm[key] = methods[key] == null ? noop : bind$1(methods[key], vm);
+    if (process.env.NODE_ENV !== 'production' && methods[key] == null) {
+      warn(
+        "method \"" + key + "\" has an undefined value in the component definition. " +
+        "Did you reference the function correctly?",
+        vm
+      );
     }
   }
 }
 
-function initWatch (vm) {
-  var watch = vm.$options.watch;
-  if (watch) {
-    for (var key in watch) {
-      var handler = watch[key];
-      if (Array.isArray(handler)) {
-        for (var i = 0; i < handler.length; i++) {
-          createWatcher(vm, key, handler[i]);
-        }
-      } else {
-        createWatcher(vm, key, handler);
+function initWatch (vm, watch) {
+  for (var key in watch) {
+    var handler = watch[key];
+    if (Array.isArray(handler)) {
+      for (var i = 0; i < handler.length; i++) {
+        createWatcher(vm, key, handler[i]);
       }
+    } else {
+      createWatcher(vm, key, handler);
     }
   }
 }
@@ -19986,7 +20039,7 @@ function stateMixin (Vue) {
   }
   Object.defineProperty(Vue.prototype, '$data', dataDef);
 
-  Vue.prototype.$set = set;
+  Vue.prototype.$set = set$1;
   Vue.prototype.$delete = del;
 
   Vue.prototype.$watch = function (
@@ -20030,7 +20083,6 @@ var VNode = function VNode (
   children,
   text,
   elm,
-  ns,
   context,
   componentOptions
 ) {
@@ -20039,7 +20091,7 @@ var VNode = function VNode (
   this.children = children;
   this.text = text;
   this.elm = elm;
-  this.ns = ns;
+  this.ns = undefined;
   this.context = context;
   this.functionalContext = undefined;
   this.key = data && data.key;
@@ -20054,12 +20106,16 @@ var VNode = function VNode (
   this.isOnce = false;
 };
 
-var emptyVNode = function () {
+var createEmptyVNode = function () {
   var node = new VNode();
   node.text = '';
   node.isComment = true;
   return node
 };
+
+function createTextVNode (val) {
+  return new VNode(undefined, undefined, undefined, String(val))
+}
 
 // optimized shallow clone
 // used for static nodes and slot nodes because they may be reused across
@@ -20072,10 +20128,10 @@ function cloneVNode (vnode) {
     vnode.children,
     vnode.text,
     vnode.elm,
-    vnode.ns,
     vnode.context,
     vnode.componentOptions
   );
+  cloned.ns = vnode.ns;
   cloned.isStatic = vnode.isStatic;
   cloned.key = vnode.key;
   cloned.isCloned = true;
@@ -20118,7 +20174,7 @@ function updateListeners (
   remove$$1,
   vm
 ) {
-  var name, cur, old, fn, event, capture;
+  var name, cur, old, fn, event, capture, once;
   for (name in on) {
     cur = on[name];
     old = oldOn[name];
@@ -20128,10 +20184,12 @@ function updateListeners (
         vm
       );
     } else if (!old) {
-      capture = name.charAt(0) === '!';
-      event = capture ? name.slice(1) : name;
+      once = name.charAt(0) === '~'; // Prefixed last, checked first
+      event = once ? name.slice(1) : name;
+      capture = event.charAt(0) === '!';
+      event = capture ? event.slice(1) : event;
       if (Array.isArray(cur)) {
-        add(event, (cur.invoker = arrInvoker(cur)), capture);
+        add(event, (cur.invoker = arrInvoker(cur)), once, capture);
       } else {
         if (!cur.invoker) {
           fn = cur;
@@ -20139,7 +20197,7 @@ function updateListeners (
           cur.fn = fn;
           cur.invoker = fnInvoker(cur);
         }
-        add(event, cur.invoker, capture);
+        add(event, cur.invoker, once, capture);
       }
     } else if (cur !== old) {
       if (Array.isArray(old)) {
@@ -20154,8 +20212,11 @@ function updateListeners (
   }
   for (name in oldOn) {
     if (!on[name]) {
-      event = name.charAt(0) === '!' ? name.slice(1) : name;
-      remove$$1(event, oldOn[name].invoker);
+      once = name.charAt(0) === '~'; // Prefixed last, checked first
+      event = once ? name.slice(1) : name;
+      capture = event.charAt(0) === '!';
+      event = capture ? event.slice(1) : event;
+      remove$$1(event, oldOn[name].invoker, capture);
     }
   }
 }
@@ -20180,70 +20241,176 @@ function fnInvoker (o) {
 
 /*  */
 
-function normalizeChildren (
-  children,
-  ns,
-  nestedIndex
-) {
-  if (isPrimitive(children)) {
-    return [createTextVNode(children)]
-  }
-  if (Array.isArray(children)) {
-    var res = [];
-    for (var i = 0, l = children.length; i < l; i++) {
-      var c = children[i];
-      var last = res[res.length - 1];
-      //  nested
-      if (Array.isArray(c)) {
-        res.push.apply(res, normalizeChildren(c, ns, ((nestedIndex || '') + "_" + i)));
-      } else if (isPrimitive(c)) {
-        if (last && last.text) {
-          last.text += String(c);
-        } else if (c !== '') {
-          // convert primitive to vnode
-          res.push(createTextVNode(c));
-        }
-      } else if (c instanceof VNode) {
-        if (c.text && last && last.text) {
-          if (!last.isCloned) {
-            last.text += c.text;
-          }
-        } else {
-          // inherit parent namespace
-          if (ns) {
-            applyNS(c, ns);
-          }
-          // default key for nested array children (likely generated by v-for)
-          if (c.tag && c.key == null && nestedIndex != null) {
-            c.key = "__vlist" + nestedIndex + "_" + i + "__";
-          }
-          res.push(c);
-        }
-      }
-    }
-    return res
-  }
-}
+// The template compiler attempts to minimize the need for normalization by
+// statically analyzing the template at compile time.
+//
+// For plain HTML markup, normalization can be completely skipped because the
+// generated render function is guaranteed to return Array<VNode>. There are
+// two cases where extra normalization is needed:
 
-function createTextVNode (val) {
-  return new VNode(undefined, undefined, undefined, String(val))
-}
-
-function applyNS (vnode, ns) {
-  if (vnode.tag && !vnode.ns) {
-    vnode.ns = ns;
-    if (vnode.children) {
-      for (var i = 0, l = vnode.children.length; i < l; i++) {
-        applyNS(vnode.children[i], ns);
-      }
+// 1. When the children contains components - because a functional component
+// may return an Array instead of a single root. In this case, just a simple
+// nomralization is needed - if any child is an Array, we flatten the whole
+// thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
+// because functional components already normalize their own children.
+function simpleNormalizeChildren (children) {
+  for (var i = 0; i < children.length; i++) {
+    if (Array.isArray(children[i])) {
+      return Array.prototype.concat.apply([], children)
     }
   }
+  return children
+}
+
+// 2. When the children contains constrcuts that always generated nested Arrays,
+// e.g. <template>, <slot>, v-for, or when the children is provided by user
+// with hand-written render functions / JSX. In such cases a full normalization
+// is needed to cater to all possible types of children values.
+function normalizeChildren (children) {
+  return isPrimitive(children)
+    ? [createTextVNode(children)]
+    : Array.isArray(children)
+      ? normalizeArrayChildren(children)
+      : undefined
+}
+
+function normalizeArrayChildren (children, nestedIndex) {
+  var res = [];
+  var i, c, last;
+  for (i = 0; i < children.length; i++) {
+    c = children[i];
+    if (c == null || typeof c === 'boolean') { continue }
+    last = res[res.length - 1];
+    //  nested
+    if (Array.isArray(c)) {
+      res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i)));
+    } else if (isPrimitive(c)) {
+      if (last && last.text) {
+        last.text += String(c);
+      } else if (c !== '') {
+        // convert primitive to vnode
+        res.push(createTextVNode(c));
+      }
+    } else {
+      if (c.text && last && last.text) {
+        res[res.length - 1] = createTextVNode(last.text + c.text);
+      } else {
+        // default key for nested array children (likely generated by v-for)
+        if (c.tag && c.key == null && nestedIndex != null) {
+          c.key = "__vlist" + nestedIndex + "_" + i + "__";
+        }
+        res.push(c);
+      }
+    }
+  }
+  return res
 }
 
 /*  */
 
 function getFirstComponentChild (children) {
   return children && children.filter(function (c) { return c && c.componentOptions; })[0]
+}
+
+/*  */
+
+function initEvents (vm) {
+  vm._events = Object.create(null);
+  vm._hasHookEvent = false;
+  // init parent attached events
+  var listeners = vm.$options._parentListeners;
+  if (listeners) {
+    updateComponentListeners(vm, listeners);
+  }
+}
+
+var target;
+
+function add$1 (event, fn, once) {
+  if (once) {
+    target.$once(event, fn);
+  } else {
+    target.$on(event, fn);
+  }
+}
+
+function remove$2 (event, fn) {
+  target.$off(event, fn);
+}
+
+function updateComponentListeners (
+  vm,
+  listeners,
+  oldListeners
+) {
+  target = vm;
+  updateListeners(listeners, oldListeners || {}, add$1, remove$2, vm);
+}
+
+function eventsMixin (Vue) {
+  var hookRE = /^hook:/;
+  Vue.prototype.$on = function (event, fn) {
+    var vm = this;(vm._events[event] || (vm._events[event] = [])).push(fn);
+    // optimize hook:event cost by using a boolean flag marked at registration
+    // instead of a hash lookup
+    if (hookRE.test(event)) {
+      vm._hasHookEvent = true;
+    }
+    return vm
+  };
+
+  Vue.prototype.$once = function (event, fn) {
+    var vm = this;
+    function on () {
+      vm.$off(event, on);
+      fn.apply(vm, arguments);
+    }
+    on.fn = fn;
+    vm.$on(event, on);
+    return vm
+  };
+
+  Vue.prototype.$off = function (event, fn) {
+    var vm = this;
+    // all
+    if (!arguments.length) {
+      vm._events = Object.create(null);
+      return vm
+    }
+    // specific event
+    var cbs = vm._events[event];
+    if (!cbs) {
+      return vm
+    }
+    if (arguments.length === 1) {
+      vm._events[event] = null;
+      return vm
+    }
+    // specific handler
+    var cb;
+    var i = cbs.length;
+    while (i--) {
+      cb = cbs[i];
+      if (cb === fn || cb.fn === fn) {
+        cbs.splice(i, 1);
+        break
+      }
+    }
+    return vm
+  };
+
+  Vue.prototype.$emit = function (event) {
+    var vm = this;
+    var cbs = vm._events[event];
+    if (cbs) {
+      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+      var args = toArray(arguments, 1);
+      for (var i = 0, l = cbs.length; i < l; i++) {
+        cbs[i].apply(vm, args);
+      }
+    }
+    return vm
+  };
 }
 
 /*  */
@@ -20283,7 +20450,7 @@ function lifecycleMixin (Vue) {
     var vm = this;
     vm.$el = el;
     if (!vm.$options.render) {
-      vm.$options.render = emptyVNode;
+      vm.$options.render = createEmptyVNode;
       if (process.env.NODE_ENV !== 'production') {
         /* istanbul ignore if */
         if (vm.$options.template && vm.$options.template.charAt(0) !== '#') {
@@ -20321,15 +20488,21 @@ function lifecycleMixin (Vue) {
       callHook(vm, 'beforeUpdate');
     }
     var prevEl = vm.$el;
+    var prevVnode = vm._vnode;
     var prevActiveInstance = activeInstance;
     activeInstance = vm;
-    var prevVnode = vm._vnode;
     vm._vnode = vnode;
+    // Vue.prototype.__patch__ is injected in entry points
+    // based on the rendering backend used.
     if (!prevVnode) {
-      // Vue.prototype.__patch__ is injected in entry points
-      // based on the rendering backend used.
-      vm.$el = vm.__patch__(vm.$el, vnode, hydrating);
+      // initial render
+      vm.$el = vm.__patch__(
+        vm.$el, vnode, hydrating, false /* removeOnly */,
+        vm.$options._parentElm,
+        vm.$options._refElm
+      );
     } else {
+      // updates
       vm.$el = vm.__patch__(prevVnode, vnode);
     }
     activeInstance = prevActiveInstance;
@@ -20358,6 +20531,10 @@ function lifecycleMixin (Vue) {
     var vm = this;
     var hasChildren = !!(vm.$options._renderChildren || renderChildren);
     vm.$options._parentVnode = parentVnode;
+    vm.$vnode = parentVnode; // update vm's placeholder node without re-render
+    if (vm._vnode) { // update child tree's parent
+      vm._vnode.parent = parentVnode;
+    }
     vm.$options._renderChildren = renderChildren;
     // update props
     if (propsData && vm.$options.props) {
@@ -20380,11 +20557,11 @@ function lifecycleMixin (Vue) {
     if (listeners) {
       var oldListeners = vm.$options._parentListeners;
       vm.$options._parentListeners = listeners;
-      vm._updateListeners(listeners, oldListeners);
+      updateComponentListeners(vm, listeners, oldListeners);
     }
     // resolve slots + force update if has children
     if (hasChildren) {
-      vm.$slots = resolveSlots(renderChildren, vm._renderContext);
+      vm.$slots = resolveSlots(renderChildren, parentVnode.context);
       vm.$forceUpdate();
     }
   };
@@ -20442,7 +20619,9 @@ function callHook (vm, hook) {
       handlers[i].call(vm);
     }
   }
-  vm.$emit('hook:' + hook);
+  if (vm._hasHookEvent) {
+    vm.$emit('hook:' + hook);
+  }
 }
 
 /*  */
@@ -20524,7 +20703,7 @@ function createComponent (
   var name = Ctor.options.name || tag;
   var vnode = new VNode(
     ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
-    data, undefined, undefined, undefined, undefined, context,
+    data, undefined, undefined, undefined, context,
     { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children }
   );
   return vnode
@@ -20544,19 +20723,17 @@ function createFunctionalComponent (
       props[key] = validateProp(key, propOptions, propsData);
     }
   }
-  var vnode = Ctor.options.render.call(
-    null,
-    // ensure the createElement function in functional components
-    // gets a unique context - this is necessary for correct named slot check
-    bind$1(createElement, { _self: Object.create(context) }),
-    {
-      props: props,
-      data: data,
-      parent: context,
-      children: normalizeChildren(children),
-      slots: function () { return resolveSlots(children, context); }
-    }
-  );
+  // ensure the createElement function in functional components
+  // gets a unique context - this is necessary for correct named slot check
+  var _context = Object.create(context);
+  var h = function (a, b, c, d) { return createElement(_context, a, b, c, d, true); };
+  var vnode = Ctor.options.render.call(null, h, {
+    props: props,
+    data: data,
+    parent: context,
+    children: children,
+    slots: function () { return resolveSlots(children, context); }
+  });
   if (vnode instanceof VNode) {
     vnode.functionalContext = context;
     if (data.slot) {
@@ -20568,7 +20745,9 @@ function createFunctionalComponent (
 
 function createComponentInstanceForVnode (
   vnode, // we know it's MountedComponentVNode but flow doesn't
-  parent // activeInstance in lifecycle state
+  parent, // activeInstance in lifecycle state
+  parentElm,
+  refElm
 ) {
   var vnodeComponentOptions = vnode.componentOptions;
   var options = {
@@ -20578,7 +20757,9 @@ function createComponentInstanceForVnode (
     _componentTag: vnodeComponentOptions.tag,
     _parentVnode: vnode,
     _parentListeners: vnodeComponentOptions.listeners,
-    _renderChildren: vnodeComponentOptions.children
+    _renderChildren: vnodeComponentOptions.children,
+    _parentElm: parentElm || null,
+    _refElm: refElm || null
   };
   // check inline-template render functions
   var inlineTemplate = vnode.data.inlineTemplate;
@@ -20589,9 +20770,19 @@ function createComponentInstanceForVnode (
   return new vnodeComponentOptions.Ctor(options)
 }
 
-function init (vnode, hydrating) {
+function init (
+  vnode,
+  hydrating,
+  parentElm,
+  refElm
+) {
   if (!vnode.child || vnode.child._isDestroyed) {
-    var child = vnode.child = createComponentInstanceForVnode(vnode, activeInstance);
+    var child = vnode.child = createComponentInstanceForVnode(
+      vnode,
+      activeInstance,
+      parentElm,
+      refElm
+    );
     child.$mount(hydrating ? vnode.elm : undefined, hydrating);
   } else if (vnode.data.keepAlive) {
     // kept-alive components, treat as a patch
@@ -20744,37 +20935,43 @@ function mergeHooks (data) {
   }
 }
 
-function mergeHook$1 (a, b) {
-  // since all hooks have at most two args, use fixed args
-  // to avoid having to use fn.apply().
-  return function (_, __) {
-    a(_, __);
-    b(_, __);
+function mergeHook$1 (one, two) {
+  return function (a, b, c, d) {
+    one(a, b, c, d);
+    two(a, b, c, d);
   }
 }
 
 /*  */
 
+var SIMPLE_NORMALIZE = 1;
+var ALWAYS_NORMALIZE = 2;
+
 // wrapper function for providing a more flexible interface
 // without getting yelled at by flow
 function createElement (
+  context,
   tag,
   data,
-  children
+  children,
+  normalizationType,
+  alwaysNormalize
 ) {
-  if (data && (Array.isArray(data) || typeof data !== 'object')) {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children;
     children = data;
     data = undefined;
   }
-  // make sure to use real instance instead of proxy as context
-  return _createElement(this._self, tag, data, children)
+  if (alwaysNormalize) { normalizationType = ALWAYS_NORMALIZE; }
+  return _createElement(context, tag, data, children, normalizationType)
 }
 
 function _createElement (
   context,
   tag,
   data,
-  children
+  children,
+  normalizationType
 ) {
   if (data && data.__ob__) {
     process.env.NODE_ENV !== 'production' && warn(
@@ -20782,11 +20979,11 @@ function _createElement (
       'Always create fresh vnode data objects in each render!',
       context
     );
-    return
+    return createEmptyVNode()
   }
   if (!tag) {
     // in case of component :is set to falsy value
-    return emptyVNode()
+    return createEmptyVNode()
   }
   // support single function children as default scoped slot
   if (Array.isArray(children) &&
@@ -20795,31 +20992,58 @@ function _createElement (
     data.scopedSlots = { default: children[0] };
     children.length = 0;
   }
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children);
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children);
+  }
+  var vnode, ns;
   if (typeof tag === 'string') {
     var Ctor;
-    var ns = config.getTagNamespace(tag);
+    ns = config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
-      return new VNode(
-        tag, data, normalizeChildren(children, ns),
-        undefined, undefined, ns, context
-      )
+      vnode = new VNode(
+        config.parsePlatformTagName(tag), data, children,
+        undefined, undefined, context
+      );
     } else if ((Ctor = resolveAsset(context.$options, 'components', tag))) {
       // component
-      return createComponent(Ctor, data, context, children, tag)
+      vnode = createComponent(Ctor, data, context, children, tag);
     } else {
       // unknown or unlisted namespaced elements
       // check at runtime because it may get assigned a namespace when its
       // parent normalizes children
-      var childNs = tag === 'foreignObject' ? 'xhtml' : ns;
-      return new VNode(
-        tag, data, normalizeChildren(children, childNs),
-        undefined, undefined, ns, context
-      )
+      vnode = new VNode(
+        tag, data, children,
+        undefined, undefined, context
+      );
     }
   } else {
     // direct component options / constructor
-    return createComponent(tag, data, context, children)
+    vnode = createComponent(tag, data, context, children);
+  }
+  if (vnode) {
+    if (ns) { applyNS(vnode, ns); }
+    return vnode
+  } else {
+    return createEmptyVNode()
+  }
+}
+
+function applyNS (vnode, ns) {
+  vnode.ns = ns;
+  if (vnode.tag === 'foreignObject') {
+    // use default namespace inside foreignObject
+    return
+  }
+  if (vnode.children) {
+    for (var i = 0, l = vnode.children.length; i < l; i++) {
+      var child = vnode.children[i];
+      if (child.tag && !child.ns) {
+        applyNS(child, ns);
+      }
+    }
   }
 }
 
@@ -20829,12 +21053,18 @@ function initRender (vm) {
   vm.$vnode = null; // the placeholder node in parent tree
   vm._vnode = null; // the root of the child tree
   vm._staticTrees = null;
-  vm._renderContext = vm.$options._parentVnode && vm.$options._parentVnode.context;
-  vm.$slots = resolveSlots(vm.$options._renderChildren, vm._renderContext);
-  vm.$scopedSlots = null;
-  // bind the public createElement fn to this instance
+  var parentVnode = vm.$options._parentVnode;
+  var renderContext = parentVnode && parentVnode.context;
+  vm.$slots = resolveSlots(vm.$options._renderChildren, renderContext);
+  vm.$scopedSlots = {};
+  // bind the createElement fn to this instance
   // so that we get proper render context inside it.
-  vm.$createElement = bind$1(createElement, vm);
+  // args order: tag, data, children, normalizationType, alwaysNormalize
+  // internal version is used by render functions compiled from templates
+  vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
+  // normalization is always applied for the public version, used in
+  // user-written render functions.
+  vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
   if (vm.$options.el) {
     vm.$mount(vm.$options.el);
   }
@@ -20859,7 +21089,7 @@ function renderMixin (Vue) {
       }
     }
 
-    if (_parentVnode) {
+    if (_parentVnode && _parentVnode.data.scopedSlots) {
       vm.$scopedSlots = _parentVnode.data.scopedSlots;
     }
 
@@ -20874,18 +21104,14 @@ function renderMixin (Vue) {
     try {
       vnode = render.call(vm._renderProxy, vm.$createElement);
     } catch (e) {
-      if (process.env.NODE_ENV !== 'production') {
-        warn(("Error when rendering " + (formatComponentName(vm)) + ":"));
-      }
       /* istanbul ignore else */
       if (config.errorHandler) {
         config.errorHandler.call(null, e, vm);
       } else {
-        if (isServerRendering()) {
-          throw e
-        } else {
-          console.error(e);
+        if (process.env.NODE_ENV !== 'production') {
+          warn(("Error when rendering " + (formatComponentName(vm)) + ":"));
         }
+        throw e
       }
       // return previous vnode to prevent render error causing blank component
       vnode = vm._vnode;
@@ -20899,21 +21125,21 @@ function renderMixin (Vue) {
           vm
         );
       }
-      vnode = emptyVNode();
+      vnode = createEmptyVNode();
     }
     // set parent
     vnode.parent = _parentVnode;
     return vnode
   };
 
-  // shorthands used in render functions
-  Vue.prototype._h = createElement;
   // toString for mustaches
   Vue.prototype._s = _toString;
+  // convert text to vnode
+  Vue.prototype._v = createTextVNode;
   // number conversion
   Vue.prototype._n = toNumber;
   // empty vnode
-  Vue.prototype._e = emptyVNode;
+  Vue.prototype._e = createEmptyVNode;
   // loose equal
   Vue.prototype._q = looseEqual;
   // loose indexOf
@@ -20967,7 +21193,6 @@ function renderMixin (Vue) {
   }
 
   // filter resolution helper
-  var identity = function (_) { return _; };
   Vue.prototype._f = function resolveFilter (id) {
     return resolveAsset(this.$options, 'filters', id, true) || identity
   };
@@ -20978,7 +21203,7 @@ function renderMixin (Vue) {
     render
   ) {
     var ret, i, l, keys, key;
-    if (Array.isArray(val)) {
+    if (Array.isArray(val) || typeof val === 'string') {
       ret = new Array(val.length);
       for (i = 0, l = val.length; i < l; i++) {
         ret[i] = render(val[i], i);
@@ -21003,11 +21228,16 @@ function renderMixin (Vue) {
   Vue.prototype._t = function (
     name,
     fallback,
-    props
+    props,
+    bindObject
   ) {
-    var scopedSlotFn = this.$scopedSlots && this.$scopedSlots[name];
+    var scopedSlotFn = this.$scopedSlots[name];
     if (scopedSlotFn) { // scoped slot
-      return scopedSlotFn(props || {}) || fallback
+      props = props || {};
+      if (bindObject) {
+        extend(props, bindObject);
+      }
+      return scopedSlotFn(props) || fallback
     } else {
       var slotNodes = this.$slots[name];
       // warn duplicate slot usage
@@ -21055,21 +21285,29 @@ function renderMixin (Vue) {
     return data
   };
 
-  // expose v-on keyCodes
-  Vue.prototype._k = function getKeyCodes (key) {
-    return config.keyCodes[key]
+  // check v-on keyCodes
+  Vue.prototype._k = function checkKeyCodes (
+    eventKeyCode,
+    key,
+    builtInAlias
+  ) {
+    var keyCodes = config.keyCodes[key] || builtInAlias;
+    if (Array.isArray(keyCodes)) {
+      return keyCodes.indexOf(eventKeyCode) === -1
+    } else {
+      return keyCodes !== eventKeyCode
+    }
   };
 }
 
 function resolveSlots (
-  renderChildren,
+  children,
   context
 ) {
   var slots = {};
-  if (!renderChildren) {
+  if (!children) {
     return slots
   }
-  var children = normalizeChildren(renderChildren) || [];
   var defaultSlot = [];
   var name, child;
   for (var i = 0, l = children.length; i < l; i++) {
@@ -21096,82 +21334,6 @@ function resolveSlots (
     slots.default = defaultSlot;
   }
   return slots
-}
-
-/*  */
-
-function initEvents (vm) {
-  vm._events = Object.create(null);
-  // init parent attached events
-  var listeners = vm.$options._parentListeners;
-  var on = bind$1(vm.$on, vm);
-  var off = bind$1(vm.$off, vm);
-  vm._updateListeners = function (listeners, oldListeners) {
-    updateListeners(listeners, oldListeners || {}, on, off, vm);
-  };
-  if (listeners) {
-    vm._updateListeners(listeners);
-  }
-}
-
-function eventsMixin (Vue) {
-  Vue.prototype.$on = function (event, fn) {
-    var vm = this;(vm._events[event] || (vm._events[event] = [])).push(fn);
-    return vm
-  };
-
-  Vue.prototype.$once = function (event, fn) {
-    var vm = this;
-    function on () {
-      vm.$off(event, on);
-      fn.apply(vm, arguments);
-    }
-    on.fn = fn;
-    vm.$on(event, on);
-    return vm
-  };
-
-  Vue.prototype.$off = function (event, fn) {
-    var vm = this;
-    // all
-    if (!arguments.length) {
-      vm._events = Object.create(null);
-      return vm
-    }
-    // specific event
-    var cbs = vm._events[event];
-    if (!cbs) {
-      return vm
-    }
-    if (arguments.length === 1) {
-      vm._events[event] = null;
-      return vm
-    }
-    // specific handler
-    var cb;
-    var i = cbs.length;
-    while (i--) {
-      cb = cbs[i];
-      if (cb === fn || cb.fn === fn) {
-        cbs.splice(i, 1);
-        break
-      }
-    }
-    return vm
-  };
-
-  Vue.prototype.$emit = function (event) {
-    var vm = this;
-    var cbs = vm._events[event];
-    if (cbs) {
-      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
-      var args = toArray(arguments, 1);
-      for (var i = 0, l = cbs.length; i < l; i++) {
-        cbs[i].apply(vm, args);
-      }
-    }
-    return vm
-  };
 }
 
 /*  */
@@ -21224,6 +21386,8 @@ function initInternalComponent (vm, options) {
   opts._parentListeners = options._parentListeners;
   opts._renderChildren = options._renderChildren;
   opts._componentTag = options._componentTag;
+  opts._parentElm = options._parentElm;
+  opts._refElm = options._refElm;
   if (options.render) {
     opts.render = options.render;
     opts.staticRenderFns = options.staticRenderFns;
@@ -21321,7 +21485,8 @@ function initExtend (Vue) {
       if (!/^[a-zA-Z][\w-]*$/.test(name)) {
         warn(
           'Invalid component name: "' + name + '". Component names ' +
-          'can only contain alphanumeric characaters and the hyphen.'
+          'can only contain alphanumeric characters and the hyphen, ' +
+          'and must start with a letter.'
         );
       }
     }
@@ -21475,7 +21640,7 @@ function initGlobalAPI (Vue) {
   }
   Object.defineProperty(Vue, 'config', configDef);
   Vue.util = util;
-  Vue.set = set;
+  Vue.set = set$1;
   Vue.delete = del;
   Vue.nextTick = nextTick;
 
@@ -21502,14 +21667,15 @@ Object.defineProperty(Vue$3.prototype, '$isServer', {
   get: isServerRendering
 });
 
-Vue$3.version = '2.1.0';
+Vue$3.version = '2.1.8';
 
 /*  */
 
 // attributes that should be using props for binding
+var acceptValue = makeMap('input,textarea,option,select');
 var mustUseProp = function (tag, attr) {
   return (
-    (attr === 'value' && (tag === 'input' || tag === 'textarea' || tag === 'option')) ||
+    (attr === 'value' && acceptValue(tag)) ||
     (attr === 'selected' && tag === 'option') ||
     (attr === 'checked' && tag === 'input') ||
     (attr === 'muted' && tag === 'video')
@@ -21526,24 +21692,6 @@ var isBooleanAttr = makeMap(
   'required,reversed,scoped,seamless,selected,sortable,translate,' +
   'truespeed,typemustmatch,visible'
 );
-
-var isAttr = makeMap(
-  'accept,accept-charset,accesskey,action,align,alt,async,autocomplete,' +
-  'autofocus,autoplay,autosave,bgcolor,border,buffered,challenge,charset,' +
-  'checked,cite,class,code,codebase,color,cols,colspan,content,http-equiv,' +
-  'name,contenteditable,contextmenu,controls,coords,data,datetime,default,' +
-  'defer,dir,dirname,disabled,download,draggable,dropzone,enctype,method,for,' +
-  'form,formaction,headers,<th>,height,hidden,high,href,hreflang,http-equiv,' +
-  'icon,id,ismap,itemprop,keytype,kind,label,lang,language,list,loop,low,' +
-  'manifest,max,maxlength,media,method,GET,POST,min,multiple,email,file,' +
-  'muted,name,novalidate,open,optimum,pattern,ping,placeholder,poster,' +
-  'preload,radiogroup,readonly,rel,required,reversed,rows,rowspan,sandbox,' +
-  'scope,scoped,seamless,selected,shape,size,type,text,password,sizes,span,' +
-  'spellcheck,src,srcdoc,srclang,srcset,start,step,style,summary,tabindex,' +
-  'target,title,type,usemap,value,width,wrap'
-);
-
-
 
 var xlinkNS = 'http://www.w3.org/1999/xlink';
 
@@ -21635,8 +21783,7 @@ function stringifyClass (value) {
 
 var namespaceMap = {
   svg: 'http://www.w3.org/2000/svg',
-  math: 'http://www.w3.org/1998/Math/MathML',
-  xhtml: 'http://www.w3.org/1999/xhtml'
+  math: 'http://www.w3.org/1998/Math/MathML'
 };
 
 var isHTMLTag = makeMap(
@@ -21653,34 +21800,10 @@ var isHTMLTag = makeMap(
   'content,element,shadow,template'
 );
 
-var isUnaryTag = makeMap(
-  'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
-  'link,meta,param,source,track,wbr',
-  true
-);
-
-// Elements that you can, intentionally, leave open
-// (and which close themselves)
-var canBeLeftOpenTag = makeMap(
-  'colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source',
-  true
-);
-
-// HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
-// Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
-var isNonPhrasingTag = makeMap(
-  'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
-  'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
-  'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
-  'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
-  'title,tr,track',
-  true
-);
-
 // this map is intentionally selective, only covering SVG elements that may
 // contain child elements.
 var isSVG = makeMap(
-  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font,' +
+  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,' +
   'font-face,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
   'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
   true
@@ -21801,10 +21924,6 @@ function setTextContent (node, text) {
   node.textContent = text;
 }
 
-function childNodes (node) {
-  return node.childNodes
-}
-
 function setAttribute (node, key, val) {
   node.setAttribute(key, val);
 }
@@ -21822,7 +21941,6 @@ var nodeOps = Object.freeze({
 	nextSibling: nextSibling,
 	tagName: tagName,
 	setTextContent: setTextContent,
-	childNodes: childNodes,
 	setAttribute: setAttribute
 });
 
@@ -21885,7 +22003,7 @@ function registerRef (vnode, isRemoval) {
 
 var emptyNode = new VNode('', {}, []);
 
-var hooks$1 = ['create', 'update', 'remove', 'destroy'];
+var hooks$1 = ['create', 'activate', 'update', 'remove', 'destroy'];
 
 function isUndef (s) {
   return s == null
@@ -21935,43 +22053,40 @@ function createPatchFunction (backend) {
   function createRmCb (childElm, listeners) {
     function remove$$1 () {
       if (--remove$$1.listeners === 0) {
-        removeElement(childElm);
+        removeNode(childElm);
       }
     }
     remove$$1.listeners = listeners;
     return remove$$1
   }
 
-  function removeElement (el) {
+  function removeNode (el) {
     var parent = nodeOps.parentNode(el);
-    // element may have already been removed due to v-html
+    // element may have already been removed due to v-html / v-text
     if (parent) {
       nodeOps.removeChild(parent, el);
     }
   }
 
-  function createElm (vnode, insertedVnodeQueue, nested) {
-    var i;
-    var data = vnode.data;
-    vnode.isRootInsert = !nested;
-    if (isDef(data)) {
-      if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode); }
-      // after calling the init hook, if the vnode is a child component
-      // it should've created a child instance and mounted it. the child
-      // component also has set the placeholder vnode's elm.
-      // in that case we can just return the element and be done.
-      if (isDef(i = vnode.child)) {
-        initComponent(vnode, insertedVnodeQueue);
-        return vnode.elm
-      }
+  var inPre = 0;
+  function createElm (vnode, insertedVnodeQueue, parentElm, refElm, nested) {
+    vnode.isRootInsert = !nested; // for transition enter check
+    if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
+      return
     }
+
+    var data = vnode.data;
     var children = vnode.children;
     var tag = vnode.tag;
     if (isDef(tag)) {
       if (process.env.NODE_ENV !== 'production') {
+        if (data && data.pre) {
+          inPre++;
+        }
         if (
+          !inPre &&
           !vnode.ns &&
-          !(config.ignoredElements && config.ignoredElements.indexOf(tag) > -1) &&
+          !(config.ignoredElements.length && config.ignoredElements.indexOf(tag) > -1) &&
           config.isUnknownElement(tag)
         ) {
           warn(
@@ -21986,22 +22101,85 @@ function createPatchFunction (backend) {
         ? nodeOps.createElementNS(vnode.ns, tag)
         : nodeOps.createElement(tag, vnode);
       setScope(vnode);
-      createChildren(vnode, children, insertedVnodeQueue);
-      if (isDef(data)) {
-        invokeCreateHooks(vnode, insertedVnodeQueue);
+
+      /* istanbul ignore if */
+      {
+        createChildren(vnode, children, insertedVnodeQueue);
+        if (isDef(data)) {
+          invokeCreateHooks(vnode, insertedVnodeQueue);
+        }
+        insert(parentElm, vnode.elm, refElm);
+      }
+
+      if (process.env.NODE_ENV !== 'production' && data && data.pre) {
+        inPre--;
       }
     } else if (vnode.isComment) {
       vnode.elm = nodeOps.createComment(vnode.text);
+      insert(parentElm, vnode.elm, refElm);
     } else {
       vnode.elm = nodeOps.createTextNode(vnode.text);
+      insert(parentElm, vnode.elm, refElm);
     }
-    return vnode.elm
+  }
+
+  function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+    var i = vnode.data;
+    if (isDef(i)) {
+      var isReactivated = isDef(vnode.child) && i.keepAlive;
+      if (isDef(i = i.hook) && isDef(i = i.init)) {
+        i(vnode, false /* hydrating */, parentElm, refElm);
+      }
+      // after calling the init hook, if the vnode is a child component
+      // it should've created a child instance and mounted it. the child
+      // component also has set the placeholder vnode's elm.
+      // in that case we can just return the element and be done.
+      if (isDef(vnode.child)) {
+        initComponent(vnode, insertedVnodeQueue);
+        if (isReactivated) {
+          reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm);
+        }
+        return true
+      }
+    }
+  }
+
+  function reactivateComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+    var i;
+    // hack for #4339: a reactivated component with inner transition
+    // does not trigger because the inner node's created hooks are not called
+    // again. It's not ideal to involve module-specific logic in here but
+    // there doesn't seem to be a better way to do it.
+    var innerNode = vnode;
+    while (innerNode.child) {
+      innerNode = innerNode.child._vnode;
+      if (isDef(i = innerNode.data) && isDef(i = i.transition)) {
+        for (i = 0; i < cbs.activate.length; ++i) {
+          cbs.activate[i](emptyNode, innerNode);
+        }
+        insertedVnodeQueue.push(innerNode);
+        break
+      }
+    }
+    // unlike a newly created component,
+    // a reactivated keep-alive component doesn't insert itself
+    insert(parentElm, vnode.elm, refElm);
+  }
+
+  function insert (parent, elm, ref) {
+    if (parent) {
+      if (ref) {
+        nodeOps.insertBefore(parent, elm, ref);
+      } else {
+        nodeOps.appendChild(parent, elm);
+      }
+    }
   }
 
   function createChildren (vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
       for (var i = 0; i < children.length; ++i) {
-        nodeOps.appendChild(vnode.elm, createElm(children[i], insertedVnodeQueue, true));
+        createElm(children[i], insertedVnodeQueue, vnode.elm, null, true);
       }
     } else if (isPrimitive(vnode.text)) {
       nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(vnode.text));
@@ -22058,9 +22236,9 @@ function createPatchFunction (backend) {
     }
   }
 
-  function addVnodes (parentElm, before, vnodes, startIdx, endIdx, insertedVnodeQueue) {
+  function addVnodes (parentElm, refElm, vnodes, startIdx, endIdx, insertedVnodeQueue) {
     for (; startIdx <= endIdx; ++startIdx) {
-      nodeOps.insertBefore(parentElm, createElm(vnodes[startIdx], insertedVnodeQueue), before);
+      createElm(vnodes[startIdx], insertedVnodeQueue, parentElm, refElm);
     }
   }
 
@@ -22086,7 +22264,7 @@ function createPatchFunction (backend) {
           removeAndInvokeRemoveHook(ch);
           invokeDestroyHook(ch);
         } else { // Text node
-          nodeOps.removeChild(parentElm, ch.elm);
+          removeNode(ch.elm);
         }
       }
     }
@@ -22116,7 +22294,7 @@ function createPatchFunction (backend) {
         rm();
       }
     } else {
-      removeElement(vnode.elm);
+      removeNode(vnode.elm);
     }
   }
 
@@ -22129,7 +22307,7 @@ function createPatchFunction (backend) {
     var newEndIdx = newCh.length - 1;
     var newStartVnode = newCh[0];
     var newEndVnode = newCh[newEndIdx];
-    var oldKeyToIdx, idxInOld, elmToMove, before;
+    var oldKeyToIdx, idxInOld, elmToMove, refElm;
 
     // removeOnly is a special flag used only by <transition-group>
     // to ensure removed elements stay in correct relative positions
@@ -22163,7 +22341,7 @@ function createPatchFunction (backend) {
         if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); }
         idxInOld = isDef(newStartVnode.key) ? oldKeyToIdx[newStartVnode.key] : null;
         if (isUndef(idxInOld)) { // New element
-          nodeOps.insertBefore(parentElm, createElm(newStartVnode, insertedVnodeQueue), oldStartVnode.elm);
+          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
           newStartVnode = newCh[++newStartIdx];
         } else {
           elmToMove = oldCh[idxInOld];
@@ -22174,22 +22352,22 @@ function createPatchFunction (backend) {
               'Make sure each v-for item has a unique key.'
             );
           }
-          if (elmToMove.tag !== newStartVnode.tag) {
-            // same key but different element. treat as new element
-            nodeOps.insertBefore(parentElm, createElm(newStartVnode, insertedVnodeQueue), oldStartVnode.elm);
-            newStartVnode = newCh[++newStartIdx];
-          } else {
+          if (sameVnode(elmToMove, newStartVnode)) {
             patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
             oldCh[idxInOld] = undefined;
             canMove && nodeOps.insertBefore(parentElm, newStartVnode.elm, oldStartVnode.elm);
+            newStartVnode = newCh[++newStartIdx];
+          } else {
+            // same key but different element. treat as new element
+            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
             newStartVnode = newCh[++newStartIdx];
           }
         }
       }
     }
     if (oldStartIdx > oldEndIdx) {
-      before = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
-      addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
+      refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
+      addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
     } else if (newStartIdx > newEndIdx) {
       removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
     }
@@ -22208,6 +22386,7 @@ function createPatchFunction (backend) {
         vnode.key === oldVnode.key &&
         (vnode.isCloned || vnode.isOnce)) {
       vnode.elm = oldVnode.elm;
+      vnode.child = oldVnode.child;
       return
     }
     var i;
@@ -22255,6 +22434,11 @@ function createPatchFunction (backend) {
   }
 
   var bailed = false;
+  // list of modules that can skip create hook during hydration because they
+  // are already rendered on the client or has no need for initialization
+  var isRenderedModule = makeMap('attrs,style,class,staticClass,staticStyle,key');
+
+  // Note: this is a browser-only function so we can assume elms are DOM nodes.
   function hydrate (elm, vnode, insertedVnodeQueue) {
     if (process.env.NODE_ENV !== 'production') {
       if (!assertNodeMatch(elm, vnode)) {
@@ -22275,37 +22459,43 @@ function createPatchFunction (backend) {
     }
     if (isDef(tag)) {
       if (isDef(children)) {
-        var childNodes = nodeOps.childNodes(elm);
         // empty element, allow client to pick up and populate children
-        if (!childNodes.length) {
+        if (!elm.hasChildNodes()) {
           createChildren(vnode, children, insertedVnodeQueue);
         } else {
           var childrenMatch = true;
-          if (childNodes.length !== children.length) {
-            childrenMatch = false;
-          } else {
-            for (var i$1 = 0; i$1 < children.length; i$1++) {
-              if (!hydrate(childNodes[i$1], children[i$1], insertedVnodeQueue)) {
-                childrenMatch = false;
-                break
-              }
+          var childNode = elm.firstChild;
+          for (var i$1 = 0; i$1 < children.length; i$1++) {
+            if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue)) {
+              childrenMatch = false;
+              break
             }
+            childNode = childNode.nextSibling;
           }
-          if (!childrenMatch) {
+          // if childNode is not null, it means the actual childNodes list is
+          // longer than the virtual children list.
+          if (!childrenMatch || childNode) {
             if (process.env.NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
                 !bailed) {
               bailed = true;
               console.warn('Parent: ', elm);
-              console.warn('Mismatching childNodes vs. VNodes: ', childNodes, children);
+              console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
             }
             return false
           }
         }
       }
       if (isDef(data)) {
-        invokeCreateHooks(vnode, insertedVnodeQueue);
+        for (var key in data) {
+          if (!isRenderedModule(key)) {
+            invokeCreateHooks(vnode, insertedVnodeQueue);
+            break
+          }
+        }
       }
+    } else if (elm.data !== vnode.text) {
+      elm.data = vnode.text;
     }
     return true
   }
@@ -22314,14 +22504,14 @@ function createPatchFunction (backend) {
     if (vnode.tag) {
       return (
         vnode.tag.indexOf('vue-component') === 0 ||
-        vnode.tag.toLowerCase() === nodeOps.tagName(node).toLowerCase()
+        vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
       )
     } else {
-      return _toString(vnode.text) === node.data
+      return node.nodeType === (vnode.isComment ? 8 : 3)
     }
   }
 
-  return function patch (oldVnode, vnode, hydrating, removeOnly) {
+  return function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
     if (!vnode) {
       if (oldVnode) { invokeDestroyHook(oldVnode); }
       return
@@ -22332,12 +22522,13 @@ function createPatchFunction (backend) {
     var insertedVnodeQueue = [];
 
     if (!oldVnode) {
-      // empty mount, create new root element
+      // empty mount (likely as component), create new root element
       isInitialPatch = true;
-      createElm(vnode, insertedVnodeQueue);
+      createElm(vnode, insertedVnodeQueue, parentElm, refElm);
     } else {
       var isRealElement = isDef(oldVnode.nodeType);
       if (!isRealElement && sameVnode(oldVnode, vnode)) {
+        // patch existing root node
         patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly);
       } else {
         if (isRealElement) {
@@ -22366,15 +22557,19 @@ function createPatchFunction (backend) {
           // create an empty node and replace it
           oldVnode = emptyNodeAt(oldVnode);
         }
+        // replacing existing element
         elm = oldVnode.elm;
         parent = nodeOps.parentNode(elm);
+        createElm(vnode, insertedVnodeQueue, parent, nodeOps.nextSibling(elm));
 
-        createElm(vnode, insertedVnodeQueue);
-
-        // component root element replaced.
-        // update parent placeholder node element.
         if (vnode.parent) {
-          vnode.parent.elm = vnode.elm;
+          // component root element replaced.
+          // update parent placeholder node element, recursively
+          var ancestor = vnode.parent;
+          while (ancestor) {
+            ancestor.elm = vnode.elm;
+            ancestor = ancestor.parent;
+          }
           if (isPatchable(vnode)) {
             for (var i = 0; i < cbs.create.length; ++i) {
               cbs.create[i](emptyNode, vnode.parent);
@@ -22383,7 +22578,6 @@ function createPatchFunction (backend) {
         }
 
         if (parent !== null) {
-          nodeOps.insertBefore(parent, vnode.elm, nodeOps.nextSibling(elm));
           removeVnodes(parent, [oldVnode], 0, 0);
         } else if (isDef(oldVnode.tag)) {
           invokeDestroyHook(oldVnode);
@@ -22406,14 +22600,15 @@ var directives = {
   }
 };
 
-function updateDirectives (
-  oldVnode,
-  vnode
-) {
-  if (!oldVnode.data.directives && !vnode.data.directives) {
-    return
+function updateDirectives (oldVnode, vnode) {
+  if (oldVnode.data.directives || vnode.data.directives) {
+    _update(oldVnode, vnode);
   }
+}
+
+function _update (oldVnode, vnode) {
   var isCreate = oldVnode === emptyNode;
+  var isDestroy = vnode === emptyNode;
   var oldDirs = normalizeDirectives$1(oldVnode.data.directives, oldVnode.context);
   var newDirs = normalizeDirectives$1(vnode.data.directives, vnode.context);
 
@@ -22442,9 +22637,9 @@ function updateDirectives (
 
   if (dirsWithInsert.length) {
     var callInsert = function () {
-      dirsWithInsert.forEach(function (dir) {
-        callHook$1(dir, 'inserted', vnode, oldVnode);
-      });
+      for (var i = 0; i < dirsWithInsert.length; i++) {
+        callHook$1(dirsWithInsert[i], 'inserted', vnode, oldVnode);
+      }
     };
     if (isCreate) {
       mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', callInsert, 'dir-insert');
@@ -22455,9 +22650,9 @@ function updateDirectives (
 
   if (dirsWithPostpatch.length) {
     mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'postpatch', function () {
-      dirsWithPostpatch.forEach(function (dir) {
-        callHook$1(dir, 'componentUpdated', vnode, oldVnode);
-      });
+      for (var i = 0; i < dirsWithPostpatch.length; i++) {
+        callHook$1(dirsWithPostpatch[i], 'componentUpdated', vnode, oldVnode);
+      }
     }, 'dir-postpatch');
   }
 
@@ -22465,7 +22660,7 @@ function updateDirectives (
     for (key in oldDirs) {
       if (!newDirs[key]) {
         // no longer present, unbind
-        callHook$1(oldDirs[key], 'unbind', oldVnode);
+        callHook$1(oldDirs[key], 'unbind', oldVnode, oldVnode, isDestroy);
       }
     }
   }
@@ -22497,10 +22692,10 @@ function getRawDirName (dir) {
   return dir.rawName || ((dir.name) + "." + (Object.keys(dir.modifiers || {}).join('.')))
 }
 
-function callHook$1 (dir, hook, vnode, oldVnode) {
+function callHook$1 (dir, hook, vnode, oldVnode, isDestroy) {
   var fn = dir.def && dir.def[hook];
   if (fn) {
-    fn(vnode.elm, dir, vnode, oldVnode);
+    fn(vnode.elm, dir, vnode, oldVnode, isDestroy);
   }
 }
 
@@ -22530,6 +22725,11 @@ function updateAttrs (oldVnode, vnode) {
     if (old !== cur) {
       setAttr(elm, key, cur);
     }
+  }
+  // #4391: in IE9, setting type can reset value for input[type=radio]
+  /* istanbul ignore if */
+  if (isIE9 && attrs.value !== oldAttrs.value) {
+    setAttr(elm, 'value', attrs.value);
   }
   for (key in oldAttrs) {
     if (attrs[key] == null) {
@@ -22604,8 +22804,26 @@ var klass = {
   update: updateClass
 };
 
-// skip type checking this file because we need to attach private properties
-// to elements
+/*  */
+
+var target$1;
+
+function add$2 (event, handler, once, capture) {
+  if (once) {
+    var oldHandler = handler;
+    handler = function (ev) {
+      remove$3(event, handler, capture);
+      arguments.length === 1
+        ? oldHandler(ev)
+        : oldHandler.apply(null, arguments);
+    };
+  }
+  target$1.addEventListener(event, handler, capture);
+}
+
+function remove$3 (event, handler, capture) {
+  target$1.removeEventListener(event, handler, capture);
+}
 
 function updateDOMListeners (oldVnode, vnode) {
   if (!oldVnode.data.on && !vnode.data.on) {
@@ -22613,13 +22831,8 @@ function updateDOMListeners (oldVnode, vnode) {
   }
   var on = vnode.data.on || {};
   var oldOn = oldVnode.data.on || {};
-  var add = vnode.elm._v_add || (vnode.elm._v_add = function (event, handler, capture) {
-    vnode.elm.addEventListener(event, handler, capture);
-  });
-  var remove = vnode.elm._v_remove || (vnode.elm._v_remove = function (event, handler) {
-    vnode.elm.removeEventListener(event, handler);
-  });
-  updateListeners(on, oldOn, add, remove, vnode.context);
+  target$1 = vnode.elm;
+  updateListeners(on, oldOn, add$2, remove$3, vnode.context);
 }
 
 var events = {
@@ -22656,19 +22869,60 @@ function updateDOMProps (oldVnode, vnode) {
       if (vnode.children) { vnode.children.length = 0; }
       if (cur === oldProps[key]) { continue }
     }
+    // #4521: if a click event triggers update before the change event is
+    // dispatched on a checkbox/radio input, the input's checked state will
+    // be reset and fail to trigger another update.
+    /* istanbul ignore next */
+    if (key === 'checked' && !isDirty(elm, cur)) {
+      continue
+    }
     if (key === 'value') {
       // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
       // avoid resetting cursor position when value is the same
       var strCur = cur == null ? '' : String(cur);
-      if (elm.value !== strCur && !elm.composing) {
+      if (shouldUpdateValue(elm, vnode, strCur)) {
         elm.value = strCur;
       }
     } else {
       elm[key] = cur;
     }
   }
+}
+
+// check platforms/web/util/attrs.js acceptValue
+
+
+function shouldUpdateValue (
+  elm,
+  vnode,
+  checkVal
+) {
+  if (!elm.composing && (
+    vnode.tag === 'option' ||
+    isDirty(elm, checkVal) ||
+    isInputChanged(vnode, checkVal)
+  )) {
+    return true
+  }
+  return false
+}
+
+function isDirty (elm, checkVal) {
+  return document.activeElement !== elm && elm.value !== checkVal
+}
+
+function isInputChanged (vnode, newVal) {
+  var value = vnode.elm.value;
+  var modifiers = vnode.elm._vModifiers; // injected by v-model runtime
+  if ((modifiers && modifiers.number) || vnode.elm.type === 'number') {
+    return toNumber(value) !== toNumber(newVal)
+  }
+  if (modifiers && modifiers.trim) {
+    return value.trim() !== newVal.trim()
+  }
+  return value !== newVal
 }
 
 var domProps = {
@@ -22680,10 +22934,8 @@ var domProps = {
 
 var parseStyleText = cached(function (cssText) {
   var res = {};
-  var hasBackground = cssText.indexOf('background') >= 0;
-  // maybe with background-image: url(http://xxx) or base64 img
-  var listDelimiter = hasBackground ? /;(?![^(]*\))/g : ';';
-  var propertyDelimiter = hasBackground ? /:(.+)/ : ':';
+  var listDelimiter = /;(?![^(]*\))/g;
+  var propertyDelimiter = /:(.+)/;
   cssText.split(listDelimiter).forEach(function (item) {
     if (item) {
       var tmp = item.split(propertyDelimiter);
@@ -22748,10 +23000,13 @@ function getStyle (vnode, checkChild) {
 /*  */
 
 var cssVarRE = /^--/;
+var importantRE = /\s*!important$/;
 var setProp = function (el, name, val) {
   /* istanbul ignore if */
   if (cssVarRE.test(name)) {
     el.style.setProperty(name, val);
+  } else if (importantRE.test(val)) {
+    el.style.setProperty(name, val.replace(importantRE, ''), 'important');
   } else {
     el.style[normalize(name)] = val;
   }
@@ -23014,7 +23269,7 @@ function toMs (s) {
 
 /*  */
 
-function enter (vnode) {
+function enter (vnode, toggleDisplay) {
   var el = vnode.elm;
 
   // call leave callback now
@@ -23036,8 +23291,10 @@ function enter (vnode) {
   var css = data.css;
   var type = data.type;
   var enterClass = data.enterClass;
+  var enterToClass = data.enterToClass;
   var enterActiveClass = data.enterActiveClass;
   var appearClass = data.appearClass;
+  var appearToClass = data.appearToClass;
   var appearActiveClass = data.appearActiveClass;
   var beforeEnter = data.beforeEnter;
   var enter = data.enter;
@@ -23052,10 +23309,12 @@ function enter (vnode) {
   // transition. One edge case to check is when the <transition> is placed
   // as the root node of a child component. In that case we need to check
   // <transition>'s parent for appear check.
+  var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
-  var context = transitionNode && transitionNode.parent
-    ? transitionNode.parent.context
-    : activeInstance;
+  while (transitionNode && transitionNode.parent) {
+    transitionNode = transitionNode.parent;
+    context = transitionNode.context;
+  }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
 
@@ -23065,6 +23324,7 @@ function enter (vnode) {
 
   var startClass = isAppear ? appearClass : enterClass;
   var activeClass = isAppear ? appearActiveClass : enterActiveClass;
+  var toClass = isAppear ? appearToClass : enterToClass;
   var beforeEnterHook = isAppear ? (beforeAppear || beforeEnter) : beforeEnter;
   var enterHook = isAppear ? (typeof appear === 'function' ? appear : enter) : enter;
   var afterEnterHook = isAppear ? (afterAppear || afterEnter) : afterEnter;
@@ -23079,6 +23339,7 @@ function enter (vnode) {
 
   var cb = el._enterCb = once(function () {
     if (expectsCSS) {
+      removeTransitionClass(el, toClass);
       removeTransitionClass(el, activeClass);
     }
     if (cb.cancelled) {
@@ -23097,7 +23358,10 @@ function enter (vnode) {
     mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', function () {
       var parent = el.parentNode;
       var pendingNode = parent && parent._pending && parent._pending[vnode.key];
-      if (pendingNode && pendingNode.tag === vnode.tag && pendingNode.elm._leaveCb) {
+      if (pendingNode &&
+          pendingNode.context === vnode.context &&
+          pendingNode.tag === vnode.tag &&
+          pendingNode.elm._leaveCb) {
         pendingNode.elm._leaveCb();
       }
       enterHook && enterHook(el, cb);
@@ -23110,6 +23374,7 @@ function enter (vnode) {
     addTransitionClass(el, startClass);
     addTransitionClass(el, activeClass);
     nextFrame(function () {
+      addTransitionClass(el, toClass);
       removeTransitionClass(el, startClass);
       if (!cb.cancelled && !userWantsControl) {
         whenTransitionEnds(el, type, cb);
@@ -23118,6 +23383,7 @@ function enter (vnode) {
   }
 
   if (vnode.data.show) {
+    toggleDisplay && toggleDisplay();
     enterHook && enterHook(el, cb);
   }
 
@@ -23148,6 +23414,7 @@ function leave (vnode, rm) {
   var css = data.css;
   var type = data.type;
   var leaveClass = data.leaveClass;
+  var leaveToClass = data.leaveToClass;
   var leaveActiveClass = data.leaveActiveClass;
   var beforeLeave = data.beforeLeave;
   var leave = data.leave;
@@ -23167,6 +23434,7 @@ function leave (vnode, rm) {
       el.parentNode._pending[vnode.key] = null;
     }
     if (expectsCSS) {
+      removeTransitionClass(el, leaveToClass);
       removeTransitionClass(el, leaveActiveClass);
     }
     if (cb.cancelled) {
@@ -23201,6 +23469,7 @@ function leave (vnode, rm) {
       addTransitionClass(el, leaveClass);
       addTransitionClass(el, leaveActiveClass);
       nextFrame(function () {
+        addTransitionClass(el, leaveToClass);
         removeTransitionClass(el, leaveClass);
         if (!cb.cancelled && !userWantsControl) {
           whenTransitionEnds(el, type, cb);
@@ -23236,6 +23505,9 @@ var autoCssTransition = cached(function (name) {
     enterClass: (name + "-enter"),
     leaveClass: (name + "-leave"),
     appearClass: (name + "-enter"),
+    enterToClass: (name + "-enter-to"),
+    leaveToClass: (name + "-leave-to"),
+    appearToClass: (name + "-enter-to"),
     enterActiveClass: (name + "-enter-active"),
     leaveActiveClass: (name + "-leave-active"),
     appearActiveClass: (name + "-enter-active")
@@ -23252,12 +23524,15 @@ function once (fn) {
   }
 }
 
+function _enter (_, vnode) {
+  if (!vnode.data.show) {
+    enter(vnode);
+  }
+}
+
 var transition = inBrowser ? {
-  create: function create (_, vnode) {
-    if (!vnode.data.show) {
-      enter(vnode);
-    }
-  },
+  create: _enter,
+  activate: _enter,
   remove: function remove (vnode, rm) {
     /* istanbul ignore else */
     if (!vnode.data.show) {
@@ -23324,17 +23599,17 @@ var model = {
       if (isIE || isEdge) {
         setTimeout(cb, 0);
       }
-    } else if (
-      (vnode.tag === 'textarea' || el.type === 'text') &&
-      !binding.modifiers.lazy
-    ) {
-      if (!isAndroid) {
-        el.addEventListener('compositionstart', onCompositionStart);
-        el.addEventListener('compositionend', onCompositionEnd);
-      }
-      /* istanbul ignore if */
-      if (isIE9) {
-        el.vmodel = true;
+    } else if (vnode.tag === 'textarea' || el.type === 'text') {
+      el._vModifiers = binding.modifiers;
+      if (!binding.modifiers.lazy) {
+        if (!isAndroid) {
+          el.addEventListener('compositionstart', onCompositionStart);
+          el.addEventListener('compositionend', onCompositionEnd);
+        }
+        /* istanbul ignore if */
+        if (isIE9) {
+          el.vmodel = true;
+        }
       }
     }
   },
@@ -23433,13 +23708,18 @@ var show = {
 
     vnode = locateNode(vnode);
     var transition = vnode.data && vnode.data.transition;
+    var originalDisplay = el.__vOriginalDisplay =
+      el.style.display === 'none' ? '' : el.style.display;
     if (value && transition && !isIE9) {
-      enter(vnode);
+      vnode.data.show = true;
+      enter(vnode, function () {
+        el.style.display = originalDisplay;
+      });
+    } else {
+      el.style.display = value ? originalDisplay : 'none';
     }
-    var originalDisplay = el.style.display === 'none' ? '' : el.style.display;
-    el.style.display = value ? originalDisplay : 'none';
-    el.__vOriginalDisplay = originalDisplay;
   },
+
   update: function update (el, ref, vnode) {
     var value = ref.value;
     var oldValue = ref.oldValue;
@@ -23449,9 +23729,11 @@ var show = {
     vnode = locateNode(vnode);
     var transition = vnode.data && vnode.data.transition;
     if (transition && !isIE9) {
+      vnode.data.show = true;
       if (value) {
-        enter(vnode);
-        el.style.display = el.__vOriginalDisplay;
+        enter(vnode, function () {
+          el.style.display = el.__vOriginalDisplay;
+        });
       } else {
         leave(vnode, function () {
           el.style.display = 'none';
@@ -23459,6 +23741,18 @@ var show = {
       }
     } else {
       el.style.display = value ? el.__vOriginalDisplay : 'none';
+    }
+  },
+
+  unbind: function unbind (
+    el,
+    binding,
+    vnode,
+    oldVnode,
+    isDestroy
+  ) {
+    if (!isDestroy) {
+      el.style.display = el.__vOriginalDisplay;
     }
   }
 };
@@ -23481,10 +23775,13 @@ var transitionProps = {
   type: String,
   enterClass: String,
   leaveClass: String,
+  enterToClass: String,
+  leaveToClass: String,
   enterActiveClass: String,
   leaveActiveClass: String,
   appearClass: String,
-  appearActiveClass: String
+  appearActiveClass: String,
+  appearToClass: String
 };
 
 // in case the child is also an abstract component, e.g. <keep-alive>
@@ -23526,6 +23823,10 @@ function hasParentTransition (vnode) {
       return true
     }
   }
+}
+
+function isSameChild (child, oldChild) {
+  return oldChild.key === child.key && oldChild.tag === child.tag
 }
 
 var Transition = {
@@ -23600,11 +23901,10 @@ var Transition = {
       child.data.show = true;
     }
 
-    if (oldChild && oldChild.data && oldChild.key !== key) {
+    if (oldChild && oldChild.data && !isSameChild(child, oldChild)) {
       // replace old child transition data with fresh one
       // important for dynamic transitions!
-      var oldData = oldChild.data.transition = extend({}, data);
-
+      var oldData = oldChild && (oldChild.data.transition = extend({}, data));
       // handle transition mode
       if (mode === 'out-in') {
         // return placeholder node and queue update when leave finishes
@@ -23815,6 +24115,15 @@ Vue$3.prototype.$mount = function (
   return this._mount(el, hydrating)
 };
 
+if (process.env.NODE_ENV !== 'production' &&
+    inBrowser && typeof console !== 'undefined') {
+  console[console.info ? 'info' : 'log'](
+    "You are running Vue in development mode.\n" +
+    "Make sure to turn on production mode when deploying for production.\n" +
+    "See more tips at https://vuejs.org/guide/deployment.html"
+  );
+}
+
 // devtools global hook
 /* istanbul ignore next */
 setTimeout(function () {
@@ -23823,10 +24132,10 @@ setTimeout(function () {
       devtools.emit('init', Vue$3);
     } else if (
       process.env.NODE_ENV !== 'production' &&
-      inBrowser && /Chrome\/\d+/.test(window.navigator.userAgent)
+      inBrowser && !isEdge && /Chrome\/\d+/.test(window.navigator.userAgent)
     ) {
-      console.log(
-        'Download the Vue Devtools for a better development experience:\n' +
+      console[console.info ? 'info' : 'log'](
+        'Download the Vue Devtools extension for a better development experience:\n' +
         'https://github.com/vuejs/vue-devtools'
       );
     }
@@ -23855,6 +24164,32 @@ function decode (html) {
   decoder.innerHTML = html;
   return decoder.textContent
 }
+
+/*  */
+
+var isUnaryTag = makeMap(
+  'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+  'link,meta,param,source,track,wbr',
+  true
+);
+
+// Elements that you can, intentionally, leave open
+// (and which close themselves)
+var canBeLeftOpenTag = makeMap(
+  'colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source',
+  true
+);
+
+// HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
+// Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
+var isNonPhrasingTag = makeMap(
+  'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+  'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
+  'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
+  'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
+  'title,tr,track',
+  true
+);
 
 /**
  * Not type-checking this file because it's mostly vendor code.
@@ -23907,9 +24242,9 @@ var isSpecialTag = function (tag, isSFC, stack) {
   if (isScriptOrStyle(tag)) {
     return true
   }
-  if (isSFC) {
+  if (isSFC && stack.length === 1) {
     // top-level template that has no pre-processor
-    if (tag === 'template' && stack.length === 1 && !stack[0].attrs.some(hasLang)) {
+    if (tag === 'template' && !stack[0].attrs.some(hasLang)) {
       return false
     } else {
       return true
@@ -24210,13 +24545,24 @@ function parseFilters (exp) {
         case 0x22: inDouble = true; break         // "
         case 0x27: inSingle = true; break         // '
         case 0x60: inTemplateString = true; break // `
-        case 0x2f: inRegex = true; break          // /
         case 0x28: paren++; break                 // (
         case 0x29: paren--; break                 // )
         case 0x5B: square++; break                // [
         case 0x5D: square--; break                // ]
         case 0x7B: curly++; break                 // {
         case 0x7D: curly--; break                 // }
+      }
+      if (c === 0x2f) { // /
+        var j = i - 1;
+        var p = (void 0);
+        // find first non-whitespace prev char
+        for (; j >= 0; j--) {
+          p = exp.charAt(j);
+          if (p !== ' ') { break }
+        }
+        if (!p || !/[\w$]/.test(p)) {
+          inRegex = true;
+        }
       }
     }
   }
@@ -24337,6 +24683,10 @@ function addHandler (
   if (modifiers && modifiers.capture) {
     delete modifiers.capture;
     name = '!' + name; // mark the event as captured
+  }
+  if (modifiers && modifiers.once) {
+    delete modifiers.once;
+    name = '~' + name; // mark the event as once
   }
   var events;
   if (modifiers && modifiers.native) {
@@ -24554,7 +24904,7 @@ function parse (
         process.env.NODE_ENV !== 'production' && warn$1(
           'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
-          "<" + tag + ">."
+          "<" + tag + ">" + ', as they will not be parsed.'
         );
       }
 
@@ -24691,19 +25041,20 @@ function parse (
           currentParent.attrsMap.placeholder === text) {
         return
       }
+      var children = currentParent.children;
       text = inPre || text.trim()
         ? decodeHTMLCached(text)
         // only preserve whitespace if its not right after a starting tag
-        : preserveWhitespace && currentParent.children.length ? ' ' : '';
+        : preserveWhitespace && children.length ? ' ' : '';
       if (text) {
         var expression;
         if (!inVPre && text !== ' ' && (expression = parseText(text, delimiters))) {
-          currentParent.children.push({
+          children.push({
             type: 2,
             expression: expression,
             text: text
           });
-        } else {
+        } else if (text !== ' ' || children[children.length - 1].text !== ' ') {
           currentParent.children.push({
             type: 3,
             text: text
@@ -24814,11 +25165,28 @@ function processIfConditions (el, parent) {
   }
 }
 
-function addIfCondition (el, condition) {
-  if (!el.conditions) {
-    el.conditions = [];
+function findPrevElement (children) {
+  var i = children.length;
+  while (i--) {
+    if (children[i].type === 1) {
+      return children[i]
+    } else {
+      if (process.env.NODE_ENV !== 'production' && children[i].text !== ' ') {
+        warn$1(
+          "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
+          "will be ignored."
+        );
+      }
+      children.pop();
+    }
   }
-  el.conditions.push(condition);
+}
+
+function addIfCondition (el, condition) {
+  if (!el.ifConditions) {
+    el.ifConditions = [];
+  }
+  el.ifConditions.push(condition);
 }
 
 function processOnce (el) {
@@ -24876,6 +25244,7 @@ function processAttrs (el) {
       if (bindRE.test(name)) { // v-bind
         name = name.replace(bindRE, '');
         value = parseFilters(value);
+        isProp = false;
         if (modifiers) {
           if (modifiers.prop) {
             isProp = true;
@@ -24920,6 +25289,15 @@ function processAttrs (el) {
         }
       }
       addAttr(el, name, JSON.stringify(value));
+      // #4530 also bind special attributes as props even if they are static
+      // so that patches between dynamic/static are consistent
+      if (platformMustUseProp(el.tag, name)) {
+        if (name === 'value') {
+          addProp(el, name, JSON.stringify(value));
+        } else {
+          addProp(el, name, 'true');
+        }
+      }
     }
   }
 }
@@ -24953,13 +25331,6 @@ function makeAttrsMap (attrs) {
     map[attrs[i].name] = attrs[i].value;
   }
   return map
-}
-
-function findPrevElement (children) {
-  var i = children.length;
-  while (i--) {
-    if (children[i].tag) { return children[i] }
-  }
 }
 
 function isForbiddenTag (el) {
@@ -25025,7 +25396,7 @@ var genStaticKeysCached = cached(genStaticKeys$1);
 function optimize (root, options) {
   if (!root) { return }
   isStaticKey = genStaticKeysCached(options.staticKeys || '');
-  isPlatformReservedTag = options.isReservedTag || (function () { return false; });
+  isPlatformReservedTag = options.isReservedTag || no;
   // first pass: mark all non-static nodes.
   markStatic(root);
   // second pass: mark static roots.
@@ -25084,8 +25455,8 @@ function markStaticRoots (node, isInFor) {
         markStaticRoots(node.children[i], isInFor || !!node.for);
       }
     }
-    if (node.conditions) {
-      walkThroughConditionsBlocks(node.conditions, isInFor);
+    if (node.ifConditions) {
+      walkThroughConditionsBlocks(node.ifConditions, isInFor);
     }
   }
 }
@@ -25147,11 +25518,7 @@ var keyCodes = {
 var modifierCode = {
   stop: '$event.stopPropagation();',
   prevent: '$event.preventDefault();',
-  self: 'if($event.target !== $event.currentTarget)return;'
-};
-
-var isMouseEventRE = /^mouse|^pointer|^(click|dblclick|contextmenu|wheel)$/;
-var mouseEventModifierCode = {
+  self: 'if($event.target !== $event.currentTarget)return;',
   ctrl: 'if(!$event.ctrlKey)return;',
   shift: 'if(!$event.shiftKey)return;',
   alt: 'if(!$event.altKey)return;',
@@ -25181,12 +25548,9 @@ function genHandler (
   } else {
     var code = '';
     var keys = [];
-    var isMouseEvnet = isMouseEventRE.test(name);
     for (var key in handler.modifiers) {
       if (modifierCode[key]) {
         code += modifierCode[key];
-      } else if (isMouseEvnet && mouseEventModifierCode[key]) {
-        code += mouseEventModifierCode[key];
       } else {
         keys.push(key);
       }
@@ -25202,22 +25566,16 @@ function genHandler (
 }
 
 function genKeyFilter (keys) {
-  var code = keys.length === 1
-    ? normalizeKeyCode(keys[0])
-    : Array.prototype.concat.apply([], keys.map(normalizeKeyCode));
-  if (Array.isArray(code)) {
-    return ("if(" + (code.map(function (c) { return ("$event.keyCode!==" + c); }).join('&&')) + ")return;")
-  } else {
-    return ("if($event.keyCode!==" + code + ")return;")
-  }
+  return ("if(" + (keys.map(genFilterCode).join('&&')) + ")return;")
 }
 
-function normalizeKeyCode (key) {
-  return (
-    parseInt(key, 10) || // number keyCode
-    keyCodes[key] || // built-in alias
-    ("_k(" + (JSON.stringify(key)) + ")") // custom alias
-  )
+function genFilterCode (key) {
+  var keyVal = parseInt(key, 10);
+  if (keyVal) {
+    return ("$event.keyCode!==" + keyVal)
+  }
+  var alias = keyCodes[key];
+  return ("_k($event.keyCode," + (JSON.stringify(key)) + (alias ? ',' + JSON.stringify(alias) : '') + ")")
 }
 
 /*  */
@@ -25227,6 +25585,8 @@ function bind$2 (el, dir) {
     return ("_b(" + code + ",'" + (el.tag) + "'," + (dir.value) + (dir.modifiers && dir.modifiers.prop ? ',true' : '') + ")")
   };
 }
+
+/*  */
 
 var baseDirectives = {
   bind: bind$2,
@@ -25240,6 +25600,7 @@ var warn$2;
 var transforms$1;
 var dataGenFns;
 var platformDirectives$1;
+var isPlatformReservedTag$1;
 var staticRenderFns;
 var onceCount;
 var currentOptions;
@@ -25258,7 +25619,8 @@ function generate (
   transforms$1 = pluckModuleFunction(options.modules, 'transformCode');
   dataGenFns = pluckModuleFunction(options.modules, 'genData');
   platformDirectives$1 = options.directives || {};
-  var code = ast ? genElement(ast) : '_h("div")';
+  isPlatformReservedTag$1 = options.isReservedTag || no;
+  var code = ast ? genElement(ast) : '_c("div")';
   staticRenderFns = prevStaticRenderFns;
   onceCount = prevOnceCount;
   return {
@@ -25288,8 +25650,8 @@ function genElement (el) {
     } else {
       var data = el.plain ? undefined : genData(el);
 
-      var children = el.inlineTemplate ? null : genChildren(el);
-      code = "_h('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
+      var children = el.inlineTemplate ? null : genChildren(el, true);
+      code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
     }
     // module transforms
     for (var i = 0; i < transforms$1.length; i++) {
@@ -25335,7 +25697,7 @@ function genOnce (el) {
 
 function genIf (el) {
   el.ifProcessed = true; // avoid recursion
-  return genIfConditions(el.conditions)
+  return genIfConditions(el.ifConditions.slice())
 }
 
 function genIfConditions (conditions) {
@@ -25350,7 +25712,7 @@ function genIfConditions (conditions) {
     return ("" + (genTernaryExp(condition.block)))
   }
 
-  // v-if with v-once shuold generate code like (a)?_m(0):_m(1)
+  // v-if with v-once should generate code like (a)?_m(0):_m(1)
   function genTernaryExp (el) {
     return el.once ? genOnce(el) : genElement(el)
   }
@@ -25386,6 +25748,10 @@ function genData (el) {
   }
   if (el.refInFor) {
     data += "refInFor:true,";
+  }
+  // pre
+  if (el.pre) {
+    data += "pre:true,";
   }
   // record original tag name for components using "is" attribute
   if (el.component) {
@@ -25482,10 +25848,51 @@ function genScopedSlot (key, el) {
       : genElement(el)) + "}"
 }
 
-function genChildren (el) {
-  if (el.children.length) {
-    return '[' + el.children.map(genNode).join(',') + ']'
+function genChildren (el, checkSkip) {
+  var children = el.children;
+  if (children.length) {
+    var el$1 = children[0];
+    // optimize single v-for
+    if (children.length === 1 &&
+        el$1.for &&
+        el$1.tag !== 'template' &&
+        el$1.tag !== 'slot') {
+      return genElement(el$1)
+    }
+    var normalizationType = getNormalizationType(children);
+    return ("[" + (children.map(genNode).join(',')) + "]" + (checkSkip
+        ? normalizationType ? ("," + normalizationType) : ''
+        : ''))
   }
+}
+
+// determine the normalization needed for the children array.
+// 0: no normalization needed
+// 1: simple normalization needed (possible 1-level deep nested array)
+// 2: full normalization needed
+function getNormalizationType (children) {
+  var res = 0;
+  for (var i = 0; i < children.length; i++) {
+    var el = children[i];
+    if (needsNormalization(el) ||
+        (el.if && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
+      res = 2;
+      break
+    }
+    if (maybeComponent(el) ||
+        (el.if && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
+      res = 1;
+    }
+  }
+  return res
+}
+
+function needsNormalization (el) {
+  return el.for || el.tag === 'template' || el.tag === 'slot'
+}
+
+function maybeComponent (el) {
+  return el.type === 1 && !isPlatformReservedTag$1(el.tag)
 }
 
 function genNode (node) {
@@ -25497,21 +25904,33 @@ function genNode (node) {
 }
 
 function genText (text) {
-  return text.type === 2
+  return ("_v(" + (text.type === 2
     ? text.expression // no need for () because already wrapped in _s()
-    : transformSpecialNewlines(JSON.stringify(text.text))
+    : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
 }
 
 function genSlot (el) {
   var slotName = el.slotName || '"default"';
   var children = genChildren(el);
-  return ("_t(" + slotName + (children ? ("," + children) : '') + (el.attrs ? ((children ? '' : ',null') + ",{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}") : '') + ")")
+  var res = "_t(" + slotName + (children ? ("," + children) : '');
+  var attrs = el.attrs && ("{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}");
+  var bind$$1 = el.attrsMap['v-bind'];
+  if ((attrs || bind$$1) && !children) {
+    res += ",null";
+  }
+  if (attrs) {
+    res += "," + attrs;
+  }
+  if (bind$$1) {
+    res += (attrs ? '' : ',null') + "," + bind$$1;
+  }
+  return res + ')'
 }
 
 // componentName is el.component, take it as argument to shun flow's pessimistic refinement
 function genComponent (componentName, el) {
-  var children = el.inlineTemplate ? null : genChildren(el);
-  return ("_h(" + componentName + "," + (genData(el)) + (children ? ("," + children) : '') + ")")
+  var children = el.inlineTemplate ? null : genChildren(el, true);
+  return ("_c(" + componentName + "," + (genData(el)) + (children ? ("," + children) : '') + ")")
 }
 
 function genProps (props) {
@@ -25770,8 +26189,11 @@ function genCheckboxModel (
   var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
   addProp(el, 'checked',
     "Array.isArray(" + value + ")" +
-      "?_i(" + value + "," + valueBinding + ")>-1" +
-      ":_q(" + value + "," + trueValueBinding + ")"
+      "?_i(" + value + "," + valueBinding + ")>-1" + (
+        trueValueBinding === 'true'
+          ? (":(" + value + ")")
+          : (":_q(" + value + "," + trueValueBinding + ")")
+      )
   );
   addHandler(el, 'change',
     "var $$a=" + value + "," +
@@ -25844,10 +26266,12 @@ function genDefaultModel (
   valueExpression = number || type === 'number'
     ? ("_n(" + valueExpression + ")")
     : valueExpression;
+
   var code = genAssignmentCode(value, valueExpression);
   if (isNative && needCompositionGuard) {
     code = "if($event.target.composing)return;" + code;
   }
+
   // inputs with type="file" are read only and setting the input's
   // value will throw an error.
   if (process.env.NODE_ENV !== 'production' &&
@@ -25857,8 +26281,12 @@ function genDefaultModel (
       "File inputs are read only. Use a v-on:change listener instead."
     );
   }
+
   addProp(el, 'value', isNative ? ("_s(" + value + ")") : ("(" + value + ")"));
   addHandler(el, event, code, null, true);
+  if (trim || number || type === 'number') {
+    addHandler(el, 'blur', '$forceUpdate()');
+  }
 }
 
 function genSelect (
@@ -26095,14 +26523,14 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(226), __webpack_require__(114)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(114), __webpack_require__(226)))
 
 /***/ },
 /* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 /**
- * vuex v2.0.0
+ * vuex v2.1.1
  * (c) 2016 Evan You
  * @license MIT
  */
@@ -26167,27 +26595,39 @@ function applyMixin (Vue) {
   }
 }
 
-function mapState (states) {
+var mapState = normalizeNamespace(function (namespace, states) {
   var res = {}
   normalizeMap(states).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
     res[key] = function mappedState () {
+      var state = this.$store.state
+      var getters = this.$store.getters
+      if (namespace) {
+        var module = this.$store._modulesNamespaceMap[namespace]
+        if (!module) {
+          warnNamespace('mapState', namespace)
+          return
+        }
+        state = module.state
+        getters = module.context.getters
+      }
       return typeof val === 'function'
-        ? val.call(this, this.$store.state, this.$store.getters)
-        : this.$store.state[val]
+        ? val.call(this, state, getters)
+        : state[val]
     }
   })
   return res
-}
+})
 
-function mapMutations (mutations) {
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
   var res = {}
   normalizeMap(mutations).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
+    val = namespace + val
     res[key] = function mappedMutation () {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
@@ -26196,14 +26636,15 @@ function mapMutations (mutations) {
     }
   })
   return res
-}
+})
 
-function mapGetters (getters) {
+var mapGetters = normalizeNamespace(function (namespace, getters) {
   var res = {}
   normalizeMap(getters).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
+    val = namespace + val
     res[key] = function mappedGetter () {
       if (!(val in this.$store.getters)) {
         console.error(("[vuex] unknown getter: " + val))
@@ -26212,14 +26653,15 @@ function mapGetters (getters) {
     }
   })
   return res
-}
+})
 
-function mapActions (actions) {
+var mapActions = normalizeNamespace(function (namespace, actions) {
   var res = {}
   normalizeMap(actions).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
+    val = namespace + val
     res[key] = function mappedAction () {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
@@ -26228,12 +26670,35 @@ function mapActions (actions) {
     }
   })
   return res
-}
+})
 
 function normalizeMap (map) {
   return Array.isArray(map)
     ? map.map(function (key) { return ({ key: key, val: key }); })
     : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace
+      namespace = ''
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/'
+    }
+    return fn(namespace, map)
+  }
+}
+
+function warnNamespace (helper, namespace) {
+  console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace))
+}
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); })
 }
 
 function isObject (obj) {
@@ -26246,6 +26711,146 @@ function isPromise (val) {
 
 function assert (condition, msg) {
   if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime
+  this._children = Object.create(null)
+  this._rawModule = rawModule
+};
+
+var prototypeAccessors$1 = { state: {},namespaced: {} };
+
+prototypeAccessors$1.state.get = function () {
+  return this._rawModule.state || {}
+};
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key]
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn)
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn)
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn)
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn)
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  var this$1 = this;
+
+  // register root module (Vuex.Store options)
+  this.root = new Module(rawRootModule, false)
+
+  // register all nested modules
+  if (rawRootModule.modules) {
+    forEachValue(rawRootModule.modules, function (rawModule, key) {
+      this$1.register([key], rawModule, false)
+    })
+  }
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key)
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update(this.root, rawRootModule)
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  var parent = this.get(path.slice(0, -1))
+  var newModule = new Module(rawModule, runtime)
+  parent.addChild(path[path.length - 1], newModule)
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime)
+    })
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1))
+  var key = path[path.length - 1]
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key)
+};
+
+function update (targetModule, newModule) {
+  // update target module
+  targetModule.update(newModule)
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        console.warn(
+          "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+          'manual reload is needed'
+        )
+        return
+      }
+      update(targetModule.getChild(key), newModule.modules[key])
+    }
+  }
 }
 
 var Vue // bind on install
@@ -26262,34 +26867,34 @@ var Store = function Store (options) {
   var strict = options.strict; if ( strict === void 0 ) strict = false;
 
   // store internal state
-  this._options = options
   this._committing = false
   this._actions = Object.create(null)
   this._mutations = Object.create(null)
   this._wrappedGetters = Object.create(null)
-  this._runtimeModules = Object.create(null)
+  this._modules = new ModuleCollection(options)
+  this._modulesNamespaceMap = Object.create(null)
   this._subscribers = []
   this._watcherVM = new Vue()
 
-    // bind commit and dispatch to self
+  // bind commit and dispatch to self
   var store = this
   var ref = this;
   var dispatch = ref.dispatch;
   var commit = ref.commit;
-  this.dispatch = function boundDispatch (type, payload) {
+    this.dispatch = function boundDispatch (type, payload) {
     return dispatch.call(store, type, payload)
-    }
-    this.commit = function boundCommit (type, payload, options) {
-    return commit.call(store, type, payload, options)
   }
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+    }
 
-  // strict mode
+    // strict mode
   this.strict = strict
 
   // init root module.
   // this also recursively registers all sub-modules
   // and collects all module getters inside this._wrappedGetters
-  installModule(this, state, [], options)
+  installModule(this, state, [], this._modules.root)
 
   // initialize the store vm, which is responsible for the reactivity
   // (also registers _wrappedGetters as computed properties)
@@ -26302,22 +26907,22 @@ var Store = function Store (options) {
 var prototypeAccessors = { state: {} };
 
 prototypeAccessors.state.get = function () {
-  return this._vm.state
+  return this._vm.$data.state
 };
 
 prototypeAccessors.state.set = function (v) {
   assert(false, "Use store.replaceState() to explicit replace store state.")
 };
 
-Store.prototype.commit = function commit (type, payload, options) {
+Store.prototype.commit = function commit (_type, _payload, _options) {
     var this$1 = this;
 
   // check object-style commit
-  if (isObject(type) && type.type) {
-    options = payload
-    payload = type
-    type = type.type
-  }
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
   var mutation = { type: type, payload: payload }
   var entry = this._mutations[type]
   if (!entry) {
@@ -26329,17 +26934,22 @@ Store.prototype.commit = function commit (type, payload, options) {
       handler(payload)
     })
   })
-  if (!options || !options.silent) {
-    this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); })
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); })
+
+  if (options && options.silent) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    )
   }
 };
 
-Store.prototype.dispatch = function dispatch (type, payload) {
+Store.prototype.dispatch = function dispatch (_type, _payload) {
   // check object-style dispatch
-  if (isObject(type) && type.type) {
-    payload = type
-    type = type.type
-  }
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
   var entry = this._actions[type]
   if (!entry) {
     console.error(("[vuex] unknown action type: " + type))
@@ -26367,7 +26977,7 @@ Store.prototype.watch = function watch (getter, cb, options) {
     var this$1 = this;
 
   assert(typeof getter === 'function', "store.watch only accepts a function.")
-  return this._watcherVM.$watch(function () { return getter(this$1.state); }, cb, options)
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
 };
 
 Store.prototype.replaceState = function replaceState (state) {
@@ -26378,11 +26988,11 @@ Store.prototype.replaceState = function replaceState (state) {
   })
 };
 
-Store.prototype.registerModule = function registerModule (path, module) {
+Store.prototype.registerModule = function registerModule (path, rawModule) {
   if (typeof path === 'string') { path = [path] }
   assert(Array.isArray(path), "module path must be a string or an Array.")
-  this._runtimeModules[path.join('.')] = module
-  installModule(this, this.state, path, module)
+  this._modules.register(path, rawModule)
+  installModule(this, this.state, path, this._modules.get(path))
   // reset store to update getters...
   resetStoreVM(this, this.state)
 };
@@ -26392,7 +27002,7 @@ Store.prototype.unregisterModule = function unregisterModule (path) {
 
   if (typeof path === 'string') { path = [path] }
   assert(Array.isArray(path), "module path must be a string or an Array.")
-    delete this._runtimeModules[path.join('.')]
+    this._modules.unregister(path)
   this._withCommit(function () {
     var parentState = getNestedState(this$1.state, path.slice(0, -1))
     Vue.delete(parentState, path[path.length - 1])
@@ -26401,7 +27011,7 @@ Store.prototype.unregisterModule = function unregisterModule (path) {
 };
 
 Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-  updateModule(this._options, newOptions)
+  this._modules.update(newOptions)
   resetStore(this)
 };
 
@@ -26414,41 +27024,14 @@ Store.prototype._withCommit = function _withCommit (fn) {
 
 Object.defineProperties( Store.prototype, prototypeAccessors );
 
-function updateModule (targetModule, newModule) {
-  if (newModule.actions) {
-    targetModule.actions = newModule.actions
-  }
-  if (newModule.mutations) {
-    targetModule.mutations = newModule.mutations
-  }
-  if (newModule.getters) {
-    targetModule.getters = newModule.getters
-  }
-  if (newModule.modules) {
-    for (var key in newModule.modules) {
-      if (!(targetModule.modules && targetModule.modules[key])) {
-        console.warn(
-          "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
-          'manual reload is needed'
-        )
-        return
-      }
-      updateModule(targetModule.modules[key], newModule.modules[key])
-    }
-  }
-}
-
 function resetStore (store) {
   store._actions = Object.create(null)
   store._mutations = Object.create(null)
   store._wrappedGetters = Object.create(null)
+  store._modulesNamespaceMap = Object.create(null)
   var state = store.state
-  // init root module
-  installModule(store, state, [], store._options, true)
-  // init all runtime modules
-  Object.keys(store._runtimeModules).forEach(function (key) {
-    installModule(store, state, key.split('.'), store._runtimeModules[key], true)
-  })
+  // init all modules
+  installModule(store, state, [], store._modules.root, true)
   // reset vm
   resetStoreVM(store, state)
 }
@@ -26460,12 +27043,12 @@ function resetStoreVM (store, state) {
   store.getters = {}
   var wrappedGetters = store._wrappedGetters
   var computed = {}
-  Object.keys(wrappedGetters).forEach(function (key) {
-    var fn = wrappedGetters[key]
+  forEachValue(wrappedGetters, function (fn, key) {
     // use computed to leverage its lazy-caching mechanism
     computed[key] = function () { return fn(store); }
     Object.defineProperty(store.getters, key, {
-      get: function () { return store._vm[key]; }
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
     })
   })
 
@@ -26497,65 +27080,135 @@ function resetStoreVM (store, state) {
 
 function installModule (store, rootState, path, module, hot) {
   var isRoot = !path.length
-  var state = module.state;
-  var actions = module.actions;
-  var mutations = module.mutations;
-  var getters = module.getters;
-  var modules = module.modules;
+  var namespace = store._modules.getNamespace(path)
+
+  // register in namespace map
+  if (namespace) {
+    store._modulesNamespaceMap[namespace] = module
+  }
 
   // set state
   if (!isRoot && !hot) {
     var parentState = getNestedState(rootState, path.slice(0, -1))
     var moduleName = path[path.length - 1]
     store._withCommit(function () {
-      Vue.set(parentState, moduleName, state || {})
+      Vue.set(parentState, moduleName, module.state)
     })
   }
 
-  if (mutations) {
-    Object.keys(mutations).forEach(function (key) {
-      registerMutation(store, key, mutations[key], path)
-    })
+  var local = module.context = makeLocalContext(store, namespace)
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key
+    registerMutation(store, namespacedType, mutation, path)
+  })
+
+  module.forEachAction(function (action, key) {
+    var namespacedType = namespace + key
+    registerAction(store, namespacedType, action, local, path)
+  })
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key
+    registerGetter(store, namespacedType, getter, local, path)
+  })
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot)
+  })
+}
+
+/**
+ * make localized dispatch, commit and getters
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace) {
+  var noNamespace = namespace === ''
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options)
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type
+        if (!store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type))
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options)
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type
+        if (!store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type))
+          return
+        }
+      }
+
+      store.commit(type, payload, options)
+    }
   }
 
-  if (actions) {
-    Object.keys(actions).forEach(function (key) {
-      registerAction(store, key, actions[key], path)
-    })
-  }
+  // getters object must be gotten lazily
+  // because store.getters will be changed by vm update
+  Object.defineProperty(local, 'getters', {
+    get: noNamespace ? function () { return store.getters; } : function () { return makeLocalGetters(store, namespace); }
+  })
 
-  if (getters) {
-    wrapGetters(store, getters, path)
-  }
+  return local
+}
 
-  if (modules) {
-    Object.keys(modules).forEach(function (key) {
-      installModule(store, rootState, path.concat(key), modules[key], hot)
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {}
+
+  var splitPos = namespace.length
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos)
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
     })
-  }
+  })
+
+  return gettersProxy
 }
 
 function registerMutation (store, type, handler, path) {
-  if ( path === void 0 ) path = [];
-
   var entry = store._mutations[type] || (store._mutations[type] = [])
   entry.push(function wrappedMutationHandler (payload) {
     handler(getNestedState(store.state, path), payload)
   })
 }
 
-function registerAction (store, type, handler, path) {
-  if ( path === void 0 ) path = [];
-
+function registerAction (store, type, handler, local, path) {
   var entry = store._actions[type] || (store._actions[type] = [])
-  var dispatch = store.dispatch;
-  var commit = store.commit;
   entry.push(function wrappedActionHandler (payload, cb) {
     var res = handler({
-      dispatch: dispatch,
-      commit: commit,
-      getters: store.getters,
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
       state: getNestedState(store.state, path),
+      rootGetters: store.getters,
       rootState: store.state
     }, payload, cb)
     if (!isPromise(res)) {
@@ -26572,21 +27225,19 @@ function registerAction (store, type, handler, path) {
   })
 }
 
-function wrapGetters (store, moduleGetters, modulePath) {
-  Object.keys(moduleGetters).forEach(function (getterKey) {
-    var rawGetter = moduleGetters[getterKey]
-    if (store._wrappedGetters[getterKey]) {
-      console.error(("[vuex] duplicate getter key: " + getterKey))
-      return
-    }
-    store._wrappedGetters[getterKey] = function wrappedGetter (store) {
-      return rawGetter(
-        getNestedState(store.state, modulePath), // local state
-        store.getters, // getters
-        store.state // root state
-      )
-    }
-  })
+function registerGetter (store, type, rawGetter, local, path) {
+  if (store._wrappedGetters[type]) {
+    console.error(("[vuex] duplicate getter key: " + type))
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      getNestedState(store.state, path), // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  }
 }
 
 function enableStrictMode (store) {
@@ -26599,6 +27250,15 @@ function getNestedState (state, path) {
   return path.length
     ? path.reduce(function (state, key) { return state[key]; }, state)
     : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload
+    payload = type
+    type = type.type
+  }
+  return { type: type, payload: payload, options: options }
 }
 
 function install (_Vue) {
@@ -26620,6 +27280,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 var index = {
   Store: Store,
   install: install,
+  version: '2.1.1',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -26637,6 +27298,16 @@ return index;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_chart_js__);
+Object.defineProperty(exports, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -26658,16 +27329,17 @@ var dateFormat = __webpack_require__(3);
         var _this = this;
 
         $.get('/stats', function (res) {
-            _this.postCounts = res.postCountByDay;
-            _this.commentCounts = res.commentCountByDay;
-            console.log(_this.postCounts);
-            console.log(_this.commentCounts);
+            _this.postCounts = _this.fillDataWithEmptyDates(res.postCountByDay);
+            _this.commentCounts = _this.fillDataWithEmptyDates(res.commentCountByDay);
+            _this.ratingCountByTag = res.ratingCountByTag;
+            _this.ratingAvgByTag = res.ratingAvgByTag;
+
             var postsData = {
                 labels: _this.postCounts.map(function (count) {
                     return dateFormat(count["date(`createdAt`)"], 'mmmm dS');
                 }),
                 datasets: [{
-                    label: "My First dataset",
+                    label: "Posts",
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",
@@ -26691,8 +27363,8 @@ var dateFormat = __webpack_require__(3);
                     spanGaps: false
                 }]
             };
-            var ctx = document.getElementById("postChart").getContext('2d');
-            var myChart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(ctx, {
+            var postCtx = document.getElementById("postChart").getContext('2d');
+            var postChart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(postCtx, {
                 type: 'line',
                 data: postsData,
                 options: {
@@ -26706,7 +27378,119 @@ var dateFormat = __webpack_require__(3);
                     }
                 }
             });
+            var commentsData = {
+                labels: _this.commentCounts.map(function (count) {
+                    return dateFormat(count["date(`createdAt`)"], 'mmmm dS');
+                }),
+                datasets: [{
+                    label: "Comments",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: _this.commentCounts.map(function (count) {
+                        return count["count('id')"];
+                    }),
+                    spanGaps: false
+                }]
+            };
+            var commentCtx = document.getElementById("commentChart").getContext('2d');
+            var commentChart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(commentCtx, {
+                type: 'line',
+                data: commentsData,
+                options: {
+                    responsive: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var dynamicColors = function dynamicColors() {
+                var r = Math.floor(Math.random() * 255);
+                var g = Math.floor(Math.random() * 255);
+                var b = Math.floor(Math.random() * 255);
+                return "rgb(" + r + "," + g + "," + b + ")";
+            };
+
+            var tagData = {
+                labels: _this.ratingCountByTag[0].map(function (count) {
+                    return count['name'];
+                }),
+                datasets: [{
+                    backgroundColor: _this.ratingCountByTag[0].map(function () {
+                        return dynamicColors();
+                    }),
+                    strokeColor: dynamicColors(),
+                    pointColor: dynamicColors(),
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: _this.ratingCountByTag[0].map(function (count) {
+                        return count['rating'];
+                    })
+                }]
+            };
+
+            var tagCtx = document.getElementById("tagChart").getContext('2d');
+            var tagChart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(tagCtx, {
+                type: 'pie',
+                data: tagData
+            });
+            var tagAvgData = {
+                labels: _this.ratingCountByTag[0].map(function (count) {
+                    return count['name'];
+                }),
+                datasets: [{
+                    backgroundColor: tagData.datasets[0].backgroundColor,
+                    strokeColor: tagData.datasets[0].strokeColor,
+                    pointColor: tagData.datasets[0].pointColor,
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: _this.ratingAvgByTag[0].map(function (count) {
+                        return count['rating'];
+                    })
+                }]
+            };
+
+            var tagAvgCtx = document.getElementById("tagAvgChart").getContext('2d');
+            var tagAvgChart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(tagAvgCtx, {
+                type: 'pie',
+                data: tagAvgData
+            });
         });
+    },
+
+    methods: {
+        fillDataWithEmptyDates: function fillDataWithEmptyDates(countsArray) {
+            for (var i = 0; i < countsArray.length - 1; i++) {
+                var currentDate = new Date(countsArray[i]["date(`createdAt`)"]);
+                var nextDate = new Date(countsArray[i + 1]["date(`createdAt`)"]);
+                if (+new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1) != +new Date(nextDate.getFullYear(), nextDate.getMonth(), nextDate.getDate())) countsArray.splice(i + 1, 0, {
+                    "date(`createdAt`)": new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1),
+                    "count('id')": 0
+                });
+            }
+            return countsArray;
+        }
     }
 };
 
@@ -26721,6 +27505,7 @@ var dateFormat = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostListComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__FeedComponent_NavComponent_vue__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -26763,6 +27548,7 @@ var dateFormat = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NavComponent_TagHeaderComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NavComponent_FilterComponent_vue__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -26826,6 +27612,7 @@ var dateFormat = __webpack_require__(3);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -26924,6 +27711,7 @@ var dateFormat = __webpack_require__(3);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27048,6 +27836,7 @@ var dateFormat = __webpack_require__(3);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27138,6 +27927,7 @@ var dateFormat = __webpack_require__(3);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_cookie__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_js_cookie__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27199,6 +27989,7 @@ var jwt = __webpack_require__(5);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostListComponent_PostComponent_vue__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27244,6 +28035,7 @@ var jwt = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostComponent_CommentComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PostComponent_NewCommentComponent_vue__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27391,6 +28183,7 @@ var jwt = __webpack_require__(5);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27497,6 +28290,7 @@ var jwt = __webpack_require__(5);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27543,6 +28337,7 @@ var jwt = __webpack_require__(5);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_vue__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PostListComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PostListComponent_vue__);
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -27636,6 +28431,7 @@ var jwt = __webpack_require__(5);
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
@@ -39470,7 +40266,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-03680cfd]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/LoginComponent.vue?0ecee783"],"names":[],"mappings":";AA6DA;IACA,cAAA;CACA","file":"LoginComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                    <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import Cookies from 'js-cookie'\r\n    const jwt = require('jwt-decode')\r\n    \r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                name: 'login',\r\n                email: '',\r\n                password: ''\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/login', {\r\n                    email: this.email, \r\n                    password: this.password\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('setUser', jwt(res.token))\r\n                        Cookies.set('token', res.token)\r\n                        window.location.replace('/')//todo:through vue router\r\n                    }\r\n                    else if(res.message == 'Wrong password')\r\n                    {\r\n                        $('#password').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.row[data-v-04829682]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-04829682]{\n}\n.rates span[data-v-04829682] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-04829682]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-04829682]{\n    color: rgba(0,0,0,0.87) !important;\n}\n.comment-info-row[data-v-04829682]{\n    height: 40px;\n    margin-bottom: -10px;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent/CommentComponent.vue?595f3793"],"names":[],"mappings":";AA+GA;IACA,iBAAA;CACA;AACA;CAEA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA;AAEA;IACA,aAAA;IACA,qBAAA;CACA","file":"CommentComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + comment.UserId + '/profile'\" class=\"user-nickname collection-item row\">{{comment.User.nickname}}</router-link>\r\n        <div class=\"collection-item collection row\">\r\n            <div class=\"row collection-item\">{{comment.content}}</div>\r\n            <div class=\"row comment-info-row  valign-wrapper\">\r\n                <div class=\"date col s5 valign\">{{comment.createdAt | formatDate}}</div>\r\n                <div class=\"rating col offset-s5 s1 valign\">{{comment.rating}}</div>\r\n                <div v-show=\"$store.state.user\" class=\"valign rates col s2\">\r\n                    <span @click=\"thumbUp\"\r\n                          v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                          class=\"material-icons\">thumb_up</span>\r\n                    <span\r\n                            @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                            class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == comment.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deleteComment\">Delete comment</a>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        props: ['comment'],\r\n        data(){\r\n            return {\r\n                rate: 0\r\n            }\r\n        },\r\n        created(){\r\n            if(this.comment.CommentaryRates && this.comment.CommentaryRates[0])\r\n            {\r\n                this.rate = this.comment.CommentaryRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(!this.comment.rating)\r\n                this.comment.rating = 0\r\n        },\r\n        computed:{\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            },\r\n        },\r\n        methods: {\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else{\r\n                    $.get(`/comment/${this.comment.id}/rate/like`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else{\r\n                    $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deleteComment(){\r\n                $.get(`/comment/${this.comment.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n            })\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n</script>\r\n\r\n<style scoped>\r\n    .row{\r\n        margin-bottom: 0;\r\n    }\r\n    .user-nickname{\r\n\r\n    }\r\n    .rates span {\r\n        color: rgba(0,0,0,0.30)\r\n    }\r\n    .rates span:hover{\r\n        color: rgba(0,0,0,0.87);\r\n        cursor: context-menu;\r\n    }\r\n    .activated-rate{\r\n        color: rgba(0,0,0,0.87) !important;\r\n    }\r\n\r\n    .comment-info-row{\r\n        height: 40px;\r\n        margin-bottom: -10px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39484,7 +40280,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n#submit-comment[data-v-2d07a4c9]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent/NewCommentComponent.vue?149b586f"],"names":[],"mappings":";AAuCA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<template>\r\n    <form id=\"new-commentary-form\" @submit.prevent=\"onSubmit\" class=\"input-field\">\r\n            <textarea name=\"new-comment\" v-model=\"text\" class=\"materialize-textarea\"></textarea>\r\n            <label for=\"new-comment\">New comment</label>\r\n            <button id=\"submit-comment\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                Submit<i class=\"material-icons right\">send</i>\r\n            </button>\r\n        </form>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        props:['post'],\r\n        data(){\r\n            return {\r\n                text: ''\r\n            }\r\n        },\r\n        methods:{\r\n            onSubmit() {\r\n                console.log(this)\r\n                let postId = this.post.id\r\n                $.ajax({\r\n                    method:'POST',\r\n                    url:'post/' + postId + '/comment', \r\n                    data: {content: this.text},\r\n                    success: res => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.Commentaries = res.comments\r\n                            this.text = ''\r\n                        }                \r\n                    }})\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    #submit-comment{\r\n        margin: 5px;\r\n        margin-top: -20px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.userinfo[data-v-1792b4f0]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-1792b4f0]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-1792b4f0]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-1792b4f0]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-1792b4f0]\n{\n    height: 45px;\n}\nimg[data-v-1792b4f0]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?e8915260"],"names":[],"mappings":";AAwJA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link :to=\"`/post/tag/${tag.id}`\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link :to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deletePost\">Delete post</a>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user && !this.$store.state.user.isBanned\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deletePost(){\r\n                $.get(`/post/${this.post.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n                })\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(!this.post.rating)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39498,7 +40294,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.title[data-v-3dd9ab06]{\n    font-weight: 700;\n}\n", "", {"version":3,"sources":["/./components/ProfileComponent.vue?f7b20510"],"names":[],"mappings":";AAsFA;IACA,iBAAA;CACA","file":"ProfileComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"card\">\r\n            <div class=\"card-content\">\r\n                <span class=\"card-title\">\r\n                    Nickname: {{user.nickname}}\r\n                </span>\r\n                <ul v-if=\"user\" class=\"collection\">\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Email\r\n                        </div>\r\n                        {{user.email}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Nickname\r\n                        </div>\r\n                        {{user.nickname}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Rating\r\n                        </div>\r\n                        {{user.rating ? user.rating : 0}}\r\n                    </li>\r\n                    <!--<li class=\"collection-item\"></li>-->\r\n                </ul>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && !user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"ban\">Ban user</a>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"unban\">Unban user</a>\r\n            </div>\r\n        </div>\r\n        <post-list-component></post-list-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import PostListComponent from './PostListComponent.vue'\r\n\r\n    export default\r\n    {\r\n        components: {\r\n            PostListComponent\r\n        },\r\n        data() {\r\n            return {\r\n                user: {}\r\n            }\r\n        },\r\n        created(){\r\n            this.getUser()\r\n        },\r\n        methods:{\r\n            getUser(){\r\n                let path = this.$route.path\r\n                let userId = path.split('/')[2]\r\n                $.get(`/user/${userId}`, (res) => {\r\n                    this.user = res\r\n                })\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            },\r\n            ban(){\r\n                $.get('/user/' + this.user.id + '/ban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get('/user/' + this.user.id + '/unban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .title{\r\n        font-weight: 700;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\ntextarea[data-v-1a03ecc2]{\n    margin: 0;\n}\n.collapsible-body[data-v-1a03ecc2]{\n    height: auto;\n    padding: 0 10px 0;\n    display: block;\n}\n.row[data-v-1a03ecc2]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-1a03ecc2]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-1a03ecc2]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-1a03ecc2]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?2f89acfa"],"names":[],"mappings":";AAmFA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;IACA,eAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<template>\r\n    <div id=\"new-post-component\">\r\n            <ul class=\"card\">\r\n                <li class=\"white\">\r\n                    <div @click=\"toggleBody\" class=\"collapsible-header\"><i class=\"material-icons\">add </i>New post</div>\r\n                    <div v-if=\"showBody\" class=\"collapsible-body white\">\r\n                        <form id=\"new-post-form\" @submit.prevent=\"onSubmit\">\r\n                            <div class=\"input-field\">\r\n                                <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                                <label for=\"tags\">Tags</label>\r\n                            </div>\r\n                            <div class=\"input-field\">\r\n                                <textarea id=\"content\" name=\"content\" v-model=\"content\" class=\"materialize-textarea\"></textarea>\r\n                                <label for=\"content\">Content</label>\r\n                            </div>\r\n                            <div class=\"row\">\r\n                                <div class=\"file-field input-field left\">\r\n                                    <button class=\"btn\">Image\r\n                                        <input id=\"image\" name=\"image\" type=\"file\"/>\r\n                                    </button>\r\n                                    <div class=\"file-path-wrapper\">\r\n                                        <input type=\"text\" class=\"file-path validate\"/>\r\n                                    </div>\r\n                                </div>\r\n                                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                                    Submit<i class=\"material-icons right\">send</i>\r\n                                </button>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        data(){\r\n            return {\r\n                tagsArray:[],\r\n                content: '',\r\n                showBody: false\r\n            }\r\n        },\r\n        methods: {\r\n            onSubmit(){\r\n                $.ajax({\r\n                        method:'POST',\r\n                        url:'post',\r\n                        data: new FormData($('#new-post-form')[0]),\r\n                        cache: false,\r\n                        contentType: false,\r\n                        processData: false,\r\n                        success: res => {\r\n                            if(res.success)\r\n                            {\r\n                                this.tagsArray = []\r\n                                this.content = ''\r\n                                this.showBody = false\r\n                                $('input[type=file]').val(\"\")\r\n                                $('.file-path-wrapper input').val(\"\")\r\n                                this.$store.commit('loadPosts', this.$route.path)\r\n                            }\r\n                        }})\r\n            },\r\n            toggleBody(){\r\n                this.showBody = !this.showBody\r\n            }\r\n        },\r\n        computed:{\r\n            tags:{\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    textarea{\r\n        margin: 0;\r\n    }\r\n    .collapsible-body{\r\n        height: auto;\r\n        padding: 0 10px 0;\r\n        display: block;\r\n    }\r\n    .row{\r\n        padding: 5px 15px 5px;\r\n        margin-bottom: 0;\r\n    }\r\n    .file-field{\r\n        height: 36px;\r\n        margin-top: 0;\r\n    }\r\n    .file-field .btn{\r\n        height: 36px;\r\n        line-height: 36px;\r\n    }\r\n    .file-field .file-path{\r\n        height: 36px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39512,7 +40308,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.row[data-v-42a953c3]{\n    margin-bottom: 0;\n}\n.user-nickname[data-v-42a953c3]{\n}\n.rates span[data-v-42a953c3] {\n    color: rgba(0,0,0,0.30)\n}\n.rates span[data-v-42a953c3]:hover{\n    color: rgba(0,0,0,0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-42a953c3]{\n    color: rgba(0,0,0,0.87) !important;\n}\n.comment-info-row[data-v-42a953c3]{\n    height: 40px;\n    margin-bottom: -10px;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent/CommentComponent.vue?595f3793"],"names":[],"mappings":";AA+GA;IACA,iBAAA;CACA;AACA;CAEA;AACA;IACA,uBAAA;CACA;AACA;IACA,wBAAA;IACA,qBAAA;CACA;AACA;IACA,mCAAA;CACA;AAEA;IACA,aAAA;IACA,qBAAA;CACA","file":"CommentComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + comment.UserId + '/profile'\" class=\"user-nickname collection-item row\">{{comment.User.nickname}}</router-link>\r\n        <div class=\"collection-item collection row\">\r\n            <div class=\"row collection-item\">{{comment.content}}</div>\r\n            <div class=\"row comment-info-row  valign-wrapper\">\r\n                <div class=\"date col s5 valign\">{{comment.createdAt | formatDate}}</div>\r\n                <div class=\"rating col offset-s5 s1 valign\">{{comment.rating}}</div>\r\n                <div v-show=\"$store.state.user\" class=\"valign rates col s2\">\r\n                    <span @click=\"thumbUp\"\r\n                          v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                          class=\"material-icons\">thumb_up</span>\r\n                    <span\r\n                            @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                            class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == comment.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deleteComment\">Delete comment</a>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        props: ['comment'],\r\n        data(){\r\n            return {\r\n                rate: 0\r\n            }\r\n        },\r\n        created(){\r\n            if(this.comment.CommentaryRates && this.comment.CommentaryRates[0])\r\n            {\r\n                this.rate = this.comment.CommentaryRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(!this.comment.rating)\r\n                this.comment.rating = 0\r\n        },\r\n        computed:{\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            },\r\n        },\r\n        methods: {\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else{\r\n                    $.get(`/comment/${this.comment.id}/rate/like`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/comment/${this.comment.id}/rate/neutral`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else{\r\n                    $.get(`/comment/${this.comment.id}/rate/dislike`,(res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.comment.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deleteComment(){\r\n                $.get(`/comment/${this.comment.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n            })\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n</script>\r\n\r\n<style scoped>\r\n    .row{\r\n        margin-bottom: 0;\r\n    }\r\n    .user-nickname{\r\n\r\n    }\r\n    .rates span {\r\n        color: rgba(0,0,0,0.30)\r\n    }\r\n    .rates span:hover{\r\n        color: rgba(0,0,0,0.87);\r\n        cursor: context-menu;\r\n    }\r\n    .activated-rate{\r\n        color: rgba(0,0,0,0.87) !important;\r\n    }\r\n\r\n    .comment-info-row{\r\n        height: 40px;\r\n        margin-bottom: -10px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.title[data-v-4321ad88]{\n    font-weight: 700;\n}\n", "", {"version":3,"sources":["/./components/ProfileComponent.vue?f7b20510"],"names":[],"mappings":";AAsFA;IACA,iBAAA;CACA","file":"ProfileComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"card\">\r\n            <div class=\"card-content\">\r\n                <span class=\"card-title\">\r\n                    Nickname: {{user.nickname}}\r\n                </span>\r\n                <ul v-if=\"user\" class=\"collection\">\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Email\r\n                        </div>\r\n                        {{user.email}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Nickname\r\n                        </div>\r\n                        {{user.nickname}}\r\n                    </li>\r\n                    <li class=\"collection-item\">\r\n                        <div class=\"title\">\r\n                            Rating\r\n                        </div>\r\n                        {{user.rating ? user.rating : 0}}\r\n                    </li>\r\n                    <!--<li class=\"collection-item\"></li>-->\r\n                </ul>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && !user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"ban\">Ban user</a>\r\n            </div>\r\n            <div v-if=\"$store.state.user.isAdmin && user.isBanned\" class=\"card-action admin-actions\">\r\n                <a @click=\"unban\">Unban user</a>\r\n            </div>\r\n        </div>\r\n        <post-list-component></post-list-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import PostListComponent from './PostListComponent.vue'\r\n\r\n    export default\r\n    {\r\n        components: {\r\n            PostListComponent\r\n        },\r\n        data() {\r\n            return {\r\n                user: {}\r\n            }\r\n        },\r\n        created(){\r\n            this.getUser()\r\n        },\r\n        methods:{\r\n            getUser(){\r\n                let path = this.$route.path\r\n                let userId = path.split('/')[2]\r\n                $.get(`/user/${userId}`, (res) => {\r\n                    this.user = res\r\n                })\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            },\r\n            ban(){\r\n                $.get('/user/' + this.user.id + '/ban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get('/user/' + this.user.id + '/unban', (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.getUser()\r\n                    }\r\n                })\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .title{\r\n        font-weight: 700;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39526,7 +40322,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-59c82843]{\n    margin: 0;\n}\n.collapsible-body[data-v-59c82843]{\n    height: auto;\n    padding: 0 10px 0;\n    display: block;\n}\n.row[data-v-59c82843]{\n    padding: 5px 15px 5px;\n    margin-bottom: 0;\n}\n.file-field[data-v-59c82843]{\n    height: 36px;\n    margin-top: 0;\n}\n.file-field .btn[data-v-59c82843]{\n    height: 36px;\n    line-height: 36px;\n}\n.file-field .file-path[data-v-59c82843]{\n    height: 36px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NewPostComponent.vue?2f89acfa"],"names":[],"mappings":";AAmFA;IACA,UAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;IACA,eAAA;CACA;AACA;IACA,sBAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;CACA;AACA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,aAAA;CACA","file":"NewPostComponent.vue","sourcesContent":["<template>\r\n    <div id=\"new-post-component\">\r\n            <ul class=\"card\">\r\n                <li class=\"white\">\r\n                    <div @click=\"toggleBody\" class=\"collapsible-header\"><i class=\"material-icons\">add </i>New post</div>\r\n                    <div v-if=\"showBody\" class=\"collapsible-body white\">\r\n                        <form id=\"new-post-form\" @submit.prevent=\"onSubmit\">\r\n                            <div class=\"input-field\">\r\n                                <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                                <label for=\"tags\">Tags</label>\r\n                            </div>\r\n                            <div class=\"input-field\">\r\n                                <textarea id=\"content\" name=\"content\" v-model=\"content\" class=\"materialize-textarea\"></textarea>\r\n                                <label for=\"content\">Content</label>\r\n                            </div>\r\n                            <div class=\"row\">\r\n                                <div class=\"file-field input-field left\">\r\n                                    <button class=\"btn\">Image\r\n                                        <input id=\"image\" name=\"image\" type=\"file\"/>\r\n                                    </button>\r\n                                    <div class=\"file-path-wrapper\">\r\n                                        <input type=\"text\" class=\"file-path validate\"/>\r\n                                    </div>\r\n                                </div>\r\n                                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                                    Submit<i class=\"material-icons right\">send</i>\r\n                                </button>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        data(){\r\n            return {\r\n                tagsArray:[],\r\n                content: '',\r\n                showBody: false\r\n            }\r\n        },\r\n        methods: {\r\n            onSubmit(){\r\n                $.ajax({\r\n                        method:'POST',\r\n                        url:'post',\r\n                        data: new FormData($('#new-post-form')[0]),\r\n                        cache: false,\r\n                        contentType: false,\r\n                        processData: false,\r\n                        success: res => {\r\n                            if(res.success)\r\n                            {\r\n                                this.tagsArray = []\r\n                                this.content = ''\r\n                                this.showBody = false\r\n                                $('input[type=file]').val(\"\")\r\n                                $('.file-path-wrapper input').val(\"\")\r\n                                this.$store.commit('loadPosts', this.$route.path)\r\n                            }\r\n                        }})\r\n            },\r\n            toggleBody(){\r\n                this.showBody = !this.showBody\r\n            }\r\n        },\r\n        computed:{\r\n            tags:{\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    textarea{\r\n        margin: 0;\r\n    }\r\n    .collapsible-body{\r\n        height: auto;\r\n        padding: 0 10px 0;\r\n        display: block;\r\n    }\r\n    .row{\r\n        padding: 5px 15px 5px;\r\n        margin-bottom: 0;\r\n    }\r\n    .file-field{\r\n        height: 36px;\r\n        margin-top: 0;\r\n    }\r\n    .file-field .btn{\r\n        height: 36px;\r\n        line-height: 36px;\r\n    }\r\n    .file-field .file-path{\r\n        height: 36px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\nbutton[data-v-5918fae3]{\n    margin-top: 15px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/TagHeaderComponent.vue?80e5758a"],"names":[],"mappings":";AA2HA;IACA,iBAAA;CACA","file":"TagHeaderComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"tagname center-align\"><h4>{{tagName}}</h4></div>\r\n        <div class=\"row\">\r\n            <button @click=\"subscribe\" v-if=\"$store.state.user && !ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect waves-light btn subscribe-button\">Subscribe\r\n            </button>\r\n            <button @click=\"unsubscribe\" v-if=\"$store.state.user && ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Unsubscribe\r\n            </button>\r\n            <button @click=\"ban\" v-if=\"$store.state.user && !ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Ban\r\n            </button>\r\n            <button @click=\"unban\" v-if=\"$store.state.user && ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect wawes-light btn subscribe-button\">Unban\r\n            </button>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagId: null,\r\n                tagName: ''\r\n            }\r\n        },\r\n        created(){\r\n            this.getCurrentTag()\r\n        },\r\n        computed: {\r\n            ifSubscribed() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.subscriptions.some((sub) => {\r\n                        if(sub.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            },\r\n            ifBanned() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.bans.some((ban) => {\r\n                        if(ban.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            }\r\n        },\r\n        methods: {\r\n            getCurrentTag(){\r\n                this.tagId = this.$route.path.split('/')[3]\r\n                $.get(`/tag/${this.tagId}`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.tagName = res.tagName\r\n                    }\r\n                })\r\n            },\r\n            subscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/subscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('subscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unsubscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unsubscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            ban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/ban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            }\r\n        },\r\n        watch: {\r\n            '$route': 'getCurrentTag'\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    button{\r\n        margin-top: 15px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39540,7 +40336,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\nbutton[data-v-61782d42]{\n    margin-top: 15px;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/TagHeaderComponent.vue?80e5758a"],"names":[],"mappings":";AA2HA;IACA,iBAAA;CACA","file":"TagHeaderComponent.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"tagname center-align\"><h4>{{tagName}}</h4></div>\r\n        <div class=\"row\">\r\n            <button @click=\"subscribe\" v-if=\"$store.state.user && !ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect waves-light btn subscribe-button\">Subscribe\r\n            </button>\r\n            <button @click=\"unsubscribe\" v-if=\"$store.state.user && ifSubscribed\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Unsubscribe\r\n            </button>\r\n            <button @click=\"ban\" v-if=\"$store.state.user && !ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect red btn subscribe-button\">Ban\r\n            </button>\r\n            <button @click=\"unban\" v-if=\"$store.state.user && ifBanned\"\r\n                    class=\"col s8 offset-s2 center-align waves-effect wawes-light btn subscribe-button\">Unban\r\n            </button>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagId: null,\r\n                tagName: ''\r\n            }\r\n        },\r\n        created(){\r\n            this.getCurrentTag()\r\n        },\r\n        computed: {\r\n            ifSubscribed() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.subscriptions.some((sub) => {\r\n                        if(sub.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            },\r\n            ifBanned() {\r\n                if(this.$store.state.subscriptions)\r\n                {\r\n                    return this.$store.state.bans.some((ban) => {\r\n                        if(ban.Tag.id == this.tagId)\r\n                        {\r\n                            return true\r\n                        }\r\n                    })\r\n                }\r\n                return false\r\n            }\r\n        },\r\n        methods: {\r\n            getCurrentTag(){\r\n                this.tagId = this.$route.path.split('/')[3]\r\n                $.get(`/tag/${this.tagId}`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.tagName = res.tagName\r\n                    }\r\n                })\r\n            },\r\n            subscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/subscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('subscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unsubscribe(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unsubscribe`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            ban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/ban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            },\r\n            unban(){\r\n                $.get(`/user/${this.$store.state.user.id}/tag/${this.tagId}/unban`, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('loadSubscriptionsAndBans')\r\n                    }\r\n                    else\r\n                    {\r\n                        console.log('unsubscription went wrong')\r\n                    }\r\n                })\r\n            }\r\n        },\r\n        watch: {\r\n            '$route': 'getCurrentTag'\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    button{\r\n        margin-top: 15px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-6fc955e2]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39554,7 +40350,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-70884160]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?4223adf8"],"names":[],"mappings":";AA2DA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div v-if=\"$store.state.user\" class=\"subscriptions collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul v-if=\"$store.state.subscriptions.length\">\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <p class=\"col s12\" v-else>\r\n                So empty.\r\n            </p>\r\n        </div>\r\n        <div v-if=\"$store.state.user\" class=\"bans collection\">\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul v-if=\"$store.state.bans.length\">\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <p class=\"col s12\" v-else>\r\n                So empty.\r\n            </p>\r\n        </div>\r\n        <filter-component v-if=\"$route.path == '/'\"></filter-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n    import FilterComponent from './NavComponent/FilterComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent,\r\n            FilterComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-74e2af7c]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/LoginComponent.vue?0ecee783"],"names":[],"mappings":";AA6DA;IACA,cAAA;CACA","file":"LoginComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                    <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import Cookies from 'js-cookie'\r\n    const jwt = require('jwt-decode')\r\n    \r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                name: 'login',\r\n                email: '',\r\n                password: ''\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/login', {\r\n                    email: this.email, \r\n                    password: this.password\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$store.commit('setUser', jwt(res.token))\r\n                        Cookies.set('token', res.token)\r\n                        window.location.replace('/')//todo:through vue router\r\n                    }\r\n                    else if(res.message == 'Wrong password')\r\n                    {\r\n                        $('#password').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39568,7 +40364,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7cb5067e]{\n    padding: 25px;\n}\n", "", {"version":3,"sources":["/./components/RegisterComponent.vue?996db410"],"names":[],"mappings":";AAqEA;IACA,cAAA;CACA","file":"RegisterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"row\">\r\n        <div class=\"card col s4 offset-s4\">\r\n            <form @submit.prevent=\"submit\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"email\" name=\"email\" v-model=\"email\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"email\">Email</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"email\" type=\"text\" name=\"nickname\" v-model=\"nickname\" class=\"validate\"/>\r\n                    <label for=\"nickname\">Nickname</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"password\" type=\"password\" name=\"password\" v-model=\"password\" class=\"validate\"/>\r\n                    <label data-error=\"wrong\" for=\"password\">Password</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"passwordConfirmation\" type=\"password\" name=\"confirmPassword\" v-model=\"confirmPassword\" class=\"validate\"/>\r\n                    <label data-error=\"doesn't match\" for=\"confirmPassword\">Confirm password</label>\r\n                </div>\r\n                <button type=\"submit\" class=\"waves-effect waves-light btn col s4 offset-s4\">Submit</button>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script>\r\n    export default\r\n    {\r\n        data() {\r\n            return {\r\n                email: '',\r\n                password: '',\r\n                nickname: '',\r\n                confirmPassword: '',\r\n                name: 'register'\r\n            }\r\n        },\r\n        created() {\r\n            \r\n        },\r\n        methods: {\r\n            submit(){\r\n                $.post('/register', {\r\n                    email: this.email, \r\n                    password: this.password,\r\n                    nickname: this.nickname,\r\n                    confirmPassword: this.confirmPassword\r\n                }, (res) => {\r\n                    if(res.success)\r\n                    {\r\n                        this.$router.replace('/login')\r\n                    }\r\n                    else if(res.message == \"Passwords do not match\")\r\n                    {\r\n                        $('#passwordConfirmation').addClass('invalid')\r\n                    }\r\n                    else\r\n                    {\r\n                        $('#email').addClass('invalid')                        \r\n                    }    \r\n                })\r\n            }\r\n        }  \r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card{\r\n        padding: 25px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-8fbfc542]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent.vue?4223adf8"],"names":[],"mappings":";AA2DA;;IAEA,aAAA;CACA","file":"NavComponent.vue","sourcesContent":["<template>\r\n    <div class=\"card\">\r\n        <div v-if=\"ifTagSection\" class=\"tag-header row\">\r\n            <tag-header-component class=\"col s12\"></tag-header-component>\r\n        </div>\r\n        <div v-if=\"$store.state.user\" class=\"subscriptions collection\">\r\n            <div class=\"collection-item\">\r\n                Subscriptions\r\n            </div>\r\n            <ul v-if=\"$store.state.subscriptions.length\">\r\n                <li v-for=\"subscription in $store.state.subscriptions\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + subscription.Tag.id\">\r\n                        {{subscription.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <p class=\"col s12\" v-else>\r\n                So empty.\r\n            </p>\r\n        </div>\r\n        <div v-if=\"$store.state.user\" class=\"bans collection\">\r\n            <div class=\"collection-item\">\r\n                Bans\r\n            </div>\r\n            <ul v-if=\"$store.state.bans.length\">\r\n                <li v-for=\"ban in $store.state.bans\">\r\n                    <router-link class=\"collection-item\" v-bind:to=\"'/post/tag/' + ban.Tag.id\">{{ban.Tag.name}}\r\n                    </router-link>\r\n                </li>\r\n            </ul>\r\n            <p class=\"col s12\" v-else>\r\n                So empty.\r\n            </p>\r\n        </div>\r\n        <filter-component v-if=\"$route.path == '/'\"></filter-component>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import TagHeaderComponent from './NavComponent/TagHeaderComponent.vue'\r\n    import FilterComponent from './NavComponent/FilterComponent.vue'\r\n\r\n    export default{\r\n        components: {\r\n            TagHeaderComponent,\r\n            FilterComponent\r\n        },\r\n        data(){\r\n            return {}\r\n        },\r\n        computed: {\r\n            ifTagSection(){\r\n                return this.$route.path.includes('/post/tag')\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39582,7 +40378,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.userinfo[data-v-a60c4bb2]\n{\n    padding: 15px;\n    font-size: 25px;\n}\n.rates span[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.30)\n}\n.rates span[data-v-a60c4bb2]:hover\n{\n    color: rgba(0, 0, 0, 0.87);\n    cursor: context-menu;\n}\n.activated-rate[data-v-a60c4bb2]\n{\n    color: rgba(0, 0, 0, 0.87) !important;\n}\n.info[data-v-a60c4bb2]\n{\n    height: 45px;\n}\nimg[data-v-a60c4bb2]{\n    max-width: 90%;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent.vue?1fa867eb"],"names":[],"mappings":";AAwJA;;IAEA,cAAA;IACA,gBAAA;CACA;AAEA;;IAEA,0BAAA;CACA;AAEA;;IAEA,2BAAA;IACA,qBAAA;CACA;AAEA;;IAEA,sCAAA;CACA;AAEA;;IAEA,aAAA;CACA;AAEA;IACA,eAAA;CACA","file":"PostComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <router-link :to=\"'/user/' + post.UserId + '/profile'\"\r\n                     class=\"userinfo collection-item\">{{post.User.nickname}}\r\n        </router-link>\r\n        <div class=\"collection-item\" v-if=\"post.Tags.length\">\r\n            <div v-for=\"tag in post.Tags\" class=\"chip\">\r\n                <router-link v-bind:to=\"'/post/tag/' + tag.id\">{{tag.name}}</router-link>\r\n            </div>\r\n        </div>\r\n        <div class=\"row collection-item\">\r\n            <p class=\"col s12\">{{post.content}}</p>\r\n            <img v-if=\"post.image\" v-bind:src=\"'images/' + post.image\"/>\r\n        </div>\r\n        <div class=\"info row collection-item\">\r\n            <div class=\"date col s3\">{{post.createdAt | formatDate}}</div>\r\n            <router-link v-bind:to=\"'/post/' + post.id\" class=\"link col s1\">Link</router-link>\r\n            <div class=\"row col s4 offset-s4\">\r\n                <div class=\"rating col s2 offset-s2\">{{post.rating}}</div>\r\n                <div v-if=\"$store.state.user\" class=\"rates col s8\"><span @click=\"thumbUp\"\r\n                                                                         v-bind:class=\"{'activated-rate': ifThumbUp}\"\r\n                                                                         class=\"material-icons\">thumb_up</span><span\r\n                        @click=\"thumbDown\" v-bind:class=\"{'activated-rate': ifThumbDown}\"\r\n                        class=\"material-icons\">thumb_down</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div v-if=\"$store.state.user && ($store.state.user.isAdmin || $store.state.user.id == post.UserId)\" class=\"card-action admin-actions collection-item\">\r\n            <a @click=\"deletePost\">Delete post</a>\r\n        </div>\r\n        <div class=\"comments row collection-item\">\r\n            <div class=\"col s12\">\r\n                <div @click=\"triggerComments\" class=\"trigger valign-wrapper\">\r\n                    <span v-if=\"showComments\" class=\"material-icons valign\">keyboard_arrow_up</span>\r\n                    <span v-else=\"v-else\" class=\"material-icons valign\">keyboard_arrow_down</span>\r\n                    <span class=\"valign\">\r\n                        Comments\r\n                    </span>\r\n                </div>\r\n                <div v-if=\"showComments\" class=\"display-comments collection\">\r\n                    <ul>\r\n                        <li v-for=\"comment in post.Commentaries\" class=\"collection-item\">\r\n                            <comment-component :comment=\"comment\"></comment-component>\r\n                        </li>\r\n                        <li v-if=\"this.$store.state.user && !this.$store.state.user.isBanned\" class=\"collection-item\">\r\n                            <new-comment-component :post=\"post\"></new-comment-component>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import CommentComponent from './PostComponent/CommentComponent.vue'\r\n    import NewCommentComponent from './PostComponent/NewCommentComponent.vue'\r\n\r\n    export default {\r\n        props: ['post'],\r\n        data(){\r\n            return {\r\n                showComments: false,\r\n                rate: 0\r\n            }\r\n        },\r\n        computed: {\r\n            ifThumbUp(){\r\n                return this.rate == 1\r\n            },\r\n            ifThumbDown(){\r\n                return this.rate == -1\r\n            }\r\n        },\r\n        components: {\r\n            CommentComponent,\r\n            NewCommentComponent\r\n        },\r\n        methods: {\r\n            triggerComments(){\r\n                this.showComments = !this.showComments\r\n            },\r\n            thumbUp(){\r\n                if(this.rate == 1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/like`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 1\r\n                }\r\n            },\r\n            thumbDown(){\r\n                if(this.rate == -1)\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/neutral`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = 0\r\n                }\r\n                else\r\n                {\r\n                    $.get(`/post/${this.post.id}/rate/dislike`, (res) => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.rating = res.rating\r\n                        }\r\n                    })\r\n                    this.rate = -1\r\n                }\r\n            },\r\n            deletePost(){\r\n                $.get(`/post/${this.post.id}/delete`, (res) => {\r\n                    if(res.success)\r\n                {\r\n                    this.$store.commit('loadPosts', this.$route.path)\r\n                }\r\n                })\r\n            }\r\n        },\r\n        created(){\r\n            if(this.post.PostRates && this.post.PostRates[0])\r\n            {\r\n                this.rate = this.post.PostRates[0].rate\r\n            }\r\n            else\r\n            {\r\n                this.rate = 0\r\n            }\r\n\r\n            if(!this.post.rating)\r\n                this.post.rating = 0\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .userinfo\r\n    {\r\n        padding: 15px;\r\n        font-size: 25px;\r\n    }\r\n\r\n    .rates span\r\n    {\r\n        color: rgba(0, 0, 0, 0.30)\r\n    }\r\n\r\n    .rates span:hover\r\n    {\r\n        color: rgba(0, 0, 0, 0.87);\r\n        cursor: context-menu;\r\n    }\r\n\r\n    .activated-rate\r\n    {\r\n        color: rgba(0, 0, 0, 0.87) !important;\r\n    }\r\n\r\n    .info\r\n    {\r\n        height: 45px;\r\n    }\r\n\r\n    img{\r\n        max-width: 90%;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n#submit-comment[data-v-e23414ac]{\n    margin: 5px;\n    margin-top: -20px;\n}\n", "", {"version":3,"sources":["/./components/PostListComponent/PostComponent/NewCommentComponent.vue?149b586f"],"names":[],"mappings":";AAuCA;IACA,YAAA;IACA,kBAAA;CACA","file":"NewCommentComponent.vue","sourcesContent":["<template>\r\n    <form id=\"new-commentary-form\" @submit.prevent=\"onSubmit\" class=\"input-field\">\r\n            <textarea name=\"new-comment\" v-model=\"text\" class=\"materialize-textarea\"></textarea>\r\n            <label for=\"new-comment\">New comment</label>\r\n            <button id=\"submit-comment\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light right\">\r\n                Submit<i class=\"material-icons right\">send</i>\r\n            </button>\r\n        </form>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        props:['post'],\r\n        data(){\r\n            return {\r\n                text: ''\r\n            }\r\n        },\r\n        methods:{\r\n            onSubmit() {\r\n                console.log(this)\r\n                let postId = this.post.id\r\n                $.ajax({\r\n                    method:'POST',\r\n                    url:'post/' + postId + '/comment', \r\n                    data: {content: this.text},\r\n                    success: res => {\r\n                        if(res.success)\r\n                        {\r\n                            this.post.Commentaries = res.comments\r\n                            this.text = ''\r\n                        }                \r\n                    }})\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    #submit-comment{\r\n        margin: 5px;\r\n        margin-top: -20px;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39596,7 +40392,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.card[data-v-bb88bd6e]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/FilterComponent.vue?088c5fad"],"names":[],"mappings":";AA8FA;;IAEA,aAAA;CACA","file":"FilterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <div class=\"collection-item\">Filter</div>\r\n        <form @submit.prevent=\"submit\" class=\"collection-item row\">\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                    <label for=\"tags\">Tags</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"content\" type=\"text\" name=\"content\" v-model=\"content\"/>\r\n                    <label for=\"content\">Content</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingFrom\" v-model=\"ratingFrom\" name=\"ratingFrom\" type=\"number\">\r\n                    <label for=\"ratingFrom\">Rating From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingTo\" v-model=\"ratingTo\" name=\"ratingTo\" type=\"number\">\r\n                    <label for=\"ratingTo\">Rating To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateFrom\" v-model=\"dateFrom\" name=\"dateFrom\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateFrom\">Date From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateTo\" v-model=\"dateTo\" name=\"dateTo\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateTo\">Date To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"center-align collection-item\">\r\n                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light\">\r\n                    Apply\r\n                </button>\r\n                <button @click=\"reset\" id=\"reset-filters\"  class=\"btn waves-effect waves-light\">\r\n                    Reset\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagsArray: [],\r\n                content:'',\r\n                ratingFrom:'',\r\n                ratingTo:''\r\n            }\r\n        },\r\n        methods: {\r\n            submit(){\r\n                let data = this.$data\r\n                data.dateFrom = $('#dateFrom').val()\r\n                data.dateTo = $('#dateTo').val()\r\n                this.$store.commit('loadPostsWithFilter', data)\r\n            },\r\n            reset(){\r\n                this.tagsArray = []\r\n                this.content = ''\r\n                this.ratingFrom = ''\r\n                this.ratingTo = ''\r\n                $('#dateFrom').trigger('reset')\r\n                $('#dateTo').trigger('reset')\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            }\r\n        },\r\n        computed: {\r\n            tags: {\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        },\r\n        mounted(){\r\n            $('.datepicker').pickadate({\r\n                selectMonths: true, // Creates a dropdown to control month\r\n                selectYears: 15 // Creates a dropdown of 15 years to control year\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "\n.card[data-v-f41cc170]\n{\n    height: 100%;\n}\n", "", {"version":3,"sources":["/./components/FeedComponent/NavComponent/FilterComponent.vue?088c5fad"],"names":[],"mappings":";AA8FA;;IAEA,aAAA;CACA","file":"FilterComponent.vue","sourcesContent":["<template>\r\n    <div class=\"collection\">\r\n        <div class=\"collection-item\">Filter</div>\r\n        <form @submit.prevent=\"submit\" class=\"collection-item row\">\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"tags\" type=\"text\" name=\"tags\" v-model=\"tags\"/>\r\n                    <label for=\"tags\">Tags</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"content\" type=\"text\" name=\"content\" v-model=\"content\"/>\r\n                    <label for=\"content\">Content</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingFrom\" v-model=\"ratingFrom\" name=\"ratingFrom\" type=\"number\">\r\n                    <label for=\"ratingFrom\">Rating From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"ratingTo\" v-model=\"ratingTo\" name=\"ratingTo\" type=\"number\">\r\n                    <label for=\"ratingTo\">Rating To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"collection-item row\">\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateFrom\" v-model=\"dateFrom\" name=\"dateFrom\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateFrom\">Date From</label>\r\n                </div>\r\n                <div class=\"input-field\">\r\n                    <input id=\"dateTo\" v-model=\"dateTo\" name=\"dateTo\" type=\"date\" class=\"datepicker\">\r\n                    <label for=\"dateTo\">Date To</label>\r\n                </div>\r\n            </div>\r\n            <div class=\"center-align collection-item\">\r\n                <button id=\"submit-post\" type=\"submit\" name=\"action\" class=\"btn waves-effect waves-light\">\r\n                    Apply\r\n                </button>\r\n                <button @click=\"reset\" id=\"reset-filters\"  class=\"btn waves-effect waves-light\">\r\n                    Reset\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n\r\n    export default{\r\n        data(){\r\n            return {\r\n                tagsArray: [],\r\n                content:'',\r\n                ratingFrom:'',\r\n                ratingTo:''\r\n            }\r\n        },\r\n        methods: {\r\n            submit(){\r\n                let data = this.$data\r\n                data.dateFrom = $('#dateFrom').val()\r\n                data.dateTo = $('#dateTo').val()\r\n                this.$store.commit('loadPostsWithFilter', data)\r\n            },\r\n            reset(){\r\n                this.tagsArray = []\r\n                this.content = ''\r\n                this.ratingFrom = ''\r\n                this.ratingTo = ''\r\n                $('#dateFrom').trigger('reset')\r\n                $('#dateTo').trigger('reset')\r\n                this.$store.commit('loadPosts', this.$route.path)\r\n            }\r\n        },\r\n        computed: {\r\n            tags: {\r\n                get(){\r\n                    return this.tagsArray.join(',')\r\n                },\r\n                set(tags){\r\n                    this.tagsArray = tags.split(',')\r\n                }\r\n            }\r\n        },\r\n        mounted(){\r\n            $('.datepicker').pickadate({\r\n                selectMonths: true, // Creates a dropdown to control month\r\n                selectYears: 15 // Creates a dropdown of 15 years to control year\r\n            })\r\n        }\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n    .card\r\n    {\r\n        height: 100%;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -39931,13 +40727,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(222)
+__webpack_require__(223)
 
 /* script */
 __vue_exports__ = __webpack_require__(127)
 
 /* template */
-var __vue_template__ = __webpack_require__(211)
+var __vue_template__ = __webpack_require__(212)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -39949,10 +40745,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\FeedComponent\\NavComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-70884160"
+__vue_options__._scopeId = "data-v-8fbfc542"
 
 /* hot reload */
 if (false) {(function () {
@@ -39961,9 +40757,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-70884160", __vue_options__)
+    hotAPI.createRecord("data-v-8fbfc542", __vue_options__)
   } else {
-    hotAPI.reload("data-v-70884160", __vue_options__)
+    hotAPI.reload("data-v-8fbfc542", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] NavComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -39997,10 +40793,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\FilterComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\FilterComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-bb88bd6e"
+__vue_options__._scopeId = "data-v-f41cc170"
 
 /* hot reload */
 if (false) {(function () {
@@ -40009,9 +40805,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bb88bd6e", __vue_options__)
+    hotAPI.createRecord("data-v-f41cc170", __vue_options__)
   } else {
-    hotAPI.reload("data-v-bb88bd6e", __vue_options__)
+    hotAPI.reload("data-v-f41cc170", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] FilterComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40027,7 +40823,7 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(221)
+__webpack_require__(220)
 
 /* script */
 __vue_exports__ = __webpack_require__(129)
@@ -40045,10 +40841,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\TagHeaderComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\FeedComponent\\NavComponent\\TagHeaderComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-61782d42"
+__vue_options__._scopeId = "data-v-5918fae3"
 
 /* hot reload */
 if (false) {(function () {
@@ -40057,9 +40853,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-61782d42", __vue_options__)
+    hotAPI.createRecord("data-v-5918fae3", __vue_options__)
   } else {
-    hotAPI.reload("data-v-61782d42", __vue_options__)
+    hotAPI.reload("data-v-5918fae3", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] TagHeaderComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40075,13 +40871,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(220)
+__webpack_require__(218)
 
 /* script */
 __vue_exports__ = __webpack_require__(130)
 
 /* template */
-var __vue_template__ = __webpack_require__(208)
+var __vue_template__ = __webpack_require__(205)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -40093,10 +40889,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\FeedComponent\\NewPostComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\FeedComponent\\NewPostComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-59c82843"
+__vue_options__._scopeId = "data-v-1a03ecc2"
 
 /* hot reload */
 if (false) {(function () {
@@ -40105,9 +40901,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-59c82843", __vue_options__)
+    hotAPI.createRecord("data-v-1a03ecc2", __vue_options__)
   } else {
-    hotAPI.reload("data-v-59c82843", __vue_options__)
+    hotAPI.reload("data-v-1a03ecc2", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] NewPostComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40123,13 +40919,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(224)
+__webpack_require__(217)
 
 /* script */
 __vue_exports__ = __webpack_require__(133)
 
 /* template */
-var __vue_template__ = __webpack_require__(214)
+var __vue_template__ = __webpack_require__(204)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -40141,10 +40937,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\PostListComponent\\PostComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\PostListComponent\\PostComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-a60c4bb2"
+__vue_options__._scopeId = "data-v-1792b4f0"
 
 /* hot reload */
 if (false) {(function () {
@@ -40153,9 +40949,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a60c4bb2", __vue_options__)
+    hotAPI.createRecord("data-v-1792b4f0", __vue_options__)
   } else {
-    hotAPI.reload("data-v-a60c4bb2", __vue_options__)
+    hotAPI.reload("data-v-1792b4f0", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] PostComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40171,13 +40967,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(219)
+__webpack_require__(216)
 
 /* script */
 __vue_exports__ = __webpack_require__(134)
 
 /* template */
-var __vue_template__ = __webpack_require__(206)
+var __vue_template__ = __webpack_require__(203)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -40189,10 +40985,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\PostListComponent\\PostComponent\\CommentComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\PostListComponent\\PostComponent\\CommentComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-42a953c3"
+__vue_options__._scopeId = "data-v-04829682"
 
 /* hot reload */
 if (false) {(function () {
@@ -40201,9 +40997,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-42a953c3", __vue_options__)
+    hotAPI.createRecord("data-v-04829682", __vue_options__)
   } else {
-    hotAPI.reload("data-v-42a953c3", __vue_options__)
+    hotAPI.reload("data-v-04829682", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] CommentComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40219,13 +41015,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(217)
+__webpack_require__(224)
 
 /* script */
 __vue_exports__ = __webpack_require__(135)
 
 /* template */
-var __vue_template__ = __webpack_require__(204)
+var __vue_template__ = __webpack_require__(213)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -40237,10 +41033,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\1WebProjects\\mcreactor\\vue\\components\\PostListComponent\\PostComponent\\NewCommentComponent.vue"
+__vue_options__.__file = "D:\\mcreactor\\vue\\components\\PostListComponent\\PostComponent\\NewCommentComponent.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-2d07a4c9"
+__vue_options__._scopeId = "data-v-e23414ac"
 
 /* hot reload */
 if (false) {(function () {
@@ -40249,9 +41045,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d07a4c9", __vue_options__)
+    hotAPI.createRecord("data-v-e23414ac", __vue_options__)
   } else {
-    hotAPI.reload("data-v-2d07a4c9", __vue_options__)
+    hotAPI.reload("data-v-e23414ac", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] NewCommentComponent.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -40263,219 +41059,25 @@ module.exports = __vue_exports__
 /* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "row"
-  }, [_vm._h('div', {
-    staticClass: "card col s4 offset-s4"
-  }, [_vm._h('form', {
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.submit($event)
-      }
-    }
-  }, [_vm._h('div', {
-    staticClass: "input-field"
-  }, [_vm._h('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.email),
-      expression: "email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "email",
-      "type": "email",
-      "name": "email"
-    },
-    domProps: {
-      "value": _vm._s(_vm.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.email = $event.target.value
-      }
-    }
-  }), " ", _vm._h('label', {
-    attrs: {
-      "data-error": "wrong",
-      "for": "email"
-    }
-  }, ["Email"])]), " ", _vm._h('div', {
-    staticClass: "input-field"
-  }, [_vm._h('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.password),
-      expression: "password"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "password",
-      "type": "password",
-      "name": "password"
-    },
-    domProps: {
-      "value": _vm._s(_vm.password)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.password = $event.target.value
-      }
-    }
-  }), " ", _vm._h('label', {
-    attrs: {
-      "data-error": "wrong",
-      "for": "password"
-    }
-  }, ["Password"]), " ", _vm._h('button', {
-    staticClass: "waves-effect waves-light btn col s4 offset-s4",
-    attrs: {
-      "type": "submit"
-    }
-  }, ["Submit"])])])])])
-},staticRenderFns: []}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-03680cfd", module.exports)
-  }
-}
-
-/***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;
-  return _vm._h('form', {
-    staticClass: "input-field",
-    attrs: {
-      "id": "new-commentary-form"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      }
-    }
-  }, [_vm._h('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.text),
-      expression: "text"
-    }],
-    staticClass: "materialize-textarea",
-    attrs: {
-      "name": "new-comment"
-    },
-    domProps: {
-      "value": _vm._s(_vm.text)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.text = $event.target.value
-      }
-    }
-  }), " ", _vm._h('label', {
-    attrs: {
-      "for": "new-comment"
-    }
-  }, ["New comment"]), " ", _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;
-  return _vm._h('button', {
-    staticClass: "btn waves-effect waves-light right",
-    attrs: {
-      "id": "submit-comment",
-      "type": "submit",
-      "name": "action"
-    }
-  }, ["\n            Submit", _vm._h('i', {
-    staticClass: "material-icons right"
-  }, ["send"])])
-}]}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2d07a4c9", module.exports)
-  }
-}
-
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', [_vm._h('div', {
-    staticClass: "card"
-  }, [_vm._h('div', {
-    staticClass: "card-content"
-  }, [_vm._h('span', {
-    staticClass: "card-title"
-  }, ["\n                Nickname: " + _vm._s(_vm.user.nickname) + "\n            "]), " ", (_vm.user) ? _vm._h('ul', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "collection"
-  }, [_vm._h('li', {
-    staticClass: "collection-item"
-  }, [_vm._h('div', {
-    staticClass: "title"
-  }, ["\n                        Email\n                    "]), "\n                    " + _vm._s(_vm.user.email) + "\n                "]), " ", _vm._h('li', {
-    staticClass: "collection-item"
-  }, [_vm._h('div', {
-    staticClass: "title"
-  }, ["\n                        Nickname\n                    "]), "\n                    " + _vm._s(_vm.user.nickname) + "\n                "]), " ", _vm._h('li', {
-    staticClass: "collection-item"
-  }, [_vm._h('div', {
-    staticClass: "title"
-  }, ["\n                        Rating\n                    "]), "\n                    " + _vm._s(_vm.user.rating ? _vm.user.rating : 0) + "\n                "]), " "]) : _vm._e()]), " ", (_vm.$store.state.user.isAdmin && !_vm.user.isBanned) ? _vm._h('div', {
-    staticClass: "card-action admin-actions"
-  }, [_vm._h('a', {
-    on: {
-      "click": _vm.ban
-    }
-  }, ["Ban user"])]) : _vm._e(), " ", (_vm.$store.state.user.isAdmin && _vm.user.isBanned) ? _vm._h('div', {
-    staticClass: "card-action admin-actions"
-  }, [_vm._h('a', {
-    on: {
-      "click": _vm.unban
-    }
-  }, ["Unban user"])]) : _vm._e()]), " ", _vm._h('post-list-component')])
-},staticRenderFns: []}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3dd9ab06", module.exports)
-  }
-}
-
-/***/ },
-/* 206 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "collection"
-  }, [_vm._h('router-link', {
+  }, [_c('router-link', {
     staticClass: "user-nickname collection-item row",
     attrs: {
       "to": '/user/' + _vm.comment.UserId + '/profile'
     }
-  }, [_vm._s(_vm.comment.User.nickname)]), " ", _vm._h('div', {
+  }, [_vm._v(_vm._s(_vm.comment.User.nickname))]), _vm._v(" "), _c('div', {
     staticClass: "collection-item collection row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "row collection-item"
-  }, [_vm._s(_vm.comment.content)]), " ", _vm._h('div', {
+  }, [_vm._v(_vm._s(_vm.comment.content))]), _vm._v(" "), _c('div', {
     staticClass: "row comment-info-row  valign-wrapper"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "date col s5 valign"
-  }, [_vm._s(_vm._f("formatDate")(_vm.comment.createdAt))]), " ", _vm._h('div', {
+  }, [_vm._v(_vm._s(_vm._f("formatDate")(_vm.comment.createdAt)))]), _vm._v(" "), _c('div', {
     staticClass: "rating col offset-s5 s1 valign"
-  }, [_vm._s(_vm.comment.rating)]), " ", _vm._h('div', {
+  }, [_vm._v(_vm._s(_vm.comment.rating))]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -40483,7 +41085,7 @@ module.exports={render:function (){var _vm=this;
       expression: "$store.state.user"
     }],
     staticClass: "valign rates col s2"
-  }, [_vm._h('span', {
+  }, [_c('span', {
     staticClass: "material-icons",
     class: {
       'activated-rate': _vm.ifThumbUp
@@ -40491,7 +41093,7 @@ module.exports={render:function (){var _vm=this;
     on: {
       "click": _vm.thumbUp
     }
-  }, ["thumb_up"]), " ", _vm._h('span', {
+  }, [_vm._v("thumb_up")]), _vm._v(" "), _c('span', {
     staticClass: "material-icons",
     class: {
       'activated-rate': _vm.ifThumbDown
@@ -40499,64 +41101,153 @@ module.exports={render:function (){var _vm=this;
     on: {
       "click": _vm.thumbDown
     }
-  }, ["thumb_down"])])])]), " ", (_vm.$store.state.user && (_vm.$store.state.user.isAdmin || _vm.$store.state.user.id == _vm.comment.UserId)) ? _vm._h('div', {
+  }, [_vm._v("thumb_down")])])])]), _vm._v(" "), (_vm.$store.state.user && (_vm.$store.state.user.isAdmin || _vm.$store.state.user.id == _vm.comment.UserId)) ? _c('div', {
     staticClass: "card-action admin-actions collection-item"
-  }, [_vm._h('a', {
+  }, [_c('a', {
     on: {
       "click": _vm.deleteComment
     }
-  }, ["Delete comment"])]) : _vm._e()])
+  }, [_vm._v("Delete comment")])]) : _vm._e()], 1)
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-42a953c3", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-04829682", module.exports)
   }
 }
 
 /***/ },
-/* 207 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "row"
-  }, [_vm._h('div', {
-    staticClass: "col s9"
-  }, [(this.$store.state.user && !this.$store.state.user.isBanned) ? [_vm._h('new-post-component')] : _vm._e(), " ", _vm._h('post-list-component')]), " ", _vm._h('nav-component', {
-    staticClass: "col s3"
-  })])
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "collection"
+  }, [_c('router-link', {
+    staticClass: "userinfo collection-item",
+    attrs: {
+      "to": '/user/' + _vm.post.UserId + '/profile'
+    }
+  }, [_vm._v(_vm._s(_vm.post.User.nickname) + "\n    ")]), _vm._v(" "), (_vm.post.Tags.length) ? _c('div', {
+    staticClass: "collection-item"
+  }, _vm._l((_vm.post.Tags), function(tag) {
+    return _c('div', {
+      staticClass: "chip"
+    }, [_c('router-link', {
+      attrs: {
+        "to": ("/post/tag/" + (tag.id))
+      }
+    }, [_vm._v(_vm._s(tag.name))])], 1)
+  })) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "row collection-item"
+  }, [_c('p', {
+    staticClass: "col s12"
+  }, [_vm._v(_vm._s(_vm.post.content))]), _vm._v(" "), (_vm.post.image) ? _c('img', {
+    attrs: {
+      "src": 'images/' + _vm.post.image
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "info row collection-item"
+  }, [_c('div', {
+    staticClass: "date col s3"
+  }, [_vm._v(_vm._s(_vm._f("formatDate")(_vm.post.createdAt)))]), _vm._v(" "), _c('router-link', {
+    staticClass: "link col s1",
+    attrs: {
+      "to": '/post/' + _vm.post.id
+    }
+  }, [_vm._v("Link")]), _vm._v(" "), _c('div', {
+    staticClass: "row col s4 offset-s4"
+  }, [_c('div', {
+    staticClass: "rating col s2 offset-s2"
+  }, [_vm._v(_vm._s(_vm.post.rating))]), _vm._v(" "), (_vm.$store.state.user) ? _c('div', {
+    staticClass: "rates col s8"
+  }, [_c('span', {
+    staticClass: "material-icons",
+    class: {
+      'activated-rate': _vm.ifThumbUp
+    },
+    on: {
+      "click": _vm.thumbUp
+    }
+  }, [_vm._v("thumb_up")]), _c('span', {
+    staticClass: "material-icons",
+    class: {
+      'activated-rate': _vm.ifThumbDown
+    },
+    on: {
+      "click": _vm.thumbDown
+    }
+  }, [_vm._v("thumb_down")])]) : _vm._e()])], 1), _vm._v(" "), (_vm.$store.state.user && (_vm.$store.state.user.isAdmin || _vm.$store.state.user.id == _vm.post.UserId)) ? _c('div', {
+    staticClass: "card-action admin-actions collection-item"
+  }, [_c('a', {
+    on: {
+      "click": _vm.deletePost
+    }
+  }, [_vm._v("Delete post")])]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "comments row collection-item"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "trigger valign-wrapper",
+    on: {
+      "click": _vm.triggerComments
+    }
+  }, [(_vm.showComments) ? _c('span', {
+    staticClass: "material-icons valign"
+  }, [_vm._v("keyboard_arrow_up")]) : _c('span', {
+    staticClass: "material-icons valign"
+  }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('span', {
+    staticClass: "valign"
+  }, [_vm._v("\n                    Comments\n                ")])]), _vm._v(" "), (_vm.showComments) ? _c('div', {
+    staticClass: "display-comments collection"
+  }, [_c('ul', [_vm._l((_vm.post.Commentaries), function(comment) {
+    return _c('li', {
+      staticClass: "collection-item"
+    }, [_c('comment-component', {
+      attrs: {
+        "comment": comment
+      }
+    })], 1)
+  }), _vm._v(" "), (this.$store.state.user && !this.$store.state.user.isBanned) ? _c('li', {
+    staticClass: "collection-item"
+  }, [_c('new-comment-component', {
+    attrs: {
+      "post": _vm.post
+    }
+  })], 1) : _vm._e()], 2)]) : _vm._e()])])], 1)
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4bcb5526", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-1792b4f0", module.exports)
   }
 }
 
 /***/ },
-/* 208 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     attrs: {
       "id": "new-post-component"
     }
-  }, [_vm._h('ul', {
+  }, [_c('ul', {
     staticClass: "card"
-  }, [_vm._h('li', {
+  }, [_c('li', {
     staticClass: "white"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "collapsible-header",
     on: {
       "click": _vm.toggleBody
     }
-  }, [_vm._h('i', {
+  }, [_c('i', {
     staticClass: "material-icons"
-  }, ["add "]), "New post"]), " ", (_vm.showBody) ? _vm._h('div', {
+  }, [_vm._v("add ")]), _vm._v("New post")]), _vm._v(" "), (_vm.showBody) ? _c('div', {
     staticClass: "collapsible-body white"
-  }, [_vm._h('form', {
+  }, [_c('form', {
     attrs: {
       "id": "new-post-form"
     },
@@ -40566,9 +41257,9 @@ module.exports={render:function (){var _vm=this;
         _vm.onSubmit($event)
       }
     }
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40589,13 +41280,13 @@ module.exports={render:function (){var _vm=this;
         _vm.tags = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "tags"
     }
-  }, ["Tags"])]), " ", _vm._h('div', {
+  }, [_vm._v("Tags")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('textarea', {
+  }, [_c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40616,46 +41307,178 @@ module.exports={render:function (){var _vm=this;
         _vm.content = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "content"
     }
-  }, ["Content"])]), " ", _vm._m(0)])]) : _vm._e()])])])
-},staticRenderFns: [function (){var _vm=this;
-  return _vm._h('div', {
+  }, [_vm._v("Content")])]), _vm._v(" "), _vm._m(0)])]) : _vm._e()])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "file-field input-field left"
-  }, [_vm._h('button', {
+  }, [_c('button', {
     staticClass: "btn"
-  }, ["Image\n                                    ", _vm._h('input', {
+  }, [_vm._v("Image\n                                    "), _c('input', {
     attrs: {
       "id": "image",
       "name": "image",
       "type": "file"
     }
-  })]), " ", _vm._h('div', {
+  })]), _vm._v(" "), _c('div', {
     staticClass: "file-path-wrapper"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     staticClass: "file-path validate",
     attrs: {
       "type": "text"
     }
-  })])]), " ", _vm._h('button', {
+  })])]), _vm._v(" "), _c('button', {
     staticClass: "btn waves-effect waves-light right",
     attrs: {
       "id": "submit-post",
       "type": "submit",
       "name": "action"
     }
-  }, ["\n                                Submit", _vm._h('i', {
+  }, [_vm._v("\n                                Submit"), _c('i', {
     staticClass: "material-icons right"
-  }, ["send"])])])
+  }, [_vm._v("send")])])])
 }]}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-59c82843", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-1a03ecc2", module.exports)
+  }
+}
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "post-list-component"
+    }
+  }, [_c('ul', [(!_vm.$store.state.posts.length) ? _c('li', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._v("\n                So empty.\n            ")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.posts), function(post, index) {
+    return _c('li', {
+      staticClass: "card"
+    }, [_c('post-component', {
+      attrs: {
+        "post": post
+      }
+    })], 1)
+  })], 2)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2bc11f07", module.exports)
+  }
+}
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_vm._v("\n                Nickname: " + _vm._s(_vm.user.nickname) + "\n            ")]), _vm._v(" "), (_vm.user) ? _c('ul', {
+    staticClass: "collection"
+  }, [_c('li', {
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "title"
+  }, [_vm._v("\n                        Email\n                    ")]), _vm._v("\n                    " + _vm._s(_vm.user.email) + "\n                ")]), _vm._v(" "), _c('li', {
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "title"
+  }, [_vm._v("\n                        Nickname\n                    ")]), _vm._v("\n                    " + _vm._s(_vm.user.nickname) + "\n                ")]), _vm._v(" "), _c('li', {
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "title"
+  }, [_vm._v("\n                        Rating\n                    ")]), _vm._v("\n                    " + _vm._s(_vm.user.rating ? _vm.user.rating : 0) + "\n                ")])]) : _vm._e()]), _vm._v(" "), (_vm.$store.state.user.isAdmin && !_vm.user.isBanned) ? _c('div', {
+    staticClass: "card-action admin-actions"
+  }, [_c('a', {
+    on: {
+      "click": _vm.ban
+    }
+  }, [_vm._v("Ban user")])]) : _vm._e(), _vm._v(" "), (_vm.$store.state.user.isAdmin && _vm.user.isBanned) ? _c('div', {
+    staticClass: "card-action admin-actions"
+  }, [_c('a', {
+    on: {
+      "click": _vm.unban
+    }
+  }, [_vm._v("Unban user")])]) : _vm._e()]), _vm._v(" "), _c('post-list-component')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4321ad88", module.exports)
+  }
+}
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row card"
+  }, [_c('div', {
+    staticClass: "container"
+  }, [_c('h2', {
+    staticClass: "center-align"
+  }, [_vm._v("Posts per day")]), _vm._v(" "), _c('canvas', {
+    attrs: {
+      "id": "postChart",
+      "width": "800",
+      "height": "400"
+    }
+  }), _vm._v(" "), _c('h2', {
+    staticClass: "center-align"
+  }, [_vm._v("Comments per day")]), _vm._v(" "), _c('canvas', {
+    attrs: {
+      "id": "commentChart",
+      "width": "800",
+      "height": "400"
+    }
+  }), _vm._v(" "), _c('h2', {
+    staticClass: "center-align"
+  }, [_vm._v("Tags net rating")]), _vm._v(" "), _c('canvas', {
+    attrs: {
+      "id": "tagChart",
+      "width": "800",
+      "height": "400"
+    }
+  }), _vm._v(" "), _c('h2', {
+    staticClass: "center-align"
+  }, [_vm._v("Tags average rating")]), _vm._v(" "), _c('canvas', {
+    attrs: {
+      "id": "tagAvgChart",
+      "width": "800",
+      "height": "400"
+    }
+  })])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5686bd54", module.exports)
   }
 }
 
@@ -40663,37 +41486,38 @@ if (false) {
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', [_vm._h('div', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
     staticClass: "tagname center-align"
-  }, [_vm._h('h4', [_vm._s(_vm.tagName)])]), " ", _vm._h('div', {
+  }, [_c('h4', [_vm._v(_vm._s(_vm.tagName))])]), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, [(_vm.$store.state.user && !_vm.ifSubscribed) ? _vm._h('button', {
+  }, [(_vm.$store.state.user && !_vm.ifSubscribed) ? _c('button', {
     staticClass: "col s8 offset-s2 center-align waves-effect waves-light btn subscribe-button",
     on: {
       "click": _vm.subscribe
     }
-  }, ["Subscribe\n        "]) : _vm._e(), " ", (_vm.$store.state.user && _vm.ifSubscribed) ? _vm._h('button', {
+  }, [_vm._v("Subscribe\n        ")]) : _vm._e(), _vm._v(" "), (_vm.$store.state.user && _vm.ifSubscribed) ? _c('button', {
     staticClass: "col s8 offset-s2 center-align waves-effect red btn subscribe-button",
     on: {
       "click": _vm.unsubscribe
     }
-  }, ["Unsubscribe\n        "]) : _vm._e(), " ", (_vm.$store.state.user && !_vm.ifBanned) ? _vm._h('button', {
+  }, [_vm._v("Unsubscribe\n        ")]) : _vm._e(), _vm._v(" "), (_vm.$store.state.user && !_vm.ifBanned) ? _c('button', {
     staticClass: "col s8 offset-s2 center-align waves-effect red btn subscribe-button",
     on: {
       "click": _vm.ban
     }
-  }, ["Ban\n        "]) : _vm._e(), " ", (_vm.$store.state.user && _vm.ifBanned) ? _vm._h('button', {
+  }, [_vm._v("Ban\n        ")]) : _vm._e(), _vm._v(" "), (_vm.$store.state.user && _vm.ifBanned) ? _c('button', {
     staticClass: "col s8 offset-s2 center-align waves-effect wawes-light btn subscribe-button",
     on: {
       "click": _vm.unban
     }
-  }, ["Unban\n        "]) : _vm._e()])])
+  }, [_vm._v("Unban\n        ")]) : _vm._e()])])
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-61782d42", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5918fae3", module.exports)
   }
 }
 
@@ -40701,91 +41525,21 @@ if (false) {
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "row card"
-  }, [_vm._h('canvas', {
-    attrs: {
-      "id": "postChart",
-      "width": "400",
-      "height": "400"
-    }
-  })])
-}]}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6341fed7", module.exports)
-  }
-}
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "card"
-  }, [(_vm.ifTagSection) ? _vm._h('div', {
-    staticClass: "tag-header row"
-  }, [_vm._h('tag-header-component', {
-    staticClass: "col s12"
-  })]) : _vm._e(), " ", (_vm.$store.state.user) ? _vm._h('div', {
-    staticClass: "subscriptions collection"
-  }, [_vm._h('div', {
-    staticClass: "collection-item"
-  }, ["\n            Subscriptions\n        "]), " ", (_vm.$store.state.subscriptions.length) ? _vm._h('ul', [_vm._l((_vm.$store.state.subscriptions), function(subscription) {
-    return _vm._h('li', [_vm._h('router-link', {
-      staticClass: "collection-item",
-      attrs: {
-        "to": '/post/tag/' + subscription.Tag.id
-      }
-    }, ["\n                    " + _vm._s(subscription.Tag.name) + "\n                "])])
-  })]) : _vm._h('p', {
-    staticClass: "col s12"
-  }, ["\n            So empty.\n        "]), " "]) : _vm._e(), " ", (_vm.$store.state.user) ? _vm._h('div', {
-    staticClass: "bans collection"
-  }, [_vm._h('div', {
-    staticClass: "collection-item"
-  }, ["\n            Bans\n        "]), " ", (_vm.$store.state.bans.length) ? _vm._h('ul', [_vm._l((_vm.$store.state.bans), function(ban) {
-    return _vm._h('li', [_vm._h('router-link', {
-      staticClass: "collection-item",
-      attrs: {
-        "to": '/post/tag/' + ban.Tag.id
-      }
-    }, [_vm._s(ban.Tag.name) + "\n                "])])
-  })]) : _vm._h('p', {
-    staticClass: "col s12"
-  }, ["\n            So empty.\n        "]), " "]) : _vm._e(), " ", (_vm.$route.path == '/') ? _vm._h('filter-component') : _vm._e()])
-},staticRenderFns: []}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-70884160", module.exports)
-  }
-}
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "card col s4 offset-s4"
-  }, [_vm._h('form', {
+  }, [_c('form', {
     on: {
       "submit": function($event) {
         $event.preventDefault();
         _vm.submit($event)
       }
     }
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40807,14 +41561,14 @@ module.exports={render:function (){var _vm=this;
         _vm.email = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "data-error": "wrong",
       "for": "email"
     }
-  }, ["Email"])]), " ", _vm._h('div', {
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40836,13 +41590,13 @@ module.exports={render:function (){var _vm=this;
         _vm.nickname = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "nickname"
     }
-  }, ["Nickname"])]), " ", _vm._h('div', {
+  }, [_vm._v("Nickname")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40864,14 +41618,14 @@ module.exports={render:function (){var _vm=this;
         _vm.password = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "data-error": "wrong",
       "for": "password"
     }
-  }, ["Password"])]), " ", _vm._h('div', {
+  }, [_vm._v("Password")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -40893,22 +41647,159 @@ module.exports={render:function (){var _vm=this;
         _vm.confirmPassword = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "data-error": "doesn't match",
       "for": "confirmPassword"
     }
-  }, ["Confirm password"])]), " ", _vm._h('button', {
+  }, [_vm._v("Confirm password")])]), _vm._v(" "), _c('button', {
     staticClass: "waves-effect waves-light btn col s4 offset-s4",
     attrs: {
       "type": "submit"
     }
-  }, ["Submit"])])])])
+  }, [_vm._v("Submit")])])])])
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7cb5067e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-6fc955e2", module.exports)
+  }
+}
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "card col s4 offset-s4"
+  }, [_c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.submit($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.email),
+      expression: "email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "email",
+      "type": "email",
+      "name": "email"
+    },
+    domProps: {
+      "value": _vm._s(_vm.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.email = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "data-error": "wrong",
+      "for": "email"
+    }
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "password",
+      "type": "password",
+      "name": "password"
+    },
+    domProps: {
+      "value": _vm._s(_vm.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "data-error": "wrong",
+      "for": "password"
+    }
+  }, [_vm._v("Password")]), _vm._v(" "), _c('button', {
+    staticClass: "waves-effect waves-light btn col s4 offset-s4",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Submit")])])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-74e2af7c", module.exports)
+  }
+}
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card"
+  }, [(_vm.ifTagSection) ? _c('div', {
+    staticClass: "tag-header row"
+  }, [_c('tag-header-component', {
+    staticClass: "col s12"
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.$store.state.user) ? _c('div', {
+    staticClass: "subscriptions collection"
+  }, [_c('div', {
+    staticClass: "collection-item"
+  }, [_vm._v("\n            Subscriptions\n        ")]), _vm._v(" "), (_vm.$store.state.subscriptions.length) ? _c('ul', _vm._l((_vm.$store.state.subscriptions), function(subscription) {
+    return _c('li', [_c('router-link', {
+      staticClass: "collection-item",
+      attrs: {
+        "to": '/post/tag/' + subscription.Tag.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(subscription.Tag.name) + "\n                ")])], 1)
+  })) : _c('p', {
+    staticClass: "col s12"
+  }, [_vm._v("\n            So empty.\n        ")])]) : _vm._e(), _vm._v(" "), (_vm.$store.state.user) ? _c('div', {
+    staticClass: "bans collection"
+  }, [_c('div', {
+    staticClass: "collection-item"
+  }, [_vm._v("\n            Bans\n        ")]), _vm._v(" "), (_vm.$store.state.bans.length) ? _c('ul', _vm._l((_vm.$store.state.bans), function(ban) {
+    return _c('li', [_c('router-link', {
+      staticClass: "collection-item",
+      attrs: {
+        "to": '/post/tag/' + ban.Tag.id
+      }
+    }, [_vm._v(_vm._s(ban.Tag.name) + "\n                ")])], 1)
+  })) : _c('p', {
+    staticClass: "col s12"
+  }, [_vm._v("\n            So empty.\n        ")])]) : _vm._e(), _vm._v(" "), (_vm.$route.path == '/') ? _c('filter-component') : _vm._e()], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-8fbfc542", module.exports)
   }
 }
 
@@ -40916,29 +41807,60 @@ if (false) {
 /* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    staticClass: "input-field",
     attrs: {
-      "id": "post-list-component"
-    }
-  }, [_vm._h('ul', [(!_vm.$store.state.posts.length) ? _vm._h('li', {
-    staticClass: "card"
-  }, [_vm._h('div', {
-    staticClass: "card-content"
-  }, ["\n                So empty.\n            "])]) : _vm._e(), " ", _vm._l((_vm.posts), function(post, index) {
-    return _vm._h('li', {
-      staticClass: "card"
-    }, [_vm._h('post-component', {
-      attrs: {
-        "post": post
+      "id": "new-commentary-form"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
       }
-    })])
-  })])])
-},staticRenderFns: []}
+    }
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.text),
+      expression: "text"
+    }],
+    staticClass: "materialize-textarea",
+    attrs: {
+      "name": "new-comment"
+    },
+    domProps: {
+      "value": _vm._s(_vm.text)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.text = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "new-comment"
+    }
+  }, [_vm._v("New comment")]), _vm._v(" "), _vm._m(0)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn waves-effect waves-light right",
+    attrs: {
+      "id": "submit-comment",
+      "type": "submit",
+      "name": "action"
+    }
+  }, [_vm._v("\n            Submit"), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])
+}]}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7d9d45e6", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-e23414ac", module.exports)
   }
 }
 
@@ -40946,106 +41868,20 @@ if (false) {
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
-    staticClass: "collection"
-  }, [_vm._h('router-link', {
-    staticClass: "userinfo collection-item",
-    attrs: {
-      "to": '/user/' + _vm.post.UserId + '/profile'
-    }
-  }, [_vm._s(_vm.post.User.nickname) + "\n    "]), " ", (_vm.post.Tags.length) ? _vm._h('div', {
-    staticClass: "collection-item"
-  }, [_vm._l((_vm.post.Tags), function(tag) {
-    return _vm._h('div', {
-      staticClass: "chip"
-    }, [_vm._h('router-link', {
-      attrs: {
-        "to": '/post/tag/' + tag.id
-      }
-    }, [_vm._s(tag.name)])])
-  })]) : _vm._e(), " ", _vm._h('div', {
-    staticClass: "row collection-item"
-  }, [_vm._h('p', {
-    staticClass: "col s12"
-  }, [_vm._s(_vm.post.content)]), " ", (_vm.post.image) ? _vm._h('img', {
-    attrs: {
-      "src": 'images/' + _vm.post.image
-    }
-  }) : _vm._e()]), " ", _vm._h('div', {
-    staticClass: "info row collection-item"
-  }, [_vm._h('div', {
-    staticClass: "date col s3"
-  }, [_vm._s(_vm._f("formatDate")(_vm.post.createdAt))]), " ", _vm._h('router-link', {
-    staticClass: "link col s1",
-    attrs: {
-      "to": '/post/' + _vm.post.id
-    }
-  }, ["Link"]), " ", _vm._h('div', {
-    staticClass: "row col s4 offset-s4"
-  }, [_vm._h('div', {
-    staticClass: "rating col s2 offset-s2"
-  }, [_vm._s(_vm.post.rating)]), " ", (_vm.$store.state.user) ? _vm._h('div', {
-    staticClass: "rates col s8"
-  }, [_vm._h('span', {
-    staticClass: "material-icons",
-    class: {
-      'activated-rate': _vm.ifThumbUp
-    },
-    on: {
-      "click": _vm.thumbUp
-    }
-  }, ["thumb_up"]), _vm._h('span', {
-    staticClass: "material-icons",
-    class: {
-      'activated-rate': _vm.ifThumbDown
-    },
-    on: {
-      "click": _vm.thumbDown
-    }
-  }, ["thumb_down"])]) : _vm._e()])]), " ", (_vm.$store.state.user && (_vm.$store.state.user.isAdmin || _vm.$store.state.user.id == _vm.post.UserId)) ? _vm._h('div', {
-    staticClass: "card-action admin-actions collection-item"
-  }, [_vm._h('a', {
-    on: {
-      "click": _vm.deletePost
-    }
-  }, ["Delete post"])]) : _vm._e(), " ", _vm._h('div', {
-    staticClass: "comments row collection-item"
-  }, [_vm._h('div', {
-    staticClass: "col s12"
-  }, [_vm._h('div', {
-    staticClass: "trigger valign-wrapper",
-    on: {
-      "click": _vm.triggerComments
-    }
-  }, [(_vm.showComments) ? _vm._h('span', {
-    staticClass: "material-icons valign"
-  }, ["keyboard_arrow_up"]) : _vm._h('span', {
-    staticClass: "material-icons valign"
-  }, ["keyboard_arrow_down"]), " ", " ", _vm._h('span', {
-    staticClass: "valign"
-  }, ["\n                    Comments\n                "])]), " ", (_vm.showComments) ? _vm._h('div', {
-    staticClass: "display-comments collection"
-  }, [_vm._h('ul', [_vm._l((_vm.post.Commentaries), function(comment) {
-    return _vm._h('li', {
-      staticClass: "collection-item"
-    }, [_vm._h('comment-component', {
-      attrs: {
-        "comment": comment
-      }
-    })])
-  }), " ", (this.$store.state.user && !this.$store.state.user.isBanned) ? _vm._h('li', {
-    staticClass: "collection-item"
-  }, [_vm._h('new-comment-component', {
-    attrs: {
-      "post": _vm.post
-    }
-  })]) : _vm._e()])]) : _vm._e()])])])
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s9"
+  }, [(this.$store.state.user && !this.$store.state.user.isBanned) ? [_c('new-post-component')] : _vm._e(), _vm._v(" "), _c('post-list-component')], 2), _vm._v(" "), _c('nav-component', {
+    staticClass: "col s3"
+  })], 1)
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a60c4bb2", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ed7a3272", module.exports)
   }
 }
 
@@ -41053,12 +41889,12 @@ if (false) {
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;
-  return _vm._h('div', {
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "collection"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "collection-item"
-  }, ["Filter"]), " ", _vm._h('form', {
+  }, [_vm._v("Filter")]), _vm._v(" "), _c('form', {
     staticClass: "collection-item row",
     on: {
       "submit": function($event) {
@@ -41066,11 +41902,11 @@ module.exports={render:function (){var _vm=this;
         _vm.submit($event)
       }
     }
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "collection-item row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41091,13 +41927,13 @@ module.exports={render:function (){var _vm=this;
         _vm.tags = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "tags"
     }
-  }, ["Tags"])]), " ", _vm._h('div', {
+  }, [_vm._v("Tags")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41118,15 +41954,15 @@ module.exports={render:function (){var _vm=this;
         _vm.content = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "content"
     }
-  }, ["Content"])])]), " ", _vm._h('div', {
+  }, [_vm._v("Content")])])]), _vm._v(" "), _c('div', {
     staticClass: "collection-item row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41145,15 +41981,18 @@ module.exports={render:function (){var _vm=this;
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.ratingFrom = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "ratingFrom"
     }
-  }, ["Rating From"])]), " ", _vm._h('div', {
+  }, [_vm._v("Rating From")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41172,17 +42011,20 @@ module.exports={render:function (){var _vm=this;
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.ratingTo = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "ratingTo"
     }
-  }, ["Rating To"])])]), " ", _vm._h('div', {
+  }, [_vm._v("Rating To")])])]), _vm._v(" "), _c('div', {
     staticClass: "collection-item row"
-  }, [_vm._h('div', {
+  }, [_c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41204,13 +42046,13 @@ module.exports={render:function (){var _vm=this;
         _vm.dateFrom = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "dateFrom"
     }
-  }, ["Date From"])]), " ", _vm._h('div', {
+  }, [_vm._v("Date From")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field"
-  }, [_vm._h('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -41232,20 +42074,20 @@ module.exports={render:function (){var _vm=this;
         _vm.dateTo = $event.target.value
       }
     }
-  }), " ", _vm._h('label', {
+  }), _vm._v(" "), _c('label', {
     attrs: {
       "for": "dateTo"
     }
-  }, ["Date To"])])]), " ", _vm._h('div', {
+  }, [_vm._v("Date To")])])]), _vm._v(" "), _c('div', {
     staticClass: "center-align collection-item"
-  }, [_vm._h('button', {
+  }, [_c('button', {
     staticClass: "btn waves-effect waves-light",
     attrs: {
       "id": "submit-post",
       "type": "submit",
       "name": "action"
     }
-  }, ["\n                Apply\n            "]), " ", _vm._h('button', {
+  }, [_vm._v("\n                Apply\n            ")]), _vm._v(" "), _c('button', {
     staticClass: "btn waves-effect waves-light",
     attrs: {
       "id": "reset-filters"
@@ -41253,12 +42095,13 @@ module.exports={render:function (){var _vm=this;
     on: {
       "click": _vm.reset
     }
-  }, ["\n                Reset\n            "])])])])
+  }, [_vm._v("\n                Reset\n            ")])])])])
 },staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-bb88bd6e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-f41cc170", module.exports)
   }
 }
 
@@ -41278,8 +42121,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-03680cfd&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-04829682&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-04829682&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41304,8 +42147,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2d07a4c9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1792b4f0&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1792b4f0&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41330,8 +42173,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3dd9ab06&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1a03ecc2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1a03ecc2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41356,8 +42199,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-42a953c3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4321ad88&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4321ad88&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41382,8 +42225,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-59c82843&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewPostComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5918fae3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5918fae3&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41408,8 +42251,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-61782d42&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagHeaderComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6fc955e2&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6fc955e2&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41434,8 +42277,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-70884160&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74e2af7c&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-74e2af7c&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LoginComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41460,8 +42303,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue", function() {
-			var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7cb5067e&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterComponent.vue");
+		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8fbfc542&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8fbfc542&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NavComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41486,8 +42329,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-a60c4bb2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-a60c4bb2&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PostComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-e23414ac&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-e23414ac&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewCommentComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -41512,8 +42355,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-bb88bd6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue", function() {
-			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-bb88bd6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue");
+		module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f41cc170&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue", function() {
+			var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-f41cc170&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterComponent.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});

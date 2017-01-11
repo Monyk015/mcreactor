@@ -24,7 +24,7 @@ export interface CommentaryModel extends Sequelize.Model<CommentaryInstance, Com
 
 const Commentary : CommentaryModel = db.define<CommentaryInstance, CommentaryAttribute>("Commentary", {
     content: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
     },
     rating: {

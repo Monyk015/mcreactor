@@ -270,7 +270,15 @@ PostController
                 raw: true
             })
             
-            ctx.body = {postCountByDay, commentCountByDay}
+            let ratingCountByTag = await db.query("SELECT `Tag`.`name` as 'name', sum(`Posts`.`rating`) as 'rating'" +
+                " FROM `Tags` AS `Tag` LEFT OUTER JOIN (`PostTag` AS `Posts.PostTag` INNER JOIN `Posts` AS `Posts` ON `Posts`.`id` = `Posts.PostTag`.`PostId`)" +
+                " ON `Tag`.`id` = `Posts.PostTag`.`TagId` GROUP BY `Tag`.`id`;")
+            
+            let ratingAvgByTag = await db.query("SELECT `Tag`.`name` as 'name', avg(`Posts`.`rating`) as 'rating'" +
+                " FROM `Tags` AS `Tag` LEFT OUTER JOIN (`PostTag` AS `Posts.PostTag` INNER JOIN `Posts` AS `Posts` ON `Posts`.`id` = `Posts.PostTag`.`PostId`)" +
+                " ON `Tag`.`id` = `Posts.PostTag`.`TagId` GROUP BY `Tag`.`id`;")
+            
+            ctx.body = {postCountByDay, commentCountByDay, ratingCountByTag, ratingAvgByTag}
         })
 
 export default PostController
